@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This me Piyush Singh - Hero Section</title>
+    <link href="D:\M2R5 WEB DESIGN\my web pps.html" rel="stylesheet">
+    
+    <style>
+        /* CSS STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color:orangered;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Top Header Contact Bar */
+        .top-bar {
+            background:palevioletred;
+            padding: 10px 10%;
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Main Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #e63946; /* Accent color for the logo */
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00d2ff;
+        }
+
+        /* Hero Section with Gradient */
+        .hero {
+            height: calc(100vh - 120px);
+            background: radial-gradient(circle at top right, #651b41, #0d2a11);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color:blueviolet;
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .btn-white {
+            background: white;
+            color: #0d1b2a;
+        }
+
+        .btn-blue {
+            background: #00b4d8;
+            color: white;
+            border: 1px solid #00b4d8;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Image Container */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 550px;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                height: auto;
+                padding-top: 50px;
+            }
+            .hero-content {
+                margin-bottom: 50px;
+            }
+            .btn-container {
+                justify-content: center;
+            }
+            nav ul {
+                display: none; /* Hide menu on small screens for simplicity */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+           <b><i> <span>📧 thakurpiyush@xyz</span></b></i>
+          <u>  <span>📞 9455718092</span> </u>
+        </div>
+
+        <nav>
+
+            <div style="display:flex; align-items:center; gap:15px;">
+  <img src="D:\M2R5 WEB DESIGN\p9.jpg" alt="Piyush" 
+       style="width:60px; height:60px; border-radius:50%; 
+              border:3px solid #c460fa; object-fit:cover;">
+  <h1>Thakur Piyush Singh.</h1>
+</div></div>
+            <ul>
+                <li><a href="my web pps.html">Home</a></li>
+                <li><a href="my web pps.html">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Training</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>HII..,, WELCOME TO MY WEB..</h1>
+            <p>You can start to grow your business with an awesome website. PIYUSH99 Solutions helps you to provide the best results to enhance your business Whether you are a seasoned developer reflecting on your journey or a curious beginner standing at the starting line, the relationship between a person and code is one of the most transformative dynamics of the modern era. Coding is much more than just typing lines of syntax into a dark screen; it is a profound extension of how you think, create, and solve problems</p>
+            
+            <div class="btn-container">
+                <a href="D:\M2R5 WEB DESIGN\p2.jpg" class="btn btn-white">Discover More</a>
+                <a href="my bmw2.html" class="btn btn-blue">View Design BMW</a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="D:\M2R5 WEB DESIGN\p2.jpg" alt=" Thakur Piyush Singh,,..!!">
+        </div>
+		
+    </section>
+
+</body>
+</html>

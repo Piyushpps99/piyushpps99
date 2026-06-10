@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Official Website | Clone</title>
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'BMWTypeNext', 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #262626;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: #fff;
+            border-bottom: 1px solid #e6e6e6;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Hero Image Sections */
+        .hero {
+            height: 90vh;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding-left: 8%;
+            color: white;
+            position: relative;
+        }
+
+        /* Using placeholder images to mimic the screenshot */
+        .x3-section {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.3), transparent), 
+                              url('https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1600');
+        }
+
+        .series2-section {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.4), transparent), 
+                              url('https://images.unsplash.com/photo-1617469767053-d3b523a0b982?auto=format&fit=crop&w=1600');
+        }
+
+        .hero-content h1 {
+            font-size: 120px;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+        }
+
+        .btn-primary {
+            background-color: #1c69d4;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #1652a8;
+        }
+
+        /* Icon Grid Selection */
+        .selection-grid {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .selection-grid h2 {
+            font-size: 28px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .grid-container {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 180px;
+        }
+
+        .grid-item span {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .grid-item p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .grid-item a {
+            font-size: 13px;
+            color: #262626;
+            text-decoration: none;
+            border-bottom: 1px solid #262626;
+            padding-bottom: 2px;
+        }
+
+        /* Responsive Fix for Mobile */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 60px; }
+            .grid-container { gap: 30px; }
+            .navbar { padding: 15px 20px; }
+            .nav-links { display: none; } /* Hide links on mobile for simplicity */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">BMW</div>
+        <ul class="nav-links">
+            <li>Models</li>
+            <li>Electric</li>
+            <li>Configurator</li>
+            <li>Visit Online Shop</li>
+        </ul>
+        <div class="nav-icons">🔍 🛒 📍</div>
+    </nav>
+
+    <section class="hero x3-section">
+        <div class="hero-content">
+            <p class="tagline">THE NEW</p>
+            <h1>X3</h1>
+            <p style="margin-bottom: 20px;">Price starting at ₹ 67,50,000</p>
+            <button class="btn-primary">Know More</button>
+        </div>
+    </section>
+
+    <section class="selection-grid">
+        <h2>Find your BMW.</h2>
+        <div class="grid-container">
+            <div class="grid-item">
+                <span>🚗</span>
+                <p>Find a new car</p>
+                <a href="#">Search Now</a>
+            </div>
+            <div class="grid-item">
+                <span>📅</span>
+                <p>Book a test drive</p>
+                <a href="#">Request a drive</a>
+            </div>
+            <div class="grid-item">
+                <span>🛠️</span>
+                <p>Build your own</p>
+                <a href="#">Configure & Price</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero series2-section">
+        <div class="hero-content">
+            <p class="tagline">THE NEW</p>
+            <h1>2</h1>
+            <p style="text-transform: uppercase; margin-bottom: 20px;">Leave Boring Behind.</p>
+            <button class="btn-primary">Explore</button>
+        </div>
+    </section>
+
+</body>
+</html>
