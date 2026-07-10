@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piyush Singh | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           1. CSS STYLING & CORE LAYOUT
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-color: #0f172a;
+            --second-bg-color: #1e293b;
+            --text-color: #f8fafc;
+            --main-color: #38bdf8; /* Cyber Blue Accent */
+            --btn-hover-glow: rgba(56, 189, 248, 0.6);
+        }
+
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Fixed Navigation Header */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* NAVBAR LOGO & AVATAR */
+        .logo {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            transition: .3s ease;
+        }
+
+        .profile-circle-container {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            background-color: var(--second-bg-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .logo:hover .profile-circle-container {
+            border-color: var(--main-color);
+        }
+
+        .profile-mini-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .logo span {
+            color: var(--text-color);
+            transition: .3s ease;
+        }
+
+        .logo:hover span {
+            color: var(--main-color);
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-left: 4rem;
+            transition: .3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links li a:hover {
+            color: var(--main-color);
+        }
+
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--text-color);
+        }
+
+        /* Section Layouts */
+        section {
+            min-height: 100vh;
+            padding: 14rem 9% 6rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title h2 {
+            font-size: 4.5rem;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: var(--main-color);
+        }
+
+        /* ==========================================
+           2. PREMIUM ATTRACTIVE HERO BACKGROUND (FIXED BLUR)
+           ========================================== */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 100vh;
+            padding: 15rem 5% 10rem;
+            /* Base level structural graphic wall asset */
+            background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* The Isolated Frost & Lighting Layer */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Multilayer blend: 
+               1. Linear gradient fades deep slate into the bottom to anchor sections flawlessly
+               2. Radial cyber glow highlights center typography layers */
+            background: 
+                linear-gradient(to top, var(--bg-color) 5%, rgba(15, 23, 42, 0.55) 50%, rgba(15, 23, 42, 0.85) 100%),
+                radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.18) 0%, transparent 60%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); /* Safari support architecture */
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Firmly elevates text assets above the frosted background overlay */
+            max-width: 80rem;
+            margin: 0 auto;
+        }
+
+        .hero-content h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 6.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 2rem 0; 
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content h1 .lastname-accent {
+            color: var(--main-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content p {
+            font-size: 2.8rem;
+            font-weight: 600;
+            min-height: 4.5rem;
+            color: #f1f5f9;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p span {
+            color: var(--main-color);
+            border-right: 3px solid var(--main-color);
+            padding-right: 5px;
+            animation: blink 0.75s step-end infinite;
+        }
+
+        .hero-sub {
+            font-size: 1.8rem !important;
+            max-width: 680px;
+            margin: 2rem auto 4rem !important;
+            color: #94a3b8;
+            font-weight: 400 !important;
+            line-height: 1.8;
+        }
+
+        /* Social Handles */
+        .social-media {
+            margin-bottom: 4rem;
+        }
+
+        .social-media a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            background: rgba(30, 41, 59, 0.6);
+            border: .2rem solid var(--main-color);
+            border-radius: 50%;
+            font-size: 2.2rem;
+            color: var(--main-color);
+            margin: 0 1.2rem;
+            transition: .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .social-media a:hover {
+            background: var(--main-color);
+            color: var(--second-bg-color);
+            box-shadow: 0 0 2.5rem var(--main-color);
+            transform: translateY(-4px);
+        }
+
+        /* BUTTON DESIGN & INTERACTION */
+        .btn {
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            background: var(--main-color);
+            border-radius: 5rem;
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.35);
+            font-size: 1.6rem;
+            color: #0f172a;
+            letter-spacing: .15rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .btn:hover {
+            box-shadow: 0 8px 30px var(--btn-hover-glow);
+            transform: translateY(-3px);
+            background: #ffffff;
+            color: #0f172a;
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--second-bg-color);
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-content h3 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .about-content p {
+            font-size: 1.6rem;
+            margin: 2rem 0;
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+
+        /* Interactive Timeline Card */
+        .education-timeline {
+            margin-top: 4rem;
+            background: var(--bg-color);
+            padding: 3.5rem;
+            border-radius: 1.5rem;
+            border-left: 4px solid var(--main-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .education-timeline h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--main-color);
+        }
+
+        .education-timeline ul {
+            list-style: none;
+        }
+
+        .education-timeline li {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .education-timeline li::before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            color: var(--main-color);
+            font-size: 1.4rem;
+        }
+
+        /* Ventures & Projects Cards */
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-box {
+            background: var(--second-bg-color);
+            border-radius: 2rem;
+            overflow: hidden;
+            padding: 3.5rem;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .portfolio-box:hover {
+            transform: translateY(-8px);
+            border-color: var(--main-color);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .portfolio-info h4 {
+            font-size: 2.4rem;
+            color: var(--main-color);
+            margin-bottom: 1.2rem;
+        }
+
+        .portfolio-info p {
+            font-size: 1.5rem;
+            line-height: 1.7;
+            color: #cbd5e1;
+            margin-bottom: 2.5rem;
+        }
+
+        .portfolio-info a {
+            font-size: 2rem;
+            color: var(--text-color);
+            transition: 0.3s;
+        }
+
+        .portfolio-info a:hover {
+            color: var(--main-color);
+        }
+
+        /* Modern Grid Skill Cards */
+        .skills {
+            background: var(--second-bg-color);
+        }
+
+        .skills-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--bg-color);
+            padding: 3rem 2rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            transition: 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.1);
+        }
+
+        .skill-card i {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        /* Tech Brand Colors */
+        .text-python { color: #3776AB; }
+        .text-js { color: #F7DF1E; }
+        .text-java { color: #007396; }
+        .text-c { color: #A8B9CC; }
+        .text-sql { color: #00758F; }
+        .text-html { color: #E34F26; }
+
+        /* Contact Section Form */
+        .contact-sub {
+            font-size: 1.7rem;
+            text-align: center;
+            max-width: 700px;
+            margin: -3rem auto 4rem;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .contact form {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact form .input-box {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .contact form .input-box input,
+        .contact form textarea {
+            width: 100%;
+            padding: 1.6rem;
+            font-size: 1.6rem;
+            color: var(--text-color);
+            background: var(--second-bg-color);
+            border-radius: 1rem;
+            margin: 0.8rem 0;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+
+        .contact form .input-box input:focus,
+        .contact form textarea:focus {
+            border-color: var(--main-color);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .contact form .input-box input {
+            width: 49%;
+        }
+
+        .contact form textarea {
+            resize: none;
+        }
+
+        .contact form .btn {
+            margin-top: 2rem;
+            border-radius: 1rem;
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 3rem 9%;
+            background: var(--bg-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-text p {
+            font-size: 1.6rem;
+            color: #94a3b8;
+        }
+
+        .footer-iconTop a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background: var(--main-color);
+            border-radius: 1rem;
+            transition: .4s ease;
+        }
+
+        .footer-iconTop a:hover {
+            box-shadow: 0 0 1.5rem var(--main-color);
+            transform: translateY(-2px);
+        }
+
+        .footer-iconTop a i {
+            font-size: 2.4rem;
+            color: var(--second-bg-color);
+        }
+
+        /* Cursor blinking animation */
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--main-color); }
+        }
+
+        /* Responsive Breakpoints & Hamburger Menu */
+        @media (max-width: 768px) {
+            html { font-size: 55%; }
+            .menu-toggle { display: block; }
+            
+            .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: -100%;
+                flex-direction: column;
+                background: rgba(15, 23, 42, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            }
+            .nav-links.active { left: 0; }
+            .nav-links li { margin: 2.5rem 0; }
+            .nav-links li a { margin-left: 0; font-size: 2.2rem; }
+            .contact form .input-box input { width: 100%; }
+            
+            .hero-content h1 { font-size: 4.2rem; margin-top: 1.5rem; }
+            .logo { font-size: 2.1rem; }
+            .profile-circle-container { width: 36px; height: 36px; }
+            .hero { padding: 12rem 5% 6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <div class="profile-circle-container">
+                    <img src="11.jfif" alt="Thakur Piyush Singh Profile" class="profile-mini-img">
+                </div>
+                <span>Thakur Piyush Singh...</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="css111.html">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="myweb1.html">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="contact us.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h3>Hello, It's Me</h3>
+            <h1><span class="lastname-accent">Thakur Piyush Singh</span></h1>
+            <p>I am a <span class="multiple-text"></span></p>
+            <p class="hero-sub">Founder & CEO of <strong>PPSphere OTT</strong>. Dedicated to building responsive web designs, software applications, and strong digital brands.</p>
+            <div class="social-media">
+                <a href="https://instagram.com/piyushpps99" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/piyushpps99" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.linkedin.com/in/thakur-piyush-singh-399830315?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Piyushpps99" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+            <a href="#contact" class="btn">Let's Connect</a>
+        </div>
+    </header>
+
+    <section id="about" class="about">
+        <div class="section-title">
+            <h2>About <span>Me</span></h2>
+        </div>
+        <div class="about-container">
+            <div class="about-content">
+                <h3>Bridging Creativity & Technology</h3>
+                <p>I am a technical specialist and designer based in Prayagraj, UP. Having successfully transitioned from a Bachelor of Arts (BA) foundation into the domain of computer applications, I design systems with structural clarity and logic.</p>
+                <p>From custom database configuration to rich user interface setups, I thrive on constructing seamless software layers. Outside of standard system architectures, I guide platform growth and optimization layout vectors for my venture, <strong>PPSphere OTT</strong>.</p>
+                
+                <div class="education-timeline">
+                    <h3>Educational Matrix & Core Path</h3>
+                    <ul>
+                        <li><strong>Master of Computer Applications (MCA)</strong> – United Institute of Technology</li>
+                        <li><strong>Advanced Senior Mathematics</strong> – NIOS</li>
+                        <li><strong>NIELIT O Level Graduate Certification</strong> – Technical Credentials Complete</li>
+                        <li><strong>Bachelor of Arts (BA)</strong> – Graduate Degree Foundations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="section-title">
+            <h2>My <span>Ventures & Projects</span></h2>
+        </div>
+        <div class="portfolio-container">
+            <div class="portfolio-box">
+                <div class="portfolio-info">
+                    <h4>PPSphere OTT</h4>
+                    <p>An innovative media streaming hub architecture. Steered high-definition design assets, user acquisition channels, and platform execution paths as Founder & CEO.</p>
+                    <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+                                                                                                                                 
+            <div class="portfolio-box">
+                <div class="portfolio-info">
+                    <h4>Creative Web Design</h4>
+                    <p>Highly customized user-centric interfaces built with modern semantic markup and flexible grid styling for adaptive device views.</p>
+                    <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="portfolio-box">
+                <div class="portfolio-info">
+                    <h4>Engineered Solutions</h4>
+                    <p>Optimized algorithms and structured storage layouts configured across backends utilizing object-oriented logic principles.</p>
+                    <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="section-title">
+            <h2>Technical <span>Skills</span></h2>
+        </div>
+        <div class="skills-row">
+            <a href="D:\M2R5 WEB DESIGN\python1.pdf"><div class="skill-card"><i class="fab fa-python text-python"></i> <h3>Python</h3></div></a>
+            <a href="D:\M2R5 WEB DESIGN\JS FULL NOTES.pdf"><div class="skill-card"><i class="fab fa-js text-js"></i> <h3>JavaScript</h3></div></a>
+            <a href="D:\MCA NOTES\JAVA\Java Programming.pdf"><div class="skill-card"><i class="fab fa-java text-java"></i> <h3>Java</h3></div></a>
+            <a href="D:\M2R5 WEB DESIGN\C- Language.pdf"><div class="skill-card"><i class="fas fa-code text-c"></i> <h3>C Programming</h3></div></a>
+            <a href="D:\M2R5 WEB DESIGN\SQL.pdf"><div class="skill-card"><i class="fas fa-database text-sql"></i> <h3>SQL</h3></div></a>
+           <a href="D:\M2R5 WEB DESIGN\HTML.pdf" <div class="skill-card"><i class="fab fa-html5 text-html"></i> <h3>HTML5 & CSS3</h3></div></a>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="section-title">
+            <h2>Contact <span>Me</span></h2>
+        </div>
+        <p class="contact-sub">Have a technical project, architectural requirement, or branding initiative to discuss? File your inquiry below. For priority partnerships, contact my business associate <strong>Rawal</strong>.</p>
+        
+        <form id="contact-form">
+            <div class="input-box">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-box">
+                <input type="number" placeholder="Mobile Number">
+                <input type="text" placeholder="Subject">
+            </div>
+            <textarea cols="30" rows="8" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Secure Message</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2026 by Piyush Singh | All Rights Reserved.</p>
+        </div>
+        <div class="footer-iconTop">
+            <a href="#home"><i class="fas fa-angle-up"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Responsive Mobile Menu Overlay Toggle
+        const menuToggle = document.querySelector('#mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('is-active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close dropdown panels upon picking direct anchors
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('is-active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // High-performance Auto-Typing Script Matrix
+        const typingTargets = ["Web Designer", "Software Developer", "Founder & CEO"];
+        let targetIndex = 0;
+        let characterIndex = 0;
+        let isDeleting = false;
+        const speedTyping = 100;
+        const speedDeleting = 50;
+        const delayPause = 2000;
+
+        function handleDynamicTyping() {
+            const currentString = typingTargets[targetIndex];
+            const targetDisplayElement = document.querySelector('.multiple-text');
+            
+            if (isDeleting) {
+                targetDisplayElement.textContent = currentString.substring(0, characterIndex - 1);
+                characterIndex--;
+            } else {
+                targetDisplayElement.textContent = currentString.substring(0, characterIndex + 1);
+                characterIndex++;
+            }
+
+            let calculatedTimeout = isDeleting ? speedDeleting : speedTyping;
+
+            if (!isDeleting && characterIndex === currentString.length) {
+                calculatedTimeout = delayPause;
+                isDeleting = true;
+            } else if (isDeleting && characterIndex === 0) {
+                isDeleting = false;
+                targetIndex = (targetIndex + 1) % typingTargets.length;
+                calculatedTimeout = 400;
+            }
+
+            setTimeout(handleDynamicTyping, calculatedTimeout);
+        }
+
+        // Initialize script logic routine
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(handleDynamicTyping, 500);
+        });
+
+        // Form Transmission Confirmation Trigger
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Form submitted successfully! Your tracking pipeline is operational.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
