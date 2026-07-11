@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="portfolioApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piyush Singh | Portfolio</title>
+    <title>Thakur Piyush Singh | Executive Portfolio</title>
+    <!-- Font Awesome 6.4.0 & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- AngularJS Framework Core -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
     <style>
-        /* ==========================================
-           1. CSS STYLING & CORE LAYOUT
-           ========================================== */
+        /* ==========================================================================
+           1. PREMIUM DESIGN ENGINE & DESIGN TOKENS (UI/UX)
+           ========================================================================== */
         * {
             margin: 0;
             padding: 0;
@@ -17,790 +21,948 @@
             text-decoration: none;
             border: none;
             outline: none;
-            scroll-behavior: smooth;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         :root {
-            --bg-color: #0f172a;
-            --second-bg-color: #1e293b;
-            --text-color: #f8fafc;
-            --main-color: #38bdf8; /* Cyber Blue Accent */
-            --btn-hover-glow: rgba(56, 189, 248, 0.6);
+            --bg-deep: #060913;
+            --bg-surface: rgba(15, 23, 42, 0.45);
+            --bg-surface-hover: rgba(30, 41, 59, 0.65);
+            --primary-neon: #38bdf8; /* Cyber Blue */
+            --secondary-neon: #818cf8; /* Deep Indigo */
+            --accent-green: #34d399; /* Success Matrix */
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --glass-border-glow: rgba(56, 189, 248, 0.25);
+            --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
         html {
             font-size: 62.5%;
+            scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
         body {
-            background: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            /* Cyber Tech Grid Blueprint Overlay */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.007) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 15% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+            background-size: 40px 40px, 40px 40px, auto, auto;
+            background-attachment: fixed;
         }
 
-        /* Fixed Navigation Header */
+        /* Standard Section Scaffolding */
+        section {
+            min-height: 100vh;
+            padding: 14rem 8% 8rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 6rem;
+        }
+
+        .section-header .tag {
+            font-family: var(--font-mono);
+            font-size: 1.3rem;
+            color: var(--primary-neon);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .section-header h2 span {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glassmorphism Generic Panel Architecture */
+        .glass-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================================================
+           2. EXECUTIVE GLOWING NAVIGATION ARCHITECTURE
+           ========================================================================== */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 2rem 5%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem 6%;
+            background: rgba(6, 9, 19, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        .nav-container {
+        .nav-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
-        /* NAVBAR LOGO & AVATAR */
-        .logo {
-            font-size: 2.5rem;
-            color: var(--text-color);
-            font-weight: 700;
-            letter-spacing: 1px;
+        .brand-logo {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
-            transition: .3s ease;
+            gap: 1.4rem;
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
         }
 
-        .profile-circle-container {
+        .avatar-frame {
             width: 42px;
             height: 42px;
-            border-radius: 50%;
+            border-radius: 12px;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            background-color: var(--second-bg-color);
-            transition: border-color 0.3s ease;
+            border: 1.5px solid var(--primary-neon);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+            background: var(--bg-deep);
         }
 
-        .logo:hover .profile-circle-container {
-            border-color: var(--main-color);
-        }
-
-        .profile-mini-img {
+        .avatar-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
 
-        .logo span {
-            color: var(--text-color);
-            transition: .3s ease;
-        }
-
-        .logo:hover span {
-            color: var(--main-color);
-        }
-
-        /* Navigation Links */
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li a {
-            font-size: 1.7rem;
-            color: var(--text-color);
-            margin-left: 4rem;
-            transition: .3s ease;
-            font-weight: 500;
-        }
-
-        .nav-links li a:hover {
-            color: var(--main-color);
-        }
-
-        /* Mobile Menu Toggle Button */
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-        }
-
-        .bar {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px auto;
-            transition: all 0.3s ease-in-out;
-            background-color: var(--text-color);
-        }
-
-        /* Section Layouts */
-        section {
-            min-height: 100vh;
-            padding: 14rem 9% 6rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-title h2 {
-            font-size: 4.5rem;
-            font-weight: 700;
-        }
-
-        .section-title span {
-            color: var(--main-color);
-        }
-
-        /* ==========================================
-           2. PREMIUM ATTRACTIVE HERO BACKGROUND (FIXED BLUR)
-           ========================================== */
-        .hero {
+        .nav-menu {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 100vh;
-            padding: 15rem 5% 10rem;
-            background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200') no-repeat center center/cover;
-            position: relative;
-            overflow: hidden;
+            list-style: none;
+            gap: 3.5rem;
         }
 
-        /* The Isolated Frost & Lighting Layer */
-        .hero::before {
+        .nav-item a {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.6rem 0;
+        }
+
+        .nav-item.active-nav a,
+        .nav-item a:hover {
+            color: var(--primary-neon);
+        }
+
+        .nav-item::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: -2px;
             left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item.active-nav::after {
             width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(to top, var(--bg-color) 5%, rgba(15, 23, 42, 0.55) 50%, rgba(15, 23, 42, 0.85) 100%),
-                radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.18) 0%, transparent 60%);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px); 
-            z-index: 1;
-            pointer-events: none;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2; 
-            max-width: 80rem;
-            margin: 0 auto;
-        }
-
-        .hero-content h3 {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #cbd5e1;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .hero-content h1 {
-            font-size: 6.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin: 2rem 0; 
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
-        }
-
-        .hero-content h1 .lastname-accent {
-            color: var(--main-color);
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-content p {
-            font-size: 2.8rem;
-            font-weight: 600;
-            min-height: 4.5rem;
-            color: #f1f5f9;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-content p span {
-            color: var(--main-color);
-            border-right: 3px solid var(--main-color);
-            padding-right: 5px;
-            animation: blink 0.75s step-end infinite;
-        }
-
-        .hero-sub {
-            font-size: 1.8rem !important;
-            max-width: 680px;
-            margin: 2rem auto 4rem !important;
-            color: #94a3b8;
-            font-weight: 400 !important;
-            line-height: 1.8;
-        }
-
-        /* Social Handles */
-        .social-media {
-            margin-bottom: 4rem;
-        }
-
-        .social-media a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 5rem;
-            height: 5rem;
-            background: rgba(30, 41, 59, 0.6);
-            border: .2rem solid var(--main-color);
-            border-radius: 50%;
-            font-size: 2.2rem;
-            color: var(--main-color);
-            margin: 0 1.2rem;
-            transition: .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .social-media a:hover {
-            background: var(--main-color);
-            color: var(--second-bg-color);
-            box-shadow: 0 0 2.5rem var(--main-color);
-            transform: translateY(-4px);
-        }
-
-        /* BUTTON DESIGN & INTERACTION */
-        .btn {
-            display: inline-block;
-            padding: 1.5rem 4rem;
-            background: var(--main-color);
-            border-radius: 5rem;
-            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.35);
-            font-size: 1.6rem;
-            color: #0f172a;
-            letter-spacing: .15rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        .hamburger {
+            display: none;
             cursor: pointer;
-            position: relative;
+            flex-direction: column;
+            gap: 6px;
         }
 
-        .btn:hover {
-            box-shadow: 0 8px 30px var(--btn-hover-glow);
-            transform: translateY(-3px);
-            background: #ffffff;
-            color: #0f172a;
-        }
-
-        .btn:active {
-            transform: translateY(-1px);
-        }
-
-        /* About Section */
-        .about {
-            background: var(--second-bg-color);
-        }
-
-        .about-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .about-content h3 {
-            font-size: 2.8rem;
-            margin-bottom: 2rem;
-            color: var(--text-color);
-        }
-
-        .about-content p {
-            font-size: 1.6rem;
-            margin: 2rem 0;
-            line-height: 1.8;
-            color: #cbd5e1;
-        }
-
-        /* Interactive Timeline Card */
-        .education-timeline {
-            margin-top: 4rem;
-            background: var(--bg-color);
-            padding: 3.5rem;
-            border-radius: 1.5rem;
-            border-left: 4px solid var(--main-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .education-timeline h3 {
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            color: var(--main-color);
-        }
-
-        .education-timeline ul {
-            list-style: none;
-        }
-
-        .education-timeline li {
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-left: 2.5rem;
-        }
-
-        .education-timeline li::before {
-            content: "◆";
-            position: absolute;
-            left: 0;
-            color: var(--main-color);
-            font-size: 1.4rem;
-        }
-
-        /* Ventures & Projects Cards */
-        .portfolio-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .portfolio-box {
-            background: var(--second-bg-color);
-            border-radius: 2rem;
-            overflow: hidden;
-            padding: 3.5rem;
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .portfolio-box:hover {
-            transform: translateY(-8px);
-            border-color: var(--main-color);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-
-        .portfolio-info h4 {
-            font-size: 2.4rem;
-            color: var(--main-color);
-            margin-bottom: 1.2rem;
-        }
-
-        .portfolio-info p {
-            font-size: 1.5rem;
-            line-height: 1.7;
-            color: #cbd5e1;
-            margin-bottom: 2.5rem;
-        }
-
-        .portfolio-info a {
-            font-size: 2rem;
-            color: var(--text-color);
-            transition: 0.3s;
-        }
-
-        .portfolio-info a:hover {
-            color: var(--main-color);
-        }
-
-        /* Modern Grid Skill Cards */
-        .skills {
-            background: var(--second-bg-color);
-        }
-
-        .skills-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 2.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .skills-row a {
-            color: inherit;
-            display: block;
-        }
-
-        .skill-card {
-            background: var(--bg-color);
-            padding: 3rem 2rem;
-            border-radius: 1.5rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        .hamburger span {
+            width: 26px;
+            height: 2px;
+            background: var(--text-primary);
             transition: 0.3s ease;
         }
 
-        .skill-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.1);
+        /* ==========================================================================
+           3. EXPERT HERO LANDING GRID
+           ========================================================================== */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0 8%;
+            position: relative;
         }
 
-        .skill-card i {
-            font-size: 5rem;
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 6rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-left .code-badge {
+            font-family: var(--font-mono);
+            font-size: 1.3rem;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            padding: 0.6rem 1.6rem;
+            border-radius: 30px;
+            color: var(--primary-neon);
+            display: inline-block;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-left h1 {
+            font-size: 6.4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-left h1 span.accent {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-left h3 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2.5rem;
+            min-height: 4rem;
+        }
+
+        .hero-left h3 span.dynamic-text {
+            color: var(--primary-neon);
+            border-right: 2px solid var(--primary-neon);
+            padding-right: 4px;
+            animation: caretBlink 0.8s step-end infinite;
+        }
+
+        .hero-left p.desc {
+            font-size: 1.7rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            max-width: 620px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.6rem 3.5rem;
+            background: var(--gradient-accent);
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.6rem 3.5rem;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--text-primary);
+        }
+
+        /* Hero Right Visual Glass Dashboard Module */
+        .hero-right-dashboard {
+            padding: 3.5rem;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.6), rgba(6, 9, 19, 0.8));
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1.5rem;
+        }
+
+        .dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dots span {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dots span:nth-child(1) { background: #ef4444; }
+        .dots span:nth-child(2) { background: #eab308; }
+        .dots span:nth-child(3) { background: #22c55e; }
+
+        .dashboard-header .status {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            color: var(--accent-green);
+            background: rgba(52, 211, 153, 0.1);
+            padding: 0.4rem 1.2rem;
+            border-radius: 6px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .stat-label {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            font-family: var(--font-mono);
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* ==========================================================================
+           4. MODULAR VIEWS ARCHITECTURE (SPA ROUTING CONTAINER)
+           ========================================================================== */
+        .spa-view-container {
+            position: relative;
+            min-height: 80vh;
+        }
+
+        /* ==========================================================================
+           5. ABOUT & EDUCATION BLOCK
+           ========================================================================== */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .about-bio p {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .timeline-node {
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .timeline-node:hover {
+            transform: translateX(5px);
+            border-color: var(--glass-border-glow);
+        }
+
+        .timeline-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-meta .period {
+            font-family: var(--font-mono);
+            font-size: 1.3rem;
+            color: var(--primary-neon);
+        }
+
+        .timeline-meta .institution {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+        }
+
+        .timeline-node h4 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* ==========================================================================
+           6. PROJECT GRID & ENTERPRISE CARDS
+           ========================================================================== */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 3.5rem;
+        }
+
+        .project-card {
+            padding: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--glass-border-glow);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .project-top i {
+            font-size: 3rem;
+            color: var(--primary-neon);
+            margin-bottom: 2.5rem;
+            display: inline-block;
+        }
+
+        .project-top h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
             margin-bottom: 1.5rem;
         }
 
-        .skill-card h3 {
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-
-        /* Tech Brand Colors */
-        .text-python { color: #3776AB; }
-        .text-js { color: #F7DF1E; }
-        .text-java { color: #007396; }
-        .text-c { color: #A8B9CC; }
-        .text-sql { color: #00758F; }
-        .text-html { color: #E34F26; }
-
-        /* Contact Section Form */
-        .contact-sub {
-            font-size: 1.7rem;
-            text-align: center;
-            max-width: 700px;
-            margin: -3rem auto 4rem;
-            color: #94a3b8;
+        .project-top p {
+            font-size: 1.5rem;
             line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
         }
 
-        .contact form {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact form .input-box {
+        .project-tags {
             display: flex;
-            justify-content: space-between;
             flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
         }
 
-        .contact form .input-box input,
-        .contact form textarea {
+        .project-tags span {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.04);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            color: var(--text-secondary);
+        }
+
+        .project-link {
+            font-size: 1.5rem;
+            color: var(--primary-neon);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        /* ==========================================================================
+           7. NOTES MATRIX ACADEMIC DOWNLOAD HOVER BOARDS
+           ========================================================================== */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .notes-card {
+            padding: 3rem 2.5rem;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .notes-card:hover {
+            transform: scale(1.03);
+            border-color: var(--glass-border-glow);
+            background: var(--bg-surface-hover);
+        }
+
+        .notes-card i {
+            font-size: 3.8rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .notes-card h4 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Technology Specific Theme Overlays */
+        .icon-se { color: #f43f5e; }
+        .icon-python { color: #38bdf8; }
+        .icon-js { color: #facc15; }
+        .icon-java { color: #f97316; }
+        .icon-c { color: #818cf8; }
+        .icon-sql { color: #2dd4bf; }
+        .icon-html { color: #fb923c; }
+
+        /* ==========================================================================
+           8. SECURE CRM INPUT CONTROL LAYER
+           ========================================================================== */
+        .contact-layout {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group label {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-control {
             width: 100%;
             padding: 1.6rem;
-            font-size: 1.6rem;
-            color: var(--text-color);
-            background: var(--second-bg-color);
-            border-radius: 1rem;
-            margin: 0.8rem 0;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.3s;
+            font-size: 1.5rem;
+            background: rgba(6, 9, 19, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            transition: all 0.3s;
         }
 
-        .contact form .input-box input:focus,
-        .contact form textarea:focus {
-            border-color: var(--main-color);
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        .form-control:focus {
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+            background: rgba(15, 23, 42, 0.8);
         }
 
-        .contact form .input-box input {
-            width: 49%;
-        }
-
-        .contact form textarea {
+        textarea.form-control {
             resize: none;
+            height: 160px;
         }
 
-        .contact form .btn {
-            margin-top: 2rem;
-            border-radius: 1rem;
-            width: 100%;
+        /* ==========================================================================
+           9. BACKEND SYSTEM COMPONENT OVERVIEW PANEL
+           ========================================================================== */
+        .backend-architecture-card {
+            margin-top: 6rem;
+            padding: 3.5rem;
+            border: 1px dashed var(--glass-border-glow);
+            background: rgba(56, 189, 248, 0.01);
         }
 
-        /* Footer */
-        .footer {
+        .backend-architecture-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-mono);
+            color: var(--primary-neon);
+        }
+
+        .backend-architecture-card p {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .tech-pipeline {
+            display: flex;
+            gap: 3rem;
+            font-family: var(--font-mono);
+            font-size: 1.3rem;
+        }
+
+        .tech-pipeline span i {
+            margin-right: 0.6rem;
+        }
+
+        /* ==========================================================================
+           10. METRIC FOOTER
+           ========================================================================== */
+        .footer-terminal {
+            background: #03050a;
+            border-top: 1px solid var(--glass-border);
+            padding: 4rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            padding: 3rem 9%;
-            background: var(--bg-color);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .footer-text p {
-            font-size: 1.6rem;
-            color: #94a3b8;
+        .footer-terminal p {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
         }
 
-        .footer-iconTop a {
+        .footer-action-top a {
+            width: 44px;
+            height: 44px;
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            padding: 1rem;
-            background: var(--main-color);
-            border-radius: 1rem;
-            transition: .4s ease;
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            transition: all 0.3s;
         }
 
-        .footer-iconTop a:hover {
-            box-shadow: 0 0 1.5rem var(--main-color);
+        .footer-action-top a:hover {
+            color: var(--primary-neon);
+            border-color: var(--primary-neon);
             transform: translateY(-2px);
         }
 
-        .footer-iconTop a i {
-            font-size: 2.4rem;
-            color: var(--second-bg-color);
-        }
-
-        /* Cursor blinking animation */
-        @keyframes blink {
+        /* ==========================================================================
+           11. KEYFRAME ANIMATIONS ENGINE
+           ========================================================================== */
+        @keyframes caretBlink {
             from, to { border-color: transparent }
-            50% { border-color: var(--main-color); }
+            50% { border-color: var(--primary-neon); }
         }
 
-        /* Responsive Breakpoints & Hamburger Menu */
-        @media (max-width: 768px) {
-            html { font-size: 55%; }
-            .menu-toggle { display: block; }
-            
-            .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
-            .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-            .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        /* ==========================================================================
+           12. RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 992px) {
+            html { font-size: 58%; }
+            .hero-layout { grid-template-columns: 1fr; gap: 4rem; }
+            .about-layout { grid-template-columns: 1fr; gap: 4rem; }
+        }
 
-            .nav-links {
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu {
                 position: absolute;
                 top: 100%;
                 left: -100%;
-                flex-direction: column;
-                background: rgba(15, 23, 42, 0.98);
                 width: 100%;
-                text-align: center;
-                transition: 0.3s ease;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+                background: rgba(6, 9, 19, 0.98);
+                flex-direction: column;
+                padding: 4rem 0;
+                transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                border-bottom: 1px solid var(--glass-border);
             }
-            .nav-links.active { left: 0; }
-            .nav-links li { margin: 2.5rem 0; }
-            .nav-links li a { margin-left: 0; font-size: 2.2rem; }
-            .contact form .input-box input { width: 100%; }
-            
-            .hero-content h1 { font-size: 4.2rem; margin-top: 1.5rem; }
-            .logo { font-size: 2.1rem; }
-            .profile-circle-container { width: 36px; height: 36px; }
-            .hero { padding: 12rem 5% 6rem; }
+            .nav-menu.mobile-active { left: 0; }
+            .form-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-left h1 { font-size: 4.8rem; }
+            .tech-pipeline { flex-direction: column; gap: 1rem; }
         }
     </style>
 </head>
-<body>
+<body ng-controller="ViewController">
 
+    <!-- NAVIGATION COMPONENT LAYER -->
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">
-                <div class="profile-circle-container">
-                    <img src="11.jfif" alt="Thakur Piyush Singh Profile" class="profile-mini-img">
+          <div class="profile-circle-container"><div class="nav-wrapper">
+          <div class="brand-logo">
+			
+                <div class="avatar-frame">
+                    <img src="11.jfif" alt="Thakur Piyush Singh Frame Profile">
                 </div>
-                <span>Thakur Piyush Singh...</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <span>THAKUR PIYUSH SINGH...</span>
+            </div>
+            <ul class="nav-menu" ng-class="{'mobile-active': isMobileMenuOpen}">
+                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'home'}"><a href="css111.html" ng-click="setActiveTab('home')">Home</a></li>
+                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'about'}"><a href="#about" ng-click="setActiveTab('about')">About</a></li>
+                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'projects'}"><a href="myweb1.html" ng-click="setActiveTab('projects')">Ventures</a></li>
+                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'notes'}"><a href="#notes" ng-click="setActiveTab('notes')">Academic Notes</a></li>
+                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'contact'}"><a href="contact us.html" ng-click="setActiveTab('contact')">Connect</a></li>
             </ul>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="hamburger" ng-click="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <h3>Hello, It's Me</h3>
-            <h1><span class="lastname-accent">Thakur Piyush Singh</span></h1>
-            <p>I am a <span class="multiple-text"></span></p>
-            <p class="hero-sub">Founder & CEO of <strong>PPSphere OTT</strong>. Dedicated to building responsive web designs, software applications, and strong digital brands.</p>
-            <div class="social-media">
-                <a href="https://instagram.com/piyushpps99" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/piyushpps99" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-                <a href="https://www.linkedin.com/in/thakur-piyush-singh-399830315" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/Piyushpps99" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
-            <a href="#contact" class="btn">Let's Connect</a>
-        </div>
-    </header>
+    <!-- VIEWS MOUNT POINT STACK -->
+    <main class="spa-view-container">
 
-    <section id="about" class="about">
-        <div class="section-title">
-            <h2>About <span>Me</span></h2>
-        </div>
-        <div class="about-container">
-            <div class="about-content">
-                <h3>Bridging Creativity & Technology</h3>
-                <p>I am a technical specialist and designer based in Prayagraj, UP. Having successfully transitioned from a Bachelor of Arts (BA) foundation into the domain of computer applications, I design systems with structural clarity and logic.</p>
-                <p>From custom database configuration to rich user interface setups, I thrive on constructing seamless software layers. Outside of standard system architectures, I guide platform growth and optimization layout vectors for my venture, <strong>PPSphere OTT</strong>.</p>
-                
-                <div class="education-timeline">
-                    <h3>Educational Matrix & Core Path</h3>
-                    <ul>
-                        <li><strong>Master of Computer Applications (MCA)</strong> – United Institute of Technology</li>
-                        <li><strong>Advanced Senior Mathematics</strong> – NIOS</li>
-                        <li><strong>NIELIT O Level Graduate Certification</strong> – Technical Credentials Complete</li>
-                        <li><strong>Bachelor of Arts (BA)</strong> – Graduate Degree Foundations</li>
-                    </ul>
+        <!-- CORE HERO VIEW LAYER -->
+        <section id="home" class="hero" ng-show="currentActiveTab === 'home'">
+            <div class="hero-layout">
+                <div class="hero-left">
+                    <div class="code-badge"><i class="fas fa-terminal"></i> Systems Initialized // 2026</div>
+                    <h1>Empowering Digital <br><span class="accent">WEB DESIGNING & WEB DEVELOPMENT</span></h1>
+                    <h3>I am a <span class="dynamic-text">{{currentlyTypedText}}</span></h3>
+                    <p class="desc">Founder & CEO  Specializing in advanced software engineering solutions, single-page application systems, and high-performance system architectures.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" ng-click="setActiveTab('contact')" class="btn-primary">Initiate Inquiry <i class="fas fa-arrow-right"></i></a>
+                        <a href="#projects" ng-click="setActiveTab('projects')" class="btn-secondary">View Frameworks</a>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="hero-right-dashboard">
+                        <div class="dashboard-header">
+                            <div class="dots"><span></span><span></span><span></span></div>
+                            <div class="status">// System Online</div>
+                        </div>
+                        <div class="stat-row"><span class="stat-label">Entity</span><span class="stat-value">Thakur Piyush Singh</span></div>
+                        <div class="stat-row"><span class="stat-label">Core Specialization</span><span class="stat-value">Full Stack Dev</span></div>
+                        <div class="stat-row"><span class="stat-label">Core Technologies</span><span class="stat-value">JS / Angular / Python</span></div>
+                        <div class="stat-row"><span class="stat-label">Enterprise Role</span><span class="stat-value">CEO, PPSphere OTT</span></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="portfolio" class="portfolio">
-        <div class="section-title">
-            <h2>My <span>Ventures & Projects</span></h2>
-        </div>
-        <div class="portfolio-container">
-            <div class="portfolio-box">
-                <div class="portfolio-info">
-                    <h4>PPSphere OTT</h4>
-                    <p>An innovative media streaming hub architecture. Steered high-definition design assets, user acquisition channels, and platform execution paths as Founder & CEO.</p>
-                    <a href="#"><i class="fas fa-external-link-alt"></i></a>
+        <!-- ABOUT VIEW LAYER -->
+        <section id="about" ng-show="currentActiveTab === 'about'">
+            <div class="section-header">
+                <span class="tag">WELCOME TO MY WEB PAGE...</span>
+                <h2>About <span>Me</span></h2>
+            </div>
+            <div class="about-layout">
+                <div class="about-bio">
+                    <p>I am an application engineer and technology architect operating out of Prayagraj, UP. Possessing a solid foundational background in analytics and full system design, I specialize in connecting front-end user experience systems directly with secure database backends.</p>
+                    <p>My work combines optimized logic loops with micro-interaction user tracking to elevate standard sites into clean enterprise software solutions.</p>
+                </div>
+                <div class="timeline-container">
+                    <div class="timeline-node glass-card">
+                        <div class="timeline-meta"><span class="period">Active Academic Session</span><span class="institution">UIT Prayagraj</span></div>
+                        <h4>Master of Computer Applications (MCA)</h4>
+                    </div>
+                    <div class="timeline-node glass-card">
+                        <div class="timeline-meta"><span class="period">Advanced Certification</span><span class="institution">NIELIT</span></div>
+                        <h4>O Level Professional Graduate Certificate</h4>
+                    </div>
+                    <div class="timeline-node glass-card">
+                        <div class="timeline-meta"><span class="period">Core Analytics Credentials</span><span class="institution">NIOS</span></div>
+                        <h4>Advanced Mathematics Matriculation</h4>
+                    </div>
                 </div>
             </div>
-                                                                                                                                                                                                        
-            <div class="portfolio-box">
-                <div class="portfolio-info">
-                    <h4>Creative Web Design</h4>
-                    <p>Highly customized user-centric interfaces built with modern semantic markup and flexible grid styling for adaptive device views.</p>
-                    <a href="#"><i class="fas fa-external-link-alt"></i></a>
+        </section>
+
+        <!-- VENTURES VIEW LAYER -->
+        <section id="projects" ng-show="currentActiveTab === 'projects'">
+            <div class="section-header">
+                <span class="tag">02 // Enterprise Operations</span>
+                <h2>Ventures & <span>Frameworks</span></h2>
+            </div>
+            <div class="project-grid">
+                <div class="project-card glass-card">
+                    <div class="project-top">
+                        <i class="fas fa-play-circle"></i>
+                        <h3>PPSphere OTT</h3>
+                        <p>A digital platform dedicated to streaming architecture optimization. Formulated technical expansion pathways, platform strategy, and design systems as Founder and CEO.</p>
+                        <div class="project-tags"><span>Architecture</span><span>Streaming Engine</span><span>UI/UX</span></div>
+                    </div>
+                    <a href="#" class="project-link">Analyze System <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="project-card glass-card">
+                    <div class="project-top">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Single Page Microservices</h3>
+                        <p>Advanced interface systems engineered utilizing dynamic routing models, custom UI elements, and asynchronous background tracking modules.</p>
+                        <div class="project-tags"><span>AngularJS</span><span>HTML5 Canvas</span><span>CSS Grid</span></div>
+                    </div>
+                    <a href="#" class="project-link">Verify Integrity <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="project-card glass-card">
+                    <div class="project-top">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Data Layer Pipeline</h3>
+                        <p>Constructed object-oriented database logic and secure query parameters to ensure reliable application layers and fast load times.</p>
+                        <div class="project-tags"><span>Python API</span><span>SQL Architecture</span><span>Node Core</span></div>
+                    </div>
+                    <a href="#" class="project-link">Access Sandbox <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="portfolio-box">
-                <div class="portfolio-info">
-                    <h4>Engineered Solutions</h4>
-                    <p>Optimized algorithms and structured storage layouts configured across backends utilizing object-oriented logic principles.</p>
-                    <a href="#"><i class="fas fa-external-link-alt"></i></a>
+        </section>
+
+        <!-- ACADEMIC MATRIX LINKS LAYER -->
+        <section id="notes" ng-show="currentActiveTab === 'notes'">
+            <div class="section-header">
+                <span class="tag">03 // Document Storage</span>
+                <h2>Academic <span>Notes PDF</span></h2>
+            </div>
+            <div class="notes-grid">
+                <a href="Software Engeenering1.pdf"><div class="notes-card glass-card"><i class="fas fa-file-code icon-se"></i><h4>Software Engineering</h4></div></a>
+                <a href="python1.pdf"><div class="notes-card glass-card"><i class="fab fa-python icon-python"></i><h4>Python IDLE</h4></div></a>
+                <a href="js.notes.pdf"><div class="notes-card glass-card"><i class="fab fa-js icon-js"></i><h4>JavaScript Core</a><div class="notes-card glass-card"><i class="fab fa-java icon-java"></i><h4>Java Core</h4></div></a><br>
+                <a href="C- Language.pdf"><div class="notes-card glass-card"><i class="fas fa-code icon-c"></i><h4>C-Language</h4></div></a>
+				
+                <a href="‪SQL.pdf"><div class="notes-card glass-card"><i class="fas fa-database icon-sql"></i><h4>SQL</h4></div></a>
+                <a href="HTML.pdf"><div class="notes-card glass-card"><i class="fab fa-html5 icon-html"></i><h4>HTML CSS</h4></div></a>
+            </div>
+        </section>
+
+        <!-- CONTACT INTERACTIVE CRM LAYER -->
+        <section id="contact" ng-show="currentActiveTab === 'contact'">
+            <div class="section-header">
+                <span class="tag">THANK YOU FOR CONTACTING...</span>
+                <h2>Contact <span>Me</span></h2>
+            </div>
+            <div class="contact-layout">
+                <form ng-submit="submitContactForm()" class="glass-card" style="padding: 4rem;">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Identification Name</label>
+                            <input type="text" ng-model="formData.name" class="form-control" placeholder="PIYUSH" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Secure Email Network</label>
+                            <input type="email" ng-model="piyushpps99@gmail.com" class="form-control" placeholder="piyush099.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 2.5rem;">
+                        <label>Message Content payload</label>
+                        <textarea ng-model="formData.message" class="form-control" placeholder="State your requirements..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Transmit Payload</button>
+                </form>
+
+                <!-- ARCHITECTURAL PIPELINE SUMMARY UNIT -->
+                <div class="backend-architecture-card glass-card">
+                    <h3><i class="fas fa-network-wired"></i> Full-Stack System Blueprint Integration</h3>
+                    <p>This Single Page Application UI/UX layer is built to integrate directly into a high-performance database backend pipeline.</p>
+                    <div class="tech-pipeline">
+                        <span><i class="fab fa-node-js" style="color:#6cc24a"></i> Node.js Server Environment Ready</span>
+                        <span><i class="fab fa-python" style="color:#3776ab"></i> Python REST API Framework Capable</span>
+                    </div>
                 </div>
             </div>
-            
-        </div>
-    </section>
+        </section>
 
-    <section id="skills" class="skills">
-        <div class="section-title">
-            <h2>Technical <span>Skills</span></h2>
-        </div>
-        <div class="skills-row">
-            <a href="python1.pdf" target="_blank">
-                <div class="skill-card"><i class="fab fa-python text-python"></i> <h3>Python</h3></div>
-            </a>
-            <a href="JS FULL NOTES.pdf" target="_blank">
-                <div class="skill-card"><i class="fab fa-js text-js"></i> <h3>JavaScript</h3></div>
-            </a>
-            <a href="Java Programming.pdf" target="_blank">
-                <div class="skill-card"><i class="fab fa-java text-java"></i> <h3>Java</h3></div>
-            </a>
-            <a href="C- Language.pdf" target="_blank">
-                <div class="skill-card"><i class="fas fa-code text-c"></i> <h3>C Programming</h3></div>
-            </a>
-            <a href="SQL.pdf" target="_blank">
-                <div class="skill-card"><i class="fas fa-database text-sql"></i> <h3>SQL</h3></div>
-            </a>
-            <a href="HTML.pdf" target="_blank">
-                <div class="skill-card"><i class="fab fa-html5 text-html"></i> <h3>HTML5 & CSS</h3></div>
-            </a>
-        </div>
-    </section>
+    </main>
 
-    <section id="contact" class="contact">
-        <div class="section-title">
-            <h2>Contact <span>Me</span></h2>
-        </div>
-        <p class="contact-sub">Have a technical project, architectural requirement, or branding initiative to discuss? File your inquiry below. For priority partnerships, contact my business associate <strong>Rawal</strong>.</p>
-        
-        <form id="contact-form">
-            <div class="input-box">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-            </div>
-            <div class="input-box">
-                <input type="number" placeholder="Mobile Number">
-                <input type="text" placeholder="Subject">
-            </div>
-            <textarea cols="30" rows="8" placeholder="Your Message" required></textarea>
-            <button type="submit" class="btn">Send Secure Message</button>
-        </form>
-    </section>
-
-    <footer class="footer">
-        <div class="footer-text">
-            <p>Copyright &copy; 2026 by Piyush Singh | All Rights Reserved.</p>
-        </div>
-        <div class="footer-iconTop">
-            <a href="#home"><i class="fas fa-angle-up"></i></a>
-        </div>
+    <!-- FOOTER TERMINAL MATRIX -->
+    <footer class="footer-terminal">
+        <p>&copy; 2026 Thakur Piyush Singh. Systems Engineered Intellectually.</p>
+        <div class="footer-action-top"><a href="#home" ng-click="setActiveTab('home')"><i class="fas fa-chevron-up"></i></a></div>
     </footer>
 
+    <!-- INTERACTION CONTROLLER SCRIPT MATRIX -->
     <script>
-        // Responsive Mobile Menu Overlay Toggle
-        const menuToggle = document.querySelector('#mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+        const app = angular.module('portfolioApp', []);
 
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('is-active');
-            navLinks.classList.toggle('active');
-        });
+        app.controller('ViewController', ['$scope', '$timeout', function($scope, $timeout) {
+            // Router Application State Data
+            $scope.currentActiveTab = 'home';
+            $scope.isMobileMenuOpen = false;
+            $scope.formData = {};
 
-        // Close dropdown panels upon picking direct anchors
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('is-active');
-                navLinks.classList.remove('active');
-            });
-        });
+            // Typing Module Matrix Elements
+            const targetWords = ["Web Designer", "Software Engineer", "Founder & CEO, PPSphere OTT"];
+            let activeWordIdx = 0;
+            let activeCharIdx = 0;
+            let deletionFlag = false;
+            $scope.currentlyTypedText = "";
 
-        // High-performance Auto-Typing Script Matrix
-        const typingTargets = ["Web Designer", "Software Developer", "Founder & CEO"];
-        let targetIndex = 0;
-        let characterIndex = 0;
-        let isDeleting = false;
-        const speedTyping = 100;
-        const speedDeleting = 50;
-        const delayPause = 2000;
+            $scope.setActiveTab = function(tabName) {
+                $scope.currentActiveTab = tabName;
+                $scope.isMobileMenuOpen = false;
+            };
 
-        function handleDynamicTyping() {
-            const currentString = typingTargets[targetIndex];
-            const targetDisplayElement = document.querySelector('.multiple-text');
-            
-            if (isDeleting) {
-                targetDisplayElement.textContent = currentString.substring(0, characterIndex - 1);
-                characterIndex--;
-            } else {
-                targetDisplayElement.textContent = currentString.substring(0, characterIndex + 1);
-                characterIndex++;
+            $scope.toggleMobileMenu = function() {
+                $scope.isMobileMenuOpen = !$scope.isMobileMenuOpen;
+            };
+
+            $scope.submitContactForm = function() {
+                alert('Secure message array payload sent to network engine successfully!');
+                $scope.formData = {};
+            };
+
+            // High-Performance Typing Automation Sequence Loops
+            function executionTypingCycle() {
+                let currentWordString = targetWords[activeWordIdx];
+
+                if (deletionFlag) {
+                    $scope.currentlyTypedText = currentWordString.substring(0, activeCharIdx - 1);
+                    activeCharIdx--;
+                } else {
+                    $scope.currentlyTypedText = currentWordString.substring(0, activeCharIdx + 1);
+                    activeCharIdx++;
+                }
+
+                $scope.$apply(); // Force AngularJS digestion parsing cycles
+
+                let sequenceDelay = deletionFlag ? 40 : 80;
+
+                if (!deletionFlag && activeCharIdx === currentWordString.length) {
+                    sequenceDelay = 2200; // Hold full word display status
+                    deletionFlag = true;
+                } else if (deletionFlag && activeCharIdx === 0) {
+                    deletionFlag = false;
+                    activeWordIdx = (activeWordIdx + 1) % targetWords.length;
+                    sequenceDelay = 400; // Stabilizing pause delay
+                }
+
+                setTimeout(executionTypingCycle, sequenceDelay);
             }
 
-            let calculatedTimeout = isDeleting ? speedDeleting : speedTyping;
-
-            if (!isDeleting && characterIndex === currentString.length) {
-                calculatedTimeout = delayPause;
-                isDeleting = true;
-            } else if (isDeleting && characterIndex === 0) {
-                isDeleting = false;
-                targetIndex = (targetIndex + 1) % typingTargets.length;
-                calculatedTimeout = 400;
-            }
-
-            setTimeout(handleDynamicTyping, calculatedTimeout);
-        }
-
-        // Initialize script logic routine
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(handleDynamicTyping, 500);
-        });
-
-        // Form Transmission Confirmation Trigger
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('Form submitted successfully! Your tracking pipeline is operational.');
-            this.reset();
-        });
+            // Fire structural loop after application runtime setup
+            $timeout(function() {
+                executionTypingCycle();
+            }, 400);
+        }]);
     </script>
 </body>
 </html>
