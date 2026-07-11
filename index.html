@@ -49,7 +49,6 @@
             background-color: var(--bg-deep);
             color: var(--text-primary);
             overflow-x: hidden;
-            /* Cyber Tech Grid Blueprint Overlay */
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.007) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px),
@@ -131,7 +130,7 @@
             display: flex;
             align-items: center;
             gap: 1.4rem;
-            font-size: 2.1rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: var(--text-primary);
             letter-spacing: -0.5px;
@@ -145,6 +144,7 @@
             border: 1.5px solid var(--primary-neon);
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
             background: var(--bg-deep);
+            flex-shrink: 0;
         }
 
         .avatar-frame img {
@@ -210,7 +210,7 @@
             display: flex;
             align-items: center;
             min-height: 100vh;
-            padding: 0 8%;
+            padding: 14rem 8% 8rem;
             position: relative;
         }
 
@@ -235,9 +235,9 @@
         }
 
         .hero-left h1 {
-            font-size: 6.4rem;
+            font-size: 5.4rem;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.2;
             letter-spacing: -2px;
             margin-bottom: 2rem;
         }
@@ -364,6 +364,7 @@
         .stat-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 2rem;
         }
 
@@ -377,6 +378,31 @@
             font-size: 1.4rem;
             color: var(--text-primary);
             font-weight: 500;
+            text-align: right;
+        }
+
+        .dashboard-footer {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .social-media-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 2rem;
+        }
+
+        .social-media-links a {
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        .social-media-links a:hover {
+            color: var(--primary-neon);
         }
 
         /* ==========================================================================
@@ -526,6 +552,11 @@
             padding: 3rem 2.5rem;
             text-align: center;
             cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .notes-card:hover {
@@ -709,7 +740,7 @@
             }
             .nav-menu.mobile-active { left: 0; }
             .form-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-left h1 { font-size: 4.8rem; }
+            .hero-left h1 { font-size: 4.2rem; }
             .tech-pipeline { flex-direction: column; gap: 1rem; }
         }
     </style>
@@ -718,13 +749,12 @@
 
     <!-- NAVIGATION COMPONENT LAYER -->
     <nav class="navbar">
-          <div class="profile-circle-container"><div class="nav-wrapper">
-          <div class="brand-logo">
-			
+        <div class="nav-wrapper">
+            <div class="brand-logo">
                 <div class="avatar-frame">
-                    <img src="11.jfif" alt="Thakur Piyush Singh Frame Profile">
+                    <img src="11.jfif" alt="Thakur Piyush Singh Profile">
                 </div>
-              <strong><i><b><span>THAKUR  PIYUSH  SINGH....</span></b></i></strong>
+               <strong> <i><span>THAKUR-PIYUSH-SINGH....</span></i></strong>
             </div>
             <ul class="nav-menu" ng-class="{'mobile-active': isMobileMenuOpen}">
                 <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'home'}"><a href="css111.html" ng-click="setActiveTab('home')">Home</a></li>
@@ -748,13 +778,13 @@
         <section id="home" class="hero" ng-show="currentActiveTab === 'home'">
             <div class="hero-layout">
                 <div class="hero-left">
-                    <div class="code-badge"><i class="fas fa-terminal"></i> Systems Initialized // 2026</div><br><br><br>
+                    <div class="code-badge"><i class="fas fa-terminal"></i> Systems Initialized // 2026</div>
                     <h1>Empowering Digital <br><span class="accent">WEB DESIGNING & WEB DEVELOPMENT</span></h1>
                     <h3>I am a <span class="dynamic-text">{{currentlyTypedText}}</span></h3>
-                    <p class="desc">Founder & CEO  Specializing in advanced software engineering solutions, single-page application systems, and high-performance system architectures.</p>
+                    <p class="desc">Founder & CEO specializing in advanced web architecture solutions, functional single-page application frameworks, and high-performance system configurations.</p>
                     <div class="hero-actions">
                         <a href="#contact" ng-click="setActiveTab('contact')" class="btn-primary">Initiate Inquiry <i class="fas fa-arrow-right"></i></a>
-                        <a href="#projects" ng-click="setActiveTab('projects')" class="btn-secondary">View Frameworks</a>
+                        <a href="" ng-click="setActiveTab('projects')" class="btn-secondary">View Frameworks</a>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -765,8 +795,18 @@
                         </div>
                         <div class="stat-row"><span class="stat-label">Entity</span><span class="stat-value">Thakur Piyush Singh</span></div>
                         <div class="stat-row"><span class="stat-label">Core Specialization</span><span class="stat-value">Full Stack Dev</span></div>
-                        <div class="stat-row"><span class="stat-label">Core Technologies</span><span class="stat-value">JS / Angular / Python</span></div>
+                        <div class="stat-row"><span class="stat-label">Core Technologies</span><span class="stat-value">JS / Angular / Python / C</span></div>
                         <div class="stat-row"><span class="stat-label">Enterprise Role</span><span class="stat-value">CEO, PPSphere OTT</span></div>
+                        
+                        <div class="dashboard-footer">
+                            <div class="social-media-links">
+                                <a href="https://instagram.com/piyushpps99" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="https://t.me/piyushpps99" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                                <a href="https://www.linkedin.com/in/thakur-piyush-singh-399830315" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/Piyushpps99" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                            <a href="#contact" ng-click="setActiveTab('contact')" class="btn-primary" style="justify-content: center; padding: 1.2rem;">Let's Connect</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -844,130 +884,120 @@
                 <h2>Academic <span>Notes PDF</span></h2>
             </div>
             <div class="notes-grid">
-                <a href="Software Engeenering1.pdf"><div class="notes-card glass-card"><i class="fas fa-file-code icon-se"></i><h4>Software Engineering</h4></div></a>
-                <a href="python1.pdf"><div class="notes-card glass-card"><i class="fab fa-python icon-python"></i><h4>Python IDLE</h4></div></a>
-                <a href="JS FULL NOTES.pdf"><div class="notes-card glass-card"><i class="fab fa-js icon-js"></i><h4>JavaScript Core</a>
-					<a href="Java Programming.pdf"><div class="notes-card glass-card"><i class="fab fa-java icon-java"></i><h4>Java Core</h4></div></a><br></a>
-                <a href="C- Language.pdf"><div class="notes-card glass-card"><i class="fas fa-code icon-c"></i><h4>C-Language</h4></div></a>
-				
+                <a href="Software Engeenering1.pdf" target="_blank">
+                    <div class="notes-card glass-card"><i class="fas fa-file-code icon-se"></i><h4>Software Engineering</h4></div>
+                </a>
+                <a href="python1.pdf" target="_blank">
+                    <div class="notes-card glass-card"><i class="fab fa-python icon-python"></i><h4>Python IDLE</h4></div>
+                </a>
+                <a href="JS FULL NOTES.pdf" target="_blank">
+                    <div class="notes-card glass-card"><i class="fab fa-js icon-js"></i><h4>JavaScript Core</h4></div>
+                </a>
+                <a href="Java Programming.pdf" target="_blank">
+                    <div class="notes-card glass-card"><i class="fab fa-java icon-java"></i><h4>Java Core</h4></div>
+                </a>
+                <a href="C- Language.pdf" target="_blank">
+                    <div class="notes-card glass-card"><i class="fas fa-code icon-c"></i><h4>C-Language</h4></div>
+                </a>
                 <a href="SQL.pdf" target="_blank">
-    <div class="notes-card glass-card">
-        <i class="fas fa-database icon-sql"></i>
-        <h4>SQL</h4>
-    </div>
-</a>
-                <a href="HTML.pdf"><div class="notes-card glass-card"><i class="fab fa-html5 icon-html"></i><h4>HTML CSS</h4></div></a>
+                    <div class="notes-card glass-card"><i class="fas fa-database icon-sql"></i><h4>SQL Architecture</h4></div>
+                </a>
+                <a href="HTML.pdf" target="_blank">
+                    <div class="notes-card glass-card"><i class="fab fa-html5 icon-html"></i><h4>HTML5 Design</h4></div>
+                </a>
             </div>
         </section>
 
-        <!-- CONTACT INTERACTIVE CRM LAYER -->
+        <!-- SECURE CONTACT LAYER -->
         <section id="contact" ng-show="currentActiveTab === 'contact'">
             <div class="section-header">
-                <span class="tag">THANK YOU FOR CONTACTING...</span>
-                <h2>Contact <span>Me</span></h2>
+                <span class="tag">04 // Secure Communications</span>
+                <h2>Connect <span>Hub</span></h2>
             </div>
             <div class="contact-layout">
-                <form ng-submit="submitContactForm()" class="glass-card" style="padding: 4rem;">
+                <form class="glass-card" style="padding: 4rem;">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>Identification Name</label>
-                            <input type="text" ng-model="formData.name" class="form-control" placeholder="PIYUSH" required>
+                            <label>Identified Title / Name</label>
+                            <input type="text" class="form-control" placeholder="NAME....">
                         </div>
                         <div class="form-group">
-                            <label>Secure Email Network</label>
-                            <input type="email" ng-model="piyushpps99@gmail.com" class="form-control" placeholder="piyush099.com" required>
+                            <label>Secure Return Routing Email</label>
+                            <input type="email" class="form-control" placeholder="xyz@gmail.com">
                         </div>
                     </div>
                     <div class="form-group" style="margin-bottom: 2.5rem;">
-                        <label>Message Content payload</label>
-                        <textarea ng-model="formData.message" class="form-control" placeholder="State your requirements..." required></textarea>
+                        <label>Payload / Message Content</label>
+                        <textarea class="form-control" placeholder="Enter transaction details or collaborative inquiries..."></textarea>
                     </div>
-                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Transmit Payload</button>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Transmit Secure Packet</button>
                 </form>
-
-                <!-- ARCHITECTURAL PIPELINE SUMMARY UNIT -->
-                <div class="backend-architecture-card glass-card">
-                    <h3><i class="fas fa-network-wired"></i> Full-Stack System Blueprint Integration</h3>
-                    <p>This Single Page Application UI/UX layer is built to integrate directly into a high-performance database backend pipeline.</p>
-                    <div class="tech-pipeline">
-                        <span><i class="fab fa-node-js" style="color:#6cc24a"></i> Node.js Server Environment Ready</span>
-                        <span><i class="fab fa-python" style="color:#3776ab"></i> Python REST API Framework Capable</span>
-                    </div>
-                </div>
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER TERMINAL MATRIX -->
+    <!-- METRIC FOOTER -->
     <footer class="footer-terminal">
-        <p>&copy; 2026 Thakur Piyush Singh. Systems Engineered Intellectually.</p>
-        <div class="footer-action-top"><a href="#home" ng-click="setActiveTab('home')"><i class="fas fa-chevron-up"></i></a></div>
+        <p>&copy; 2026 Thakur Piyush Singh. All Rights Reserved. // Secured Endpoint Node</p>
+        <div class="footer-action-top">
+            <a href="#home" ng-click="setActiveTab('home')"><i class="fas fa-chevron-up"></i></a>
+        </div>
     </footer>
 
-    <!-- INTERACTION CONTROLLER SCRIPT MATRIX -->
+    <!-- AngularJS Application Initialization Scripts -->
     <script>
         const app = angular.module('portfolioApp', []);
-
-        app.controller('ViewController', ['$scope', '$timeout', function($scope, $timeout) {
-            // Router Application State Data
+        
+        app.controller('ViewController', ['$scope', '$interval', function($scope, $interval) {
+            // State Storage
             $scope.currentActiveTab = 'home';
             $scope.isMobileMenuOpen = false;
-            $scope.formData = {};
+            
+            // Dynamic Typing Configuration Engine
+            const roles = ["Digital Creator.", "Full Stack Developer.", "Technology Enthusiast.", "Founder & CEO."];
+            let roleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            $scope.currentlyTypedText = '';
 
-            // Typing Module Matrix Elements
-            const targetWords = ["Web Designer", "Software Engineer", "Founder & CEO, PPSphere OTT"];
-            let activeWordIdx = 0;
-            let activeCharIdx = 0;
-            let deletionFlag = false;
-            $scope.currentlyTypedText = "";
+            function typeEffect() {
+                const currentRole = roles[roleIndex];
+                if (isDeleting) {
+                    $scope.currentlyTypedText = currentRole.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    $scope.currentlyTypedText = currentRole.substring(0, charIndex + 1);
+                    charIndex++;
+                }
 
-            $scope.setActiveTab = function(tabName) {
-                $scope.currentActiveTab = tabName;
-                $scope.isMobileMenuOpen = false;
+                let typingSpeed = isDeleting ? 50 : 100;
+
+                if (!isDeleting && charIndex === currentRole.length) {
+                    typingSpeed = 2000; // Hold full text look
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    typingSpeed = 500; // Pause before new word cycle
+                }
+
+                $interval(typeEffect, typingSpeed, 1);
+            }
+            
+            // Init Typing loop
+            typeEffect();
+
+            // Tab Navigation Controller
+            $scope.setActiveTab = function(tabId) {
+                $scope.currentActiveTab = tabId;
+                $scope.isMobileMenuOpen = false; // Collapse layout on select
             };
 
+            // Mobile Menu Layer Switch
             $scope.toggleMobileMenu = function() {
                 $scope.isMobileMenuOpen = !$scope.isMobileMenuOpen;
             };
-
-            $scope.submitContactForm = function() {
-                alert('Secure message array payload sent to network engine successfully!');
-                $scope.formData = {};
-            };
-
-            // High-Performance Typing Automation Sequence Loops
-            function executionTypingCycle() {
-                let currentWordString = targetWords[activeWordIdx];
-
-                if (deletionFlag) {
-                    $scope.currentlyTypedText = currentWordString.substring(0, activeCharIdx - 1);
-                    activeCharIdx--;
-                } else {
-                    $scope.currentlyTypedText = currentWordString.substring(0, activeCharIdx + 1);
-                    activeCharIdx++;
-                }
-
-                $scope.$apply(); // Force AngularJS digestion parsing cycles
-
-                let sequenceDelay = deletionFlag ? 40 : 80;
-
-                if (!deletionFlag && activeCharIdx === currentWordString.length) {
-                    sequenceDelay = 2200; // Hold full word display status
-                    deletionFlag = true;
-                } else if (deletionFlag && activeCharIdx === 0) {
-                    deletionFlag = false;
-                    activeWordIdx = (activeWordIdx + 1) % targetWords.length;
-                    sequenceDelay = 400; // Stabilizing pause delay
-                }
-
-                setTimeout(executionTypingCycle, sequenceDelay);
-            }
-
-            // Fire structural loop after application runtime setup
-            $timeout(function() {
-                executionTypingCycle();
-            }, 400);
         }]);
     </script>
 </body>
