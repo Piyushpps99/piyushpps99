@@ -1,217 +1,402 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Thakur Piyush Singh</title>
+    <title>Contact Us | Thakur Piyush Singh</title>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts & FontAwesome for Premium Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Universal Reset */
+        /* Modern UI Design System */
+        :root {
+            --primary: #e61d5f;
+            --primary-hover: #c9124e;
+            --dark-bg: #0b0f19;
+            --surface: #111827;
+            --surface-accent: #1f2937;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        :root {
-            --primary-color: #e61d5f; /* Accent Pink from screenshot */
-            --text-dark: #333;
-            --border-color: #e0e0e0;
-            --bg-light: #fafafa;
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Header and Nav Links */
+        /* Top Bar & Header Navigation */
         .top-bar {
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary), #b91c1c);
             color: white;
-            padding: 10px 10%;
+            padding: 12px 10%;
             display: flex;
+            justify-content: flex-end;
             gap: 25px;
-            font-size: 13px;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
+
+        .top-bar span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 10%;
-            border-bottom: 1px solid var(--border-color);
-            background: #fff;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 28px;
         }
+
         .nav-links a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--text-muted);
             font-weight: 500;
-        }
-        .nav-links a.active {
-            color: var(--primary-color);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
         }
 
-        /* Main Container setup */
-        .contact-section {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
         }
+
+        /* Hero Header Section */
+        .contact-section {
+            max-width: 1300px;
+            margin: 60px auto;
+            padding: 0 24px;
+        }
+
         .contact-header {
             text-align: center;
-            margin-bottom: 45px;
+            margin-bottom: 50px;
         }
+
         .contact-header h2 {
-            font-size: 32px;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--text-dark);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
         }
+
         .contact-header h2 span {
-            color: var(--primary-color);
+            color: var(--primary);
         }
+
         .contact-header .subtitle {
-            font-family: 'Georgia', serif;
-            font-style: italic;
-            color: #555;
-            margin-top: 12px;
-            font-size: 18px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Main Combined Layout Grid Box */
-        .contact-container {
+        /* Main Structural 3-Column Split */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 992px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left Side Panel: Mini Portfolio Deck */
+        .portfolio-side-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 35px;
             display: flex;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            flex-direction: column;
+            gap: 30px;
         }
 
-        /* Left Column: Form Design */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .mini-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mini-profile img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            object-fit: cover;
+        }
+
+        .profile-info h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .profile-info p {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .stack-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .stack-list li {
+            background: var(--surface-accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            color: #cbd5e1;
+        }
+
+        /* Center Layout: Form Controller */
         .form-container {
-            flex: 1.6;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
             padding: 40px;
-            border-right: 1px solid var(--border-color);
         }
-        .form-container h3, .info-container h3 {
-            font-size: 22px;
-            margin-bottom: 25px;
-            color: var(--text-dark);
-            border-bottom: 2px solid var(--primary-color);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
+
         .form-row {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-        .form-group {
-            flex: 1;
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: #555;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 14px;
-            outline: none;
-            background-color: #fff;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: var(--primary-color);
-        }
-        .btn-send {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 45px;
-            font-size: 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-        .btn-send:hover {
-            background-color: #cb1350;
+
+        @media (max-width: 576px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* Right Column: Contact Info Card Layout */
-        .info-container {
-            flex: 1;
-            padding: 40px;
-            background-color: var(--bg-light);
+        .form-group {
+            margin-bottom: 22px;
         }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background: var(--surface-accent);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(230, 29, 95, 0.15);
+        }
+
+        .btn-send {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(230, 29, 95, 0.25);
+        }
+
+        .btn-send:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Bottom Row Grid: Social Architecture & Core Info */
+        .info-footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .info-footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .classic-info {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
         .info-item {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 16px;
         }
+
         .info-icon {
-            background-color: var(--primary-color);
-            color: white;
-            width: 36px;
-            height: 36px;
+            background: rgba(230, 29, 95, 0.1);
+            color: var(--primary);
+            width: 42px;
+            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
+
         .info-text h4 {
-            color: var(--primary-color);
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-        .info-text p {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        /* PHP Status Alert Banners */
-        .status-msg {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
+            font-size: 1rem;
             font-weight: 600;
-            text-align: center;
-        }
-        .status-msg.success {
-            background-color: #e6f4ea;
-            color: #137333;
-            border: 1px solid #c2e7cc;
-        }
-        .status-msg.error {
-            background-color: #fce8e6;
-            color: #c5221f;
-            border: 1px solid #fad2cf;
+            margin-bottom: 4px;
         }
 
-        /* Responsive Breakpoints for Mobile Viewports */
-        @media (max-width: 768px) {
-            .contact-container {
-                flex-direction: column;
-            }
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-            .form-container {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
+        .info-text p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Modern Social Grid System */
+        .social-container {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 35px;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-top: 25px;
+        }
+
+        .social-card {
+            background: var(--surface-accent);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-card i {
+            font-size: 1.8rem;
+        }
+
+        .social-card span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* Dynamic Brand Styling on Hover Mapping */
+        .social-card.instagram:hover { border-color: #e1306c; background: rgba(225, 48, 108, 0.05); }
+        .social-card.instagram:hover i { color: #e1306c; }
+
+        .social-card.facebook:hover { border-color: #1877f2; background: rgba(24, 119, 242, 0.05); }
+        .social-card.facebook:hover i { color: #1877f2; }
+
+        .social-card.linkedin:hover { border-color: #0077b5; background: rgba(0, 119, 181, 0.05); }
+        .social-card.linkedin:hover i { color: #0077b5; }
+
+        .social-card.telegram:hover { border-color: #26a5e4; background: rgba(38, 165, 228, 0.05); }
+        .social-card.telegram:hover i { color: #26a5e4; }
+
+        .social-card.github:hover { border-color: #ffffff; background: rgba(255, 255, 255, 0.05); }
+        .social-card.github:hover i { color: #ffffff; }
+
+        .social-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-card:hover span {
+            color: var(--text-main);
         }
     </style>
 </head>
@@ -220,75 +405,96 @@
     <header>
         <div class="top-bar">
             <span><i class="fas fa-phone"></i> +91 9455718092</span>
-            <span><i class="fas fa-envelope"></i> Thakur Piyush Singh</span>
+            <span><i class="fas fa-envelope"></i> thakurpiyushps99@gmail.com</span>
         </div>
         <nav class="navbar">
-            <div class="logo" style="font-weight: bold; font-size: 24px; color: #e61d5f;"> Thakur Piyush Singh</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Our Team</a></li>
-                <li><a href="#">Project</a></li>
-                <li><a href="#" class="active">Contact Us</a></li>
-            </ul>
+            <a href="https://www.google.com/search?q=piyushpps99&oq=pi&gs_lcrp=EgZjaHJvbWUqCAgBEEUYJxg7MggIABBFGCcYOzIICAEQRRgnGDsyBggCEEUYOTIGCAMQRRg7Mg0IBBAAGIMBGLEDGIAEMgoIBRAAGLEDGIAEMgoIBhAAGLEDGIAEMg0IBxAAGIMBGLEDGIAEMhMICBAAGIMBGLEDGIAEGIoFGI0GMgcICRAAGI8C0gEJNDE1N2owajE1qAIIsAIB8QXnus2OATunLPEF57rNjgE7pyw&sourceid=chrome&source=chrome.rb&ie=UTF-8" class="logo">Thakur Piyush Singh....<span>.</span></a>
+           
         </nav>
     </header>
 
     <main class="contact-section">
         
         <div class="contact-header">
-            <h2>Contact <span>With Us</span></h2>
-            <p class="subtitle">You may contact us by contact number or fill this form any time your need professional support or have any question.</p>
+            <h2>Get In <span>Touch</span></h2>
+            <p class="subtitle">Have a project in mind, looking for enterprise solutions, or want to talk tech? Drop a message below.</p>
         </div>
 
-        <?php echo $message_status; ?>
+        <?php if(isset($message_status)) { echo $message_status; } ?>
 
-        <div class="contact-container">
-            <div class="form-container">
-                <h3>Send Your Message</h3>
-                
+        <!-- Upper Row: Portfolio Deck & Form Controller -->
+        <div class="grid-container">
+            
+            <section class="portfolio-side-panel">
+                <h3 class="section-title">Brief Profile Overview</h3>
+                <div class="mini-profile">
+                    <img src="p9.jpg" alt="Thakur Piyush Singh">
+                    <div class="profile-info">
+                        <i><h4>Thakur Piyush Singh...</h4></i>
+                        <p>Digital Creator &  WEB-Developer</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.95rem; margin-bottom: 10px; color: #cbd5e1;">Education & Focus</h4>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px;">
+                        Actively pursuing advanced computing paradigms, specializing in system applications and comprehensive web layout architectures.
+                    </p>
+                    <ul class="stack-list">
+                        <li>NIELIT O Level</li>
+                        <li>Python</li>
+                        <li>Java Core</li>
+                        <li>C Programming</li>
+                        <li>Frontend Engineering</li>
+                        <li>IoT Architectures</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="form-container">
+                <h3 class="section-title" style="margin-bottom: 25px;">Send Your Message</h3>
                 <form action="" method="POST">
                     <div class="form-row">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" name="name" placeholder="Enter your name *" required>
+                            <input type="text" name="name" placeholder="Your full name *" required>
                         </div>
                         <div class="form-group">
-                            <label>Your contact no</label>
-                            <input type="text" name="phone" placeholder="Enter your contact number *">
+                            <label>Contact No</label>
+                            <input type="text" name="phone" placeholder="Your contact number">
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Your Email</label>
-                        <input type="email" name="email" placeholder="Enter your Email *" required>
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="Your corporate or personal email *" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Your Message</label>
-                        <textarea name="message" rows="6" placeholder="Type your message here..." required></textarea>
+                        <label>Message Content</label>
+                        <textarea name="message" rows="5" placeholder="Detail your project requirements or specific inquiry here..." required></textarea>
                     </div>
 
-                    <button type="submit" class="btn-send">Send</button>
+                    <button type="submit" class="btn-send">Send Message</button>
                 </form>
-            </div>
+            </section>
+        </div>
 
-            <div class="info-container">
-                <h3>Contact Info</h3>
-                
+        <!-- Lower Row: Core Contact Details & Complete Social Architecture Grid -->
+        <div class="info-footer-grid">
+            
+            <section class="classic-info">
                 <div class="info-item">
                     <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div class="info-text">
-                        <h4> Address</h4>
-                        <p>Jhunshi Trivenipuram<br>Prayagraj... 211003</p>
+                        <h4>Headquarters</h4>
+                        <p>Jhunshi Trivenipuram<br>Prayagraj, UP — 211003</p>
                     </div>
                 </div>
 
                 <div class="info-item">
                     <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
                     <div class="info-text">
-                        <h4>Call Us</h4>
+                        <h4>Direct Communications</h4>
                         <p>+91 9455718092</p>
                     </div>
                 </div>
@@ -296,13 +502,44 @@
                 <div class="info-item">
                     <div class="info-icon"><i class="fas fa-envelope"></i></div>
                     <div class="info-text">
-                        <h4>Mail Us</h4>
+                        <h4>Official Mail Desk</h4>
                         <p>thakurpiyushps99@gmail.com</p>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <section class="social-container">
+                <h3 class="section-title">Connect via Networks</h3>
+                <div class="social-grid">
+                    <a href="https://instagram.com/piyushpps99" target="_blank" class="social-card instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.facebook.com/me/" target="_blank" class="social-card facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/thakur-piyush-singh-399830315" target="_blank" class="social-card linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://t.me/piyushpps99" target="_blank" class="social-card telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                        <span>Telegram</span>
+                    </a>
+                    <a href="https://github.com/Piyushpps99" target="_blank" class="social-card github">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </section>
         </div>
     </main>
 
 </body>
 </html>
+</html>
+
+
+ 
+                        
