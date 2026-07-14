@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thakur Piyush Singh - Portfolio</title>
+  
+  <!-- FontAwesome for Pinterest System Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* --- CSS RESET & PINTEREST DESIGN SYSTEM --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #111111;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* --- LEFT APPS SIDEBAR NAVIGATION --- */
+    .sidebar {
+      width: 80px;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      border-right: 1px solid #efefef;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 0;
+      background: #ffffff;
+      z-index: 100;
+      justify-content: space-between;
+    }
+
+    .sidebar-top, .sidebar-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      width: 100%;
+    }
+
+    .nav-icon {
+      font-size: 1.35rem;
+      color: #111111;
+      cursor: pointer;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .nav-icon:hover {
+      background-color: #f0f0f0;
+    }
+
+    .nav-icon.brand-logo {
+      color: #e60023;
+      font-size: 1.6rem;
+    }
+
+    .nav-icon.active-tab {
+      background-color: #111111;
+      color: #ffffff;
+    }
+    
+    .nav-icon.active-tab:hover {
+      background-color: #111111;
+    }
+
+    /* --- MAIN CONTENT FRAME --- */
+    .content-wrapper {
+      margin-left: 80px;
+      width: calc(100% - 80px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- TOP SEARCH UTILITY HEADER --- */
+    .top-header {
+      height: 80px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+
+    .search-bar-container {
+      flex-grow: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar-container i.search-lens {
+      position: absolute;
+      left: 16px;
+      color: #767676;
+      font-size: 1rem;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 48px;
+      background-color: #f0f0f0;
+      border: none;
+      border-radius: 24px;
+      padding: 0 80px 0 44px;
+      font-size: 1rem;
+      color: #111111;
+      outline: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .search-input:hover {
+      background-color: #e1e1e1;
+    }
+
+    .search-input:focus {
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(0, 116, 232, 0.2);
+      border: 2px solid #0074e8;
+    }
+
+    .search-tools {
+      position: absolute;
+      right: 16px;
+      display: flex;
+      gap: 16px;
+      color: #767676;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .search-tools i:hover {
+      color: #111111;
+    }
+
+    .profile-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .profile-badge:hover {
+      border-color: #e60023;
+    }
+
+    .profile-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .header-arrow {
+      color: #767676;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .header-arrow:hover {
+      color: #111111;
+    }
+
+    /* --- TOPIC MAIN HEADER METADATA --- */
+    .topic-info-section {
+      padding: 30px 32px 24px;
+      max-width: 1200px;
+    }
+
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #767676;
+      margin-bottom: 16px;
+    }
+
+    .breadcrumbs a {
+      text-decoration: none;
+      color: #767676;
+      transition: color 0.15s;
+    }
+
+    .breadcrumbs a:hover {
+      color: #111111;
+    }
+
+    .breadcrumbs i {
+      font-size: 0.65rem;
+      color: #b5b5b5;
+    }
+
+    .breadcrumbs span.current-tag {
+      background-color: #f0f0f0;
+      color: #111111;
+      padding: 4px 12px;
+      border-radius: 16px;
+      font-weight: 600;
+    }
+
+    .topic-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      margin-bottom: 8px;
+    }
+
+    .topic-description {
+      font-size: 1rem;
+      color: #5f5f5f;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      max-width: 700px;
+    }
+
+    .topic-stats {
+      font-size: 0.88rem;
+      color: #767676;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .topic-stats::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #25d366;
+      border-radius: 50%;
+    }
+
+    /* --- PINTEREST DYNAMIC COLUMN MASONRY --- */
+    .masonry-grid {
+      padding: 0 32px 40px;
+      column-count: 5;
+      column-gap: 20px;
+    }
+
+    .pin-card {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background-color: #f0f0f0;
+      transition: transform 0.25s cubic-bezier(0.25, 1, 0.50, 1), box-shadow 0.25s;
+    }
+
+    .pin-card img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      transition: filter 0.25s ease;
+    }
+
+    /* On Hover Interactions */
+    .pin-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .pin-card:hover img {
+      filter: brightness(0.8);
+    }
+
+    /* Pinterest Interactive Actions Overlays */
+    .pin-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 40%, rgba(0,0,0,0.4) 100%);
+      opacity: 0;
+      transition: opacity 0.25s;
+      pointer-events: none;
+    }
+    
+    .pin-card:hover::after {
+      opacity: 1;
+    }
+
+    .pin-save-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background-color: #e60023;
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.2s ease, background-color 0.15s;
+      z-index: 10;
+    }
+
+    .pin-save-btn:hover {
+      background-color: #ad0018;
+    }
+
+    .pin-card:hover .pin-save-btn {
+      opacity: 1;
+    }
+
+    .pin-actions {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      left: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: 10;
+    }
+
+    .pin-card:hover .pin-actions {
+      opacity: 1;
+    }
+
+    .pin-action-btn {
+      background: rgba(255, 255, 255, 0.95);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #111111;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .pin-action-btn:hover {
+      background-color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    .pin-actions-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* --- RESPONSIVE ADJUSTMENTS --- */
+    @media (max-width: 1400px) {
+      .masonry-grid { column-count: 4; }
+    }
+
+    @media (max-width: 1024px) {
+      .masonry-grid { column-count: 3; }
+    }
+
+    @media (max-width: 768px) {
+      .masonry-grid { column-count: 2; column-gap: 14px; padding: 0 16px; }
+      .sidebar { display: none; }
+      .content-wrapper { margin-left: 0; width: 100%; }
+      .top-header { padding: 0 16px; }
+      .topic-info-section { padding: 24px 16px 16px; }
+      .topic-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="nav-icon brand-logo"><i class="fa-brands fa-pinterest"></i></div>
+      <div class="nav-icon active-tab"><i class="fa-solid fa-compass"></i></div>
+      <div class="nav-icon"><i class="fa-solid fa-square-plus"></i></div>
+    </div>
+    
+    <div class="sidebar-bottom">
+      <div class="nav-icon"><i class="fa-solid fa-bell"></i></div>
+      <div class="nav-icon"><i class="fa-solid fa-comment-dots"></i></div>
+      <div class="nav-icon"><i class="fa-solid fa-gear"></i></div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <div class="content-wrapper">
+    
+    <!-- Top Utility Navigation Header -->
+    <header class="top-header">
+      <div class="search-bar-container">
+        <i class="fa-solid fa-magnifying-glass search-lens"></i>
+        <input type="text" class="search-input" value=" pinterest//: Thakur Piyush Singh" placeholder="Search">
+        <div class="search-tools">
+          <i class="fa-solid fa-camera"></i>
+          <i class="fa-solid fa-microphone"></i>
+        </div>
+      </div>
+      
+      <div class="profile-badge">
+        <img src="D:\M2R5 WEB DESIGN\p9.jpg" alt="User Profile">
+      </div>
+      <i class="fa-solid fa-chevron-down header-arrow"></i>
+    </header>
+
+    <!-- Page Descriptor Header Block -->
+    <section class="topic-info-section">
+      <div class="breadcrumbs">
+        <a href="#">SOCIAL MEIDA</a> <i class="fa-solid fa-chevron-right"></i>
+        <a href="#">INSTAGRAM </a> <i class="fa-solid fa-chevron-right"></i>
+        <a href="#">Photography</a> <i class="fa-solid fa-chevron-right"></i>
+        <span class="current-tag">PIYUSH IMAGES</span>
+      </div>
+      
+      <i><h1 class="topic-title">Thakur Piyush Singh....</h1></i>
+      
+      <p class="topic-description">
+       <b><i> Discover the official showcase of Thakur Piyush Singh. Explore premium photographic galleries, project concepts, and design inspirations......
+      </b></i></p>
+      
+      <div class="topic-stats">
+        Welcome to my interactive showcase page
+      </div>
+    </section>
+
+    <!-- Multi-Column Pinterest Masonry Grid -->
+    <main class="masonry-grid">
+	
+      
+      <!-- Card 1 -->
+	    <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="p1.jpg" alt="Athletic Portrayal Graphic Image Vertical">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+	       <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="p8.jpg" alt="Athletic Portrayal Graphic Image Vertical">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+	  
+	      <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="p6.jpg" alt="Athletic Portrayal Graphic Image Vertical">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+	  
+	      <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="p7.jpg" alt="Athletic Portrayal Graphic Image Vertical">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+	  
+	    <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i14.jpg" alt="Athletic Portrayal Graphic Image Vertical">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="p23.jpg" alt="Cricket Stadium Context Match Type Image">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+	  
+
+      <!-- Card 2 -->
+      <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i13.jpg" alt="Athletic Portrayal Graphic Image Vertical">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i1.jpg" alt="Trophy Celebration Dark Tone Concept">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+	  
+	     <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i17.jpg" alt="Trophy Celebration Dark Tone Concept">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+	  
+	    <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i18.jpg" alt="Trophy Celebration Dark Tone Concept">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i3.jpg" alt="1Intensity Focus Action Image Template">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+	  
+	     <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i6.jpg" alt="3Intensity Focus Action Image Template">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>   <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i2.jpg" alt="4Intensity Focus Action Image Template">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>   <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i9.jpg" alt="5Intensity Focus Action Image Template">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>   <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i12.jpg" alt="6Intensity Focus Action Image Template">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i11.jpg" alt="7Intensity Focus Action Image Template">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+	   <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i10.jpg" alt="8Intensity Focus Action Image Template">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="i4.jpg" alt="Casual Candid Walking View Portrait Style">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+	    <div class="pin-card">
+        <div class="pin-save-btn">Save</div>
+        <img src="11.jfif" alt="Trophy Celebration Dark Tone Concept">
+        <div class="pin-actions">
+          <div class="pin-action-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+          <div class="pin-actions-right">
+            <div class="pin-action-btn"><i class="fa-solid fa-ellipsis"></i></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
