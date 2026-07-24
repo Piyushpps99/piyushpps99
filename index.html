@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="portfolioApp">
-<head><meta name="google-site-verification" content="0GtU3D2q4AcSmZFQUEXH1aAEsnFMZG0Ad92wxk5A6e4" />
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thakur Piyush Singh | Executive Portfolio</title>
     <!-- Font Awesome 6.4.0 & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -136,22 +136,20 @@
             letter-spacing: -0.5px;
         }
 
-        .avatar-frame {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1.5px solid var(--primary-neon);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
-            background: var(--bg-deep);
-            flex-shrink: 0;
-        }
+       .avatar-frame {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden; /* Ensures anything outside the circle is clipped */
+    display: inline-block;
+}
 
-        .avatar-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.avatar-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents image distortion */
+    border-radius: 50%;
+}
 
         .nav-menu {
             display: flex;
@@ -752,7 +750,9 @@
         <div class="nav-wrapper">
             <div class="brand-logo">
                 <div class="avatar-frame">
-                    <img src="11.jfif" alt="Thakur Piyush Singh Profile">
+                   <div class="avatar-frame">
+    <img src="11.jfif" alt="Thakur Piyush Singh Profile" style="border-radius: 50%; width: 50px; height: 50px; object-fit: cover;">
+</div>
                 </div>
                <strong> <i><span>THAKUR-PIYUSH-SINGH....</span></i></strong>
             </div>
@@ -791,7 +791,7 @@
                     <div class="hero-right-dashboard">
                         <div class="dashboard-header">
                             <div class="dots"><span></span><span></span><span></span></div>
-                            <div class="status">// System Online</div>
+                            <div class="status"><b><i><strong>THAKUR-PIYUSH-SINGH...</b></i></strong></div>
                         </div>
                         <div class="stat-row"><span class="stat-label">Entity</span><span class="stat-value">Thakur Piyush Singh</span></div>
                         <div class="stat-row"><span class="stat-label">Core Specialization</span><span class="stat-value">Full Stack Dev</span></div>
@@ -863,7 +863,7 @@
                         <p>Advanced interface systems engineered utilizing dynamic routing models, custom UI elements, and asynchronous background tracking modules.</p>
                         <div class="project-tags"><span>AngularJS</span><span>HTML5 Canvas</span><span>CSS Grid</span></div>
                     </div>
-                    <a href="#" class="project-link">Verify Integrity <i class="fas fa-arrow-right"></i></a>
+                    <a href="" class="project-link">Verify Integrity <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="project-card glass-card">
                     <div class="project-top">
@@ -880,23 +880,29 @@
         <!-- ACADEMIC MATRIX LINKS LAYER -->
         <section id="notes" ng-show="currentActiveTab === 'notes'">
             <div class="section-header">
-                <span class="tag">03 // Document Storage</span>
+                <span class="tag"><h1><b><i>My Notes...<h1></b></i></span>
                 <h2>Academic <span>Notes PDF</span></h2>
             </div>
             <div class="notes-grid">
+			<a href="maths1.pdf" target="_blank">
+    <div class="notes-card glass-card">
+        <i class="fa-solid fa-network-wired"></i>
+        <h4>Discrete Mathematics</h4>
+    </div>
+</a>
                 <a href="Software Engeenering1.pdf" target="_blank">
                     <div class="notes-card glass-card"><i class="fas fa-file-code icon-se"></i><h4>Software Engineering</h4></div>
                 </a>
                 <a href="python1.pdf" target="_blank">
                     <div class="notes-card glass-card"><i class="fab fa-python icon-python"></i><h4>Python IDLE</h4></div>
                 </a>
-                <a href="JS FULL NOTES.pdf" target="_blank">
-                    <div class="notes-card glass-card"><i class="fab fa-js icon-js"></i><h4>JavaScript Core</h4></div>
+                <a href="javascr1.pdf" target="_blank">
+                    <div class="notes-card glass-card"><i class="fab fa-js icon-js"></i><h4>Java-Script </h4></div>
                 </a>
-                <a href="Java Programming.pdf" target="_blank">
+                <a href="java1.pdf" target="_blank">
                     <div class="notes-card glass-card"><i class="fab fa-java icon-java"></i><h4>Java Core</h4></div>
                 </a>
-                <a href="C- Language.pdf" target="_blank">
+                <a href="c lng1.pdf" target="_blank">
                     <div class="notes-card glass-card"><i class="fas fa-code icon-c"></i><h4>C-Language</h4></div>
                 </a>
                 <a href="SQL.pdf" target="_blank">
