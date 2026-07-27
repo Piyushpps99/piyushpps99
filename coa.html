@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Organization & Architecture | Premium Notes</title>
+  
+  <!-- Modern Typography (Inter & JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- MathJax for rendering equations -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #0d1322 100%);
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      
+      /* Vibrant Accents */
+      --cyan-glow: #06b6d4;
+      --cyan-accent: #38bdf8;
+      --purple-accent: #a855f7;
+      --pink-accent: #f43f5e;
+      --emerald-accent: #10b981;
+      --amber-accent: #f59e0b;
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --code-bg: #030712;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      line-height: 1.7;
+      padding: 2.5rem 1rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    /* Floating Action / Action Banner for PDF Download */
+    .print-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-print {
+      background: linear-gradient(135deg, var(--cyan-accent), var(--purple-accent));
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .btn-print:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(168, 85, 247, 0.5);
+    }
+
+    /* Header Styling */
+    header {
+      position: relative;
+      text-align: center;
+      padding: 3.5rem 2rem;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(56,189,248,0.1) 0%, rgba(168,85,247,0.05) 50%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .author-tag {
+      display: inline-block;
+      background: linear-gradient(90deg, rgba(244, 63, 94, 0.15), rgba(168, 85, 247, 0.15));
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #fda4af;
+      padding: 0.35rem 1.25rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    header h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+
+    /* Chapter Cards */
+    .chapter {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2.25rem;
+      margin-bottom: 2.25rem;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+      transition: border-color 0.3s ease;
+    }
+
+    .chapter:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .chapter h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--cyan-accent);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .chapter h3 {
+      font-size: 1.25rem;
+      color: var(--purple-accent);
+      margin: 1.75rem 0 0.85rem 0;
+      font-weight: 600;
+    }
+
+    /* Callout Boxes */
+    .key-concept {
+      background: linear-gradient(90deg, rgba(56, 189, 248, 0.1) 0%, rgba(56, 189, 248, 0.02) 100%);
+      border-left: 4px solid var(--cyan-accent);
+      padding: 1.15rem 1.5rem;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .key-concept strong {
+      color: var(--cyan-accent);
+    }
+
+    .warning-box {
+      background: linear-gradient(90deg, rgba(244, 63, 94, 0.12) 0%, rgba(244, 63, 94, 0.02) 100%);
+      border-left: 4px solid var(--pink-accent);
+      padding: 1.15rem 1.5rem;
+      border-radius: 0 12px 12px 0;
+      margin: 1.5rem 0;
+    }
+
+    .warning-box strong {
+      color: var(--pink-accent);
+    }
+
+    /* Lists */
+    ul, ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 0.6rem;
+      color: #cbd5e1;
+    }
+
+    li strong {
+      color: #f8fafc;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 1.75rem 0;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    th {
+      background: #0f172a;
+      color: var(--cyan-accent);
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid var(--card-border);
+    }
+
+    td {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--card-border);
+      color: #cbd5e1;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    tr:hover {
+      background-color: rgba(56, 189, 248, 0.04);
+    }
+
+    /* Code & ASCII Diagrams */
+    pre, code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.35rem;
+      overflow-x: auto;
+      color: var(--cyan-accent);
+      font-size: 0.88rem;
+      margin: 1.25rem 0;
+      line-height: 1.5;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--emerald-accent), #059669);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .step-list {
+      list-style: none;
+      counter-reset: step-counter;
+      padding-left: 0;
+    }
+
+    .step-list li {
+      counter-increment: step-counter;
+      position: relative;
+      padding-left: 3.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .step-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      background: linear-gradient(135deg, var(--purple-accent), #7c3aed);
+      color: white;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    }
+
+    /* =========================================================
+       PRINT & PDF GENERATION STYLES
+       ========================================================= */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        padding: 0 !important;
+      }
+
+      .print-bar {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 100% !important;
+      }
+
+      header {
+        background: #f8fafc !important;
+        border: 2px solid #e2e8f0 !important;
+        box-shadow: none !important;
+        padding: 2rem 1rem !important;
+        border-radius: 12px !important;
+        page-break-after: avoid;
+      }
+
+      header h1 {
+        background: none !important;
+        -webkit-text-fill-color: #0f172a !important;
+        color: #0f172a !important;
+      }
+
+      .author-tag {
+        background: #f1f5f9 !important;
+        color: #e11d48 !important;
+        border-color: #fda4af !important;
+      }
+
+      header p {
+        color: #475569 !important;
+      }
+
+      .chapter {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        page-break-inside: avoid;
+      }
+
+      .chapter h2 {
+        color: #0284c7 !important;
+        border-bottom-color: #e2e8f0 !important;
+      }
+
+      .chapter h3 {
+        color: #7e22ce !important;
+      }
+
+      .key-concept {
+        background: #f0f9ff !important;
+        border-left-color: #0284c7 !important;
+      }
+
+      .key-concept strong {
+        color: #0369a1 !important;
+      }
+
+      .warning-box {
+        background: #fff1f2 !important;
+        border-left-color: #e11d48 !important;
+      }
+
+      .warning-box strong {
+        color: #be123c !important;
+      }
+
+      li {
+        color: #334155 !important;
+      }
+
+      li strong {
+        color: #0f172a !important;
+      }
+
+      th {
+        background: #f1f5f9 !important;
+        color: #0369a1 !important;
+        border-bottom-color: #cbd5e1 !important;
+      }
+
+      td {
+        border-top-color: #e2e8f0 !important;
+        color: #334155 !important;
+      }
+
+      pre {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #0284c7 !important;
+        box-shadow: none !important;
+      }
+
+      .badge {
+        background: #10b981 !important;
+        color: #ffffff !important;
+      }
+
+      .step-list li::before {
+        background: #7e22ce !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Printable Action Bar -->
+    <div class="print-bar">
+      <button class="btn-print" onclick="window.print()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        Save / Export to PDF
+      </button>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+      <h1>Notes by Thakur Piyush Singh ❤️💖</h1>
+      <h1>Computer Organization & Architecture</h1>
+      <p>Comprehensive Quick-Reference & Exam Revision Guide</p>
+    </header>
+
+    <!-- Chapter 1 -->
+    <section class="chapter">
+      <h2>Chapter 1: Basic Computer Structure & Von-Neumann Architecture</h2>
+      <div class="key-concept">
+        <strong>Key Concept:</strong> The Von-Neumann Architecture describes a stored-program computer where data and instruction code are stored in the same shared memory module and executed sequentially.
+      </div>
+
+      <h3>Core Components</h3>
+      <ul>
+        <li><strong>Central Processing Unit (CPU):</strong>
+          <ul>
+            <li><strong>Control Unit (CU):</strong> Fetches and decodes instructions; directs the flow of data inside the system.</li>
+            <li><strong>Arithmetic Logic Unit (ALU):</strong> Performs all mathematical ($+$, $-$) and logical ($\text{AND}$, $\text{OR}$) operations.</li>
+          </ul>
+        </li>
+        <li><strong>Main Memory:</strong> Holds both program code (instructions) and data variables currently in use.</li>
+        <li><strong>Input/Output (I/O) Units:</strong> Interfaces with peripherals (keyboard, monitor, storage disks).</li>
+      </ul>
+
+      <div class="warning-box">
+        <strong>The Von-Neumann Bottleneck:</strong> Because data and instructions share the exact same physical bus lines, the CPU is forced to alternate between fetching instructions and reading/writing data, limiting overall system speed.
+      </div>
+    </section>
+
+    <!-- Chapter 2 -->
+    <section class="chapter">
+      <h2>Chapter 2: The Instruction Cycle & CPU Registers</h2>
+      <div class="key-concept">
+        <strong>Key Concept:</strong> Every computer program runs by continually looping through the Instruction Cycle.
+      </div>
+
+      <h3>Step-by-Step Cycle Mechanics</h3>
+      <ol class="step-list">
+        <li><strong>Fetch:</strong> CPU copies the memory address from the Program Counter ($\text{PC}$) into the Memory Address Register ($\text{MAR}$). Memory reads the instruction code and moves it to the Instruction Register ($\text{IR}$). The $\text{PC}$ increments by 1.</li>
+        <li><strong>Decode:</strong> The Control Unit ($\text{CU}$) decodes the bit pattern in the $\text{IR}$ to determine the operation and identifies required operands.</li>
+        <li><strong>Execute:</strong> The CPU executes the operation via the $\text{ALU}$ or register transfer.</li>
+        <li><strong>Store / Check Interrupt:</strong> The result is stored in the Accumulator ($\text{AC}$) or memory, and any pending hardware interrupts are serviced.</li>
+      </ol>
+
+      <h3>Critical CPU Registers Summary</h3>
+      <ul>
+        <li><strong>PC (Program Counter):</strong> Tracks the memory address of the next instruction to be executed.</li>
+        <li><strong>MAR (Memory Address Register):</strong> Holds the address currently being accessed in RAM.</li>
+        <li><strong>MDR/MBR (Memory Data Register):</strong> Holds the actual data payload read from or written to RAM.</li>
+        <li><strong>IR (Instruction Register):</strong> Holds the instruction currently being decoded/executed.</li>
+        <li><strong>AC (Accumulator):</strong> Temporary working register attached directly to the ALU output.</li>
+      </ul>
+    </section>
+
+    <!-- Chapter 3 -->
+    <section class="chapter">
+      <h2>Chapter 3: Addressing Modes</h2>
+      <p>Addressing modes define how the instruction's operand field locates the actual data (Effective Address, or $\text{EA}$).</p>
+      
+      <h3>Exam Example Scenario</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+        Assume: Register $R1 = 500$, Memory Address $500 = 800$, Memory Address $800 = 1200$, Instruction Operand field $= 500$.
+      </p>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Addressing Mode</th>
+              <th>How Effective Address ($\text{EA}$) is Found</th>
+              <th>Calculated $\text{EA}$</th>
+              <th>Value Loaded to CPU</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Immediate</strong></td>
+              <td>Data is inside the instruction itself</td>
+              <td>None</td>
+              <td><code>500</code></td>
+            </tr>
+            <tr>
+              <td><strong>Direct</strong></td>
+              <td>$\text{EA} = \text{Address in instruction}$</td>
+              <td><code>500</code></td>
+              <td><code>800</code></td>
+            </tr>
+            <tr>
+              <td><strong>Indirect</strong></td>
+              <td>$\text{EA} = \text{Memory}[\text{Address in instruction}]$</td>
+              <td><code>800</code></td>
+              <td><code>1200</code></td>
+            </tr>
+            <tr>
+              <td><strong>Register Direct</strong></td>
+              <td>$\text{EA} = \text{Specified Register}$</td>
+              <td>$R1$</td>
+              <td><code>500</code></td>
+            </tr>
+            <tr>
+              <td><strong>Register Indirect</strong></td>
+              <td>$\text{EA} = \text{Value in Specified Register}$</td>
+              <td><code>500</code></td>
+              <td><code>800</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Chapter 4 -->
+    <section class="chapter">
+      <h2>Chapter 4: Signed Multiplication via Booth's Algorithm</h2>
+      <div class="key-concept">
+        <strong>Key Concept:</strong> Booth’s Algorithm efficiently multiplies signed binary integers in 2's complement notation by replacing consecutive runs of 1s with a single addition and subtraction step.
+      </div>
+
+      <h3>Hardware Registers Involved</h3>
+      <p><strong>$M$:</strong> Multiplicand | <strong>$Q$:</strong> Multiplier | <strong>$A$:</strong> Accumulator (initialized to <code>0000</code>) | <strong>$Q_{-1}$:</strong> Extra single-bit register (initialized to <code>0</code>) | <strong>$Count$:</strong> Number of bits in operands</p>
+
+      <h3>Action Rules Based on $(Q_0, Q_{-1})$</h3>
+      <ul>
+        <li><code>10</code>: Subtract Multiplicand ($A \leftarrow A - M$), then <strong>Arithmetic Shift Right (ASR)</strong> $(A, Q, Q_{-1})$.</li>
+        <li><code>01</code>: Add Multiplicand ($A \leftarrow A + M$), then <strong>Arithmetic Shift Right (ASR)</strong> $(A, Q, Q_{-1})$.</li>
+        <li><code>00</code> or <code>11</code>: <strong>Arithmetic Shift Right (ASR)</strong> $(A, Q, Q_{-1})$ only.</li>
+      </ul>
+
+      <h3>Worked Numerical Example: Multiply $(+7) \times (-3)$ using 4-bit numbers</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+        $M = +7 = 0111_2$, $-M = -7 = 1001_2$ (2's complement)<br>
+        $Q = -3 = 1101_2$<br>
+        Initial State: $A = 0000$, $Q = 1101$, $Q_{-1} = 0$, $Count = 4$
+      </p>
+
+      <pre>
+1. Cycle 1: Inspect (Q_0=1, Q_-1=0) -> Action: A = A - M
+   - A <- A + (-M) = 0000 + 1001 = 1001
+   - ASR: A = 1100, Q = 1110, Q_-1 = 1
+   - Count = 3
+
+2. Cycle 2: Inspect (Q_0=0, Q_-1=1) -> Action: A = A + M
+   - A <- A + M = 1100 + 0111 = 0011
+   - ASR: A = 0001, Q = 1111, Q_-1 = 0
+   - Count = 2
+
+3. Cycle 3: Inspect (Q_0=1, Q_-1=0) -> Action: A = A - M
+   - A <- A + (-M) = 0001 + 1001 = 1010
+   - ASR: A = 1101, Q = 0111, Q_-1 = 1
+   - Count = 1
+
+4. Cycle 4: Inspect (Q_0=1, Q_-1=1) -> Action: Shift Only
+   - ASR: A = 1110, Q = 1011, Q_-1 = 1
+   - Count = 0 (Stop)
+      </pre>
+
+      <p><strong>Final Combined Result $(A, Q)$:</strong> $11101011_2$<br>
+      Convert from 2's complement: Flip bits $\rightarrow 00010100_2 + 1 = 00010101_2 = -21$ <span class="badge">Correct: $7 \times -3 = -21$</span></p>
+    </section>
+
+    <!-- Chapter 5 -->
+    <section class="chapter">
+      <h2>Chapter 5: Memory System & Cache Organization</h2>
+      
+      <h3>Memory Hierarchy Pyramid</h3>
+      <pre>
+         /  Registers  \           <- Micro-seconds / Smallest Capacity / Highest Cost
+        / Cache (L1/L2) \
+       /   Main Memory   \         <- RAM (SRAM / DRAM)
+      / Secondary Storage \        <- Hard Drives / SSDs / High Capacity / Lowest Cost
+      </pre>
+
+      <h3>Cache Mapping Techniques</h3>
+      <p>Cache memory bridges the speed gap between CPU registers and main RAM. There are three primary mapping techniques:</p>
+
+      <pre>
+  ┌───────────────────┐    ┌───────────────────┐    ┌───────────────────┐
+  │  Direct Mapping   │    │Fully Associative  │    │ Set-Associative   │
+  ├───────────────────┤    ├───────────────────┤    ├───────────────────┤
+  │ Block maps to ONE │    │ Block can go in   │    │ Block maps to ANY │
+  │ specific cache    │    │ ANY available     │    │ line inside a     │
+  │ line (i mod N).   │    │ cache line.       │    │ assigned set.     │
+  └───────────────────┘    └───────────────────┘    └───────────────────┘
+      </pre>
+
+      <ul>
+        <li><strong>Direct Mapping:</strong>
+          <ul>
+            <li>Formula: $\text{Cache Line Number} = (\text{Main Memory Block Number}) \bmod (\text{Total Cache Lines})$</li>
+            <li><em>Advantage:</em> Extremely fast hardware check.</li>
+            <li><em>Disadvantage:</em> High conflict misses if two active blocks map to the same line.</li>
+          </ul>
+        </li>
+        <li><strong>Fully Associative Mapping:</strong>
+          <ul>
+            <li>Any block from RAM can sit in any empty cache line.</li>
+            <li><em>Advantage:</em> Minimum cache misses.</li>
+            <li><em>Disadvantage:</em> Requires expensive associative search logic circuits.</li>
+          </ul>
+        </li>
+        <li><strong>Set-Associative Mapping (Best Compromise):</strong>
+          <ul>
+            <li>Cache is divided into sets of $k$ lines ($k$-way set associative).</li>
+            <li>Formula: $\text{Cache Set} = (\text{Main Memory Block Number}) \bmod (\text{Total Sets})$</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Chapter 6 -->
+    <section class="chapter">
+      <h2>Chapter 6: Input-Output (I/O) & Direct Memory Access (DMA)</h2>
+      
+      <h3>Comparing Transfer Modes</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Programmed I/O</th>
+              <th>Interrupt-Driven I/O</th>
+              <th>Direct Memory Access (DMA)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>CPU Involvement</strong></td>
+              <td>Continuous polling</td>
+              <td>Interrupted only when data ready</td>
+              <td>Zero during block transfer</td>
+            </tr>
+            <tr>
+              <td><strong>Transfer Speed</strong></td>
+              <td>Very Slow</td>
+              <td>Moderate</td>
+              <td>Extremely Fast</td>
+            </tr>
+            <tr>
+              <td><strong>Best For</strong></td>
+              <td>Simple low-speed chips</td>
+              <td>Keyboards, Mouse</td>
+              <td>Hard Disks, GPUs, Network Cards</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>DMA Operation Sequence</h3>
+      <p>When bulk data must move between an I/O device and RAM, the CPU hands control over to the DMA Controller:</p>
+      <ol>
+        <li>CPU sends starting memory address, word count, and Read/Write signal to the DMA controller.</li>
+        <li>CPU requests bus control (<strong>Bus Grant</strong> signal).</li>
+        <li>DMA controller transfers the entire block of data directly to/from RAM word by word.</li>
+        <li>Once completed, DMA raises a single hardware interrupt to notify the CPU that the transfer is done.</li>
+      </ol>
+    </section>
+
+    <!-- Chapter 7 -->
+    <section class="chapter">
+      <h2>Chapter 7: Instruction Pipelining & Hazards</h2>
+      <div class="key-concept">
+        <strong>Key Concept:</strong> Pipelining overlaps the execution of multiple instructions, running different execution stages simultaneously on separate hardware circuits.
+      </div>
+
+      <pre>
+Clock Cycles ──►  1     2     3     4     5     6
+Instruction 1  [ IF ][ ID ][ EX ][ WB ]
+Instruction 2        [ IF ][ ID ][ EX ][ WB ]
+Instruction 3              [ IF ][ ID ][ EX ][ WB ]
+      </pre>
+      <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">(IF = Instruction Fetch, ID = Instruction Decode, EX = Execute, WB = Write Back)</p>
+
+      <h3>Speedup Formula</h3>
+      <p>For $n$ instructions executed through a $k$-stage pipeline:</p>
+      <p>$$S_k = \frac{\text{Time taken without pipeline}}{\text{Time taken with pipeline}} = \frac{n \cdot k}{k + (n - 1)}$$</p>
+
+      <h3>Pipeline Hazards (Stalls)</h3>
+      <p>Factors that disrupt the pipeline flow and force "bubble" delays:</p>
+      <ul>
+        <li><strong>Structural Hazard:</strong> Two instructions need the same hardware resource at the same time (e.g., both needing to access memory simultaneously).</li>
+        <li><strong>Data Hazard:</strong> An instruction depends on the output of a prior instruction that hasn't completed its Write-Back stage yet.</li>
+        <li><strong>Control Hazard:</strong> Caused by branch or jump instructions, where the CPU fetches the wrong sequence of instructions before evaluating the branch condition.</li>
+      </ul>
+    </section>
+
+  </div>
+
+</body>
+</html>
