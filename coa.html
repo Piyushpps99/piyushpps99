@@ -9,10 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
-  
-  <!-- MathJax for rendering equations -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <style>
     :root {
@@ -267,6 +263,17 @@
       box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
     }
 
+    .formula-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--cyan-accent);
+      margin: 1rem 0;
+    }
+
     .badge {
       display: inline-block;
       background: linear-gradient(135deg, var(--emerald-accent), #059669);
@@ -459,7 +466,7 @@
         <li><strong>Central Processing Unit (CPU):</strong>
           <ul>
             <li><strong>Control Unit (CU):</strong> Fetches and decodes instructions; directs the flow of data inside the system.</li>
-            <li><strong>Arithmetic Logic Unit (ALU):</strong> Performs all mathematical ($+$, $-$) and logical ($\text{AND}$, $\text{OR}$) operations.</li>
+            <li><strong>Arithmetic Logic Unit (ALU):</strong> Performs all mathematical (+, -) and logical (AND, OR) operations.</li>
           </ul>
         </li>
         <li><strong>Main Memory:</strong> Holds both program code (instructions) and data variables currently in use.</li>
@@ -480,10 +487,10 @@
 
       <h3>Step-by-Step Cycle Mechanics</h3>
       <ol class="step-list">
-        <li><strong>Fetch:</strong> CPU copies the memory address from the Program Counter ($\text{PC}$) into the Memory Address Register ($\text{MAR}$). Memory reads the instruction code and moves it to the Instruction Register ($\text{IR}$). The $\text{PC}$ increments by 1.</li>
-        <li><strong>Decode:</strong> The Control Unit ($\text{CU}$) decodes the bit pattern in the $\text{IR}$ to determine the operation and identifies required operands.</li>
-        <li><strong>Execute:</strong> The CPU executes the operation via the $\text{ALU}$ or register transfer.</li>
-        <li><strong>Store / Check Interrupt:</strong> The result is stored in the Accumulator ($\text{AC}$) or memory, and any pending hardware interrupts are serviced.</li>
+        <li><strong>Fetch:</strong> CPU copies the memory address from the Program Counter (PC) into the Memory Address Register (MAR). Memory reads the instruction code and moves it to the Instruction Register (IR). The PC increments by 1.</li>
+        <li><strong>Decode:</strong> The Control Unit (CU) decodes the bit pattern in the IR to determine the operation and identifies required operands.</li>
+        <li><strong>Execute:</strong> The CPU executes the operation via the ALU or register transfer.</li>
+        <li><strong>Store / Check Interrupt:</strong> The result is stored in the Accumulator (AC) or memory, and any pending hardware interrupts are serviced.</li>
       </ol>
 
       <h3>Critical CPU Registers Summary</h3>
@@ -499,11 +506,11 @@
     <!-- Chapter 3 -->
     <section class="chapter">
       <h2>Chapter 3: Addressing Modes</h2>
-      <p>Addressing modes define how the instruction's operand field locates the actual data (Effective Address, or $\text{EA}$).</p>
+      <p>Addressing modes define how the instruction's operand field locates the actual data (Effective Address, or EA).</p>
       
       <h3>Exam Example Scenario</h3>
       <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-        Assume: Register $R1 = 500$, Memory Address $500 = 800$, Memory Address $800 = 1200$, Instruction Operand field $= 500$.
+        Assume: Register R1 = 500, Memory Address 500 = 800, Memory Address 800 = 1200, Instruction Operand field = 500.
       </p>
 
       <div class="table-container">
@@ -511,8 +518,8 @@
           <thead>
             <tr>
               <th>Addressing Mode</th>
-              <th>How Effective Address ($\text{EA}$) is Found</th>
-              <th>Calculated $\text{EA}$</th>
+              <th>How Effective Address (EA) is Found</th>
+              <th>Calculated EA</th>
               <th>Value Loaded to CPU</th>
             </tr>
           </thead>
@@ -525,25 +532,25 @@
             </tr>
             <tr>
               <td><strong>Direct</strong></td>
-              <td>$\text{EA} = \text{Address in instruction}$</td>
+              <td>EA = Address in instruction</td>
               <td><code>500</code></td>
               <td><code>800</code></td>
             </tr>
             <tr>
               <td><strong>Indirect</strong></td>
-              <td>$\text{EA} = \text{Memory}[\text{Address in instruction}]$</td>
+              <td>EA = Memory[Address in instruction]</td>
               <td><code>800</code></td>
               <td><code>1200</code></td>
             </tr>
             <tr>
               <td><strong>Register Direct</strong></td>
-              <td>$\text{EA} = \text{Specified Register}$</td>
-              <td>$R1$</td>
+              <td>EA = Specified Register</td>
+              <td>R1</td>
               <td><code>500</code></td>
             </tr>
             <tr>
               <td><strong>Register Indirect</strong></td>
-              <td>$\text{EA} = \text{Value in Specified Register}$</td>
+              <td>EA = Value in Specified Register</td>
               <td><code>500</code></td>
               <td><code>800</code></td>
             </tr>
@@ -560,20 +567,20 @@
       </div>
 
       <h3>Hardware Registers Involved</h3>
-      <p><strong>$M$:</strong> Multiplicand | <strong>$Q$:</strong> Multiplier | <strong>$A$:</strong> Accumulator (initialized to <code>0000</code>) | <strong>$Q_{-1}$:</strong> Extra single-bit register (initialized to <code>0</code>) | <strong>$Count$:</strong> Number of bits in operands</p>
+      <p><strong>M:</strong> Multiplicand | <strong>Q:</strong> Multiplier | <strong>A:</strong> Accumulator (initialized to <code>0000</code>) | <strong>Q<sub>-1</sub>:</strong> Extra single-bit register (initialized to <code>0</code>) | <strong>Count:</strong> Number of bits in operands</p>
 
-      <h3>Action Rules Based on $(Q_0, Q_{-1})$</h3>
+      <h3>Action Rules Based on (Q<sub>0</sub>, Q<sub>-1</sub>)</h3>
       <ul>
-        <li><code>10</code>: Subtract Multiplicand ($A \leftarrow A - M$), then <strong>Arithmetic Shift Right (ASR)</strong> $(A, Q, Q_{-1})$.</li>
-        <li><code>01</code>: Add Multiplicand ($A \leftarrow A + M$), then <strong>Arithmetic Shift Right (ASR)</strong> $(A, Q, Q_{-1})$.</li>
-        <li><code>00</code> or <code>11</code>: <strong>Arithmetic Shift Right (ASR)</strong> $(A, Q, Q_{-1})$ only.</li>
+        <li><code>10</code>: Subtract Multiplicand (A &leftarrow; A - M), then <strong>Arithmetic Shift Right (ASR)</strong> (A, Q, Q<sub>-1</sub>).</li>
+        <li><code>01</code>: Add Multiplicand (A &leftarrow; A + M), then <strong>Arithmetic Shift Right (ASR)</strong> (A, Q, Q<sub>-1</sub>).</li>
+        <li><code>00</code> or <code>11</code>: <strong>Arithmetic Shift Right (ASR)</strong> (A, Q, Q<sub>-1</sub>) only.</li>
       </ul>
 
-      <h3>Worked Numerical Example: Multiply $(+7) \times (-3)$ using 4-bit numbers</h3>
+      <h3>Worked Numerical Example: Multiply (+7) &times; (-3) using 4-bit numbers</h3>
       <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
-        $M = +7 = 0111_2$, $-M = -7 = 1001_2$ (2's complement)<br>
-        $Q = -3 = 1101_2$<br>
-        Initial State: $A = 0000$, $Q = 1101$, $Q_{-1} = 0$, $Count = 4$
+        M = +7 = 0111<sub>2</sub>, -M = -7 = 1001<sub>2</sub> (2's complement)<br>
+        Q = -3 = 1101<sub>2</sub><br>
+        Initial State: A = 0000, Q = 1101, Q<sub>-1</sub> = 0, Count = 4
       </p>
 
       <pre>
@@ -597,8 +604,8 @@
    - Count = 0 (Stop)
       </pre>
 
-      <p><strong>Final Combined Result $(A, Q)$:</strong> $11101011_2$<br>
-      Convert from 2's complement: Flip bits $\rightarrow 00010100_2 + 1 = 00010101_2 = -21$ <span class="badge">Correct: $7 \times -3 = -21$</span></p>
+      <p><strong>Final Combined Result (A, Q):</strong> 11101011<sub>2</sub><br>
+      Convert from 2's complement: Flip bits &rarr; 00010100<sub>2</sub> + 1 = 00010101<sub>2</sub> = -21 <span class="badge">Correct: 7 &times; -3 = -21</span></p>
     </section>
 
     <!-- Chapter 5 -->
@@ -607,10 +614,10 @@
       
       <h3>Memory Hierarchy Pyramid</h3>
       <pre>
-         /  Registers  \           <- Micro-seconds / Smallest Capacity / Highest Cost
-        / Cache (L1/L2) \
-       /   Main Memory   \         <- RAM (SRAM / DRAM)
-      / Secondary Storage \        <- Hard Drives / SSDs / High Capacity / Lowest Cost
+         /  Registers   \            <- Micro-seconds / Smallest Capacity / Highest Cost
+        / Cache (L1/L2)  \
+       /   Main Memory    \          <- RAM (SRAM / DRAM)
+      / Secondary Storage \         <- Hard Drives / SSDs / High Capacity / Lowest Cost
       </pre>
 
       <h3>Cache Mapping Techniques</h3>
@@ -629,7 +636,7 @@
       <ul>
         <li><strong>Direct Mapping:</strong>
           <ul>
-            <li>Formula: $\text{Cache Line Number} = (\text{Main Memory Block Number}) \bmod (\text{Total Cache Lines})$</li>
+            <li>Formula: <span class="formula-box" style="display:inline-block; padding:0.2rem 0.6rem; margin:0;">Cache Line Number = (Main Memory Block Number) mod (Total Cache Lines)</span></li>
             <li><em>Advantage:</em> Extremely fast hardware check.</li>
             <li><em>Disadvantage:</em> High conflict misses if two active blocks map to the same line.</li>
           </ul>
@@ -643,8 +650,8 @@
         </li>
         <li><strong>Set-Associative Mapping (Best Compromise):</strong>
           <ul>
-            <li>Cache is divided into sets of $k$ lines ($k$-way set associative).</li>
-            <li>Formula: $\text{Cache Set} = (\text{Main Memory Block Number}) \bmod (\text{Total Sets})$</li>
+            <li>Cache is divided into sets of <i>k</i> lines (<i>k</i>-way set associative).</li>
+            <li>Formula: <span class="formula-box" style="display:inline-block; padding:0.2rem 0.6rem; margin:0;">Cache Set = (Main Memory Block Number) mod (Total Sets)</span></li>
           </ul>
         </li>
       </ul>
@@ -714,8 +721,10 @@ Instruction 3              [ IF ][ ID ][ EX ][ WB ]
       <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">(IF = Instruction Fetch, ID = Instruction Decode, EX = Execute, WB = Write Back)</p>
 
       <h3>Speedup Formula</h3>
-      <p>For $n$ instructions executed through a $k$-stage pipeline:</p>
-      <p>$$S_k = \frac{\text{Time taken without pipeline}}{\text{Time taken with pipeline}} = \frac{n \cdot k}{k + (n - 1)}$$</p>
+      <p>For <i>n</i> instructions executed through a <i>k</i>-stage pipeline:</p>
+      <div class="formula-box">
+        S<sub>k</sub> = (Time taken without pipeline) / (Time taken with pipeline) = (n &middot; k) / (k + n - 1)
+      </div>
 
       <h3>Pipeline Hazards (Stalls)</h3>
       <p>Factors that disrupt the pipeline flow and force "bubble" delays:</p>
