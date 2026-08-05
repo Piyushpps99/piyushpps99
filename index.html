@@ -46,16 +46,15 @@
         }
 
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.007) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px),
-                radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 15% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
-            background-size: 40px 40px, 40px 40px, auto, auto;
+             background-image:url('x12.jpg');
+			position:center;
+			background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
             background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+              
         }
 
         /* Standard Section Scaffolding */
@@ -781,7 +780,8 @@
                    
                     <h1>Empowering Digital <br><span class="accent">WEB DESIGNING & WEB DEVELOPMENT</span></h1>
                     <h3>I am a <span class="dynamic-text">{{currentlyTypedText}}</span></h3>
-                    <p class="desc">Founder & CEO specializing in advanced web architecture solutions, functional single-page application frameworks, and high-performance system configurations.</p>
+                    <p class="desc">Founder & CEO specializing in advanced web architecture solutions, functional single-page application frameworks, and high-performance system configurations.
+					Role & Focus: Front-End & Full-Stack Web Developer.<br>  Core Competencies: Clean HTML5 structuring, custom CSS3 styling, and organizing complex technical documentation into user-friendly interfaces.  Tooling & Version Control: Proficient in using Git for local project version control (tracking code modifications, staging, committing, and branching) and GitHub for cloud-based repository hosting and workflow management.<br>  Technical Strengths: Strong understanding of technical component mapping, web design layout, software workflow documentation, and modern UI/UX practices. </p>
                     <div class="hero-actions">
                         <a href="#contact" ng-click="setActiveTab('contact')" class="btn-primary">Initiate Inquiry <i class="fas fa-arrow-right"></i></a>
                         <a href="" ng-click="setActiveTab('projects')" class="btn-secondary">View Frameworks</a>
