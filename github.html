@@ -1,0 +1,502 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub Complete Reference Notes</title>
+    <style>
+        :root {
+            --primary-color: #24292e;
+            --accent-color: #0366d6;
+            --accent-hover: #0056b3;
+            --bg-color: #f6f8fa;
+            --card-bg: #ffffff;
+            --text-color: #24292e;
+            --text-muted: #586069;
+            --border-color: #e1e4e8;
+            --code-bg: #f1f3f5;
+            --heading-highlight: #ffea79;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image:url('w1.jpg');
+			position:center;
+			background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(120deg, #ffea79 0%, #ffea79 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 35%;
+            background-position: 0 88%;
+            display: inline-block;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: inline-block;
+            background-color: var(--heading-highlight);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: -0.5rem;
+            margin-bottom: 1.2rem;
+            font-style: italic;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        li strong {
+            color: var(--primary-color);
+        }
+
+        .command-list li {
+            background-color: #fafbfc;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-color);
+            padding: 0.8rem 1rem;
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 0.8rem;
+        }
+
+        code {
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: red;
+            max-width: 900px;
+            margin: 20px auto; 
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* Slight transparency to show background softly */
+            border-radius: 8px;
+        }
+
+        .cmd-desc {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 1.5rem 0;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>Git & GitHub Complete Notes...</h1>
+		<h1><b><i>Thakur-Piyush-Singh...</i></b></h1>
+        <p>A comprehensive overview and command cheat sheet for modern version control</p>
+    </header>
+
+    <!-- GIT VS GITHUB -->
+    <div class="card">
+        <h2 class="section-title">GIT VS. GITHUB</h2>
+        <p>Git and GitHub are fundamental tools in modern software development, but they serve two completely different purposes[cite: 1]. While Git handles local version control on your machine, GitHub acts as a cloud-based platform for remote hosting and team collaboration[cite: 1].</p>
+    </div>
+
+    <!-- WHAT IS GIT -->
+    <div class="card">
+        <h2 class="section-title">WHAT IS GIT?</h2>
+        <p style="margin-bottom: 1rem;">Git is a free, open-source, distributed version control system designed to run locally on your computer[cite: 1]. It tracks changes in your source code over time, enabling you to revert to previous file states, manage project history, and isolate experimental features[cite: 1].</p>
+        
+        <ul>
+            <li><strong>Core Purpose:</strong> Tracks file modifications, manages version history, and maintains local snapshots of your project[cite: 1].</li>
+            <li><strong>Distributed Architecture:</strong> Every developer has a complete copy (clone) of the entire project repository and its history directly on their local machine[cite: 1].</li>
+            <li><strong>Key Mechanisms:</strong>
+                <ul style="padding-left: 1.2rem; margin-top: 0.5rem;">
+                    <li><strong>Staging Area:</strong> A pre-commit area (<code>git add</code>) where you prepare specific file changes before permanently snapshotting them[cite: 1].</li>
+                    <li><strong>Commits:</strong> Permanent snapshots of your staged modifications (<code>git commit</code>) paired with descriptive messages[cite: 1].</li>
+                    <li><strong>Branching & Merging:</strong> Isolated lines of development (<code>git branch</code>) that allow you to work on separate features without affecting the main codebase, later merging (<code>git merge</code>) them back together[cite: 1].</li>
+                    <li><strong>Stashing:</strong> Temporarily storing uncommitted work (<code>git stash</code>) to switch contexts quickly without committing incomplete progress[cite: 1].</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- WHAT IS GITHUB -->
+    <div class="card">
+        <h2 class="section-title">WHAT IS GITHUB?</h2>
+        <p style="margin-bottom: 1rem;">GitHub is a cloud-based hosting platform built specifically around Git[cite: 1]. It takes Git's local tracking features and expands them into a centralized ecosystem for team collaboration, code sharing, and project management[cite: 1].</p>
+        
+        <ul>
+            <li><strong>Core Purpose:</strong> Host remote Git repositories online, enabling teams to review code, synchronize progress, and store off-site backups[cite: 1].</li>
+            <li><strong>Key Features:</strong>
+                <ul style="padding-left: 1.2rem; margin-top: 0.5rem;">
+                    <li><strong>Remote Repositories:</strong> Centralized online repositories (<code>git push</code> and <code>git pull</code>) where team members share local commits[cite: 1].</li>
+                    <li><strong>Pull Requests (PRs):</strong> A mechanism for developers to propose changes, discuss code, run tests, and request peer reviews before merging into the primary branch[cite: 1].</li>
+                    <li><strong>Collaboration Tools:</strong> Integrated issue tracking, project boards, wiki documentation, and access controls for team permissions[cite: 1].</li>
+                    <li><strong>Ecosystem Services:</strong> Native tools for Continuous Integration and Continuous Deployment (CI/CD) via GitHub Actions, as well as educational programs like GitHub Education[cite: 1].</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- HOW THEY WORK TOGETHER -->
+    <div class="card">
+        <h2 class="section-title">HOW THEY WORK TOGETHER</h2>
+        <ul class="command-list">
+            <li>
+                <strong>1. Local Tracking</strong>
+                <span class="cmd-desc">You initialize (<code>git init</code>) or clone (<code>git clone</code>) a project on your computer using Git[cite: 1].</span>
+            </li>
+            <li>
+                <strong>2. Snapshotting</strong>
+                <span class="cmd-desc">You modify code, stage the changes (<code>git add</code>), and commit them locally (<code>git commit</code>)[cite: 1].</span>
+            </li>
+            <li>
+                <strong>3. Synchronizing</strong>
+                <span class="cmd-desc">You connect your local Git repository to a GitHub remote URL (<code>git remote add</code>) and transmit your commits (<code>git push</code>) to the cloud[cite: 1].</span>
+            </li>
+            <li>
+                <strong>4. Collaborating</strong>
+                <span class="cmd-desc">Team members retrieve your updates (<code>git fetch</code> / <code>git pull</code>), review the code via Pull Requests on GitHub, and integrate the changes back into the main project[cite: 1].</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- INSTALLATION & GUIS -->
+    <div class="card">
+        <h2 class="section-title">INSTALLATION & GUIS</h2>
+        <p style="margin-bottom: 1rem;">With platform specific installers for Git, GitHub also provides the ease of staying up-to-date with the latest releases of the command line tool while providing a graphical user interface for day-to-day interaction, review, and repository synchronization[cite: 1].</p>
+        <ul>
+            <li><strong>GitHub for Windows:</strong> <a href="https://windows.github.com" target="_blank">https://windows.github.com</a>[cite: 1]</li>
+            <li><strong>GitHub for Mac:</strong> <a href="https://mac.github.com" target="_blank">https://mac.github.com</a>[cite: 1]</li>
+            <li><strong>Git for All Platforms:</strong> <a href="http://git-scm.com" target="_blank">http://git-scm.com</a> (For Linux and Solaris platforms, the latest release is available on the official Git web site)[cite: 1]</li>
+        </ul>
+    </div>
+
+    <!-- COMMAND CHEAT SHEET SECTIONS -->
+    <div class="grid">
+
+        <!-- SETUP -->
+        <div class="card">
+            <h2 class="section-title">SETUP</h2>
+            <div class="section-subtitle">Configuring user information used across all local repositories[cite: 1]</div>
+            <ul class="command-list">
+                <li>
+                    <code>git config --global user.name “[firstname lastname]”</code>
+                    <span class="cmd-desc">Set a name that is identifiable for credit when review version history[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git config --global user.email “[valid-email]”</code>
+                    <span class="cmd-desc">Set an email address that will be associated with each history marker[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git config --global color.ui auto</code>
+                    <span class="cmd-desc">Set automatic command line coloring for Git for easy reviewing[cite: 1]</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- SETUP & INIT -->
+        <div class="card">
+            <h2 class="section-title">SETUP & INIT</h2>
+            <div class="section-subtitle">Configuring user information, initializing and cloning repositories[cite: 1]</div>
+            <ul class="command-list">
+                <li>
+                    <code>git init</code>
+                    <span class="cmd-desc">Initialize an existing directory as a Git repository[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git clone [url]</code>
+                    <span class="cmd-desc">Retrieve an entire repository from a hosted location via URL[cite: 1]</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- STAGE & SNAPSHOT -->
+        <div class="card">
+            <h2 class="section-title">STAGE & SNAPSHOT</h2>
+            <div class="section-subtitle">Working with snapshots and the Git staging area[cite: 1]</div>
+            <ul class="command-list">
+                <li>
+                    <code>git status</code>
+                    <span class="cmd-desc">Show modified files in working directory, staged for your next commit[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git add [file]</code>
+                    <span class="cmd-desc">Add a file as it looks now to your next commit (stage)[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git reset [file]</code>
+                    <span class="cmd-desc">Unstage a file while retaining the changes in working directory[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git diff</code>
+                    <span class="cmd-desc">Diff of what is changed but not staged[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git diff --staged</code>
+                    <span class="cmd-desc">Diff of what is staged but not yet committed[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git commit -m “[descriptive message]”</code>
+                    <span class="cmd-desc">Commit your staged content as a new commit snapshot[cite: 1]</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- BRANCH & MERGE -->
+        <div class="card">
+            <h2 class="section-title">BRANCH & MERGE</h2>
+            <div class="section-subtitle">Isolating work in branches, changing context, and integrating changes[cite: 1]</div>
+            <ul class="command-list">
+                <li>
+                    <code>git branch</code>
+                    <span class="cmd-desc">List your branches. A * will appear next to the currently active branch[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git branch [branch-name]</code>
+                    <span class="cmd-desc">Create a new branch at the current commit[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git checkout</code>
+                    <span class="cmd-desc">Switch to another branch and check it out into your working directory[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git merge [branch]</code>
+                    <span class="cmd-desc">Merge the specified branch’s history into the current one[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git log</code>
+                    <span class="cmd-desc">Show all commits in the current branch’s history[cite: 1]</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- SHARE & UPDATE -->
+        <div class="card">
+            <h2 class="section-title">SHARE & UPDATE</h2>
+            <div class="section-subtitle">Retrieving updates from another repository and updating local repos[cite: 1]</div>
+            <ul class="command-list">
+                <li>
+                    <code>git remote add [alias] [url]</code>
+                    <span class="cmd-desc">Add a git URL as an alias[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git fetch [alias]</code>
+                    <span class="cmd-desc">Fetch down all the branches from that Git remote[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git merge [alias]/[branch]</code>
+                    <span class="cmd-desc">Merge a remote branch into your current branch to bring it up to date[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git push [alias] [branch]</code>
+                    <span class="cmd-desc">Transmit local branch commits to the remote repository branch[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git pull</code>
+                    <span class="cmd-desc">Fetch and merge any commits from the tracking remote branch[cite: 1]</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- TRACKING PATH CHANGES -->
+        <div class="card">
+            <h2 class="section-title">TRACKING PATH CHANGES</h2>
+            <div class="section-subtitle">Versioning file removes and path changes[cite: 1]</div>
+            <ul class="command-list">
+                <li>
+                    <code>git rm [file]</code>
+                    <span class="cmd-desc">Delete the file from project and stage the removal for commit[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git mv [existing-path] [new-path]</code>
+                    <span class="cmd-desc">Change an existing file path and stage the move[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git log --stat -M</code>
+                    <span class="cmd-desc">Show all commit logs with indication of any paths that moved[cite: 1]</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- TEMPORARY COMMITS -->
+        <div class="card">
+            <h2 class="section-title">TEMPORARY COMMITS</h2>
+            <div class="section-subtitle">Temporarily store modified, tracked files in order to change branches[cite: 1]</div>
+            <ul class="command-list">
+                <li>
+                    <code>git stash</code>
+                    <span class="cmd-desc">Save modified and staged changes[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git stash list</code>
+                    <span class="cmd-desc">List stack-order of stashed file changes[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git stash pop</code>
+                    <span class="cmd-desc">Write working from top of stash stack[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git stash drop</code>
+                    <span class="cmd-desc">Discard the changes from top of stash stack[cite: 1]</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- REWRITE HISTORY -->
+        <div class="card">
+            <h2 class="section-title">REWRITE HISTORY</h2>
+            <div class="section-subtitle">Rewriting branches, updating commits and clearing history[cite: 1]</div>
+            <ul class="command-list">
+                <li>
+                    <code>git rebase [branch]</code>
+                    <span class="cmd-desc">Apply any commits of current branch ahead of specified one[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git reset --hard [commit]</code>
+                    <span class="cmd-desc">Clear staging area, rewrite working tree from specified commit[cite: 1]</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- INSPECT & COMPARE -->
+        <div class="card">
+            <h2 class="section-title">INSPECT & COMPARE</h2>
+            <div class="section-subtitle">Examining logs, diffs and object information[cite: 1]</div>
+            <ul class="command-list">
+                <li>
+                    <code>git log</code>
+                    <span class="cmd-desc">Show the commit history for the currently active branch[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git log branchB..branchA</code>
+                    <span class="cmd-desc">Show the commits on branchA that are not on branchB[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git log --follow [file]</code>
+                    <span class="cmd-desc">Show the commits that changed file, even across renames[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git diff branchB...branchA</code>
+                    <span class="cmd-desc">Show the diff of what is in branchA that is not in branchB[cite: 1]</span>
+                </li>
+                <li>
+                    <code>git show [SHA]</code>
+                    <span class="cmd-desc">Show any object in Git in human-readable format[cite: 1]</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- IGNORING PATTERNS -->
+        <div class="card">
+            <h2 class="section-title">IGNORING PATTERNS</h2>
+            <div class="section-subtitle">Preventing unintentional staging or commiting of files[cite: 1]</div>
+            <ul class="command-list">
+                <li>
+                    <code>git config --global core.excludesfile [file]</code>
+                    <span class="cmd-desc">System wide ignore pattern for all local repositories[cite: 1]</span>
+                </li>
+            </ul>
+            <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">
+                Save a file with desired patterns as <code>.gitignore</code> with either direct string matches or wildcard globs (e.g., <code>logs/</code>, <code>*.notes</code>, <code>pattern*/</code>)[cite: 1].
+            </p>
+        </div>
+
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="card">
+        <h2 class="section-title">EDUCATION</h2>
+        <p>All handwritten notes are available  msg me :- thakurpiyushps99@gmail.com</p>
+    </div>
+
+    <div class="footer-note">
+        <p>Git Reference Notes • Built with HTML & CSS</p>
+    </div>
+
+</div>
+
+</body>
+</html>
