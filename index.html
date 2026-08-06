@@ -246,24 +246,25 @@
         }
 
         .hero-left h3 {
+			
             font-size: 2.8rem;
             font-weight: 600;
-            color: var(--text-primary);
+            color: green;
             margin-bottom: 2.5rem;
             min-height: 4rem;
         }
 
         .hero-left h3 span.dynamic-text {
-            color: var(--primary-neon);
+            color: red;
             border-right: 2px solid var(--primary-neon);
             padding-right: 4px;
             animation: caretBlink 0.8s step-end infinite;
         }
 
         .hero-left p.desc {
-            font-size: 1.7rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
+            font-size: 1.9rem;
+            line-height: 1.9;
+            color: black;
             margin-bottom: 4rem;
             max-width: 620px;
         }
@@ -423,7 +424,7 @@
         .about-bio p {
             font-size: 1.6rem;
             line-height: 1.8;
-            color: var(--text-secondary);
+            color: black;
             margin-bottom: 2.5rem;
         }
 
@@ -778,10 +779,10 @@
             <div class="hero-layout">
                 <div class="hero-left">
                    
-                    <h1>Empowering Digital <br><span class="accent">WEB DESIGNING & WEB DEVELOPMENT</span></h1>
+                    <i><h1>Empowering-Digital ..<br><span class="accent">WEB DESIGNING & WEB.. DEVELOPMENT..</span></h1></i>
                     <h3>I am a <span class="dynamic-text">{{currentlyTypedText}}</span></h3>
-                    <p class="desc">Founder & CEO specializing in advanced web architecture solutions, functional single-page application frameworks, and high-performance system configurations.
-					Role & Focus: Front-End & Full-Stack Web Developer.<br>  Core Competencies: Clean HTML5 structuring, custom CSS3 styling, and organizing complex technical documentation into user-friendly interfaces.  Tooling & Version Control: Proficient in using Git for local project version control (tracking code modifications, staging, committing, and branching) and GitHub for cloud-based repository hosting and workflow management.<br>  Technical Strengths: Strong understanding of technical component mapping, web design layout, software workflow documentation, and modern UI/UX practices. </p>
+                    <p class="desc"><i><b>Hello I am <u>Thakur Piyush Singh</u>..Founder & CEO specializing in advanced web architecture solutions, functional single-page application frameworks, and high-performance system configurations.
+					Role & Focus: Front-End & Full-Stack Web Developer.<br>  Core Competencies: Clean HTML5 structuring, custom CSS3 styling, and organizing complex technical documentation into user-friendly interfaces.  Tooling & Version Control: Proficient in using Git for local project version control (tracking code modifications, staging, committing, and branching) and GitHub for cloud-based repository hosting and workflow management.<br>  Technical Strengths: Strong understanding of technical component mapping, web design layout, software workflow documentation, and modern UI/UX practices.</i></b> </p>
                     <div class="hero-actions">
                         <a href="#contact" ng-click="setActiveTab('contact')" class="btn-primary">Initiate Inquiry <i class="fas fa-arrow-right"></i></a>
                         <a href="" ng-click="setActiveTab('projects')" class="btn-secondary">View Frameworks</a>
@@ -815,7 +816,7 @@
         <!-- ABOUT VIEW LAYER -->
         <section id="about" ng-show="currentActiveTab === 'about'">
             <div class="section-header">
-                <span class="tag">WELCOME TO MY WEB PAGE...</span>
+                <span class="tag"><b>WELCOME TO MY WEB PAGE...</b></span>
                 <h2>About <span>Me</span></h2>
             </div>
             <div class="about-layout">
@@ -850,7 +851,7 @@
                 <div class="project-card glass-card">
                     <div class="project-top">
                         <i class="fas fa-play-circle"></i>
-                        <h3>PPSphere OTT</h3>
+                        <h3>Social Network</h3>
                         <p>A digital platform dedicated to streaming architecture optimization. Formulated technical expansion pathways, platform strategy, and design systems as Founder and CEO.</p>
                         <div class="project-tags"><span>Architecture</span><span>Streaming Engine</span><span>UI/UX</span></div>
                     </div>
@@ -876,12 +877,16 @@
                 </div>
             </div>
         </section>
+		
+		
+	
+		
 
         <!-- ACADEMIC MATRIX LINKS LAYER -->
         <section id="notes" ng-show="currentActiveTab === 'notes'">
             <div class="section-header">
-                <span class="tag"><h1><b><i>My Notes...<h1></b></i></span>
-                <h2>Academic <span>Notes PDF</span></h2>
+                <span class="tag"><h1><b><i>My.. .<h1></b></i></span>
+                <h1>Academic <span class="accent"> <i>Notes...</i></span></h1>
             </div>
             <div class="notes-grid">
 			<a href="maths1.pdf" target="_blank">
@@ -959,10 +964,7 @@
 
 My technical journey spans a diverse and active toolkit, including hands-on programming in Python, Java, and C, alongside a strong foundation in responsive web development using HTML, CSS, and AngularJS. Whether I am crafting highly interactive, animated user interfaces, designing sleek layouts, or experimenting with hardware-level IoT systems, I thrive on turning complex programming logic into elegant, user-centric solutions.
 
-Driven by a commitment to continuous growth, I am currently building a solid academic foundation in computer applications, preparing for advanced graduate studies to further sharpen my software engineering expertise. Alongside my technical pursuits, I lead PPSphere OTT with a vision to streamline and elevate how people access mobile entertainment.
-
-With a unique blend of technical discipline, creative design, and entrepreneurial drive, I approach every project with high energy and precision. Let’s connect and build something extraordinary!
-		Thakur Piyush Singh is an ambitious Indian web designer and frontend specialist dedicated to building clean, high-performance digital environments. Combining structural precision with design, he excels at writing semantic, standard-compliant code. Singh bridges creative vision with complex computer programming architecture, building interactive platforms optimizing user experiences across viewports. His meticulous layouts utilize cutting-edge methodologies including Flexbox configurations and responsive design principles. Passionate about software engineering, Singh continuously refines his technical systems to keep pace with modern layout practices. He focuses on deploying clean code frameworks, creating impactful websites that establish a professional engineering </p>
+ </p>
         <div class="footer-action-top">
             <a href="#home" ng-click="setActiveTab('home')"><i class="fas fa-chevron-up"></i></a>
         </div>
