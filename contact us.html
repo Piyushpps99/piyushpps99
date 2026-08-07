@@ -6,7 +6,7 @@
     <title>Contact Us | Thakur Piyush Singh</title>
     
     <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -16,11 +16,11 @@
             --primary-hover: #c9124e;
             --primary-glow: rgba(230, 29, 95, 0.35);
             --dark-bg: #0b0f19;
-            --surface: #111827;
-            --surface-accent: #1f2937;
+            --surface: rgba(17, 24, 39, 0.85);
+            --surface-accent: rgba(31, 41, 55, 0.8);
             --text-main: #ffffff;
             --text-muted: #94a3b8;
-            --border: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -32,8 +32,14 @@
 
         body {
             background-color: var(--dark-bg);
+            /* Gradient overlay ensures x99.png looks cinematic & sharp without washing out content */
+            background-image: linear-gradient(rgba(11, 15, 25, 0.5), rgba(11, 15, 25, 0.5)), url('x24.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
             color: var(--text-main);
-            overflow-x: hidden;
+            min-height: 100vh;
             line-height: 1.6;
         }
 
@@ -47,6 +53,7 @@
             gap: 25px;
             font-size: 0.85rem;
             font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         .top-bar span {
@@ -61,8 +68,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px 10%;
-            background: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(12px);
+            background: rgba(11, 15, 25, 0.1);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
@@ -72,18 +79,18 @@
         .brand-logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             text-decoration: none;
             color: var(--text-main);
         }
 
         .avatar-frame {
-            width: 45px;
-            height: 45px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             overflow: hidden;
             border: 2px solid var(--primary);
-            box-shadow: 0 0 10px var(--primary-glow);
+            box-shadow: 0 0 12px var(--primary-glow);
         }
 
         .avatar-frame img {
@@ -93,7 +100,7 @@
         }
 
         .brand-name {
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1.2rem;
             letter-spacing: -0.5px;
         }
@@ -105,24 +112,23 @@
         /* Hero Header Section */
         .contact-section {
             max-width: 1250px;
-            margin: 40px auto 60px;
+            margin: 50px auto 60px;
             padding: 0 24px;
         }
 
         .contact-header {
             text-align: center;
-            margin-bottom: 45px;
+            margin-bottom: 50px;
         }
 
         .contact-header h2 {
-            font-size: 2.6rem;
-            font-weight: 700;
+            font-size: 2.8rem;
+            font-weight: 800;
             letter-spacing: -1px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .contact-header h2 span {
-            color: var(--primary);
             background: linear-gradient(135deg, #e61d5f, #ff6b8b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -130,8 +136,8 @@
 
         .contact-header .subtitle {
             color: var(--text-muted);
-            font-size: 1.05rem;
-            max-width: 600px;
+            font-size: 1.1rem;
+            max-width: 620px;
             margin: 0 auto;
         }
 
@@ -143,29 +149,27 @@
             margin-bottom: 30px;
         }
 
-        @media (max-width: 992px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Left Side Panel */
-        .portfolio-side-panel {
+        /* Side Panel Cards & Forms */
+        .portfolio-side-panel, .form-container, .classic-info, .social-container {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 30px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .portfolio-side-panel {
+            padding: 32px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            gap: 24px;
         }
 
         .section-title {
             font-size: 1.25rem;
             font-weight: 700;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
             border-bottom: 1px solid var(--border);
         }
 
@@ -183,24 +187,25 @@
         .mini-profile {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
         }
 
         .mini-profile img {
-            width: 65px;
-            height: 65px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             border: 2px solid var(--primary);
             object-fit: cover;
+            box-shadow: 0 0 10px var(--primary-glow);
         }
 
         .profile-info h4 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
         }
 
         .profile-info p {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: var(--primary);
             font-weight: 500;
         }
@@ -210,7 +215,7 @@
             flex-wrap: wrap;
             gap: 8px;
             list-style: none;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         .stack-list li {
@@ -218,7 +223,7 @@
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
             border: 1px solid var(--border);
             color: #cbd5e1;
             transition: all 0.3s ease;
@@ -227,15 +232,12 @@
         .stack-list li:hover {
             border-color: var(--primary);
             color: #fff;
+            transform: translateY(-2px);
         }
 
         /* Right Form Container */
         .form-container {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 36px;
         }
 
         .form-row {
@@ -244,14 +246,8 @@
             gap: 20px;
         }
 
-        @media (max-width: 576px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .form-group label {
@@ -277,6 +273,7 @@
         .form-group input:focus, .form-group textarea:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 3px var(--primary-glow);
+            background: rgba(31, 41, 55, 0.95);
         }
 
         .btn-send {
@@ -287,7 +284,7 @@
             font-size: 1rem;
             border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s ease;
             width: 100%;
             box-shadow: 0 4px 15px var(--primary-glow);
@@ -295,7 +292,7 @@
 
         .btn-send:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(230, 29, 95, 0.45);
+            box-shadow: 0 6px 20px rgba(230, 29, 95, 0.5);
         }
 
         /* Bottom Row Grid */
@@ -305,21 +302,11 @@
             gap: 30px;
         }
 
-        @media (max-width: 992px) {
-            .info-footer-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .classic-info {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 30px;
+            padding: 32px;
             display: flex;
             flex-direction: column;
             gap: 22px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .info-item {
@@ -329,7 +316,7 @@
         }
 
         .info-icon {
-            background: rgba(230, 29, 95, 0.12);
+            background: rgba(230, 29, 95, 0.15);
             color: var(--primary);
             width: 44px;
             height: 44px;
@@ -339,12 +326,12 @@
             border-radius: 10px;
             font-size: 1.1rem;
             flex-shrink: 0;
-            border: 1px solid rgba(230, 29, 95, 0.2);
+            border: 1px solid rgba(230, 29, 95, 0.3);
         }
 
         .info-text h4 {
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 2px;
         }
 
@@ -355,11 +342,7 @@
 
         /* Social Network Cards */
         .social-container {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 32px;
         }
 
         .social-grid {
@@ -395,47 +378,69 @@
         }
 
         /* Social Hover Effects */
-        .social-card.instagram:hover { border-color: #e1306c; background: rgba(225, 48, 108, 0.08); }
+        .social-card.instagram:hover { border-color: #e1306c; background: rgba(225, 48, 108, 0.12); }
         .social-card.instagram:hover i { color: #e1306c; }
 
-        .social-card.facebook:hover { border-color: #1877f2; background: rgba(24, 119, 242, 0.08); }
+        .social-card.facebook:hover { border-color: #1877f2; background: rgba(24, 119, 242, 0.12); }
         .social-card.facebook:hover i { color: #1877f2; }
 
-        .social-card.linkedin:hover { border-color: #0077b5; background: rgba(0, 119, 181, 0.08); }
+        .social-card.linkedin:hover { border-color: #0077b5; background: rgba(0, 119, 181, 0.12); }
         .social-card.linkedin:hover i { color: #0077b5; }
 
-        .social-card.telegram:hover { border-color: #26a5e4; background: rgba(38, 165, 228, 0.08); }
+        .social-card.telegram:hover { border-color: #26a5e4; background: rgba(38, 165, 228, 0.12); }
         .social-card.telegram:hover i { color: #26a5e4; }
 
-        .social-card.github:hover { border-color: #ffffff; background: rgba(255, 255, 255, 0.08); }
+        .social-card.github:hover { border-color: #ffffff; background: rgba(255, 255, 255, 0.12); }
         .social-card.github:hover i { color: #ffffff; }
 
         .social-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
 
         .social-card:hover span {
             color: var(--text-main);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .grid-container, .info-footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .top-bar {
+                justify-content: center;
+                gap: 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .contact-header h2 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
+	
+        <nav class="navbar">
+            <a href="https://www.google.com/search?q=piyushpps99" target="_blank" class="brand-logo">
+                <div class="avatar-frame">
+                    <img src="11.jfif" alt="Thakur Piyush Singh Profile">
+                </div>
+                <div class="brand-name"><i>THAKUR <span>PIYUSH</span> SINGH..</div></i>
+            </a>
+        </nav>
         <div class="top-bar">
             <span><i class="fas fa-phone"></i> +91 9455718092</span>
             <span><i class="fas fa-envelope"></i> thakurpiyushps99@gmail.com</span>
         </div>
 
-        <nav class="navbar">
-            <a href="https://www.google.com/search?q=piyushpps99&oq=&gs_lcrp=EgZjaHJvbWUqCQgAECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyCQgCECMYJxjqAjIJCAMQIxgnGOoCMgkIBBAjGCcY6gIyCQgFECMYJxjqAjIJCAYQIxgnGOoCMgkIBxAjGCcY6gLSAQg5NThqMGoxNagCCLACAfEF0-5iGJNmOHg&sourceid=chrome&source=chrome.rb&ie=UTF-8" class="brand-logo">
-                <div class="avatar-frame">
-                    <img src="11.jfif" alt="Thakur Piyush Singh Profile">
-                </div>
-                <i><div class="brand-name">THAKUR- <span>PIYUSH-</span> SINGH.....</div>
-            </a>
-        </nav>
     </header>
 
     <main class="contact-section">
