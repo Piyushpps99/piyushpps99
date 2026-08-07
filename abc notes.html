@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="portfolioApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Notes | Executive Portfolio</title>
+    <!-- Font Awesome 6.4.0 & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- AngularJS Framework Core -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+        /* ==========================================================================
+           1. CORE DESIGN ENGINE & TOKENS
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        :root {
+            --bg-deep: #060913;
+            --bg-surface: rgba(15, 23, 42, 0.55);
+            --bg-surface-hover: rgba(30, 41, 59, 0.7);
+            --primary-neon: #38bdf8;
+            --secondary-neon: #818cf8;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+             background-color: var(--dark-bg);
+            /* Gradient overlay ensures x99.png looks cinematic & sharp without washing out content */
+            background-image: linear-gradient(rgba(11, 15, 25, 0.1), rgba(11, 15, 25, 0.1)), url('x72.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Standard Section Scaffolding */
+        section {
+            padding: 8rem 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: left;
+        }
+
+        .section-tag {
+            font-family:  -apple-system;
+            font-size: 2.5rem;
+            color: aqua;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+           
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-size: 5.6rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .accent-text {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ==========================================================================
+           2. ACADEMIC NOTES GRID ARCHITECTURE
+           ========================================================================== */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .notes-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+
+        .notes-card {
+            position: relative;
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .notes-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .notes-card-link:hover .notes-card {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.3);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                        0 0 20px rgba(56, 189, 248, 0.1);
+        }
+
+        .notes-card-link:hover .notes-card::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 3.8rem;
+            margin-bottom: 1.8rem;
+            color: var(--primary-neon);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .notes-card-link:hover .card-icon {
+            transform: scale(1.1);
+        }
+
+        /* Specific Icon Accent Colors */
+        .icon-python { color: #38bdf8; }
+        .icon-js { color: #facc15; }
+        .icon-java { color: #f97316; }
+        .icon-c { color: #818cf8; }
+        .icon-sql { color: #2dd4bf; }
+        .icon-html { color: #ef4444; }
+        .icon-se { color: #a855f7; }
+        .icon-coa { color: #34d399; }
+        .icon-digital { color: #fb7185; }
+        .icon-github { color: #f8fafc; }
+
+        .notes-card h4 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+        }
+
+        .card-action {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: color 0.3s ease;
+        }
+
+        .notes-card-link:hover .card-action {
+            color: var(--primary-neon);
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 58%; }
+            section { padding: 6rem 5%; }
+            .notes-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body ng-controller="ViewController">
+
+    <main>
+        <!-- ACADEMIC NOTES SECTION -->
+        <section id="notes" ng-show="currentActiveTab === 'notes'">
+           
+                <i><h2 class="section-title">Academic <span class="accent-text">Notes...</span></h2></i>
+				 <div class="section-header">
+               <i> <b><span class="section-tag">By- @Thakur-Piyush-Singh...</span></i></b>
+            </div>
+
+            <div class="notes-grid">
+                <a href="maths1.pdf" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon"><i class="fas fa-square-root-alt"></i></div>
+                        <h4>Discrete Mathematics</h4>
+                        <span class="card-action">View Document <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <a href="Software Engeenering1.pdf" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-se"><i class="fas fa-diagram-project"></i></div>
+                        <h4>Software Engineering</h4>
+                        <span class="card-action">View Document <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <a href="python1.pdf" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-python"><i class="fab fa-python"></i></div>
+                        <h4>Python IDLE</h4>
+                        <span class="card-action">View Document <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <a href="javascr1.pdf" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-js"><i class="fab fa-js"></i></div>
+                        <h4>JavaScript</h4>
+                        <span class="card-action">View Document <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <a href="java1.pdf" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-java"><i class="fab fa-java"></i></div>
+                        <h4>Java Core</h4>
+                        <span class="card-action">View Document <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <a href="c lng1.pdf" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-c"><i class="fas fa-code"></i></div>
+                        <h4>C Language</h4>
+                        <span class="card-action">View Document <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <a href="SQL.pdf" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-sql"><i class="fas fa-database"></i></div>
+                        <h4>SQL Architecture</h4>
+                        <span class="card-action">View Document <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <a href="HTML.pdf" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-html"><i class="fab fa-html5"></i></div>
+                        <h4>HTML5 Design</h4>
+                        <span class="card-action">View Document <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <a href="coa.html" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-coa"><i class="fas fa-microchip"></i></div>
+                        <h4>Computer Organization</h4>
+                        <span class="card-action">Explore Module <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <a href="dgital electronics1.html" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-digital"><i class="fas fa-plug-circle-bolt"></i></div>
+                        <h4>Digital Electronics</h4>
+                        <span class="card-action">Explore Module <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <a href="github.html" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-github"><i class="fab fa-github"></i></div>
+                        <h4>GitHub Workflow</h4>
+                        <span class="card-action">Explore Module <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ANGULARJS INITIALIZATION -->
+    <script>
+        var app = angular.module('portfolioApp', []);
+        app.controller('ViewController', ['$scope', function($scope) {
+            $scope.currentActiveTab = 'notes';
+        }]);
+    </script>
+</body>
+</html>
