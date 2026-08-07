@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piyush Singh | Portfolio & Solutions</title>
-    <!-- Google Fonts for professional typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Thakur Piyush Singh | BMW Solutions & Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         /* CSS RESET & VARIABLES */
         :root {
             --primary: #00b4d8;
             --primary-hover: #0096b1;
+            --accent: #6366f1;
             --dark-bg: #0b0f19;
-            --card-bg: #111827;
+            --card-bg: rgba(17, 24, 39, 0.75);
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --top-bar-bg: #1e1b4b;
+            --border-color: rgba(255, 255, 255, 0.08);
         }
 
         * {
@@ -28,8 +30,13 @@
 
         body {
             background-color: var(--dark-bg);
+            background-image: linear-gradient(rgba(11, 15, 25, 0.5), rgba(11, 15, 25, 0.45)), url('x1.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
             color: var(--text-main);
-            overflow-x: hidden;
+            min-height: 100vh;
             line-height: 1.6;
         }
 
@@ -39,18 +46,18 @@
             padding: 12px 8%;
             display: flex;
             justify-content: flex-end;
-            gap: 24px;
+            gap: 28px;
             font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 0.5px;
             color: #cbd5e1;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .top-bar span {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         /* Main Navigation */
@@ -59,32 +66,33 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: rgba(11, 15, 25, 0.8);
-            backdrop-filter: blur(12px);
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .profile-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             text-decoration: none;
             color: var(--text-main);
         }
 
         .profile-brand img {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%; 
             border: 2px solid var(--primary);
             object-fit: cover;
-            box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.4);
         }
 
         .profile-brand h1 {
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             font-weight: 700;
             letter-spacing: -0.5px;
         }
@@ -93,97 +101,88 @@
             color: var(--primary);
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 32px;
-        }
-
-        nav ul li a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--text-main);
-        }
-
         /* Hero Section */
         .hero {
-            height: calc(100vh - 124px);
-            min-height: 600px;
-            background: radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.15), transparent 50%),
-                        radial-gradient(circle at 10% 80%, rgba(99, 102, 241, 0.1), transparent 50%);
+            min-height: calc(90vh - 124px);
+            background: radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.12), transparent 50%),
+                        radial-gradient(circle at 10% 80%, rgba(99, 102, 241, 0.08), transparent 50%);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 8%;
-            gap: 40px;
+            padding: 60px 8%;
+            gap: 50px;
         }
 
         .hero-content {
-            flex: 1.2;
-            max-width: 650px;
+            flex: 1;
+            max-width: 600px;
         }
 
         .hero-content h2 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             color: var(--primary);
-            margin-bottom: 12px;
-            font-weight: 600;
+            margin-bottom: 16px;
+            font-weight: 700;
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 24px;
-            font-weight: 700;
+            font-size: 3.2rem;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            font-weight: 800;
             letter-spacing: -1px;
         }
 
+        .hero-content h1 span {
+            background: linear-gradient(135deg, #ffffff 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .hero-content p {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            margin-bottom: 40px;
-            text-align: justify;
+            margin-bottom: 36px;
+            line-height: 1.7;
         }
 
         /* Buttons */
         .btn-container {
             display: flex;
             gap: 16px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 14px 32px;
-            border-radius: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-primary {
             background: var(--primary);
             color: var(--dark-bg);
-            box-shadow: 0 4px 14px rgba(0, 180, 216, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 180, 216, 0.35);
         }
 
         .btn-primary:hover {
             background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
+            box-shadow: 0 6px 24px rgba(0, 180, 216, 0.5);
         }
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .btn-secondary:hover {
@@ -192,57 +191,182 @@
             transform: translateY(-2px);
         }
 
-        /* Hero Image Container */
-        .hero-image {
-            flex: 0.8;
-            display: flex;
-            justify-content: flex-end;
+        /* NEW: Hero Showcase Container (Right Side) */
+        .hero-image-container {
+            flex: 1;
+            max-width: 660px;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .hero-image img {
+        .image-card {
+            position: relative;
             width: 100%;
-            max-width: 450px;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.5s ease;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: var(--card-bg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 180, 216, 0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .hero-image:hover img {
-            transform: scale(1.02);
+        .image-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 180, 216, 0.25);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 680px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-overlay-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            padding: 16px;
+            background: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge-info h4 {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .badge-info p {
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .badge-tag {
+            background: rgba(0, 180, 216, 0.15);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 180, 216, 0.3);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 36px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 180, 216, 0.3);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 180, 216, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 180, 216, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(11, 15, 25, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 8%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            header nav {
-                padding: 20px 5%;
-            }
-            .top-bar {
-                padding: 12px 5%;
-                justify-content: center;
-            }
             .hero {
-                flex-direction: column-reverse;
+                flex-direction: column;
                 text-align: center;
-                height: auto;
-                padding: 60px 5%;
+                padding: 40px 5%;
+            }
+            .hero-content {
+                max-width: 100%;
             }
             .hero-content h1 {
                 font-size: 2.5rem;
             }
-            .hero-content p {
-                text-align: center;
-            }
             .btn-container {
                 justify-content: center;
             }
-            .hero-image {
-                justify-content: center;
-                margin-bottom: 20px;
+            .hero-image-container {
+                width: 100%;
+                max-width: 100%;
             }
-            nav ul {
-                display: none; /* Can be augmented later with a hamburger toggle */
+            .top-bar {
+                justify-content: center;
+                gap: 16px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -254,37 +378,93 @@
             <span>📧 thakurpiyush@xyz</span>
             <span>📞 +91 9455718092</span>
         </div>
-
         <nav>
             <a href="#" class="profile-brand">
-                <img src="p9.jpg" alt="Piyush Singh">
-                <i><h1>Thakur Piyush Singh...<span>.</span></h1></i>
+                <img src="p9.jpg" alt="Thakur Piyush Singh">
+               <i> <h1>Thakur Piyush <span>Singh...</span></h1></i>
             </a>
-           
         </nav>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h2>Welcome to PIYUSH99 Solutions</h2>
-                <h1>Grow Your Business With an Awesome Website</h1>
-                <p>
-                    Whether you are a seasoned developer reflecting on your journey or a curious beginner standing at the starting line, the relationship between a person and code is one of the most transformative dynamics of the modern era. Coding is much more than just typing lines of syntax into a dark screen; it is a profound extension of how you think, create, and solve real-world problems. Let us help you unlock that potential.
-                </p>
-                
+			<h1>Mini Projects On BMW Models</h1>
+                <h2>Welcome to BMW Worlds</h2>
+                <h1>Engineering Precision & <span>Exquisite Design</span></h1>
+                <p>BMW vehicles are widely recognized for blending precision German engineering with advanced technology, luxury comfort, and driver-focused performance.</p>
                 <div class="btn-container">
-                    <a href="https://www.bmw.in/en/index.html" class="btn btn-primary">My Portfolio</a>
-                    <a href="https://www.bmw-m.com/en/topics/all-models.html" class="btn btn-secondary">View Case Study</a>
+                    <a href="https://www.bmw.in/en/index.html" target="_blank" class="btn btn-primary">Cars Collection</a>
+                    <a href="https://www.bmw-m.com/en/topics/all-models.html" target="_blank" class="btn btn-secondary">Design</a>
                 </div>
             </div>
 
-            <div class="hero-image">
-                <img src="p2.jpg" alt="Thakur Piyush Singh Showcase">
+            <!-- RIGHT SIDE IMAGE SHOWCASE CONTAINER -->
+            <div class="hero-image-container">
+                <div class="image-card">
+                    <img src="x96.jpg" alt="BMW Professional Showcase">
+                    <div class="image-overlay-badge">
+                        <div class="badge-info">
+                            <h4>BMW M Vision Concept</h4>
+                            <p>German Precision Engineering</p>
+                        </div>
+                        <span class="badge-tag">Featured Model</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid Section -->
+        <section class="features-section">
+            <div class="section-header">
+                <h2>Innovative Performance & Technology</h2>
+                <p>Discover the core engineering pillars that define the ultimate driving experience.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>TwinPower Turbo Engines</h3>
+                    <p>Precision-engineered petrol, diesel, and mild-hybrid inline-4, inline-6, and V8 engines that balance rapid response with fuel efficiency.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Intelligent All-Wheel Drive</h3>
+                    <p>An advanced AWD system that continuously distributes power between the front and rear axles in milliseconds to maximize traction on slick or uneven roads.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🛣️</div>
+                    <h3>Adaptive M Suspension</h3>
+                    <p>Continuously adjusts damping responses according to driving conditions and driver modes, delivering smooth daily commutes alongside sharp, flat cornering.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🖥️</div>
+                    <h3>BMW Curved Display</h3>
+                    <p>A continuous glass panel merging a high-resolution digital gauge cluster with a large central touch display ergonomically angled toward the driver.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>Intelligent Personal Assistant</h3>
+                    <p>Advanced natural voice recognition allowing seamless control over cabin temperature, window operation, media playback, and navigation routes.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Driving Assistant Professional</h3>
+                    <p>State-of-the-art highway assistance offering adaptive cruise control with stop-and-go functionality, active lane-keeping, and advanced safety systems.</p>
+                </div>
             </div>
         </section>
     </main>
 
+    <footer>
+        <p>&copy; 2026 Thakur Piyush Singh. Designed with precision and performance.</p>
+    </footer>
+
 </body>
 </html>
-
