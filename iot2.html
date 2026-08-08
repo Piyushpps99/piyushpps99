@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology & Engineering Architecture Hub</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* CSS RESET & CORE VARIABLES */
+        :root {
+            --bg-base: #0b0f19;
+            --bg-card: #151c2c;
+            --bg-card-hover: #1e293b;
+            --accent-cyan: #38bdf8;
+            --accent-purple: #c084fc;
+            --accent-emerald: #34d399;
+            --accent-amber: #fbbf24;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 10px 30px -10px rgba(56, 189, 248, 0.25);
+            --radius-lg: 16px;
+            --radius-md: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            f background-color: var(--dark-bg);
+            /* Gradient overlay ensures x99.png looks cinematic & sharp without washing out content */
+            background-image: linear-gradient(rgba(11, 15, 25, 2.1), rgba(11, 15, 25, 0.1)), url('p11.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION BAR */
+        .navbar {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 14px 28px;
+        }
+
+        .nav-wrapper {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .avatar-frame img {
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            object-fit: cover;
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+
+        .brand-title {
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+            background: linear-gradient(90deg, #38bdf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1240px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        /* HIGHLIGHTED SECTION HEADINGS */
+        .section-header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 60px 0 30px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header h2 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 140px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            box-shadow: var(--shadow-glow);
+            border-radius: 2px;
+        }
+
+        .section-tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-cyan);
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* CARD ARCHITECTURE */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 28px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        }
+
+        /* TYPOGRAPHY */
+        h3 {
+            font-size: 1.35rem;
+            color: var(--accent-cyan);
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: var(--accent-purple);
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 0.98rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 16px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 26px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            font-size: 0.96rem;
+        }
+
+        ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        strong {
+            color: var(--text-main);
+        }
+
+        /* CODE & MATH STYLING */
+        code {
+            font-family: 'Fira Code', monospace;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: var(--accent-emerald);
+            padding: 3px 8px;
+            border-radius: var(--radius-md);
+            font-size: 0.88em;
+            border: 1px solid rgba(52, 211, 153, 0.25);
+        }
+
+        /* MEDIA FRAMING */
+        .img-container {
+            width: 100%;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin: 22px 0;
+            border: 1px solid var(--border-color);
+            background: #000;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+
+        .img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .img-container:hover img {
+            transform: scale(1.02);
+        }
+
+        /* HIGHLIGHTED CALLOUT BOXES */
+        .callout {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.06) 0%, rgba(192, 132, 252, 0.06) 100%);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 22px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 22px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <div class="brand-logo">
+                <div class="avatar-frame">
+                    <img src="11.jfif" alt="Thakur Piyush Singh Profile">
+                </div>
+                <div class="brand-title">Thakur Piyush Singh...</div>
+            </div>
+            <span class="section-tag">Networking...</span>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- 1. NETWORKING -->
+        <div class="section-header">
+            <h2>1. Networking Ecosystems</h2>
+            <span class="section-tag">Infrastructure & Relations</span>
+        </div>
+
+        <div class="card">
+            <p><strong>Networking</strong> is the practice of interconnecting computing devices, systems, and human agents to share resources, exchange data, and facilitate communication. In today’s modern technological ecosystem, networking operates primarily across two distinct yet interconnected domains: <strong>Computer Networks</strong> (technical infrastructure) and <strong>Professional Networks</strong> (human ecosystem).</p>
+
+            <div class="img-container">
+                <img src="w1.png" alt="Global Network Infrastructure Overview">
+            </div>
+
+            <div class="grid-2">
+                <div>
+                    <h3>Computer & Infrastructure Networking</h3>
+                    <p>At its core, computer networking relies on protocols and hardware to transmit digital data between nodes—ranging from local smart devices to global cloud data centers.</p>
+                    
+                    <h4>Core Architectures</h4>
+                    <ul>
+                        <li><strong>LAN (Local Area Network):</strong> Connects devices within a limited physical area (home/office) using Ethernet cables or Wi-Fi (2.4 GHz, 5 GHz, 6 GHz).</li>
+                        <li><strong>WAN (Wide Area Network):</strong> Spans large distances. The internet itself is the largest global WAN, tied together via undersea fiber-optic backbones and satellites.</li>
+                        <li><strong>Cloud & Hybrid Networks:</strong> Connects local infrastructure to public clouds (AWS, Azure, Google Cloud) via VPNs or leased lines.</li>
+                    </ul>
+
+                    <h4>Transmission & Security</h4>
+                    <p>Data travels wirelessly via radio frequencies (cellular 4G/5G, mmWave, Bluetooth) or physically through fiber-optic light pulses. Modern networks deploy Firewalls, Zero-Trust Architecture, Multi-Factor Authentication (MFA), and end-to-end encryption to prevent unauthorized intrusion, malware, and DDoS attacks.</p>
+                </div>
+
+                <div>
+                    <h3>Professional & Human Networking</h3>
+                    <p>In business and engineering, human networking refers to building and maintaining strategic relationships with peers, mentors, clients, and industry stakeholders.</p>
+
+                    <div class="img-container">
+                        <img src="w3.png" alt="Professional Platforms and Outreach">
+                    </div>
+
+                    <h4>Strategic Business Value</h4>
+                    <ul>
+                        <li><strong>Career Growth & Hiring:</strong> Over 70% to 80% of professional opportunities are filled through internal referrals rather than public job boards.</li>
+                        <li><strong>Knowledge Exchange:</strong> Keeping up with fast-changing industry standards, compliance laws, regulations, and open-source tools.</li>
+                        <li><strong>Business Development:</strong> Securing B2B partnerships, attracting qualified leads, and acquiring capital investments.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. WEB DEVELOPMENT & APIS -->
+        <div class="section-header">
+            <h2>2. Web Development & APIs</h2>
+            <span class="section-tag">Frontend & Backend</span>
+        </div>
+
+        <div class="card">
+            <p>A <strong>Web API</strong> refers to tools and protocols that let software communicate over the internet, whereas the <strong>Web Workers API</strong> is a browser feature designed to handle heavy background processing without freezing the user interface.</p>
+            
+            <div class="img-container">
+                <img src="w10.png" alt="Web Development Stack Overview">
+            </div>
+
+            <div class="callout">
+                <h3>Core Roles & Technical Specialties</h3>
+                <p>Web development is split into three main technical focus areas:</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Front-End</h3>
+                    <p>Building visible user interface (UI) and user experience (UX) elements using HTML, CSS, and JavaScript to construct responsive layouts and interactive components.</p>
+                </div>
+                <div class="card">
+                    <h3>Back-End</h3>
+                    <p>Managing server-side infrastructure: application logic, database queries, user authentication, and data security protocols.</p>
+                </div>
+                <div class="card">
+                    <h3>Full-Stack</h3>
+                    <p>Handling both client-side and server-side elements of a web application seamlessly from end-to-end.</p>
+                </div>
+            </div>
+
+            <h4>Tech Stack & Professional Tools</h4>
+            <ul>
+                <li><strong>Programming Languages:</strong> JavaScript, TypeScript, Python, PHP, Java, or Ruby.</li>
+                <li><strong>Frameworks & Libraries:</strong> Front-end frameworks like React or Angular, and back-end frameworks like Django, Express, or Node.js.</li>
+                <li><strong>Databases:</strong> Relational SQL databases or flexible NoSQL variations.</li>
+                <li><strong>Version Control & Integration:</strong> Code collaboration via Git, and connecting applications through Third-Party & Payment APIs.</li>
+            </ul>
+        </div>
+
+        <!-- 3. CYBERSECURITY -->
+        <div class="section-header">
+            <h2>3. Cybersecurity Architecture</h2>
+            <span class="section-tag">Defense & Privacy</span>
+        </div>
+
+        <div class="card">
+            <p><strong>Cybersecurity</strong> is the practice of protecting computer systems, networks, programs, devices, and data from digital attacks, theft, or unauthorized access. Its primary objective is to maintain information security through the <strong>CIA Triad</strong>: Confidentiality, Integrity, and Availability.</p>
+
+            <div class="grid-2">
+                <div>
+                    <div class="img-container">
+                        <img src="w4.jpg" alt="Cyber Security Shield">
+                    </div>
+
+                    <h4>Common Cyber Threats</h4>
+                    <ul>
+                        <li><strong>Malware & Ransomware:</strong> Malicious software designed to damage or lock data until payment is made.</li>
+                        <li><strong>Phishing:</strong> Fake communications tricking users into sharing sensitive credentials.</li>
+                        <li><strong>DDoS Attacks:</strong> Flooding network infrastructure with traffic to disrupt availability.</li>
+                        <li><strong>Insider Threats:</strong> Unauthorized leaks or exploitation by internal actors.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Core Domains & Best Practices</h4>
+                    <ul>
+                        <li><strong>Network Security:</strong> Firewalls, IDS, and Zero-Trust network configurations.</li>
+                        <li><strong>Cloud Security:</strong> Protecting virtualized infrastructure on remote cloud platforms.</li>
+                        <li><strong>Endpoint Security:</strong> Guarding individual devices like phones, laptops, and IoT hardware.</li>
+                        <li><strong>Application Security:</strong> Writing secure code to block SQL injections and XSS exploits.</li>
+                        <li><strong>Security Controls:</strong> Enforce Multi-Factor Authentication (MFA), patch management, data encryption, and CISA guidelines compliance.</li>
+                    </ul>
+
+                    <div class="img-container">
+                        <img src="w5.jpg" alt="Security Operations Monitoring">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. ARTIFICIAL INTELLIGENCE & NEURAL NETWORKS -->
+        <div class="section-header">
+            <h2>4. AI, Machine Learning & Neural Networks</h2>
+            <span class="section-tag">Cognitive Systems</span>
+        </div>
+
+        <div class="card">
+            <h3>Understanding AI vs. ML vs. Deep Learning</h3>
+            <p>Artificial Intelligence (AI) represents the broader concept of machines simulating human smarts. Machine Learning (ML) is a subset of AI where models learn patterns from data rather than following hardcoded rules. Deep Learning (DL) is a specialized branch of ML utilizing multi-layered neural networks.</p>
+
+            <div class="img-container">
+                <img src="w6.jpg" alt="Neural Network Architecture">
+            </div>
+
+            <h3>Deep Neural Network Fundamentals</h3>
+            <p>A neural network is inspired by the human brain, using interconnected layers of nodes (artificial neurons) to process complex data visual, textual, or numerical.</p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>1. Network Structure</h4>
+					<div class="img-container">
+                        <img src="w19.jpg" alt="Backpropagation Flow Diagram">
+                    </div>
+                    <ul>
+                        <li><strong>Input Layer:</strong> Receives raw feature data (pixels, numbers, text).</li>
+                        <li><strong>Hidden Layers:</strong> Extracts features and identifies complex patterns.</li>
+                        <li><strong>Output Layer:</strong> Delivers final predictions or classifications.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>2. Core Mechanics</h4>
+					<div class="img-container">
+                        <img src="x42.jpg" alt="Backpropagation Flow Diagram">
+                    </div>
+                    <p>Information flows mathematically. Each connection carries a <strong>weight</strong> and <strong>bias</strong>, which is evaluated through an <strong>activation function</strong> acting as a gatekeeper signal.</p>
+                </div>
+
+                <div class="card">
+                    <h4>3. Learning Process</h4>
+                    <div class="img-container">
+                        <img src="w15.jpg" alt="Backpropagation Flow Diagram">
+                    </div>
+                    <p>Through <strong>Forward Propagation</strong>, <strong>Loss Calculation</strong>, and <strong>Backpropagation</strong> (via gradient descent), the model repeatedly adjusts weights to minimize error.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. SENSORS & EMBEDDED SYSTEMS -->
+        <div class="section-header">
+            <h2>5. Sensors & Embedded Control Loops</h2>
+            <span class="section-tag">IoT & Hardware</span>
+        </div>
+
+        <div class="card">
+            <p>In real-time embedded systems, Internet of Things (IoT), and robotics, the <strong>Sensor-Microcontroller-Actuator</strong> triad forms a continuous feedback loop that senses physical reality, processes data, and triggers immediate physical action.</p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Sensors (Inputs)</h3>
+					<div class="img-container">
+                        <img src="w17.jfif" alt="Microcontroller Hardware">
+                    </div>
+                    <p>Convert real-world physical properties (temperature, pressure, distance) into electrical signals via protocols like <code>I²C</code>, <code>SPI</code>, or <code>UART</code>.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Microcontrollers (The Brain)</h3>
+                    <div class="img-container">
+                        <img src="w8.jpg" alt="Microcontroller Hardware">
+                    </div>
+                    <p>Compact ICs (STM32, ESP32, ATmega328P) housing CPU cores and programmable I/O peripherals to execute control algorithms.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Actuators (Outputs)</h3>
+                    <p>Devices converting electrical control signals into physical action (DC motors, servo motors, solenoid valves, relays).</p>
+					 <div class="img-container">
+					
+					<img src="we design.jpg" alt="Output">
+                </div>
+            </div>
+
+            <h4>Real-Time Workflow & Feedback Loop</h4>
+            <div class="grid-2">
+                <div>
+                    <div class="img-container">
+                        <img src="w11.jpg" alt="ADC and Sensor Signal Converter">
+                    </div>
+                </div>
+                <div>
+                    <ul>
+                        <li><strong>Data Acquisition:</strong> An Analog-to-Digital Converter (ADC) digitizes continuous physical waves into discrete numerical readings.</li>
+                        <li><strong>Interrupt Driven Processing:</strong> Hardware interrupts pause routine CPU tasks to run an Interrupt Service Routine (ISR) with minimal latency.</li>
+                        <li><strong>Algorithmic Decision Making:</strong> Executes control algorithms (like PID loops) to compare sensor data against setpoints.</li>
+                        <li><strong>Actuation & Feedback:</strong> Commands are sent via Pulse Width Modulation (PWM) or GPIO toggles to drive actuators, closing the physical loop.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
