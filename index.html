@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thakur Piyush Singh | Executive Portfolio</title>
+    
     <!-- Font Awesome 6.4.0 & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <!-- AngularJS Framework Core -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 
     <style>
         /* ==========================================================================
-           1. PREMIUM DESIGN ENGINE & DESIGN TOKENS (UI/UX)
+           1. DESIGN SYSTEM & TOKENS
            ========================================================================== */
         * {
             margin: 0;
@@ -25,17 +27,17 @@
         }
 
         :root {
-            --bg-deep: #060913;
-            --bg-surface: rgba(15, 23, 42, 0.45);
-            --bg-surface-hover: rgba(30, 41, 59, 0.65);
-            --primary-neon: #38bdf8; /* Cyber Blue */
-            --secondary-neon: #818cf8; /* Deep Indigo */
-            --accent-green: #34d399; /* Success Matrix */
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --glass-border: rgba(255, 255, 255, 0.05);
-            --glass-border-glow: rgba(56, 189, 248, 0.25);
-            --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+            --bg-deep: #030712;
+            --bg-surface: rgba(17, 24, 39, 0.65);
+            --bg-surface-hover: rgba(31, 41, 55, 0.8);
+            --primary-neon: #38bdf8;
+            --secondary-neon: #818cf8;
+            --accent-green: #34d399;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-border-glow: rgba(56, 189, 248, 0.35);
+            --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
             --font-mono: 'JetBrains Mono', monospace;
         }
 
@@ -47,7 +49,11 @@
 
         body {
             background-color: var(--bg-deep);
-            background-image: linear-gradient(rgba(6, 9, 19, 0.1), rgba(6, 9, 19, 0.3)), url('x65.jpg');
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.0) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(99, 102, 241, 0.0) 0%, transparent 40%),
+                linear-gradient(rgba(3, 7, 18, 0.65), rgba(3, 7, 18, 0.7)),
+                url('x69.jpg');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -57,16 +63,31 @@
             line-height: 1.6;
         }
 
-        /* Standard Section Scaffolding */
+        /* Ambient Glow Elements */
+        .glow-bg {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-accent);
+            filter: blur(140px);
+            opacity: 0.12;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Generic Container Layout */
         section {
             min-height: 100vh;
             padding: 14rem 8% 8rem;
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .section-header {
-            margin-bottom: 6rem;
+            margin-bottom: 5rem;
         }
 
         .section-header .tag {
@@ -75,8 +96,19 @@
             color: var(--primary-neon);
             text-transform: uppercase;
             letter-spacing: 3px;
-            display: block;
-            margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-header .tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-neon);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-neon);
         }
 
         .section-header h2 {
@@ -91,28 +123,33 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Glassmorphism Generic Panel Architecture */
+        /* Glass Cards */
         .glass-card {
             background: var(--bg-surface);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        .glass-card:hover {
+            border-color: var(--glass-border-glow);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(56, 189, 248, 0.1);
+        }
+
         /* ==========================================================================
-           2. EXECUTIVE GLOWING NAVIGATION ARCHITECTURE
+           2. NAVIGATION BAR
            ========================================================================== */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 2rem 4%;
-            background: rgba(6, 9, 19, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            padding: 1.8rem 6%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             z-index: 1000;
             border-bottom: 1px solid var(--glass-border);
         }
@@ -129,25 +166,30 @@
             display: flex;
             align-items: center;
             gap: 1.4rem;
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 1.6rem;
+            font-weight: 700;
             color: var(--text-primary);
-            letter-spacing: -0.5px;
+            letter-spacing: 0.5px;
         }
 
         .avatar-frame {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             overflow: hidden;
-            display: inline-block;
+            border: 1.5px solid var(--primary-neon);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .avatar-frame:hover {
+            transform: scale(1.05);
         }
 
         .avatar-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
         }
 
         .nav-menu {
@@ -161,7 +203,7 @@
             font-size: 1.4rem;
             font-weight: 500;
             color: var(--text-secondary);
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             position: relative;
             padding: 0.6rem 0;
         }
@@ -169,6 +211,7 @@
         .nav-item.active-nav a,
         .nav-item a:hover {
             color: var(--primary-neon);
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
         }
 
         .nav-item::after {
@@ -180,6 +223,7 @@
             height: 2px;
             background: var(--gradient-accent);
             transition: width 0.3s ease;
+            border-radius: 2px;
         }
 
         .nav-item.active-nav::after {
@@ -201,14 +245,13 @@
         }
 
         /* ==========================================================================
-           3. EXPERT HERO LANDING GRID
+           3. HERO SECTION
            ========================================================================== */
         .hero {
             display: flex;
             align-items: center;
             min-height: 100vh;
             padding: 14rem 8% 8rem;
-            position: relative;
         }
 
         .hero-layout {
@@ -222,20 +265,23 @@
         .hero-left .code-badge {
             font-family: var(--font-mono);
             font-size: 1.3rem;
-            background: rgba(56, 189, 248, 0.08);
-            border: 1px solid rgba(56, 189, 248, 0.15);
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.25);
             padding: 0.6rem 1.6rem;
             border-radius: 30px;
             color: var(--primary-neon);
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
             margin-bottom: 2.5rem;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
         }
 
         .hero-left h1 {
-            font-size: 5.4rem;
+            font-size: 4.8rem;
             font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -2px;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
             margin-bottom: 2rem;
         }
 
@@ -246,11 +292,14 @@
         }
 
         .hero-left h3 {
-            font-size: 2.8rem;
+            font-size: 2.4rem;
             font-weight: 600;
-            color: var(--accent-green);
+            color: var(--text-secondary);
             margin-bottom: 2.5rem;
-            min-height: 4rem;
+            min-height: 3.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .hero-left h3 span.dynamic-text {
@@ -260,12 +309,16 @@
             animation: caretBlink 0.8s step-end infinite;
         }
 
-        .hero-left p.desc {
-            font-size: 1.7rem;
+        .hero-left .desc {
+            font-size: 1.5rem;
             line-height: 1.8;
             color: var(--text-secondary);
-            margin-bottom: 4rem;
-            max-width: 620px;
+            margin-bottom: 3.5rem;
+            max-width: 640px;
+        }
+
+        .hero-left .desc strong {
+            color: var(--text-primary);
         }
 
         .hero-actions {
@@ -277,58 +330,62 @@
         .btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1.6rem 3.5rem;
+            gap: 1.2rem;
+            padding: 1.5rem 3.5rem;
             background: var(--gradient-accent);
             color: #fff;
             font-size: 1.5rem;
             font-weight: 600;
-            border-radius: 14px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.25);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.4);
         }
 
         .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1.6rem 3.5rem;
-            background: transparent;
+            gap: 1.2rem;
+            padding: 1.5rem 3.5rem;
+            background: rgba(255, 255, 255, 0.03);
             color: var(--text-primary);
             border: 1px solid var(--glass-border);
             font-size: 1.5rem;
             font-weight: 600;
-            border-radius: 14px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s;
+            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary-neon);
+            color: var(--primary-neon);
+            transform: translateY(-3px);
         }
 
-        /* Hero Right Visual Glass Dashboard Module */
+        /* Visual Dashboard Panel */
         .hero-right-dashboard {
             padding: 3.5rem;
             border-radius: 24px;
             border: 1px solid var(--glass-border);
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.6), rgba(6, 9, 19, 0.8));
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(145deg, rgba(17, 24, 39, 0.75), rgba(3, 7, 18, 0.9));
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
             position: relative;
+            backdrop-filter: blur(20px);
         }
 
         .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             border-bottom: 1px solid var(--glass-border);
             padding-bottom: 1.5rem;
         }
@@ -339,8 +396,8 @@
         }
 
         .dots span {
-            width: 11px;
-            height: 11px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             display: inline-block;
         }
@@ -354,15 +411,30 @@
             font-size: 1.2rem;
             color: var(--accent-green);
             background: rgba(52, 211, 153, 0.1);
+            border: 1px solid rgba(52, 211, 153, 0.2);
             padding: 0.4rem 1.2rem;
-            border-radius: 6px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-green);
+            animation: pulse 1.5s infinite;
         }
 
         .stat-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
         }
 
         .stat-label {
@@ -373,15 +445,13 @@
         .stat-value {
             font-family: var(--font-mono);
             font-size: 1.4rem;
-            color: var(--text-primary);
+            color: var(--primary-neon);
             font-weight: 500;
-            text-align: right;
         }
 
         .dashboard-footer {
             margin-top: 2.5rem;
             padding-top: 2rem;
-            border-top: 1px solid var(--glass-border);
             display: flex;
             flex-direction: column;
             gap: 2rem;
@@ -389,42 +459,87 @@
 
         .social-media-links {
             display: flex;
-            gap: 2rem;
-            font-size: 2rem;
+            gap: 1.5rem;
+            justify-content: center;
         }
 
         .social-media-links a {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
             color: var(--text-secondary);
-            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            transition: all 0.3s;
         }
 
         .social-media-links a:hover {
-            color: var(--primary-neon);
+            color: #fff;
+            background: var(--gradient-accent);
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
         }
 
         /* ==========================================================================
-           4. MODULAR VIEWS ARCHITECTURE (SPA ROUTING CONTAINER)
-           ========================================================================== */
-        .spa-view-container {
-            position: relative;
-            min-height: 80vh;
-        }
-
-        /* ==========================================================================
-           5. ABOUT & EDUCATION BLOCK
+           4. ABOUT & DISCIPLINES
            ========================================================================== */
         .about-layout {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 5rem;
+            gap: 6rem;
             align-items: start;
         }
 
         .about-bio p {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             line-height: 1.8;
             color: var(--text-secondary);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .disciplines-container {
+            margin-top: 3.5rem;
+        }
+
+        .disciplines-container h3 {
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+        }
+
+        .discipline-card {
+            background: var(--bg-surface);
+            padding: 2.2rem;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 1.8rem;
+            transition: all 0.3s;
+        }
+
+        .discipline-card:hover {
+            border-color: var(--glass-border-glow);
+            transform: translateX(5px);
+        }
+
+        .discipline-card h4 {
+            font-size: 1.7rem;
+            color: var(--primary-neon);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .discipline-card p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 0;
         }
 
         .timeline-container {
@@ -434,292 +549,77 @@
         }
 
         .timeline-node {
-            padding: 2.5rem;
-            position: relative;
-        }
-
-        .timeline-node:hover {
-            transform: translateX(5px);
-            border-color: var(--glass-border-glow);
+            padding: 2.8rem;
         }
 
         .timeline-meta {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            align-items: center;
+            margin-bottom: 1.2rem;
         }
 
         .timeline-meta .period {
             font-family: var(--font-mono);
             font-size: 1.3rem;
             color: var(--primary-neon);
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
         }
 
         .timeline-meta .institution {
             font-size: 1.3rem;
             color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .timeline-node h4 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        /* ==========================================================================
-           6. PROJECT GRID & ENTERPRISE CARDS
-           ========================================================================== */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 3.5rem;
-        }
-
-        .project-card {
-            padding: 3.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--glass-border-glow);
-            background: var(--bg-surface-hover);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .project-top i {
-            font-size: 3rem;
-            color: var(--primary-neon);
-            margin-bottom: 2.5rem;
-            display: inline-block;
-        }
-
-        .project-top h3 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-top p {
-            font-size: 1.5rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .project-tags span {
-            font-family: var(--font-mono);
-            font-size: 1.1rem;
-            background: rgba(255,255,255,0.04);
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            color: var(--text-secondary);
-        }
-
-        .project-link {
-            font-size: 1.5rem;
-            color: var(--primary-neon);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        /* ==========================================================================
-           7. NOTES MATRIX ACADEMIC DOWNLOAD HOVER BOARDS
-           ========================================================================== */
-        .notes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .notes-card {
-            padding: 3rem 2.5rem;
-            text-align: center;
-            cursor: pointer;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .notes-card:hover {
-            transform: scale(1.03);
-            border-color: var(--glass-border-glow);
-            background: var(--bg-surface-hover);
-        }
-
-        .notes-card i {
-            font-size: 3.8rem;
-            margin-bottom: 2rem;
-            display: inline-block;
-        }
-
-        .notes-card h4 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* Technology Specific Theme Overlays */
-        .icon-se { color: #f43f5e; }
-        .icon-python { color: #38bdf8; }
-        .icon-js { color: #facc15; }
-        .icon-java { color: #f97316; }
-        .icon-c { color: #818cf8; }
-        .icon-sql { color: #2dd4bf; }
-        .icon-html { color: #fb923c; }
-
-        /* ==========================================================================
-           8. SECURE CRM INPUT CONTROL LAYER
-           ========================================================================== */
-        .contact-layout {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .form-group label {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 1.6rem;
-            font-size: 1.5rem;
-            background: rgba(6, 9, 19, 0.6);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            color: var(--text-primary);
-            transition: all 0.3s;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-neon);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
-            background: rgba(15, 23, 42, 0.8);
-        }
-
-        textarea.form-control {
-            resize: none;
-            height: 160px;
-        }
-
-        /* ==========================================================================
-           9. BACKEND SYSTEM COMPONENT OVERVIEW PANEL
-           ========================================================================== */
-        .backend-architecture-card {
-            margin-top: 6rem;
-            padding: 3.5rem;
-            border: 1px dashed var(--glass-border-glow);
-            background: rgba(56, 189, 248, 0.01);
-        }
-
-        .backend-architecture-card h3 {
             font-size: 2rem;
-            margin-bottom: 1.5rem;
-            font-family: var(--font-mono);
-            color: var(--primary-neon);
-        }
-
-        .backend-architecture-card p {
-            font-size: 1.4rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .tech-pipeline {
-            display: flex;
-            gap: 3rem;
-            font-family: var(--font-mono);
-            font-size: 1.3rem;
-        }
-
-        .tech-pipeline span i {
-            margin-right: 0.6rem;
-        }
-
-        /* ==========================================================================
-           10. METRIC FOOTER
-           ========================================================================== */
-        .footer-terminal {
-            background: #03050a;
-            border-top: 1px solid var(--glass-border);
-            padding: 4rem 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-terminal p {
-            font-size: 1.4rem;
-            color: var(--text-secondary);
-        }
-
-        .footer-action-top a {
-            width: 44px;
-            height: 44px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            background: var(--bg-surface);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
+            font-weight: 700;
             color: var(--text-primary);
-            transition: all 0.3s;
         }
 
-        .footer-action-top a:hover {
+        /* Highlight feature block */
+        .feature-box {
+            background: rgba(56, 189, 248, 0.03);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .feature-box h4 {
+            font-size: 1.6rem;
             color: var(--primary-neon);
-            border-color: var(--primary-neon);
-            transform: translateY(-2px);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         /* ==========================================================================
-           11. KEYFRAME ANIMATIONS ENGINE
+           5. KEYFRAME ANIMATIONS
            ========================================================================== */
         @keyframes caretBlink {
             from, to { border-color: transparent; }
             50% { border-color: var(--primary-neon); }
         }
 
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+        }
+
         /* ==========================================================================
-           12. RESPONSIVE MEDIA QUERIES
+           6. RESPONSIVE MEDIA QUERIES
            ========================================================================== */
         @media (max-width: 992px) {
             html { font-size: 58%; }
-            .hero-layout { grid-template-columns: 1fr; gap: 4rem; }
-            .about-layout { grid-template-columns: 1fr; gap: 4rem; }
+            .hero-layout { grid-template-columns: 1fr; gap: 5rem; }
+            .about-layout { grid-template-columns: 1fr; gap: 5rem; }
         }
 
         @media (max-width: 768px) {
@@ -729,36 +629,53 @@
                 top: 100%;
                 left: -100%;
                 width: 100%;
-                background: rgba(6, 9, 19, 0.98);
+                background: rgba(3, 7, 18, 0.98);
                 flex-direction: column;
                 padding: 4rem 0;
                 transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
                 border-bottom: 1px solid var(--glass-border);
             }
             .nav-menu.mobile-active { left: 0; }
-            .form-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-left h1 { font-size: 4.2rem; }
-            .tech-pipeline { flex-direction: column; gap: 1rem; }
+            .hero-left h1 { font-size: 3.8rem; }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+            .timeline-meta { flex-direction: column; align-items: flex-start; gap: 1rem; }
         }
     </style>
 </head>
 <body ng-controller="ViewController">
 
-    <!-- NAVIGATION COMPONENT LAYER -->
+    <div class="glow-bg" style="top: -100px; left: -100px;"></div>
+    <div class="glow-bg" style="bottom: 100px; right: -100px;"></div>
+
+    <!-- NAVIGATION COMPONENT -->
     <nav class="navbar">
         <div class="nav-wrapper">
             <div class="brand-logo">
                 <div class="avatar-frame">
-                    <img src="11.jfif" alt="Thakur Piyush Singh Profile">
+                    <img src="11.jfif" alt="Thakur Piyush Singh">
                 </div>
-                <strong><i><span>THAKUR-PIYUSH-SINGH....</span></i></strong>
+                <span>Thakur Piyush Singh....</span>
             </div>
             <ul class="nav-menu" ng-class="{'mobile-active': isMobileMenuOpen}">
-                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'home'}"><a href="css111.html" ng-click="setActiveTab('home')">Home</a></li>
-                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'about'}"><a href="iot2.html" ng-click="">About</a></li>  <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'contact'}"><a href="imgp.html" ng-click="setActiveTab('contact')">Pinterest</a></li>
-                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'projects'}"><a href="myweb1.html" ng-click="setActiveTab('projects')">Ventures</a></li>
-                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'notes'}"><a href="abc notes.html" ng-click="setActiveTab('notes')">Academic Notes</a></li>
-                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'contact'}"><a href="contact us.html" ng-click="setActiveTab('contact')">Connect</a></li>
+                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'home'}">
+                    <a href="css111.html" ng-click="setActiveTab('home')">Home</a>
+                </li>
+                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'about'}">
+                    <a href="iot2.html" ng-click="setActiveTab('about')">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="imgp.html">Pinterest</a>
+                </li>
+                <li class="nav-item">
+                    <a href="myweb1.html">Ventures</a>
+                </li>
+                <li class="nav-item">
+                    <a href="abc notes.html">Academic Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact us.html">Connect</a>
+                </li>
             </ul>
             <div class="hamburger" ng-click="toggleMobileMenu()">
                 <span></span>
@@ -768,185 +685,116 @@
         </div>
     </nav>
 
-    <!-- VIEWS MOUNT POINT STACK -->
+    <!-- MAIN SPA CONTAINER -->
     <main class="spa-view-container">
 
-        <!-- CORE HERO VIEW LAYER -->
+        <!-- HERO VIEW -->
         <section id="home" class="hero" ng-show="currentActiveTab === 'home'">
             <div class="hero-layout">
                 <div class="hero-left">
-                    <span class="code-badge"><i class="fas fa-terminal"></i>  Web-Developer</span>
-                    <i><h1>Empowering Digital..<br><span class="accent">WEB DESIGNING.. &amp; WEB DEVELOPMENT..</span></h1></i>
+                    <span class="code-badge"><i class="fas fa-terminal"></i> Web Developer &amp; Architect</span>
+                    <h1>Empowering Digital Systems with <span class="accent">Modern Web Architecture..</span></h1>
                     <h3>I am a <span class="dynamic-text">{{currentlyTypedText}}</span></h3>
-                    <p class="desc">
-                        Hello, I am <u>Thakur Piyush Singh..</u>—Founder &amp; CEO specializing in advanced web architecture solutions, functional single-page application frameworks, and high-performance system configurations. I am an application engineer and technology architect operating out of Prayagraj, UP. Possessing a solid foundational background in analytics and full system design, I specialize in connecting front-end user experience systems directly with secure database backends. <strong>Networking</strong> is the practice of interconnecting computing devices, systems, and human agents to share resources, exchange data, and facilitate communication. In today’s modern technological ecosystem, networking operates primarily across two distinct yet interconnected domains: <strong>Computer Networks</strong> (technical infrastructure) and <strong>Professional Networks</strong> (human ecosystem).<br><br>
-                        <strong>Role &amp; Focus:</strong> Front-End &amp; Full-Stack Web Developer.<br>
-                        <strong>Core Competencies:</strong> Clean HTML5 structuring, custom CSS3 styling, and organizing complex technical documentation into user-friendly interfaces.<br>
-                        <strong>Tooling &amp; Version Control:</strong> Proficient in Git for version tracking and GitHub for cloud-based repository hosting and workflow management.<br>
-                        <strong>Technical Strengths:</strong> Strong understanding of component mapping, responsive layouts, documentation, and modern UI/UX practices. I am an application engineer and technology architect operating out of Prayagraj, UP. Possessing a solid foundational background in analytics and full system design, I specialize in connecting front-end user experience systems directly with secure database backends.  <p><strong>Networking</strong> is the practice of interconnecting computing devices, systems, and human agents to share resources, exchange data, and facilitate communication. In today’s modern technological ecosystem, networking operates primarily across two distinct yet interconnected domains: <strong>Computer Networks</strong> (technical infrastructure) and <strong>Professional Networks</strong> (human ecosystem).</p>
-                    </p>
+                    
+                    <div class="desc">
+                        <p>Hello, I am <strong>Thakur Piyush Singh</strong>—Founder &amp; CEO specializing in advanced web architecture solutions, functional single-page application frameworks, and high-performance system configurations.</p>
+                        
+                        <div class="feature-box">
+                            <h4><i class="fas fa-cubes"></i> Architecture &amp; Integration</h4>
+                            <p>Operating out of Prayagraj, UP, I combine optimized client-side interfaces with robust backend logic. My primary expertise centers on bridging computer networking fundamentals with scalable full-stack development.</p>
+                        </div>
+
+                        <p>Web development balances front-end visual user interfaces with back-end computational logic—connecting APIs, persistent databases, and security protocols to process data securely across modern devices.</p>
+                    </div>
+
                     <div class="hero-actions">
-                        <a href="#contact" ng-click="setActiveTab('contact')" class="btn-primary">Initiate Inquiry <i class="fas fa-arrow-right"></i></a>
-                        <a href="iot2.html" ng-click="setActiveTab('projects')" class="btn-secondary">View Frameworks</a>
+                        <a href="contact us.html" class="btn-primary">Initiate Inquiry <i class="fas fa-arrow-right"></i></a>
+                        <a href="javascript:void(0)" ng-click="setActiveTab('about')" class="btn-secondary">View Frameworks</a>
                     </div>
                 </div>
+
                 <div class="hero-right">
                     <div class="hero-right-dashboard">
                         <div class="dashboard-header">
                             <div class="dots"><span></span><span></span><span></span></div>
-                            <div class="status"><b><i><strong>THAKUR-PIYUSH-SINGH...</strong></i></b></div>
+                            <div class="status"><span class="pulse-dot"></span> Web Developer..</div>
                         </div>
-                        <div class="stat-row"><span class="stat-label">Entity</span><span class="stat-value">Thakur Piyush Singh</span></div>
-                        <div class="stat-row"><span class="stat-label">Core Specialization</span><span class="stat-value">Full Stack Dev</span></div>
-                        <div class="stat-row"><span class="stat-label">Core Technologies</span><span class="stat-value">JS / Angular / Python / C</span></div>
-                        <div class="stat-row"><span class="stat-label">Enterprise Role</span><span class="stat-value">Thakur Piyush Singh</span></div>
+                        <div class="stat-row"><span class="stat-label">Entity</span><span class="stat-value"><i>Thakur Piyush Singh..</i></span></div>
+                        <div class="stat-row"><span class="stat-label">Specialization</span><span class="stat-value">Full Stack Devloper</span></div>
+                        <div class="stat-row"><span class="stat-label">Core Stack</span><span class="stat-value">JS / Angular / Python / C</span></div>
+                        <div class="stat-row"><span class="stat-label">Role</span><span class="stat-value">Founder &amp; CEO</span></div>
                         
                         <div class="dashboard-footer">
                             <div class="social-media-links">
-                                <a href="https://instagram.com/piyushpps99" target="_blank"><i class="fab fa-instagram"></i></a>
-                                <a href="https://t.me/piyushpps99" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-                                <a href="https://www.linkedin.com/in/thakur-piyush-singh-399830315" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="https://github.com/Piyushpps99" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://instagram.com/piyushpps99" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://t.me/piyushpps99" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                                <a href="https://www.linkedin.com/in/thakur-piyush-singh-399830315" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/Piyushpps99" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                             </div>
-                            <a href="#contact" ng-click="setActiveTab('contact')" class="btn-primary" style="justify-content: center; padding: 1.2rem;">Let's Connect</a>
+                            <a href="contact us.html" class="btn-primary" style="justify-content: center; padding: 1.2rem; width: 100%;">Let's - Connect....</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT VIEW LAYER -->
+        <!-- ABOUT VIEW -->
         <section id="about" ng-show="currentActiveTab === 'about'">
             <div class="section-header">
-                <span class="tag">WELCOME TO MY WEB PAGE...</span>
+                <span class="tag">System Overview</span>
                 <h2>About <span>Me</span></h2>
             </div>
             <div class="about-layout">
                 <div class="about-bio">
-                    <p>
-                        I am an application engineer and technology architect operating out of Prayagraj, UP. Possessing a solid foundational background in analytics and full system design, I specialize in connecting front-end user experience systems directly with secure database backends.  <p><strong>Networking</strong> is the practice of interconnecting computing devices, systems, and human agents to share resources, exchange data, and facilitate communication. In today’s modern technological ecosystem, networking operates primarily across two distinct yet interconnected domains: <strong>Computer Networks</strong> (technical infrastructure) and <strong>Professional Networks</strong> (human ecosystem).</p>
-                    </p>
-                    <p>
-                        My work combines optimized logic loops with micro-interaction user tracking to elevate standard sites into clean enterprise software solutions.
-                    </p>
-                    <div style="margin-top: 3rem;">
-                        <h3 style="font-size: 2rem; color: var(--primary-neon); margin-bottom: 1.5rem;">Core Disciplines</h3>
-                        <p><strong>1. Front-End Development:</strong> Crafting client-side visuals and interactivity using HTML5, CSS3, JavaScript, and SPA frameworks like AngularJS.</p>
-                        <p><strong>2. Back-End Development:</strong> Constructing server-side operations, handling data processing, and securing enterprise APIs.</p>
-                        <p><strong>3. Database Management:</strong> Structuring persistent datasets and relational models for high-efficiency querying.</p>
+                    <p>I am an application engineer and technology architect operating out of Prayagraj, UP. Possessing a solid foundational background in analytics and full system design, I specialize in connecting front-end user experience systems directly with secure database backends.</p>
+                    
+                    <p>Networking is the core foundation of my engineering methodology—interconnecting computing devices, systems, and human platforms to optimize communication across both technical infrastructure and business networks.</p>
+                    
+                    <div class="disciplines-container">
+                        <h3>Core Disciplines</h3>
+                        
+                        <div class="discipline-card">
+                            <h4><i class="fas fa-code"></i> Front-End Development</h4>
+                            <p>Crafting client-side visuals and interactivity using HTML5, CSS3, JavaScript, and SPA frameworks like AngularJS.</p>
+                        </div>
+                        
+                        <div class="discipline-card">
+                            <h4><i class="fas fa-server"></i> Back-End Development</h4>
+                            <p>Constructing server-side operations, handling data processing, and securing enterprise APIs.</p>
+                        </div>
+                        
+                        <div class="discipline-card">
+                            <h4><i class="fas fa-network-wired"></i> Database &amp; Network Architecture</h4>
+                            <p>Structuring persistent datasets and designing interconnected digital systems for optimal performance.</p>
+                        </div>
                     </div>
                 </div>
+
                 <div class="timeline-container">
                     <div class="timeline-node glass-card">
-                        <div class="timeline-meta"><span class="period">Active Academic Session</span><span class="institution">UIT Prayagraj</span></div>
+                        <div class="timeline-meta">
+                            <span class="period">Active Session</span>
+                            <span class="institution">UIT Prayagraj</span>
+                        </div>
                         <h4>Master of Computer Applications (MCA)</h4>
                     </div>
                     <div class="timeline-node glass-card">
-                        <div class="timeline-meta"><span class="period">Advanced Certification</span><span class="institution">NIELIT</span></div>
-                        <h4>O Level Professional Graduate Certificate</h4>
-                    </div>
-                    <div class="timeline-node glass-card">
-                        <div class="timeline-meta"><span class="period">Core Analytics Credentials</span><span class="institution">NIOS</span></div>
-                        <h4>Advanced Mathematics Matriculation</h4>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- VENTURES / PROJECTS VIEW LAYER -->
-        <section id="projects" ng-show="currentActiveTab === 'projects'">
-            <div class="section-header">
-                <span class="tag">ENTERPRISE DEPLOYMENTS</span>
-                <h2>Featured <span>Ventures</span></h2>
-            </div>
-            <div class="project-grid">
-                <div class="project-card glass-card">
-                    <div class="project-top">
-                        <i class="fas fa-play-circle"></i>
-                        <h3>Thakur Piyush Singh</h3>
-                        <p>Next-generation digital streaming platform architected for seamless media delivery and scalable content management.</p>
-                        <div class="project-tags">
-                            <span>AngularJS</span>
-                            <span>CSS3</span>
-                            <span>UI/UX</span>
+                        <div class="timeline-meta">
+                            <span class="period">Advanced Certification</span>
+                            <span class="institution">NIELIT</span>
                         </div>
+                        <h4>O Level Certification</h4>
                     </div>
-                    <a href="#" class="project-link">Explore Architecture <i class="fas fa-arrow-right"></i></a>
                 </div>
-            </div>
-        </section>
-
-        <!-- ACADEMIC NOTES VIEW LAYER -->
-        <section id="notes" ng-show="currentActiveTab === 'notes'">
-            <div class="section-header">
-                <span class="tag">KNOWLEDGE BASE</span>
-                <h2>Academic <span>Notes</span></h2>
-            </div>
-            <div class="notes-grid">
-                <div class="notes-card glass-card">
-                    <i class="fas fa-code icon-c"></i>
-                    <h4>C Programming</h4>
-                </div>
-                <div class="notes-card glass-card">
-                    <i class="fab fa-python icon-python"></i>
-                    <h4>Python Engine</h4>
-                </div>
-                <div class="notes-card glass-card">
-                    <i class="fab fa-js-square icon-js"></i>
-                    <h4>JavaScript &amp; SPA</h4>
-                </div>
-                <div class="notes-card glass-card">
-                    <i class="fab fa-java icon-java"></i>
-                    <h4>Java Core</h4>
-                </div>
-                <div class="notes-card glass-card">
-                    <i class="fas fa-database icon-sql"></i>
-                    <h4>SQL &amp; DBMS</h4>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONNECT / CONTACT VIEW LAYER -->
-        <section id="contact" ng-show="currentActiveTab === 'contact'">
-            <div class="section-header" style="text-align: center;">
-                <span class="tag">GET IN TOUCH</span>
-                <h2>Direct <span>Connection</span></h2>
-            </div>
-            <div class="contact-layout">
-                <form class="glass-card" style="padding: 4rem;">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" class="form-control" placeholder="Enter your name">
-                        </div>
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" class="form-control" placeholder="name@domain.com">
-                        </div>
-                    </div>
-                    <div class="form-group" style="margin-bottom: 2.5rem;">
-                        <label>Message</label>
-                        <textarea class="form-control" placeholder="Specify your requirements..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Send Message</button>
-                </form>
             </div>
         </section>
 
     </main>
 
-    <!-- METRIC FOOTER -->
-    <footer class="footer-terminal">
-        <p>&copy; 2026 Thakur Piyush Singh. All Rights Reserved.</p>
-        <div class="footer-action-top">
-            <a href="#home" ng-click="setActiveTab('home')"><i class="fas fa-chevron-up"></i></a>
-        </div>
-    </footer>
-
-    <!-- ANGULARJS LOGIC CONTROLLER -->
+    <!-- ANGULARJS LOGIC -->
     <script>
         var app = angular.module('portfolioApp', []);
-        app.controller('ViewController', ['$scope', '$interval', function($scope, $interval) {
+        app.controller('ViewController', function($scope, $interval) {
             $scope.currentActiveTab = 'home';
             $scope.isMobileMenuOpen = false;
 
@@ -959,32 +807,37 @@
                 $scope.isMobileMenuOpen = !$scope.isMobileMenuOpen;
             };
 
-            // Dynamic Typewriter Effect
-            var roles = ['Full-Stack Developer', 'Tech Architect', 'Founder & CEO'];
-            var roleIndex = 0;
+            var titles = ["Full-Stack Developer.", "Web Architect.", "Software Engineer."];
+            var titleIndex = 0;
             var charIndex = 0;
             var isDeleting = false;
             $scope.currentlyTypedText = '';
 
-            $interval(function() {
-                var currentRole = roles[roleIndex];
-                
+            function typeEffect() {
+                var currentFullText = titles[titleIndex];
                 if (isDeleting) {
-                    $scope.currentlyTypedText = currentRole.substring(0, charIndex - 1);
+                    $scope.currentlyTypedText = currentFullText.substring(0, charIndex - 1);
                     charIndex--;
                 } else {
-                    $scope.currentlyTypedText = currentRole.substring(0, charIndex + 1);
+                    $scope.currentlyTypedText = currentFullText.substring(0, charIndex + 1);
                     charIndex++;
                 }
 
-                if (!isDeleting && charIndex === currentRole.length) {
+                if (!isDeleting && charIndex === currentFullText.length) {
                     isDeleting = true;
+                    $interval(typeEffect, 1500, 1);
+                    return;
                 } else if (isDeleting && charIndex === 0) {
                     isDeleting = false;
-                    roleIndex = (roleIndex + 1) % roles.length;
+                    titleIndex = (titleIndex + 1) % titles.length;
                 }
-            }, 150);
-        }]);
+
+                var speed = isDeleting ? 50 : 100;
+                $interval(typeEffect, speed, 1);
+            }
+
+            typeEffect();
+        });
     </script>
 </body>
 </html>
