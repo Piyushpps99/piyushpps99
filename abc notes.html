@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academic Notes | Executive Portfolio</title>
-    <!-- Font Awesome 6.4.0 & Google Fonts -->
+    
+    <!-- Font Awesome 6.4.0 & Modern Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
     <!-- AngularJS Framework Core -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 
@@ -26,13 +28,14 @@
 
         :root {
             --bg-deep: #060913;
-            --bg-surface: rgba(15, 23, 42, 0.55);
-            --bg-surface-hover: rgba(30, 41, 59, 0.7);
+            --bg-surface: rgba(15, 23, 42, 0.65);
+            --bg-surface-hover: rgba(30, 41, 59, 0.8);
             --primary-neon: #38bdf8;
             --secondary-neon: #818cf8;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-border-hover: rgba(56, 189, 248, 0.35);
             --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
             --font-mono: 'JetBrains Mono', monospace;
         }
@@ -43,21 +46,20 @@
         }
 
         body {
-             background-color: var(--dark-bg);
-            /* Gradient overlay ensures x99.png looks cinematic & sharp without washing out content */
-            background-image: linear-gradient(rgba(11, 15, 25, 0.1), rgba(11, 15, 25, 0.1)), url('x72.jpg');
+            background-color: var(--bg-deep);
+            background-image: linear-gradient(rgba(6, 9, 19, 0.4), rgba(6, 9, 19, 0.3)), url('x72.jpg');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
             background-attachment: fixed;
-            color: var(--text-main);
+            color: var(--text-primary);
             min-height: 100vh;
             line-height: 1.6;
         }
 
         /* Standard Section Scaffolding */
         section {
-            padding: 8rem 8%;
+            padding: 6rem 8%;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -67,21 +69,67 @@
             text-align: left;
         }
 
+        /* Navigation Header */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.6rem 8%;
+            background: rgba(6, 9, 19, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .avatar-frame {
+            width: 4.6rem;
+            height: 4.6rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--primary-neon);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-title {
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
         .section-tag {
-            font-family:  -apple-system;
-            font-size: 2.5rem;
-            color: aqua;
+            font-family: var(--font-mono);
+            font-size: 1.4rem;
+            color: var(--primary-neon);
             text-transform: uppercase;
             letter-spacing: 1.5px;
-           
-            margin-bottom: 0.8rem;
+            display: inline-block;
+            margin-top: 0.8rem;
         }
 
         .section-title {
-            font-size: 5.6rem;
+            font-size: 4.2rem;
             font-weight: 800;
             color: var(--text-primary);
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
 
         .accent-text {
@@ -111,7 +159,7 @@
             background: var(--bg-surface);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
-            padding: 3rem 2rem;
+            padding: 3.5rem 2rem 3rem 2rem;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -138,10 +186,10 @@
 
         .notes-card-link:hover .notes-card {
             transform: translateY(-6px);
-            border-color: rgba(56, 189, 248, 0.3);
+            border-color: var(--glass-border-hover);
             background: var(--bg-surface-hover);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
-                        0 0 20px rgba(56, 189, 248, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+                        0 0 25px rgba(56, 189, 248, 0.15);
         }
 
         .notes-card-link:hover .notes-card::before {
@@ -150,38 +198,40 @@
 
         .card-icon {
             font-size: 3.8rem;
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
             color: var(--primary-neon);
             transition: transform 0.3s ease, color 0.3s ease;
         }
 
         .notes-card-link:hover .card-icon {
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
 
         /* Specific Icon Accent Colors */
+        .icon-math { color: #38bdf8; }
+        .icon-se { color: #a855f7; }
         .icon-python { color: #38bdf8; }
         .icon-js { color: #facc15; }
         .icon-java { color: #f97316; }
         .icon-c { color: #818cf8; }
         .icon-sql { color: #2dd4bf; }
         .icon-html { color: #ef4444; }
-        .icon-se { color: #a855f7; }
         .icon-coa { color: #34d399; }
         .icon-digital { color: #fb7185; }
         .icon-github { color: #f8fafc; }
+        .icon-principle { color: #f59e0b; } /* Executive Gold / Amber */
 
         .notes-card h4 {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.4rem;
             line-height: 1.3;
         }
 
         .card-action {
             font-family: var(--font-mono);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
             display: inline-flex;
             align-items: center;
@@ -193,9 +243,11 @@
             color: var(--primary-neon);
         }
 
+        /* Responsive Breakpoints */
         @media (max-width: 768px) {
-            html { font-size: 58%; }
-            section { padding: 6rem 5%; }
+            html { font-size: 56.25%; }
+            section { padding: 4rem 5%; }
+            .section-title { font-size: 3.4rem; }
             .notes-grid {
                 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
                 gap: 1.8rem;
@@ -205,24 +257,35 @@
 </head>
 <body ng-controller="ViewController">
 
+    <!-- NAVIGATION HEADER -->
+    <nav class="navbar">
+        <div class="brand-logo">
+            <div class="avatar-frame">
+                <img src="11.jfif" alt="Thakur Piyush Singh Profile">
+            </div>
+            <div class="brand-title">Thakur Piyush Singh...</div>
+        </div>
+    </nav>
+
     <main>
         <!-- ACADEMIC NOTES SECTION -->
         <section id="notes" ng-show="currentActiveTab === 'notes'">
-           
-                <i><h2 class="section-title">Academic <span class="accent-text">Notes...</span></h2></i>
-				 <div class="section-header">
-               <i> <b><span class="section-tag">By- @Thakur-Piyush-Singh...</span></i></b>
+            <div class="section-header">
+                <h2 class="section-title">Academic <span class="accent-text">Notes</span></h2>
+                <span class="section-tag">By @Thakur-Piyush-Singh...</span>
             </div>
 
             <div class="notes-grid">
+                <!-- Discrete Mathematics -->
                 <a href="maths1.pdf" target="_blank" class="notes-card-link">
                     <div class="notes-card">
-                        <div class="card-icon"><i class="fas fa-square-root-alt"></i></div>
+                        <div class="card-icon icon-math"><i class="fas fa-square-root-alt"></i></div>
                         <h4>Discrete Mathematics</h4>
                         <span class="card-action">View Document <i class="fas fa-arrow-up-right-from-square"></i></span>
                     </div>
                 </a>
 
+                <!-- Software Engineering -->
                 <a href="Software Engeenering1.pdf" target="_blank" class="notes-card-link">
                     <div class="notes-card">
                         <div class="card-icon icon-se"><i class="fas fa-diagram-project"></i></div>
@@ -231,6 +294,7 @@
                     </div>
                 </a>
 
+                <!-- Python -->
                 <a href="python1.pdf" target="_blank" class="notes-card-link">
                     <div class="notes-card">
                         <div class="card-icon icon-python"><i class="fab fa-python"></i></div>
@@ -239,6 +303,7 @@
                     </div>
                 </a>
 
+                <!-- JavaScript -->
                 <a href="javascr1.pdf" target="_blank" class="notes-card-link">
                     <div class="notes-card">
                         <div class="card-icon icon-js"><i class="fab fa-js"></i></div>
@@ -247,6 +312,7 @@
                     </div>
                 </a>
 
+                <!-- Java Core -->
                 <a href="java1.pdf" target="_blank" class="notes-card-link">
                     <div class="notes-card">
                         <div class="card-icon icon-java"><i class="fab fa-java"></i></div>
@@ -255,6 +321,7 @@
                     </div>
                 </a>
 
+                <!-- C Language -->
                 <a href="c lng1.pdf" target="_blank" class="notes-card-link">
                     <div class="notes-card">
                         <div class="card-icon icon-c"><i class="fas fa-code"></i></div>
@@ -263,6 +330,7 @@
                     </div>
                 </a>
 
+                <!-- SQL Architecture -->
                 <a href="SQL.pdf" target="_blank" class="notes-card-link">
                     <div class="notes-card">
                         <div class="card-icon icon-sql"><i class="fas fa-database"></i></div>
@@ -271,6 +339,7 @@
                     </div>
                 </a>
 
+                <!-- HTML5 Design -->
                 <a href="HTML.pdf" target="_blank" class="notes-card-link">
                     <div class="notes-card">
                         <div class="card-icon icon-html"><i class="fab fa-html5"></i></div>
@@ -279,6 +348,7 @@
                     </div>
                 </a>
 
+                <!-- Computer Organization -->
                 <a href="coa.html" target="_blank" class="notes-card-link">
                     <div class="notes-card">
                         <div class="card-icon icon-coa"><i class="fas fa-microchip"></i></div>
@@ -287,6 +357,7 @@
                     </div>
                 </a>
 
+                <!-- Digital Electronics -->
                 <a href="dgital electronics1.html" target="_blank" class="notes-card-link">
                     <div class="notes-card">
                         <div class="card-icon icon-digital"><i class="fas fa-plug-circle-bolt"></i></div>
@@ -295,10 +366,20 @@
                     </div>
                 </a>
 
+                <!-- GitHub Workflow -->
                 <a href="github.html" target="_blank" class="notes-card-link">
                     <div class="notes-card">
                         <div class="card-icon icon-github"><i class="fab fa-github"></i></div>
                         <h4>GitHub Workflow</h4>
+                        <span class="card-action">Explore Module <i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <!-- Principle Of Management -->
+                <a href="principle of Management.html" target="_blank" class="notes-card-link">
+                    <div class="notes-card">
+                        <div class="card-icon icon-principle"><i class="fas fa-briefcase"></i></div>
+                        <h4>Principle Of Management</h4>
                         <span class="card-action">Explore Module <i class="fas fa-arrow-up-right-from-square"></i></span>
                     </div>
                 </a>
