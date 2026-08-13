@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cyber Security Notes</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-deep);
+            background-image: linear-gradient(rgba(6, 9, 19, 0.1), rgba(6, 9, 19, 0.1)), url('c1.jpg');
+           font-family: "Segoe UI", Arial, sans-serif;
+		   background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+  
+}
+
+/* Main Container */
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+/* Hero Heading */
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 50px 30px;
+    text-align: center;
+    color: white;
+    border-radius: 25px;
+    background: linear-gradient(
+        135deg,
+        #172554,
+        #2563eb,
+        #7c3aed
+    );
+
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.25);
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #e0e7ff;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #1d4ed8;
+    background: white;
+    padding: 9px 17px;
+    border-radius: 30px;
+    border: 1px solid #dbe4f0;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Section */
+.section {
+    background: white;
+    margin: 25px 0;
+    padding: 30px;
+
+    border-radius: 20px;
+    border: 1px solid #dce4ef;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+}
+
+/* Main Headings */
+h2 {
+    position: relative;
+
+    font-size: 1.8rem;
+    color: #173b8f;
+
+    padding: 14px 18px;
+    margin-bottom: 20px;
+
+    border-left: 7px solid #2563eb;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #eaf1ff,
+        transparent
+    );
+}
+
+/* Sub Heading */
+h3 {
+    color: #6d28d9;
+    margin-top: 25px;
+    margin-bottom: 10px;
+
+    padding-bottom: 6px;
+    border-bottom: 2px solid #ede9fe;
+}
+
+/* Paragraph */
+p {
+    margin: 12px 0;
+}
+
+/* Highlight Box */
+.highlight {
+    margin: 20px 0;
+    padding: 18px;
+
+    background: #fff7cc;
+    border-left: 6px solid #f59e0b;
+
+    border-radius: 10px;
+}
+
+/* Cards */
+.grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 18px;
+    margin-top: 15px;
+}
+
+.card {
+    background: #f8fbff;
+
+    padding: 20px;
+
+    border-radius: 15px;
+    border: 1px solid #dce7f5;
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.12);
+}
+
+.card b {
+    display: block;
+
+    color: #2563eb;
+    font-size: 1.1rem;
+
+    margin-bottom: 7px;
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+
+    background: #dbeafe;
+    color: #1d4ed8;
+
+    padding: 4px 10px;
+
+    border-radius: 20px;
+
+    font-size: 0.85rem;
+    font-weight: bold;
+
+    margin-right: 5px;
+}
+
+/* Formula */
+.formula {
+    background: #111827;
+    color: #67e8f9;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    font-family: Consolas, monospace;
+
+    font-size: 1.1rem;
+
+    text-align: center;
+
+    margin: 18px 0;
+}
+
+/* Code */
+pre {
+    background: #111827;
+    color: #e5e7eb;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    overflow-x: auto;
+
+    margin: 20px 0;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+code {
+    font-family: Consolas, "Courier New", monospace;
+}
+
+/* Diagram */
+.diagram {
+    background: #f8fafc;
+
+    border: 2px dashed #94a3b8;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    font-family: Consolas, monospace;
+
+    white-space: pre-wrap;
+
+    overflow-x: auto;
+
+    margin: 20px 0;
+}
+
+/* Table */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin: 20px 0;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+th {
+    background:
+        linear-gradient(
+            90deg,
+            #1d4ed8,
+            #6d28d9
+        );
+
+    color: white;
+
+    padding: 14px;
+
+    text-align: left;
+}
+
+td {
+    padding: 13px;
+
+    border-bottom: 1px solid #dbe4ef;
+}
+
+tr:nth-child(even) {
+    background: #f8fbff;
+}
+
+tr:hover {
+    background: #eef4ff;
+}
+
+/* Important Text */
+.important {
+    background: #fee2e2;
+
+    border-left: 6px solid #ef4444;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    margin: 15px 0;
+}
+
+/* Success */
+.success {
+    background: #dcfce7;
+
+    border-left: 6px solid #22c55e;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    margin: 15px 0;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+
+    color: #64748b;
+
+    padding: 30px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+
+    .container {
+        width: 94%;
+    }
+
+    .hero {
+        padding: 35px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2.3rem;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<header class="hero">
+    <h1>🔐 CYBER SECURITY</h1>
+	<h4>By </h4><h2> Thakur Piyush Singh...</h2>
+
+    <p>
+        Complete AKTU Exam Notes
+        | Threats | Attacks | Forensics |
+        Cryptography | Web Security
+    </p>
+</header>
+
+
+<!-- NAVIGATION -->
+<nav class="nav">
+    <a href="#fundamentals">Fundamentals</a>
+    <a href="#attacks">Attack Types</a>
+    <a href="#laws">Cyber Laws</a>
+    <a href="#forensics">Forensics</a>
+    <a href="#crypto">Cryptography</a>
+    <a href="#web">Web Security</a>
+    <a href="#social">Social Engineering</a>
+</nav>
+
+
+<!-- INTRODUCTION -->
+<section class="section">
+
+<h2>🔐 Introduction to Cybersecurity</h2>
+
+<p>
+Cybersecurity is the practice of protecting digital systems,
+networks, devices, and data from unauthorized access,
+theft, or damage.
+</p>
+
+<div class="highlight">
+
+<strong>⭐ CIA TRIAD</strong>
+
+<div class="grid">
+
+<div class="card">
+<b>Confidentiality</b>
+Keeping sensitive data private from intruders.
+</div>
+
+<div class="card">
+<b>Integrity</b>
+Ensuring information is not altered or corrupted.
+</div>
+
+<div class="card">
+<b>Availability</b>
+Guaranteeing systems remain accessible to authorized users.
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- FUNDAMENTALS -->
+<section class="section" id="fundamentals">
+
+<h2>1️⃣ Fundamental Definitions & Relationship</h2>
+
+<p>
+In cybersecurity, Threat, Vulnerability, and Attack are
+important concepts.
+</p>
+
+<div class="diagram">
+
+[ Threat Agent ]
+        ↓
+    Exploits
+        ↓
+[ Vulnerability ]
+        ↓
+    Triggers
+        ↓
+     [ Attack ]
+        ↓
+[ Harm / Impact ]
+
+</div>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+<th>Term</th>
+<th>Definition</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td><b>Vulnerability</b></td>
+
+<td>
+A weakness or loophole in a system's design,
+implementation, or operational controls.
+</td>
+
+<td>
+Unpatched software, weak passwords
+</td>
+</tr>
+
+<tr>
+<td><b>Cyber Threat</b></td>
+
+<td>
+Any potential incident or actor capable of
+exploiting a vulnerability.
+</td>
+
+<td>
+Hackers, ransomware campaigns
+</td>
+</tr>
+
+<tr>
+<td><b>Cyber Attack</b></td>
+
+<td>
+The actual deliberate action taken by an attacker
+to exploit a vulnerability.
+</td>
+
+<td>
+SQL Injection, phishing
+</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="formula">
+Risk = Threat × Vulnerability × Impact
+</div>
+
+</section>
+
+
+<!-- ATTACK TYPES -->
+<section class="section" id="attacks">
+
+<h2>2️⃣ Cyber Attack Types</h2>
+
+
+<h3>🎣 Phishing</h3>
+
+<p>
+Phishing is a social engineering attack where an attacker
+impersonates a trustworthy entity through email, SMS,
+or web pages to steal sensitive information.
+</p>
+
+<div class="diagram">
+
+[ Attacker ]
+      ↓
+Spoofed Email
+      ↓
+[ Victim ]
+      ↓
+Fake Link
+      ↓
+[ Phishing Page ]
+      ↓
+Credentials Stolen
+
+</div>
+
+
+<h3>Types of Phishing</h3>
+
+<div class="grid">
+
+<div class="card">
+<b>Spear Phishing</b>
+Targeted attack against a specific person or organization.
+</div>
+
+<div class="card">
+<b>Whaling</b>
+Phishing aimed at high-profile executives.
+</div>
+
+<div class="card">
+<b>Vishing</b>
+Phishing conducted through voice calls.
+</div>
+
+<div class="card">
+<b>Smishing</b>
+Phishing conducted through SMS.
+</div>
+
+<div class="card">
+<b>Clone Phishing</b>
+Copying a legitimate email and replacing it with malicious links.
+</div>
+
+</div>
+
+
+<h3>🦠 Malware</h3>
+
+<p>
+Malware is software intentionally designed to cause damage,
+disrupt functionality, or gain unauthorized access.
+</p>
+
+
+<div class="grid">
+
+<div class="card">
+<b>Virus</b>
+Requires a host file and human execution.
+</div>
+
+<div class="card">
+<b>Worm</b>
+Self-replicates and spreads through networks.
+</div>
+
+<div class="card">
+<b>Trojan Horse</b>
+Looks like legitimate software but contains a malicious payload.
+</div>
+
+<div class="card">
+<b>Ransomware</b>
+Encrypts files and demands payment.
+</div>
+
+<div class="card">
+<b>Spyware / Keylogger</b>
+Secretly monitors user activity and keystrokes.
+</div>
+
+</div>
+
+
+<h3>💉 SQL Injection</h3>
+
+<p>
+SQL Injection is an application-layer attack in which
+malicious SQL commands are inserted into user input fields.
+</p>
+
+<pre><code>SELECT * FROM Users
+WHERE username = 'USER_INPUT'
+AND password = 'PASSWORD_INPUT';</code></pre>
+
+<div class="important">
+
+<b>Example:</b>
+
+<pre><code>admin' OR '1'='1</code></pre>
+
+</div>
+
+
+<h3>🛡️ SQL Injection Prevention</h3>
+
+<ul>
+<li>Prepared Statements</li>
+<li>Parameterized Queries</li>
+<li>Input Validation</li>
+<li>Web Application Firewall (WAF)</li>
+</ul>
+
+</section>
+
+
+<!-- CYBER LAW -->
+<section class="section" id="laws">
+
+<h2>3️⃣ Cyberspace Laws & IT Act 2000</h2>
+
+<p>
+The Information Technology Act, 2000 provides legal recognition
+to electronic records and electronic transactions and addresses
+cyber offences.
+</p>
+
+
+<table>
+
+<tr>
+<th>Section</th>
+<th>Offense</th>
+<th>Penalty / Scope</th>
+</tr>
+
+<tr>
+<td>43</td>
+<td>Damage to computer system</td>
+<td>Civil liability</td>
+</tr>
+
+<tr>
+<td>65</td>
+<td>Tampering with computer source documents</td>
+<td>Up to 3 years / Fine</td>
+</tr>
+
+<tr>
+<td>66</td>
+<td>Computer-related offences</td>
+<td>Up to 3 years / Fine</td>
+</tr>
+
+<tr>
+<td>66C</td>
+<td>Identity Theft</td>
+<td>Up to 3 years / Fine</td>
+</tr>
+
+<tr>
+<td>66D</td>
+<td>Cheating by personation</td>
+<td>Up to 3 years / Fine</td>
+</tr>
+
+<tr>
+<td>66F</td>
+<td>Cyber Terrorism</td>
+<td>Imprisonment for life</td>
+</tr>
+
+<tr>
+<td>67</td>
+<td>Obscene electronic material</td>
+<td>Imprisonment + Fine</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- FORENSICS -->
+<section class="section" id="forensics">
+
+<h2>4️⃣ Digital Forensics</h2>
+
+<p>
+Digital Forensics is the process of identifying, preserving,
+extracting, analyzing, and presenting digital evidence.
+</p>
+
+
+<div class="diagram">
+
+Identification
+      ↓
+Preservation
+      ↓
+Acquisition
+      ↓
+Analysis
+      ↓
+Reporting
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+<b>1. Identification</b>
+Locate potential digital evidence.
+</div>
+
+<div class="card">
+<b>2. Preservation</b>
+Protect evidence from alteration.
+</div>
+
+<div class="card">
+<b>3. Acquisition</b>
+Create a forensic image of the media.
+</div>
+
+<div class="card">
+<b>4. Analysis</b>
+Examine files, logs and system artifacts.
+</div>
+
+<div class="card">
+<b>5. Reporting</b>
+Document findings in a technical report.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CRYPTOGRAPHY -->
+<section class="section" id="crypto">
+
+<h2>5️⃣ Cryptography</h2>
+
+<p>
+Cryptography is the science and practice of securing
+communication and data against unauthorized access.
+</p>
+
+
+<div class="diagram">
+
+┌─────────────────┐
+│    PLAINTEXT    │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│    ENCRYPTION   │
+│   + KEY         │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│   CIPHERTEXT    │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│    DECRYPTION   │
+│   + KEY         │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│    PLAINTEXT    │
+└─────────────────┘
+
+</div>
+
+
+<h3>🔑 Four Security Goals</h3>
+
+<div class="grid">
+
+<div class="card">
+<b>Confidentiality</b>
+Only authorized entities can access data.
+</div>
+
+<div class="card">
+<b>Integrity</b>
+Data must not be altered.
+</div>
+
+<div class="card">
+<b>Authentication</b>
+Verifies identity.
+</div>
+
+<div class="card">
+<b>Non-Repudiation</b>
+Prevents denial of an action.
+</div>
+
+</div>
+
+
+<h3>Symmetric Encryption</h3>
+
+<p>
+A single shared secret key is used for both encryption
+and decryption.
+</p>
+
+<div class="formula">
+Total Keys = N(N − 1) / 2
+</div>
+
+
+<h3>Asymmetric Encryption</h3>
+
+<p>
+Asymmetric cryptography uses two mathematically related keys:
+a Public Key and a Private Key.
+</p>
+
+
+<div class="grid">
+
+<div class="card">
+<b>Public Key</b>
+Shared publicly.
+</div>
+
+<div class="card">
+<b>Private Key</b>
+Kept secret by the owner.
+</div>
+
+</div>
+
+
+<h3>Digital Signature</h3>
+
+<div class="diagram">
+
+Message
+   ↓
+Hash Function
+   ↓
+Hash
+   ↓
+Encrypt using Private Key
+   ↓
+Digital Signature
+
+</div>
+
+<div class="success">
+
+<b>Verification:</b>
+
+If Hash 1 = Hash 2 → Signature is Valid.
+
+If Hash 1 ≠ Hash 2 → Signature is Invalid.
+
+</div>
+
+</section>
+
+
+<!-- WEB SECURITY -->
+<section class="section" id="web">
+
+<h2>6️⃣ Web Security</h2>
+
+<p>
+Web Security involves protecting web applications,
+servers and HTTP/HTTPS communications against attacks.
+</p>
+
+
+<div class="grid">
+
+<div class="card">
+<b>Cross-Site Scripting (XSS)</b>
+Injection of malicious scripts into web applications.
+</div>
+
+<div class="card">
+<b>CSRF</b>
+Tricks an authenticated browser into sending an unwanted request.
+</div>
+
+<div class="card">
+<b>HTTPS/TLS</b>
+Protects web traffic using encryption.
+</div>
+
+<div class="card">
+<b>Session Hijacking</b>
+Attackers capture or guess valid session identifiers.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SOCIAL ENGINEERING -->
+<section class="section" id="social">
+
+<h2>7️⃣ Social Engineering</h2>
+
+<p>
+Social Engineering manipulates people into revealing
+confidential information or performing unsafe actions.
+</p>
+
+
+<div class="grid">
+
+<div class="card">
+<b>Phishing</b>
+Fraudulent communication to steal information.
+</div>
+
+<div class="card">
+<b>Pretexting</b>
+Creating a fake scenario to persuade a victim.
+</div>
+
+<div class="card">
+<b>Baiting</b>
+Using an attractive object such as an infected USB.
+</div>
+
+<div class="card">
+<b>Tailgating</b>
+Following an authorized person into a restricted area.
+</div>
+
+</div>
+
+
+<h3>🛡️ Defense</h3>
+
+<ul>
+<li>Security Awareness Training</li>
+<li>Verification Procedures</li>
+<li>Multi-Factor Authentication (MFA)</li>
+<li>Regular Security Training</li>
+</ul>
+
+</section>
+
+
+<!-- QUICK REVISION -->
+<section class="section">
+
+<h2>⚡ Quick Revision</h2>
+
+<div class="grid">
+
+<div class="card">
+<b>Risk</b>
+Threat × Vulnerability × Impact
+</div>
+
+<div class="card">
+<b>SQLi Defense</b>
+Parameterized Queries / Prepared Statements
+</div>
+
+<div class="card">
+<b>Digital Signature</b>
+Signed with Private Key and verified with Public Key
+</div>
+
+<div class="card">
+<b>HTTPS</b>
+Secure HTTP communication using TLS
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+    🔐 Cyber Security Notes • HTML + CSS
+</footer>
+
+</div>
+
+</body>
+</html>
