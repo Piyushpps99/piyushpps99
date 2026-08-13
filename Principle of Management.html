@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Principles of Management & Communication — Exam Study Guide</title>
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Primary Theme Colors */
+      --brand-primary: #0f172a;      /* Deep Slate / Navy Header */
+      --brand-accent: #2563eb;       /* Rich Electric Blue */
+      --brand-accent-hover: #1d4ed8;
+      
+      /* Heading Highlight Styles */
+      --highlight-yellow: #fef08a;    /* High-contrast Highlight */
+      --highlight-border: #eab308;    /* Darker Gold Accent */
+      --highlight-text: #854d0e;
+      
+      /* Neutral Palette */
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --border-subtle: #e2e8f0;
+      --text-main: #334155;
+      --text-muted: #64748b;
+      --text-dark: #0f172a;
+      
+      /* Component Backgrounds */
+      --code-bg: #090d16;
+      --code-text: #38bdf8;
+      --callout-bg: #eff6ff;
+      --callout-border: #3b82f6;
+      
+      /* Sizing & Layout */
+      --sidebar-width: 290px;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        background-image: linear-gradient(rgba(11, 15, 25, 0.1), rgba(11, 15, 25, 0.1)), url('x8.jpg');
+      color: var(--text-main);
+      line-height: 1.65;
+      display: flex;
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /* Sidebar Navigation                                                          */
+    /* -------------------------------------------------------------------------- */
+    aside {
+      width: var(--sidebar-width);
+      background-color: var(--brand-primary);
+      color: #fff;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      padding: 2rem 1.25rem;
+      flex-shrink: 0;
+      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.05);
+    }
+
+    aside .brand-header {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #f8fafc;
+      margin-bottom: 2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    aside nav ul {
+      list-style: none;
+    }
+
+    aside nav li {
+      margin-bottom: 0.4rem;
+    }
+
+    aside nav a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: block;
+      padding: 0.6rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+    }
+
+    aside nav a:hover {
+      background-color: #1e293b;
+      color: #38bdf8;
+      transform: translateX(3px);
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /* Main Content Container                                                     */
+    /* -------------------------------------------------------------------------- */
+    main {
+      flex: 1;
+      max-width: 1020px;
+      padding: 3rem 3.5rem;
+      margin: 0 auto;
+    }
+
+    /* Header Banner */
+    header {
+      background: linear-gradient(135deg, var(--brand-primary) 0%, #1e293b 100%);
+      color: white;
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+
+    header p {
+      color: #cbd5e1;
+      font-size: 1.05rem;
+      max-width: 800px;
+    }
+
+    /* Section Cards */
+    section {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-card);
+      transition: box-shadow 0.25s ease;
+    }
+
+    section:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /* Highlighted Headings                                                        */
+    /* -------------------------------------------------------------------------- */
+    .highlight-heading {
+      display: inline-block;
+      background-color: var(--highlight-yellow);
+      color: var(--text-dark);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      padding: 0.35rem 1rem;
+      border-left: 5px solid var(--highlight-border);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 1.75rem;
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.04);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: var(--brand-accent);
+      margin: 1.75rem 0 0.85rem 0;
+      font-weight: 700;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.35rem;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      margin: 1.25rem 0 0.5rem 0;
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    /* Lists */
+    ul, ol {
+      margin-bottom: 1.25rem;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    strong {
+      color: var(--text-dark);
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /* ASCII Diagrams & Pre Blocks                                                */
+    /* -------------------------------------------------------------------------- */
+    pre.ascii-diagram {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.825rem;
+      line-height: 1.45;
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border: 1px solid #1e293b;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /* Data Tables                                                                */
+    /* -------------------------------------------------------------------------- */
+    .table-container {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.925rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: var(--text-dark);
+      font-weight: 700;
+      padding: 0.85rem 1rem;
+      border-bottom: 2px solid var(--border-subtle);
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /* Custom Callouts                                                            */
+    /* -------------------------------------------------------------------------- */
+    .callout {
+      background-color: var(--callout-bg);
+      border-left: 4px solid var(--callout-border);
+      padding: 1rem 1.25rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 1.5rem 0;
+    }
+
+    .callout p {
+      margin: 0;
+      color: #1e40af;
+      font-size: 0.95rem;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 0.25rem !important;
+      color: #1e3a8a !important;
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /* Responsive & Print Utilities                                               */
+    /* -------------------------------------------------------------------------- */
+    @media (max-width: 992px) {
+      body {
+        flex-direction: column;
+      }
+      aside {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1.5rem;
+      }
+      main {
+        padding: 1.5rem;
+      }
+    }
+
+    @media print {
+      aside {
+        display: none;
+      }
+      main {
+        max-width: 100%;
+        padding: 0;
+      }
+      section {
+        box-shadow: none;
+        border: 1px solid #cbd5e1;
+        page-break-inside: avoid;
+        margin-bottom: 1.5rem;
+      }
+      .highlight-heading {
+        background-color: #fef08a !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Quick-Nav Sidebar -->
+  <aside>
+    <div class="brand-header">
+      <span>📚 Study Guide</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#overview">Overview & POLC</a></li>
+        <li><a href="#section-pom">1. Principles of Management</a></li>
+        <li><a href="#section-comm">2. Business Communication</a></li>
+        <li><a href="#section-tech">3. Technical Writing & Reports</a></li>
+        <li><a href="#section-gd">4. GD, Interview & Public Speaking</a></li>
+        <li><a href="#section-gov">5. Governance, Ethics & OB</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content Layout -->
+  <main>
+    
+    <!-- Title Header -->
+    <header id="overview">
+      <h1>Principles of Management & Communication ... By <i>Thakur- Piyush-Singh...</i></h1>
+      <p>Master Study Notes — Comprehensive Revision Guide for Semester Exams</p>
+    </header>
+
+    <!-- Overview Box -->
+    <section>
+      <h2 class="highlight-heading">Principles of Management Overview</h2>
+      <p><strong>Principles of Management</strong> are fundamental guidelines that direct how leaders coordinate resources, people, and processes to achieve organizational goals. Based on the <strong>POLC framework</strong> (Planning, Organizing, Leading, Controlling), they provide a universal, flexible structure for effective decision-making, optimizing workplace productivity, and leading teams systematically across any organization.</p>
+
+      <div class="callout">
+        <p class="callout-title">Management & Communication Synergies</p>
+        <p><strong>Principles of Management</strong> provides the structural framework—Planning, Organizing, Leading, and Controlling—to achieve organizational goals. <strong>Business Communication</strong> acts as its operational vehicle, enabling clear information flow, team alignment, and effective execution. Together, they equip leaders to manage resources and articulate vision, strategy, and instructions efficiently.</p>
+      </div>
+    </section>
+
+    <!-- MODULE 1 -->
+    <section id="section-pom">
+      <h2 class="highlight-heading">1. Principles & Functions of Management</h2>
+      <p>Management principles are fundamental truths and guidelines that assist managers in planning, decision-making, and leading teams.</p>
+
+      <h3>Classical Management Theories</h3>
+      
+      <h4>Henri Fayol’s Administrative Theory (14 Principles)</h4>
+      <ul>
+        <li><strong>Division of Work:</strong> Specialization increases output and efficiency.</li>
+        <li><strong>Authority & Responsibility:</strong> Authority gives the right to command; responsibility enforces accountability.</li>
+        <li><strong>Discipline:</strong> Obedience, respect, and compliance with rules are necessary.</li>
+        <li><strong>Unity of Command:</strong> An employee should receive orders from only one superior to avoid confusion.</li>
+        <li><strong>Unity of Direction:</strong> One head and one plan for a group of activities having the same objective.</li>
+        <li><strong>Subordination of Individual Interest:</strong> Organizational goals override personal interests.</li>
+        <li><strong>Remuneration:</strong> Fair pay for both employees and the organization.</li>
+        <li><strong>Centralization vs. Decentralization:</strong> Finding the right balance of decision-making authority.</li>
+        <li><strong>Scalar Chain:</strong> The formal line of authority from highest to lowest ranks (<em>Gang Plank</em> allows cross-communication in emergencies).</li>
+        <li><strong>Order:</strong> "A place for everything and everything in its place."</li>
+        <li><strong>Equity:</strong> Kindness and justice toward employees.</li>
+        <li><strong>Stability of Tenure:</strong> Low employee turnover leads to higher efficiency.</li>
+        <li><strong>Initiative:</strong> Encouraging employees to originate and carry out plans.</li>
+        <li><strong>Esprit de Corps:</strong> Building harmony and team unity.</li>
+      </ul>
+
+      <h4>F.W. Taylor’s Scientific Management</h4>
+      <ul>
+        <li><strong>Science, Not Rule of Thumb:</strong> Use scientific methods to determine the "one best way" to perform a task.</li>
+        <li><strong>Harmony, Not Discord:</strong> Complete mental revolution and trust between management and workers.</li>
+        <li><strong>Cooperation, Not Individualism:</strong> Mutual agreement on standards and goals.</li>
+        <li><strong>Development of Each Person:</strong> Training workers to achieve maximum efficiency and prosperity.</li>
+      </ul>
+
+      <h3>Functions of Management (POSDC Process)</h3>
+      <p>Management operates as a continuous, dynamic process consisting of five core functions: <strong>Planning, Organizing, Staffing, Directing, and Controlling (POSDC)</strong>.</p>
+
+      <pre class="ascii-diagram">
+┌──────────┐     ┌───────────┐     ┌──────────┐     ┌───────────┐     ┌─────────────┐
+│ Planning │ ──> │ Organizing│ ──> │ Staffing │ ──> │ Directing │ ──> │ Controlling │
+└──────────┘     └───────────┘     └──────────┘     └───────────┘     └─────────────┘
+      ▲                                                                      │
+      └────────────────────────── Feedback Loop ─────────────────────────────┘
+      </pre>
+
+      <h3>Detailed Functions Breakdown</h3>
+      
+      <h4>1. Planning</h4>
+      <p><strong>Definition:</strong> The process of thinking before doing. It involves determining goals in advance and selecting the best course of action to achieve them.</p>
+      <ul>
+        <li><strong>Nature:</strong> Primary function (first step), pervasive (needed at all levels), continuous, and goal-oriented.</li>
+        <li><strong>Process:</strong> Setting Objectives &rarr; Developing Premises &rarr; Identifying Alternatives &rarr; Evaluating Alternatives &rarr; Selecting Course of Action &rarr; Formulating Supporting Plans &rarr; Implementation.</li>
+        <li><strong>Types of Plans:</strong> Strategic (Long-term, Top level), Tactical (Medium-term, Departmental), Operational (Short-term, Day-to-day).</li>
+      </ul>
+
+      <h4>2. Organizing</h4>
+      <p><strong>Definition:</strong> The process of grouping tasks, defining roles, allocating resources, and establishing authority relationships to carry out plans.</p>
+      <ul>
+        <li><strong>Process:</strong> Identification of work &rarr; Departmentalization &rarr; Assignment of duties &rarr; Establishing reporting relationships.</li>
+        <li><strong>Structures:</strong> Functional Structure (by expertise: HR, Finance, IT) vs. Divisional Structure (by product/region).</li>
+        <li><strong>Delegation vs. Decentralization:</strong> Delegation is transfer of authority for specific tasks to immediate subordinates. Decentralization is systemic distribution of authority across all levels.</li>
+      </ul>
+
+      <h4>3. Staffing</h4>
+      <p><strong>Definition:</strong> The managerial function of acquiring, developing, maintaining, and retaining a competent workforce to fill organizational roles.</p>
+      <ul>
+        <li><strong>Process:</strong> HR Planning &rarr; Recruitment &rarr; Selection &rarr; Placement & Orientation &rarr; Training & Development &rarr; Performance Appraisal.</li>
+      </ul>
+
+      <h4>4. Directing</h4>
+      <p><strong>Definition:</strong> Instructing, guiding, motivating, and leading people toward achieving organizational objectives. Directing executes action in the organization.</p>
+      <ul>
+        <li><strong>Key Elements:</strong> Supervision, Motivation, Leadership, and Communication.</li>
+        <li><strong>Motivation Theories:</strong> Maslow’s Hierarchy of Needs (Physiological &rarr; Safety &rarr; Social &rarr; Esteem &rarr; Self-Actualization) and Herzberg’s Two-Factor Theory (Hygiene factors vs. Motivators).</li>
+      </ul>
+
+      <h4>5. Controlling</h4>
+      <p><strong>Definition:</strong> Measuring actual output against planned standards, detecting variances, and taking corrective action to ensure goal attainment.</p>
+      <ul>
+        <li><strong>Process:</strong> Establishing Standards &rarr; Measuring Performance &rarr; Comparing Output with Standards &rarr; Taking Corrective Action.</li>
+        <li><strong>Techniques:</strong> Budgetary control, Break-Even Analysis, PERT/CPM, KPIs.</li>
+      </ul>
+
+      <h3>Quick Revision Summary</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Function</th>
+              <th>Primary Focus</th>
+              <th>Key Output</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Planning</strong></td>
+              <td>Deciding what to do and how to do it.</td>
+              <td>Goals, Policies, & Strategies</td>
+            </tr>
+            <tr>
+              <td><strong>Organizing</strong></td>
+              <td>Building structure and allocating resources.</td>
+              <td>Organizational Hierarchy & Roles</td>
+            </tr>
+            <tr>
+              <td><strong>Staffing</strong></td>
+              <td>Matching the right person to the right job.</td>
+              <td>Qualified & Trained Workforce</td>
+            </tr>
+            <tr>
+              <td><strong>Directing</strong></td>
+              <td>Guiding, motivating, and leading people.</td>
+              <td>High Productivity & Alignment</td>
+            </tr>
+            <tr>
+              <td><strong>Controlling</strong></td>
+              <td>Measuring performance and fixing gaps.</td>
+              <td>Quality Assurance & Standard Attainment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 2 -->
+    <section id="section-comm">
+      <h2 class="highlight-heading">2. Business Communication & Barriers</h2>
+      <p><strong>Business Communication</strong> is the process of sharing information, ideas, and instructions between people within and outside an organization to achieve commercial goals, improve operational efficiency, and make sound business decisions.</p>
+
+      <h3>The Communication Process Model</h3>
+      <pre class="ascii-diagram">
+┌────────┐    Encoding    ┌─────────┐    Channel    ┌──────────┐    Decoding    ┌──────────┐
+│ Sender │ ─────────────> │ Message │ ────────────> │ Receiver │ ─────────────> │ Feedback │
+└────────┘                └─────────┘               └──────────┘                └──────────┘
+    ▲                                                                                │
+    └───────────────────────────── Feedback Loop ───────────────────────────────────┘
+      </pre>
+
+      <div class="callout">
+        <p class="callout-title">The 7 Cs of Business Communication</p>
+        <p><strong>Clarity, Conciseness, Completeness, Concreteness, Correctness, Coherence, Courtesy.</strong> Always integrate these principles when structuring formal letters, documentation, and oral reports.</p>
+      </div>
+
+      <h3>Types & Flows of Communication</h3>
+      
+      <h4>A. By Direction (Information Flow)</h4>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Direction</th>
+              <th>Definition</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Downward</strong></td>
+              <td>Flow from top management down to lower-level employees.</td>
+              <td>Policies, task instructions, feedback.</td>
+            </tr>
+            <tr>
+              <td><strong>Upward</strong></td>
+              <td>Flow from subordinates up to management.</td>
+              <td>Progress reports, grievances, feedback.</td>
+            </tr>
+            <tr>
+              <td><strong>Horizontal</strong></td>
+              <td>Information exchange between colleagues at the same level.</td>
+              <td>Inter-departmental meetings.</td>
+            </tr>
+            <tr>
+              <td><strong>Diagonal</strong></td>
+              <td>Cross-departmental communication between different levels.</td>
+              <td>Developer consulting directly with Finance Manager.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>B. By Channel</h4>
+      <ul>
+        <li><strong>Verbal Communication:</strong> Oral (Meetings, calls; fast feedback) and Written (Emails, SRS docs, letters; permanent record).</li>
+        <li><strong>Non-Verbal Communication:</strong> Kinesics (Body language), Proxemics (Space), Paralanguage (Voice tone/pitch), Chronemics (Time usage).</li>
+        <li><strong>Visual Communication:</strong> Charts, diagrams, flowcharts, and dashboards.</li>
+      </ul>
+
+      <h4>C. By Formality</h4>
+      <ul>
+        <li><strong>Formal Communication:</strong> Official, documented, follows scalar chain.</li>
+        <li><strong>Informal Communication (The Grapevine):</strong> Unofficial social interactions. <em>Types:</em> Single-strand, Gossip, Probability, Cluster chain. Fast but rumor-prone.</li>
+      </ul>
+
+      <h3>Barriers to Communication</h3>
+      <ul>
+        <li><strong>Semantic / Linguistic:</strong> Technical jargon, ambiguous phrasing, denotative vs. connotative mismatches.</li>
+        <li><strong>Psychological / Emotional:</strong> Selective perception, premature evaluation, emotional stress, distrust.</li>
+        <li><strong>Organizational:</strong> Rigid scalar chain, serial distortion, over-centralization.</li>
+        <li><strong>Physical & Tech:</strong> Noise, geographic distance/time zones, information overload.</li>
+      </ul>
+    </section>
+
+    <!-- MODULE 3 -->
+    <section id="section-tech">
+      <h2 class="highlight-heading">3. Technical Writing & Report Writing</h2>
+      
+      <h3>Technical Writing</h3>
+      <p>Technical Writing translates complex engineering, scientific, or technological concepts into clear, precise, and accessible instructions for target audiences.</p>
+      <ul>
+        <li><strong>Key Deliverables:</strong> Software Requirements Specifications (SRS), User Manuals, API Documentation, Standard Operating Procedures (SOPs).</li>
+      </ul>
+
+      <h3>Formal Report Structure</h3>
+      <pre class="ascii-diagram">
+┌──────────────────────────────────────────────────────────┐
+│                    PRELIMINARY PAGES                     │
+│   Title Page  -->  Table of Contents  -->  Abstract      │
+└────────────────────────────┬─────────────────────────────┘
+                             │
+                             ▼
+┌──────────────────────────────────────────────────────────┐
+│                        MAIN BODY                         │
+│   Introduction --> Methodology --> Findings/Discussion   │
+└────────────────────────────┬─────────────────────────────┘
+                             │
+                             ▼
+┌──────────────────────────────────────────────────────────┐
+│                    SUPPLEMENTARY PAGES                   │
+│   Conclusions --> Recommendations --> References/App.    │
+└──────────────────────────────────────────────────────────┘
+      </pre>
+
+      <h3>Resumes & Cover Letters</h3>
+      <ul>
+        <li><strong>Chronological Resume:</strong> Best for steady career progression in same field.</li>
+        <li><strong>Functional Resume:</strong> Highlights skills; ideal for career switchers or freshers.</li>
+        <li><strong>Combination Resume:</strong> Balances technical stack and projects; recommended for IT/MCA profiles.</li>
+        <li><strong>STAR Method:</strong> Frame accomplishments via <strong>S</strong>ituation, <strong>T</strong>ask, <strong>A</strong>ction, <strong>R</strong>esult.</li>
+      </ul>
+    </section>
+
+    <!-- MODULE 4 -->
+    <section id="section-gd">
+      <h2 class="highlight-heading">4. Group Discussions, Interviews & Public Speaking</h2>
+
+      <h3>Group Discussion Roles</h3>
+      <ul>
+        <li><strong>Initiator:</strong> Frames the topic and sets scope. (Only initiate with solid facts).</li>
+        <li><strong>Moderator:</strong> Maintains focus, time management, and balanced participation.</li>
+        <li><strong>Contributor:</strong> Supplies data-driven, structured arguments.</li>
+        <li><strong>Summarizer:</strong> Delivers a neutral, balanced synthesis of all group perspectives.</li>
+      </ul>
+
+      <h3>Interview Framework: STAR Technique</h3>
+      <pre class="ascii-diagram">
+┌────────────────────────────────────────────────────────┐
+│ S - Situation: Set the background and context.         │
+├────────────────────────────────────────────────────────┤
+│ T - Task: Explain the challenge or target objective.   │
+├────────────────────────────────────────────────────────┤
+│ A - Action: Describe the specific steps YOU took.      │
+├────────────────────────────────────────────────────────┤
+│ R - Result: Highlight outcomes with metrics/data.      │
+└────────────────────────────────────────────────────────┘
+      </pre>
+
+      <h3>Public Speaking Delivery</h3>
+      <p>Structure speech as: <strong>15% Intro (Hook & Agenda) &rarr; 75% Body (3-4 Core Ideas) &rarr; 10% Conclusion (Key Takeaway & Q&A)</strong>. Follow the <strong>6x6 Rule</strong> for slides (Max 6 bullets per slide, 6 words per bullet).</p>
+    </section>
+
+    <!-- MODULE 5 -->
+    <section id="section-gov">
+      <h2 class="highlight-heading">5. Corporate Governance, Ethics & OB</h2>
+
+      <h3>Corporate Governance</h3>
+      <p>The system of rules, practices, and processes by which a firm is directed and controlled. Resolves the <em>Agency Problem</em> between Shareholders (Principals) and Management (Agents).</p>
+      <ul>
+        <li><strong>Core Pillars:</strong> Transparency, Accountability, Fairness, Responsibility.</li>
+      </ul>
+
+      <pre class="ascii-diagram">
+                          ┌───────────────────────────┐
+                          │       Shareholders        │
+                          │   (Owners of the Firm)    │
+                          └─────────────┬─────────────┘
+                                        │ Elects
+                                        ▼
+                          ┌───────────────────────────┐
+                          │    Board of Directors     │
+                          │  (Governance & Oversight) │
+                          └─────────────┬─────────────┘
+                                        │ Appoints
+                                        ▼
+                          ┌───────────────────────────┐
+                          │  Executive Management     │
+                          │   (Operations & Execution)│
+                          └───────────────────────────┘
+      </pre>
+
+      <h3>Business Ethics Frameworks</h3>
+      <ul>
+        <li><strong>Utilitarianism:</strong> Decision based on overall outcome ("Greatest good for the greatest number").</li>
+        <li><strong>Deontology:</strong> Duty-based ethics; adherence to moral rules regardless of outcomes.</li>
+        <li><strong>Virtue Ethics:</strong> Focuses on moral character and personal integrity.</li>
+      </ul>
+
+      <h3>Organizational Behavior (OB) Tiers</h3>
+      <p>OB evaluates human behavior across three distinct levels: <strong>Individual Level</strong> (Personality, Perception, Learning) &rarr; <strong>Group Level</strong> (Leadership, Team Dynamics) &rarr; <strong>Organizational Level</strong> (Culture, Structure, Change Management).</p>
+    </section>
+
+  </main>
+</body>
+</html>
