@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Programming for MCA — Complete Programs with Output &amp; Explanation</title>
+  <style>
+    :root {
+      --primary: #1a365d;
+      --primary-light: #2b6cb0;
+      --accent: #3182ce;
+      --success: #276749;
+      --success-bg: #f0fff4;
+      --code-bg: #1e293b;
+      --code-text: #e2e8f0;
+      --output-bg: #0f172a;
+      --output-border: #38bdf8;
+      --gray-50: #f7fafc;
+      --gray-100: #edf2f7;
+      --gray-200: #e2e8f0;
+      --gray-600: #718096;
+      --gray-700: #4a5568;
+      --gray-800: #2d3748;
+      --gray-900: #1a202c;
+      --radius: 10px;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--gray-800);
+      background: linear-gradient(160deg, #f0f4f8 0%, #e2e8f0 100%);
+      min-height: 100vh;
+    }
+
+    .site-header {
+      background: linear-gradient(135deg, #0f2942 0%, #1a365d 50%, #2b6cb0 100%);
+      color: white;
+      padding: 2.8rem 1.5rem 2.2rem;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 25% 40%, rgba(255,255,255,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .site-header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 0.8rem;
+    }
+    .site-header h1 {
+      font-size: clamp(1.7rem, 4.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .site-header .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+    }
+
+    .toc {
+      background: white;
+      max-width: 1000px;
+      margin: -1.6rem auto 2rem;
+      padding: 1.5rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      z-index: 10;
+    }
+    .toc h2 {
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin-bottom: 0.9rem;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.4rem 1.2rem;
+      font-size: 0.92rem;
+    }
+    .toc a {
+      color: var(--primary-light);
+      text-decoration: none;
+      display: block;
+      padding: 0.15rem 0;
+    }
+    .toc a:hover { color: var(--accent); text-decoration: underline; }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+      padding: 0 1.2rem;
+    }
+
+    .unit {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .unit-header {
+      background: linear-gradient(90deg, var(--primary) 0%, #2b6cb0 100%);
+      color: white;
+      padding: 1.15rem 1.8rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .unit-body { padding: 1.7rem 1.8rem; }
+
+    h3 {
+      color: var(--primary);
+      font-size: 1.18rem;
+      margin: 2rem 0 0.6rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--gray-100);
+    }
+    h3:first-child { margin-top: 0; }
+    h4 {
+      color: var(--gray-700);
+      font-size: 1.05rem;
+      margin: 1.2rem 0 0.45rem;
+    }
+
+    p, li { margin-bottom: 0.5rem; }
+    ul, ol { padding-left: 1.35rem; margin-bottom: 0.9rem; }
+    strong { color: var(--gray-900); }
+
+    .explain {
+      background: #ebf8ff;
+      border-left: 4px solid #63b3ed;
+      padding: 0.9rem 1.15rem;
+      border-radius: 0 8px 8px 0;
+      margin: 0.9rem 0 1.1rem;
+      font-size: 0.95rem;
+    }
+    .explain strong { color: #2b6cb0; }
+
+    pre {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 1.1rem 1.3rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin: 0.7rem 0;
+    }
+    pre .comment { color: #94a3b8; }
+    pre .keyword { color: #c084fc; }
+    pre .string { color: #86efac; }
+    pre .number { color: #fbbf24; }
+    pre .func { color: #38bdf8; }
+
+    .output {
+      background: var(--output-bg);
+      color: #7dd3fc;
+      border-left: 4px solid var(--output-border);
+      padding: 0.9rem 1.2rem;
+      border-radius: 0 8px 8px 0;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin: 0.5rem 0 1.4rem;
+      white-space: pre-wrap;
+    }
+    .output::before {
+      content: "Output:";
+      display: block;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      margin-bottom: 0.35rem;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .note {
+      background: #fffaf0;
+      border-left: 4px solid #ed8936;
+      padding: 0.85rem 1.15rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.93rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 2.5rem;
+      color: var(--gray-600);
+      font-size: 0.9rem;
+    }
+
+    @media print {
+      body { background: white; }
+      .site-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .unit { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+      pre { background: #f5f5f5 !important; color: #222 !important; border: 1px solid #ddd; }
+      .output { background: #f0f9ff !important; color: #0c4a6e !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="badge">Thakur Piyush Singh...💚💖</div>
+    <h1>Python Programming for MCA</h1>
+    <p class="subtitle">All Important Programs with Code, Output &amp; Simple English Explanation</p>
+  </header>
+
+  <nav class="toc">
+    <h2>📑 Programs Covered</h2>
+    <div class="toc-grid">
+      <a href="#basics">1. Basics &amp; Input/Output</a>
+      <a href="#control">2. Control Statements</a>
+      <a href="#loops">3. Loops</a>
+      <a href="#functions">4. Functions</a>
+      <a href="#strings">5. Strings</a>
+      <a href="#lists">6. Lists, Tuples, Sets, Dict</a>
+      <a href="#oop">7. Object Oriented Programming</a>
+      <a href="#files">8. File Handling</a>
+      <a href="#exception">9. Exception Handling</a>
+      <a href="#modules">10. Modules &amp; Packages</a>
+      <a href="#advanced">11. Useful Advanced Programs</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- 1. BASICS -->
+    <section class="unit" id="basics">
+      <div class="unit-header">1. Basics &amp; Input / Output</div>
+      <div class="unit-body">
+
+        <h3>Program 1: Hello World &amp; Simple Print</h3>
+        <div class="explain">
+          <strong>What it does:</strong> The most basic program. It just shows a message on the screen.
+        </div>
+        <pre><span class="comment"># My first Python program</span>
+print("Hello, World!")
+print("Welcome to Python for MCA")</pre>
+        <div class="output">Hello, World!
+Welcome to Python for MCA</div>
+
+        <h3>Program 2: Taking Input from User</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Asks the user to type something and then shows it back. <code>input()</code> always gives text (string). We use <code>int()</code> or <code>float()</code> to convert to number.
+        </div>
+        <pre>name = input("Enter your name: ")
+age = int(input("Enter your age: "))
+print("Hello", name)
+print("You are", age, "years old")</pre>
+        <div class="output">Enter your name: Rahul
+Enter your age: 22
+Hello Rahul
+You are 22 years old</div>
+
+        <h3>Program 3: Simple Calculator (Add, Subtract, Multiply, Divide)</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Takes two numbers from user and shows results of basic math operations.
+        </div>
+        <pre>a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
+
+print("Addition       =", a + b)
+print("Subtraction    =", a - b)
+print("Multiplication =", a * b)
+print("Division       =", a / b)
+print("Floor Division =", a // b)
+print("Remainder      =", a % b)
+print("Power          =", a ** b)</pre>
+        <div class="output">Enter first number: 10
+Enter second number: 3
+Addition       = 13.0
+Subtraction    = 7.0
+Multiplication = 30.0
+Division       = 3.3333333333333335
+Floor Division = 3.0
+Remainder      = 1.0
+Power          = 1000.0</div>
+
+      </div>
+    </section>
+
+    <!-- 2. CONTROL -->
+    <section class="unit" id="control">
+      <div class="unit-header">2. Control Statements (if / elif / else)</div>
+      <div class="unit-body">
+
+        <h3>Program 4: Check Even or Odd</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Checks if a number is even or odd using remainder operator <code>%</code>.
+        </div>
+        <pre>num = int(input("Enter a number: "))
+
+<span class="keyword">if</span> num % 2 == 0:
+    print(num, "is Even")
+<span class="keyword">else</span>:
+    print(num, "is Odd")</pre>
+        <div class="output">Enter a number: 17
+17 is Odd</div>
+
+        <h3>Program 5: Largest of Three Numbers</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Finds the biggest number among three numbers given by the user.
+        </div>
+        <pre>a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+c = int(input("Enter third number: "))
+
+<span class="keyword">if</span> a >= b <span class="keyword">and</span> a >= c:
+    print("Largest is", a)
+<span class="keyword">elif</span> b >= a <span class="keyword">and</span> b >= c:
+    print("Largest is", b)
+<span class="keyword">else</span>:
+    print("Largest is", c)</pre>
+        <div class="output">Enter first number: 45
+Enter second number: 78
+Enter third number: 32
+Largest is 78</div>
+
+        <h3>Program 6: Grade Calculator</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Takes marks and shows grade using if-elif ladder.
+        </div>
+        <pre>marks = float(input("Enter marks (0-100): "))
+
+<span class="keyword">if</span> marks >= 90:
+    grade = "A+"
+<span class="keyword">elif</span> marks >= 80:
+    grade = "A"
+<span class="keyword">elif</span> marks >= 70:
+    grade = "B"
+<span class="keyword">elif</span> marks >= 60:
+    grade = "C"
+<span class="keyword">elif</span> marks >= 50:
+    grade = "D"
+<span class="keyword">else</span>:
+    grade = "F (Fail)"
+
+print("Your Grade is:", grade)</pre>
+        <div class="output">Enter marks (0-100): 76
+Your Grade is: B</div>
+
+      </div>
+    </section>
+
+    <!-- 3. LOOPS -->
+    <section class="unit" id="loops">
+      <div class="unit-header">3. Loops (for &amp; while)</div>
+      <div class="unit-body">
+
+        <h3>Program 7: Print Numbers 1 to 10 (for loop)</h3>
+        <div class="explain">
+          <strong>What it does:</strong> <code>range(1, 11)</code> gives numbers from 1 to 10. <code>for</code> loop repeats the print statement for each number.
+        </div>
+        <pre><span class="keyword">for</span> i <span class="keyword">in</span> range(1, 11):
+    print(i, end=" ")</pre>
+        <div class="output">1 2 3 4 5 6 7 8 9 10 </div>
+
+        <h3>Program 8: Factorial of a Number</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Factorial of n = 1 × 2 × 3 × ... × n. Example: 5! = 120.
+        </div>
+        <pre>n = int(input("Enter a number: "))
+fact = 1
+
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1, n + 1):
+    fact = fact * i
+
+print("Factorial of", n, "is", fact)</pre>
+        <div class="output">Enter a number: 5
+Factorial of 5 is 120</div>
+
+        <h3>Program 9: Fibonacci Series</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Prints Fibonacci series: 0, 1, 1, 2, 3, 5, 8, 13... Each number is sum of previous two.
+        </div>
+        <pre>n = int(input("How many terms? "))
+a, b = 0, 1
+
+print("Fibonacci Series:")
+<span class="keyword">for</span> i <span class="keyword">in</span> range(n):
+    print(a, end=" ")
+    a, b = b, a + b</pre>
+        <div class="output">How many terms? 8
+Fibonacci Series:
+0 1 1 2 3 5 8 13 </div>
+
+        <h3>Program 10: Multiplication Table</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Prints multiplication table of any number.
+        </div>
+        <pre>num = int(input("Enter number for table: "))
+
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1, 11):
+    print(num, "x", i, "=", num * i)</pre>
+        <div class="output">Enter number for table: 7
+7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21
+7 x 4 = 28
+7 x 5 = 35
+7 x 6 = 42
+7 x 7 = 49
+7 x 8 = 56
+7 x 9 = 63
+7 x 10 = 70</div>
+
+        <h3>Program 11: Sum of Digits (while loop)</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Adds all digits of a number. Example: 456 → 4+5+6 = 15.
+        </div>
+        <pre>num = int(input("Enter a number: "))
+total = 0
+
+<span class="keyword">while</span> num > 0:
+    digit = num % 10
+    total = total + digit
+    num = num // 10
+
+print("Sum of digits =", total)</pre>
+        <div class="output">Enter a number: 456
+Sum of digits = 15</div>
+
+        <h3>Program 12: Reverse a Number</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Reverses the digits of a number. Example: 1234 becomes 4321.
+        </div>
+        <pre>num = int(input("Enter a number: "))
+rev = 0
+
+<span class="keyword">while</span> num > 0:
+    digit = num % 10
+    rev = rev * 10 + digit
+    num = num // 10
+
+print("Reversed number =", rev)</pre>
+        <div class="output">Enter a number: 1234
+Reversed number = 4321</div>
+
+        <h3>Program 13: Check Prime Number</h3>
+        <div class="explain">
+          <strong>What it does:</strong> A prime number is divisible only by 1 and itself (2, 3, 5, 7, 11...).
+        </div>
+        <pre>num = int(input("Enter a number: "))
+is_prime = True
+
+<span class="keyword">if</span> num <= 1:
+    is_prime = False
+<span class="keyword">else</span>:
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(2, int(num ** 0.5) + 1):
+        <span class="keyword">if</span> num % i == 0:
+            is_prime = False
+            <span class="keyword">break</span>
+
+<span class="keyword">if</span> is_prime:
+    print(num, "is a Prime number")
+<span class="keyword">else</span>:
+    print(num, "is NOT a Prime number")</pre>
+        <div class="output">Enter a number: 17
+17 is a Prime number</div>
+
+      </div>
+    </section>
+
+    <!-- 4. FUNCTIONS -->
+    <section class="unit" id="functions">
+      <div class="unit-header">4. Functions</div>
+      <div class="unit-body">
+
+        <h3>Program 14: Simple Function</h3>
+        <div class="explain">
+          <strong>What it does:</strong> A function is a block of code that does a specific job. We define it once and call it many times.
+        </div>
+        <pre><span class="keyword">def</span> <span class="func">greet</span>(name):
+    print("Hello", name)
+    print("Welcome to Python!")
+
+greet("Amit")
+greet("Priya")</pre>
+        <div class="output">Hello Amit
+Welcome to Python!
+Hello Priya
+Welcome to Python!</div>
+
+        <h3>Program 15: Function with Return Value</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Function calculates something and returns the result using <code>return</code>.
+        </div>
+        <pre><span class="keyword">def</span> <span class="func">add</span>(x, y):
+    <span class="keyword">return</span> x + y
+
+result = add(15, 25)
+print("Sum =", result)</pre>
+        <div class="output">Sum = 40</div>
+
+        <h3>Program 16: Factorial using Function (Recursion)</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Recursion means a function calls itself. Factorial of n = n × factorial(n-1).
+        </div>
+        <pre><span class="keyword">def</span> <span class="func">factorial</span>(n):
+    <span class="keyword">if</span> n == 0 <span class="keyword">or</span> n == 1:
+        <span class="keyword">return</span> 1
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> n * factorial(n - 1)
+
+num = int(input("Enter number: "))
+print("Factorial =", factorial(num))</pre>
+        <div class="output">Enter number: 6
+Factorial = 720</div>
+
+        <h3>Program 17: Function with Default Argument</h3>
+        <div class="explain">
+          <strong>What it does:</strong> If user does not give a value, the default value is used.
+        </div>
+        <pre><span class="keyword">def</span> <span class="func">power</span>(base, exp=2):
+    <span class="keyword">return</span> base ** exp
+
+print(power(5))      <span class="comment"># uses default exp=2</span>
+print(power(5, 3))   <span class="comment"># exp=3</span></pre>
+        <div class="output">25
+125</div>
+
+      </div>
+    </section>
+
+    <!-- 5. STRINGS -->
+    <section class="unit" id="strings">
+      <div class="unit-header">5. String Programs</div>
+      <div class="unit-body">
+
+        <h3>Program 18: Reverse a String</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Reverses any text using slicing <code>[::-1]</code>.
+        </div>
+        <pre>text = input("Enter a string: ")
+print("Reversed =", text[::-1])</pre>
+        <div class="output">Enter a string: Python
+Reversed = nohtyP</div>
+
+        <h3>Program 19: Check Palindrome String</h3>
+        <div class="explain">
+          <strong>What it does:</strong> A palindrome reads the same forward and backward (e.g., "madam", "level").
+        </div>
+        <pre>text = input("Enter a string: ").lower()
+
+<span class="keyword">if</span> text == text[::-1]:
+    print("It is a Palindrome")
+<span class="keyword">else</span>:
+    print("It is NOT a Palindrome")</pre>
+        <div class="output">Enter a string: Madam
+It is a Palindrome</div>
+
+        <h3>Program 20: Count Vowels and Consonants</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Counts how many vowels (a,e,i,o,u) and consonants are in the given text.
+        </div>
+        <pre>text = input("Enter a string: ").lower()
+vowels = 0
+consonants = 0
+
+<span class="keyword">for</span> ch <span class="keyword">in</span> text:
+    <span class="keyword">if</span> ch.isalpha():
+        <span class="keyword">if</span> ch <span class="keyword">in</span> "aeiou":
+            vowels += 1
+        <span class="keyword">else</span>:
+            consonants += 1
+
+print("Vowels =", vowels)
+print("Consonants =", consonants)</pre>
+        <div class="output">Enter a string: Hello World
+Vowels = 3
+Consonants = 7</div>
+
+      </div>
+    </section>
+
+    <!-- 6. LISTS ETC -->
+    <section class="unit" id="lists">
+      <div class="unit-header">6. Lists, Tuples, Sets &amp; Dictionaries</div>
+      <div class="unit-body">
+
+        <h3>Program 21: List Operations</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Shows common list operations: create, append, insert, remove, sort, reverse.
+        </div>
+        <pre>numbers = [30, 10, 50, 20, 40]
+print("Original List:", numbers)
+
+numbers.append(60)
+print("After append:", numbers)
+
+numbers.insert(1, 15)
+print("After insert:", numbers)
+
+numbers.remove(50)
+print("After remove:", numbers)
+
+numbers.sort()
+print("Sorted:", numbers)
+
+numbers.reverse()
+print("Reversed:", numbers)
+
+print("Maximum =", max(numbers))
+print("Minimum =", min(numbers))
+print("Sum     =", sum(numbers))</pre>
+        <div class="output">Original List: [30, 10, 50, 20, 40]
+After append: [30, 10, 50, 20, 40, 60]
+After insert: [30, 15, 10, 50, 20, 40, 60]
+After remove: [30, 15, 10, 20, 40, 60]
+Sorted: [10, 15, 20, 30, 40, 60]
+Reversed: [60, 40, 30, 20, 15, 10]
+Maximum = 60
+Minimum = 10
+Sum     = 175</div>
+
+        <h3>Program 22: Linear Search in List</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Searches for a number in the list one by one (linear search).
+        </div>
+        <pre>nums = [12, 45, 7, 23, 56, 89, 34]
+key = int(input("Enter number to search: "))
+found = False
+
+<span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):
+    <span class="keyword">if</span> nums[i] == key:
+        print("Found at position", i)
+        found = True
+        <span class="keyword">break</span>
+
+<span class="keyword">if</span> <span class="keyword">not</span> found:
+    print("Number not found in list")</pre>
+        <div class="output">Enter number to search: 56
+Found at position 4</div>
+
+        <h3>Program 23: Dictionary Example (Student Marks)</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Dictionary stores data in key-value pairs. Very useful for real-life data.
+        </div>
+        <pre>student = {
+    "name": "Rahul Sharma",
+    "roll": 101,
+    "marks": {"Maths": 85, "Python": 92, "DBMS": 78}
+}
+
+print("Name  :", student["name"])
+print("Roll  :", student["roll"])
+print("Marks :", student["marks"])
+print("Python Marks:", student["marks"]["Python"])
+
+<span class="comment"># Add new subject</span>
+student["marks"]["OS"] = 88
+print("Updated Marks:", student["marks"])</pre>
+        <div class="output">Name  : Rahul Sharma
+Roll  : 101
+Marks : {'Maths': 85, 'Python': 92, 'DBMS': 78}
+Python Marks: 92
+Updated Marks: {'Maths': 85, 'Python': 92, 'DBMS': 78, 'OS': 88}</div>
+
+        <h3>Program 24: Remove Duplicates from List using Set</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Set automatically removes duplicate values.
+        </div>
+        <pre>numbers = [10, 20, 10, 30, 20, 40, 30, 50]
+print("Original:", numbers)
+
+unique = list(set(numbers))
+print("Without duplicates:", unique)</pre>
+        <div class="output">Original: [10, 20, 10, 30, 20, 40, 30, 50]
+Without duplicates: [40, 10, 50, 20, 30]</div>
+
+      </div>
+    </section>
+
+    <!-- 7. OOP -->
+    <section class="unit" id="oop">
+      <div class="unit-header">7. Object Oriented Programming (OOP)</div>
+      <div class="unit-body">
+
+        <h3>Program 25: Simple Class and Object</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Class is a blueprint. Object is a real thing created from the class. <code>__init__</code> is a special method that runs automatically when object is created.
+        </div>
+        <pre><span class="keyword">class</span> <span class="func">Student</span>:
+    <span class="keyword">def</span> <span class="func">__init__</span>(self, name, roll, course):
+        self.name = name
+        self.roll = roll
+        self.course = course
+
+    <span class="keyword">def</span> <span class="func">display</span>(self):
+        print("Name  :", self.name)
+        print("Roll  :", self.roll)
+        print("Course:", self.course)
+        print("-" * 25)
+
+s1 = Student("Amit Kumar", 101, "MCA")
+s2 = Student("Neha Singh", 102, "MCA")
+
+s1.display()
+s2.display()</pre>
+        <div class="output">Name  : Amit Kumar
+Roll  : 101
+Course: MCA
+-------------------------
+Name  : Neha Singh
+Roll  : 102
+Course: MCA
+-------------------------</div>
+
+        <h3>Program 26: Inheritance</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Inheritance means a new class can use properties and methods of an existing class. Child class gets features of Parent class.
+        </div>
+        <pre><span class="keyword">class</span> <span class="func">Person</span>:
+    <span class="keyword">def</span> <span class="func">__init__</span>(self, name, age):
+        self.name = name
+        self.age = age
+
+    <span class="keyword">def</span> <span class="func">show</span>(self):
+        print("Name:", self.name)
+        print("Age :", self.age)
+
+<span class="keyword">class</span> <span class="func">Student</span>(Person):          <span class="comment"># Student inherits Person</span>
+    <span class="keyword">def</span> <span class="func">__init__</span>(self, name, age, course):
+        super().__init__(name, age)   <span class="comment"># call parent constructor</span>
+        self.course = course
+
+    <span class="keyword">def</span> <span class="func">show</span>(self):
+        super().show()
+        print("Course:", self.course)
+
+s = Student("Rahul", 22, "MCA")
+s.show()</pre>
+        <div class="output">Name: Rahul
+Age : 22
+Course: MCA</div>
+
+        <h3>Program 27: Method Overriding &amp; Polymorphism</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Same method name behaves differently in different classes. This is called polymorphism.
+        </div>
+        <pre><span class="keyword">class</span> <span class="func">Animal</span>:
+    <span class="keyword">def</span> <span class="func">sound</span>(self):
+        print("Animal makes a sound")
+
+<span class="keyword">class</span> <span class="func">Dog</span>(Animal):
+    <span class="keyword">def</span> <span class="func">sound</span>(self):
+        print("Dog barks: Woof!")
+
+<span class="keyword">class</span> <span class="func">Cat</span>(Animal):
+    <span class="keyword">def</span> <span class="func">sound</span>(self):
+        print("Cat meows: Meow!")
+
+animals = [Dog(), Cat(), Animal()]
+
+<span class="keyword">for</span> a <span class="keyword">in</span> animals:
+    a.sound()</pre>
+        <div class="output">Dog barks: Woof!
+Cat meows: Meow!
+Animal makes a sound</div>
+
+      </div>
+    </section>
+
+    <!-- 8. FILES -->
+    <section class="unit" id="files">
+      <div class="unit-header">8. File Handling</div>
+      <div class="unit-body">
+
+        <h3>Program 28: Write to a File</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Creates a new file (or overwrites) and writes text into it. <code>with</code> automatically closes the file.
+        </div>
+        <pre><span class="keyword">with</span> open("student.txt", "w") <span class="keyword">as</span> f:
+    f.write("Name: Rahul Sharma\n")
+    f.write("Course: MCA\n")
+    f.write("College: ABC University\n")
+
+print("Data written successfully!")</pre>
+        <div class="output">Data written successfully!</div>
+
+        <h3>Program 29: Read from a File</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Opens an existing file and reads its content.
+        </div>
+        <pre><span class="keyword">with</span> open("student.txt", "r") <span class="keyword">as</span> f:
+    content = f.read()
+    print(content)</pre>
+        <div class="output">Name: Rahul Sharma
+Course: MCA
+College: ABC University
+</div>
+
+        <h3>Program 30: Count Lines, Words and Characters in File</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Reads a file and counts how many lines, words and characters it has.
+        </div>
+        <pre><span class="keyword">with</span> open("student.txt", "r") <span class="keyword">as</span> f:
+    lines = f.readlines()
+
+num_lines = len(lines)
+num_words = 0
+num_chars = 0
+
+<span class="keyword">for</span> line <span class="keyword">in</span> lines:
+    words = line.split()
+    num_words += len(words)
+    num_chars += len(line)
+
+print("Lines      =", num_lines)
+print("Words      =", num_words)
+print("Characters =", num_chars)</pre>
+        <div class="output">Lines      = 3
+Words      = 9
+Characters = 58</div>
+
+      </div>
+    </section>
+
+    <!-- 9. EXCEPTION -->
+    <section class="unit" id="exception">
+      <div class="unit-header">9. Exception Handling</div>
+      <div class="unit-body">
+
+        <h3>Program 31: Handle Division by Zero</h3>
+        <div class="explain">
+          <strong>What it does:</strong> If something goes wrong (like dividing by zero), the program does not crash. It shows a friendly message.
+        </div>
+        <pre><span class="keyword">try</span>:
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+    result = a / b
+    print("Result =", result)
+<span class="keyword">except</span> ZeroDivisionError:
+    print("Error: Cannot divide by zero!")
+<span class="keyword">except</span> ValueError:
+    print("Error: Please enter valid numbers!")
+<span class="keyword">finally</span>:
+    print("Program finished.")</pre>
+        <div class="output">Enter first number: 10
+Enter second number: 0
+Error: Cannot divide by zero!
+Program finished.</div>
+
+        <h3>Program 32: Multiple Exceptions</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Shows how to handle different types of errors separately.
+        </div>
+        <pre><span class="keyword">try</span>:
+    nums = [10, 20, 30]
+    index = int(input("Enter index: "))
+    print("Value =", nums[index])
+<span class="keyword">except</span> IndexError:
+    print("Error: Index out of range!")
+<span class="keyword">except</span> ValueError:
+    print("Error: Please enter an integer!")
+<span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+    print("Some other error:", e)</pre>
+        <div class="output">Enter index: 5
+Error: Index out of range!</div>
+
+      </div>
+    </section>
+
+    <!-- 10. MODULES -->
+    <section class="unit" id="modules">
+      <div class="unit-header">10. Modules &amp; Useful Built-in Modules</div>
+      <div class="unit-body">
+
+        <h3>Program 33: Using math Module</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Python has many ready-made modules. <code>math</code> module gives useful math functions.
+        </div>
+        <pre><span class="keyword">import</span> math
+
+print("Square root of 16 =", math.sqrt(16))
+print("Power 2^5         =", math.pow(2, 5))
+print("Ceiling of 4.3    =", math.ceil(4.3))
+print("Floor of 4.7      =", math.floor(4.7))
+print("Value of Pi       =", math.pi)
+print("Factorial of 6    =", math.factorial(6))</pre>
+        <div class="output">Square root of 16 = 4.0
+Power 2^5         = 32.0
+Ceiling of 4.3    = 5
+Floor of 4.7      = 4
+Value of Pi       = 3.141592653589793
+Factorial of 6    = 720</div>
+
+        <h3>Program 34: Random Module (Generate Random Numbers)</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Generates random numbers. Useful for games, OTP, testing etc.
+        </div>
+        <pre><span class="keyword">import</span> random
+
+print("Random number 1-100 :", random.randint(1, 100))
+print("Random choice       :", random.choice(["Apple", "Banana", "Mango"]))
+
+numbers = [1, 2, 3, 4, 5]
+random.shuffle(numbers)
+print("Shuffled list       :", numbers)</pre>
+        <div class="output">Random number 1-100 : 67
+Random choice       : Mango
+Shuffled list       : [3, 1, 5, 2, 4]</div>
+
+        <h3>Program 35: Date and Time</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Shows current date and time using <code>datetime</code> module.
+        </div>
+        <pre><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
+
+now = datetime.now()
+print("Current Date & Time:", now)
+print("Date only          :", now.date())
+print("Time only          :", now.time())
+print("Formatted          :", now.strftime("%d-%m-%Y %H:%M:%S"))</pre>
+        <div class="output">Current Date & Time: 2026-10-24 22:40:15.123456
+Date only          : 2026-10-24
+Time only          : 22:40:15.123456
+Formatted          : 24-10-2026 22:40:15</div>
+
+      </div>
+    </section>
+
+    <!-- 11. ADVANCED -->
+    <section class="unit" id="advanced">
+      <div class="unit-header">11. Useful Advanced / Exam Programs</div>
+      <div class="unit-body">
+
+        <h3>Program 36: Bubble Sort</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Sorts a list in ascending order by repeatedly swapping adjacent elements if they are in wrong order.
+        </div>
+        <pre><span class="keyword">def</span> <span class="func">bubble_sort</span>(arr):
+    n = len(arr)
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):
+        <span class="keyword">for</span> j <span class="keyword">in</span> range(0, n - i - 1):
+            <span class="keyword">if</span> arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    <span class="keyword">return</span> arr
+
+numbers = [64, 34, 25, 12, 22, 11, 90]
+print("Original:", numbers)
+print("Sorted  :", bubble_sort(numbers))</pre>
+        <div class="output">Original: [64, 34, 25, 12, 22, 11, 90]
+Sorted  : [11, 12, 22, 25, 34, 64, 90]</div>
+
+        <h3>Program 37: Matrix Addition</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Adds two matrices (2D lists) of same size.
+        </div>
+        <pre>X = [[1, 2, 3],
+     [4, 5, 6],
+     [7, 8, 9]]
+
+Y = [[9, 8, 7],
+     [6, 5, 4],
+     [3, 2, 1]]
+
+result = [[0, 0, 0],
+          [0, 0, 0],
+          [0, 0, 0]]
+
+<span class="keyword">for</span> i <span class="keyword">in</span> range(len(X)):
+    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(X[0])):
+        result[i][j] = X[i][j] + Y[i][j]
+
+print("Result Matrix:")
+<span class="keyword">for</span> row <span class="keyword">in</span> result:
+    print(row)</pre>
+        <div class="output">Result Matrix:
+[10, 10, 10]
+[10, 10, 10]
+[10, 10, 10]</div>
+
+        <h3>Program 38: Simple Stack using List</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Stack works on LIFO (Last In First Out). Push adds item, Pop removes last item.
+        </div>
+        <pre>stack = []
+
+<span class="keyword">def</span> <span class="func">push</span>(item):
+    stack.append(item)
+    print(item, "pushed. Stack:", stack)
+
+<span class="keyword">def</span> <span class="func">pop</span>():
+    <span class="keyword">if</span> stack:
+        item = stack.pop()
+        print(item, "popped. Stack:", stack)
+    <span class="keyword">else</span>:
+        print("Stack is empty!")
+
+push(10)
+push(20)
+push(30)
+pop()
+pop()</pre>
+        <div class="output">10 pushed. Stack: [10]
+20 pushed. Stack: [10, 20]
+30 pushed. Stack: [10, 20, 30]
+30 popped. Stack: [10, 20]
+20 popped. Stack: [10]</div>
+
+        <h3>Program 39: Simple Queue using List</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Queue works on FIFO (First In First Out). Enqueue adds at end, Dequeue removes from front.
+        </div>
+        <pre>queue = []
+
+<span class="keyword">def</span> <span class="func">enqueue</span>(item):
+    queue.append(item)
+    print(item, "added. Queue:", queue)
+
+<span class="keyword">def</span> <span class="func">dequeue</span>():
+    <span class="keyword">if</span> queue:
+        item = queue.pop(0)
+        print(item, "removed. Queue:", queue)
+    <span class="keyword">else</span>:
+        print("Queue is empty!")
+
+enqueue(10)
+enqueue(20)
+enqueue(30)
+dequeue()
+dequeue()</pre>
+        <div class="output">10 added. Queue: [10]
+20 added. Queue: [10, 20]
+30 added. Queue: [10, 20, 30]
+10 removed. Queue: [20, 30]
+20 removed. Queue: [30]</div>
+
+        <h3>Program 40: Lambda Function &amp; Map / Filter</h3>
+        <div class="explain">
+          <strong>What it does:</strong> Lambda is a short anonymous function. <code>map</code> applies a function to every item. <code>filter</code> keeps only items that satisfy a condition.
+        </div>
+        <pre>numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+<span class="comment"># Square every number</span>
+squares = list(map(<span class="keyword">lambda</span> x: x ** 2, numbers))
+print("Squares:", squares)
+
+<span class="comment"># Keep only even numbers</span>
+evens = list(filter(<span class="keyword">lambda</span> x: x % 2 == 0, numbers))
+print("Evens  :", evens)</pre>
+        <div class="output">Squares: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+Evens  : [2, 4, 6, 8, 10]</div>
+
+      </div>
+    </section>
+
+    <div class="note">
+      <strong>Tip for MCA Students:</strong> Practice these programs by typing them yourself. Change the values and see what happens. Understanding is more important than memorizing. For exams, focus on: loops, functions, lists, OOP (class, inheritance), file handling, and exception handling.
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Python Programming for MCA — Complete Programs with Output &amp; Simple Explanations</p>
+    <p style="margin-top:0.35rem; opacity:0.75;">Practice regularly. Write code, run it, break it, fix it — that is the best way to learn Python.</p>
+  </footer>
+
+</body>
+</html>
