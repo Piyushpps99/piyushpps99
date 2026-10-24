@@ -1,741 +1,1160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computer Organization & Architecture | Premium Notes</title>
-  
-  <!-- Modern Typography (Inter & JetBrains Mono) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Organization & Architecture | Study Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2c5282;
+            --accent: #3182ce;
+            --accent-soft: #ebf8ff;
+            --success: #38a169;
+            --warning: #dd6b20;
+            --danger: #e53e3e;
+            --dark: #1a202c;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
 
-  <style>
-    :root {
-      --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #0d1322 100%);
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      
-      /* Vibrant Accents */
-      --cyan-glow: #06b6d4;
-      --cyan-accent: #38bdf8;
-      --purple-accent: #a855f7;
-      --pink-accent: #f43f5e;
-      --emerald-accent: #10b981;
-      --amber-accent: #f59e0b;
-      
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --code-bg: #030712;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            color: var(--gray-800);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
 
-    body {
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      background: var(--bg-gradient);
-      color: var(--text-primary);
-      line-height: 1.7;
-      padding: 2.5rem 1rem;
-      min-height: 100vh;
-    }
+        /* ========== HEADER ========== */
+        .hero {
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 50%, #3182ce 100%);
+            color: white;
+            padding: 4rem 1.5rem 3.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .container {
-      max-width: 1050px;
-      margin: 0 auto;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%);
+            animation: pulse 15s ease-in-out infinite;
+        }
 
-    /* Floating Action / Action Banner for PDF Download */
-    .print-bar {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 1.5rem;
-    }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
 
-    .btn-print {
-      background: linear-gradient(135deg, var(--cyan-accent), var(--purple-accent));
-      color: #fff;
-      font-weight: 700;
-      border: none;
-      padding: 0.75rem 1.75rem;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.95rem;
-    }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-    .btn-print:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(168, 85, 247, 0.5);
-    }
+        .hero .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
 
-    /* Header Styling */
-    header {
-      position: relative;
-      text-align: center;
-      padding: 3.5rem 2rem;
-      background: rgba(15, 23, 42, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      overflow: hidden;
-    }
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
 
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(56,189,248,0.1) 0%, rgba(168,85,247,0.05) 50%, transparent 70%);
-      pointer-events: none;
-    }
+        .hero .subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 1.75rem;
+        }
 
-    .author-tag {
-      display: inline-block;
-      background: linear-gradient(90deg, rgba(244, 63, 94, 0.15), rgba(168, 85, 247, 0.15));
-      border: 1px solid rgba(244, 63, 94, 0.3);
-      color: #fda4af;
-      padding: 0.35rem 1.25rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      letter-spacing: 0.5px;
-    }
+        .topics-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    header h1 {
-      font-size: 2.75rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #c084fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.5px;
-    }
+        .topics-pills span {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
 
-    header p {
-      color: var(--text-secondary);
-      font-size: 1.15rem;
-      font-weight: 500;
-    }
+        /* ========== CONTAINER ========== */
+        .container {
+            max-width: 960px;
+            margin: -2rem auto 4rem;
+            padding: 0 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
 
-    /* Chapter Cards */
-    .chapter {
-      background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 2.25rem;
-      margin-bottom: 2.25rem;
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
-      transition: border-color 0.3s ease;
-    }
+        /* ========== TOC ========== */
+        .toc {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            padding: 1.75rem 2rem;
+            margin-bottom: 2.5rem;
+        }
 
-    .chapter:hover {
-      border-color: rgba(56, 189, 248, 0.3);
-    }
+        .toc h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .chapter h2 {
-      font-size: 1.65rem;
-      font-weight: 700;
-      color: var(--cyan-accent);
-      border-bottom: 2px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 0.85rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
+        .toc h2::before {
+            content: '📑';
+        }
 
-    .chapter h3 {
-      font-size: 1.25rem;
-      color: var(--purple-accent);
-      margin: 1.75rem 0 0.85rem 0;
-      font-weight: 600;
-    }
+        .toc ol {
+            columns: 2;
+            column-gap: 2rem;
+            padding-left: 1.25rem;
+        }
 
-    /* Callout Boxes */
-    .key-concept {
-      background: linear-gradient(90deg, rgba(56, 189, 248, 0.1) 0%, rgba(56, 189, 248, 0.02) 100%);
-      border-left: 4px solid var(--cyan-accent);
-      padding: 1.15rem 1.5rem;
-      border-radius: 0 12px 12px 0;
-      margin-bottom: 1.5rem;
-    }
+        .toc li {
+            margin-bottom: 0.45rem;
+            break-inside: avoid;
+        }
 
-    .key-concept strong {
-      color: var(--cyan-accent);
-    }
+        .toc a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
 
-    .warning-box {
-      background: linear-gradient(90deg, rgba(244, 63, 94, 0.12) 0%, rgba(244, 63, 94, 0.02) 100%);
-      border-left: 4px solid var(--pink-accent);
-      padding: 1.15rem 1.5rem;
-      border-radius: 0 12px 12px 0;
-      margin: 1.5rem 0;
-    }
+        .toc a:hover {
+            color: var(--accent);
+        }
 
-    .warning-box strong {
-      color: var(--pink-accent);
-    }
+        /* ========== SECTION ========== */
+        section {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.25rem 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--gray-100);
+        }
 
-    /* Lists */
-    ul, ol {
-      padding-left: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
+        .section-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 3px solid var(--accent-soft);
+        }
 
-    li {
-      margin-bottom: 0.6rem;
-      color: #cbd5e1;
-    }
+        .section-number {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+        }
 
-    li strong {
-      color: #f8fafc;
-    }
+        .section-header h2 {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.3;
+            margin-top: 0.3rem;
+        }
 
-    /* Tables */
-    .table-container {
-      overflow-x: auto;
-      margin: 1.75rem 0;
-      border-radius: 12px;
-      border: 1px solid var(--card-border);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 650;
+            color: var(--primary-light);
+            margin: 1.75rem 0 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.95rem;
-    }
+        h3::before {
+            content: '';
+            width: 4px;
+            height: 1.1em;
+            background: var(--accent);
+            border-radius: 2px;
+        }
 
-    th {
-      background: #0f172a;
-      color: var(--cyan-accent);
-      padding: 1rem 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      border-bottom: 2px solid var(--card-border);
-    }
+        h4 {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin: 1.4rem 0 0.6rem;
+        }
 
-    td {
-      padding: 1rem 1.25rem;
-      border-top: 1px solid var(--card-border);
-      color: #cbd5e1;
-    }
+        p {
+            margin-bottom: 1rem;
+            color: var(--gray-700);
+        }
 
-    tr:nth-child(even) {
-      background-color: rgba(255, 255, 255, 0.02);
-    }
+        ul, ol {
+            margin: 0.75rem 0 1.25rem 1.5rem;
+            color: var(--gray-700);
+        }
 
-    tr:hover {
-      background-color: rgba(56, 189, 248, 0.04);
-    }
+        li {
+            margin-bottom: 0.4rem;
+        }
 
-    /* Code & ASCII Diagrams */
-    pre, code {
-      font-family: 'JetBrains Mono', monospace;
-    }
+        strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
 
-    pre {
-      background-color: var(--code-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 1.35rem;
-      overflow-x: auto;
-      color: var(--cyan-accent);
-      font-size: 0.88rem;
-      margin: 1.25rem 0;
-      line-height: 1.5;
-      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
-    }
+        /* ========== TABLES ========== */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.25rem 0 1.75rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+        }
 
-    .formula-box {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid var(--card-border);
-      padding: 1rem 1.25rem;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: 600;
-      color: var(--cyan-accent);
-      margin: 1rem 0;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            background: white;
+        }
 
-    .badge {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--emerald-accent), #059669);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.25rem 0.65rem;
-      border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+        th {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            font-weight: 600;
+            padding: 0.85rem 1rem;
+            text-align: left;
+            white-space: nowrap;
+        }
 
-    .step-list {
-      list-style: none;
-      counter-reset: step-counter;
-      padding-left: 0;
-    }
+        td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: top;
+        }
 
-    .step-list li {
-      counter-increment: step-counter;
-      position: relative;
-      padding-left: 3.25rem;
-      margin-bottom: 1.25rem;
-    }
+        tr:nth-child(even) {
+            background: var(--gray-50);
+        }
 
-    .step-list li::before {
-      content: counter(step-counter);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 2.25rem;
-      height: 2.25rem;
-      background: linear-gradient(135deg, var(--purple-accent), #7c3aed);
-      color: white;
-      font-weight: 800;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
-    }
+        tr:hover {
+            background: var(--accent-soft);
+        }
 
-    /* =========================================================
-       PRINT & PDF GENERATION STYLES
-       ========================================================= */
-    @media print {
-      body {
-        background: #ffffff !important;
-        color: #0f172a !important;
-        padding: 0 !important;
-      }
+        /* ========== CODE / ALGORITHM BOX ========== */
+        .algo-box {
+            background: #1a202c;
+            color: #e2e8f0;
+            border-radius: var(--radius-sm);
+            padding: 1.4rem 1.6rem;
+            margin: 1.25rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            line-height: 1.65;
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+        }
 
-      .print-bar {
-        display: none !important;
-      }
+        .algo-box .step {
+            margin-bottom: 0.35rem;
+        }
 
-      .container {
-        max-width: 100% !important;
-      }
+        .algo-box .comment {
+            color: #68d391;
+        }
 
-      header {
-        background: #f8fafc !important;
-        border: 2px solid #e2e8f0 !important;
-        box-shadow: none !important;
-        padding: 2rem 1rem !important;
-        border-radius: 12px !important;
-        page-break-after: avoid;
-      }
+        /* ========== HIGHLIGHT BOXES ========== */
+        .note-box {
+            background: var(--accent-soft);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 1.1rem 1.4rem;
+            margin: 1.25rem 0;
+        }
 
-      header h1 {
-        background: none !important;
-        -webkit-text-fill-color: #0f172a !important;
-        color: #0f172a !important;
-      }
+        .note-box.success {
+            background: #f0fff4;
+            border-left-color: var(--success);
+        }
 
-      .author-tag {
-        background: #f1f5f9 !important;
-        color: #e11d48 !important;
-        border-color: #fda4af !important;
-      }
+        .note-box.warning {
+            background: #fffaf0;
+            border-left-color: var(--warning);
+        }
 
-      header p {
-        color: #475569 !important;
-      }
+        .result-box {
+            background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+            border: 1px solid #90cdf4;
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.4rem;
+            margin: 1.25rem 0;
+            font-weight: 500;
+        }
 
-      .chapter {
-        background: #ffffff !important;
-        border: 1px solid #cbd5e1 !important;
-        box-shadow: none !important;
-        border-radius: 12px !important;
-        padding: 1.5rem !important;
-        margin-bottom: 1.5rem !important;
-        page-break-inside: avoid;
-      }
+        /* ========== DIAGRAM BOX ========== */
+        .diagram {
+            background: var(--gray-50);
+            border: 2px dashed var(--gray-300);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            overflow-x: auto;
+            color: var(--gray-700);
+        }
 
-      .chapter h2 {
-        color: #0284c7 !important;
-        border-bottom-color: #e2e8f0 !important;
-      }
+        .diagram-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
 
-      .chapter h3 {
-        color: #7e22ce !important;
-      }
+        /* ========== GRID CARDS ========== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin: 1.25rem 0;
+        }
 
-      .key-concept {
-        background: #f0f9ff !important;
-        border-left-color: #0284c7 !important;
-      }
+        .card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-      .key-concept strong {
-        color: #0369a1 !important;
-      }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
 
-      .warning-box {
-        background: #fff1f2 !important;
-        border-left-color: #e11d48 !important;
-      }
+        .card h4 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1rem;
+        }
 
-      .warning-box strong {
-        color: #be123c !important;
-      }
+        .card p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
 
-      li {
-        color: #334155 !important;
-      }
+        /* ========== FOOTER ========== */
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
 
-      li strong {
-        color: #0f172a !important;
-      }
+        footer .end-badge {
+            display: inline-block;
+            background: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow-sm);
+            font-weight: 500;
+            color: var(--primary);
+        }
 
-      th {
-        background: #f1f5f9 !important;
-        color: #0369a1 !important;
-        border-bottom-color: #cbd5e1 !important;
-      }
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 700px) {
+            section {
+                padding: 1.5rem 1.25rem;
+            }
+            .toc ol {
+                columns: 1;
+            }
+            .section-header {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .hero {
+                padding: 3rem 1rem 2.5rem;
+            }
+        }
 
-      td {
-        border-top-color: #e2e8f0 !important;
-        color: #334155 !important;
-      }
-
-      pre {
-        background: #f8fafc !important;
-        border: 1px solid #cbd5e1 !important;
-        color: #0284c7 !important;
-        box-shadow: none !important;
-      }
-
-      .badge {
-        background: #10b981 !important;
-        color: #ffffff !important;
-      }
-
-      .step-list li::before {
-        background: #7e22ce !important;
-        box-shadow: none !important;
-      }
-    }
-  </style>
+        /* Print styles */
+        @media print {
+            body { background: white; }
+            .hero { background: var(--primary); }
+            section { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    
-    <!-- Printable Action Bar -->
-    <div class="print-bar">
-      <button class="btn-print" onclick="window.print()">
-        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-        Save / Export to PDF
-      </button>
-    </div>
-
-    <!-- Header Section -->
-    <header>
-      <h1>Notes by Thakur Piyush Singh ❤️💖</h1>
-      <h1>Computer Organization & Architecture</h1>
-      <p>Comprehensive Quick-Reference & Exam Revision Guide</p>
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge">Thakur Piyush Singh</div>
+            <h1>Computer Organization<br>& Architecture</h1>
+            <p class="subtitle">Detailed explanations • Worked examples • Clear diagrams</p>
+            <div class="topics-pills">
+                <span>Binary Division</span>
+                <span>Hardwired Control</span>
+                <span>Memory Organization</span>
+                <span>DMA</span>
+                <span>Serial Communication</span>
+                <span>Addressing Modes</span>
+                <span>Cache Mapping</span>
+                <span>IEEE-754</span>
+                <span>Virtual Memory</span>
+                <span>Interrupts</span>
+            </div>
+        </div>
     </header>
 
-    <!-- Chapter 1 -->
-    <section class="chapter">
-      <h2>Chapter 1: Basic Computer Structure & Von-Neumann Architecture</h2>
-      <div class="key-concept">
-        <strong>Key Concept:</strong> The Von-Neumann Architecture describes a stored-program computer where data and instruction code are stored in the same shared memory module and executed sequentially.
-      </div>
+    <div class="container">
 
-      <h3>Core Components</h3>
-      <ul>
-        <li><strong>Central Processing Unit (CPU):</strong>
-          <ul>
-            <li><strong>Control Unit (CU):</strong> Fetches and decodes instructions; directs the flow of data inside the system.</li>
-            <li><strong>Arithmetic Logic Unit (ALU):</strong> Performs all mathematical (+, -) and logical (AND, OR) operations.</li>
-          </ul>
-        </li>
-        <li><strong>Main Memory:</strong> Holds both program code (instructions) and data variables currently in use.</li>
-        <li><strong>Input/Output (I/O) Units:</strong> Interfaces with peripherals (keyboard, monitor, storage disks).</li>
-      </ul>
+        <!-- TABLE OF CONTENTS -->
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#binary-division">Binary Division (Restoring Method)</a></li>
+                <li><a href="#hardwired">Hardwired Controller Design</a></li>
+                <li><a href="#rom">ROM and IC Package Pins</a></li>
+                <li><a href="#memory-org">Memory Organization (2D & 2½D)</a></li>
+                <li><a href="#dma">DMA Controller</a></li>
+                <li><a href="#serial">Serial Communication</a></li>
+                <li><a href="#addressing">Addressing Modes</a></li>
+                <li><a href="#cache">Cache Mapping Techniques</a></li>
+                <li><a href="#ieee754">IEEE-754 Floating-Point</a></li>
+                <li><a href="#virtual">Virtual Memory & Page Replacement</a></li>
+                <li><a href="#interrupts">Interrupts and Bus Arbitration</a></li>
+            </ol>
+        </nav>
 
-      <div class="warning-box">
-        <strong>The Von-Neumann Bottleneck:</strong> Because data and instructions share the exact same physical bus lines, the CPU is forced to alternate between fetching instructions and reading/writing data, limiting overall system speed.
-      </div>
-    </section>
+        <!-- 1. BINARY DIVISION -->
+        <section id="binary-division">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2>Binary Division<br><span style="font-size:0.85rem;font-weight:500;color:#718096;">Restoring Division Method</span></h2>
+            </div>
 
-    <!-- Chapter 2 -->
-    <section class="chapter">
-      <h2>Chapter 2: The Instruction Cycle & CPU Registers</h2>
-      <div class="key-concept">
-        <strong>Key Concept:</strong> Every computer program runs by continually looping through the Instruction Cycle.
-      </div>
+            <p>Binary division is performed similarly to decimal long division but using binary arithmetic. The <strong>restoring division algorithm</strong> is a classic method used in hardware for unsigned integer division.</p>
 
-      <h3>Step-by-Step Cycle Mechanics</h3>
-      <ol class="step-list">
-        <li><strong>Fetch:</strong> CPU copies the memory address from the Program Counter (PC) into the Memory Address Register (MAR). Memory reads the instruction code and moves it to the Instruction Register (IR). The PC increments by 1.</li>
-        <li><strong>Decode:</strong> The Control Unit (CU) decodes the bit pattern in the IR to determine the operation and identifies required operands.</li>
-        <li><strong>Execute:</strong> The CPU executes the operation via the ALU or register transfer.</li>
-        <li><strong>Store / Check Interrupt:</strong> The result is stored in the Accumulator (AC) or memory, and any pending hardware interrupts are serviced.</li>
-      </ol>
+            <h3>Restoring Division Algorithm Steps</h3>
+            <div class="algo-box">
+                <div class="step">1. <strong>Initialize:</strong> Load Dividend into Register A (or AQ). Load Divisor into M. Set count = n</div>
+                <div class="step">2. Shift left the AQ register pair by 1 bit</div>
+                <div class="step">3. Subtract M from A &nbsp;&nbsp;<span class="comment">(A ← A − M)</span></div>
+                <div class="step">4. Check sign of A:</div>
+                <div class="step">&nbsp;&nbsp;&nbsp;• If A ≥ 0 (MSB = 0): Set Q<sub>0</sub> = 1</div>
+                <div class="step">&nbsp;&nbsp;&nbsp;• If A &lt; 0 (MSB = 1): Restore A ← A + M, set Q<sub>0</sub> = 0</div>
+                <div class="step">5. Decrement count. If count ≠ 0 → go to step 2</div>
+                <div class="step">6. <strong>Result:</strong> Quotient in Q, Remainder in A</div>
+            </div>
 
-      <h3>Critical CPU Registers Summary</h3>
-      <ul>
-        <li><strong>PC (Program Counter):</strong> Tracks the memory address of the next instruction to be executed.</li>
-        <li><strong>MAR (Memory Address Register):</strong> Holds the address currently being accessed in RAM.</li>
-        <li><strong>MDR/MBR (Memory Data Register):</strong> Holds the actual data payload read from or written to RAM.</li>
-        <li><strong>IR (Instruction Register):</strong> Holds the instruction currently being decoded/executed.</li>
-        <li><strong>AC (Accumulator):</strong> Temporary working register attached directly to the ALU output.</li>
-      </ul>
-    </section>
+            <h3>Example 1: Divide 8 by 3 (4-bit)</h3>
+            <p>Dividend = 8 = <code>1000<sub>2</sub></code>, Divisor = 3 = <code>0011<sub>2</sub></code><br>
+            AQ starts with A = 0000, Q = 1000</p>
 
-    <!-- Chapter 3 -->
-    <section class="chapter">
-      <h2>Chapter 3: Addressing Modes</h2>
-      <p>Addressing modes define how the instruction's operand field locates the actual data (Effective Address, or EA).</p>
-      
-      <h3>Exam Example Scenario</h3>
-      <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-        Assume: Register R1 = 500, Memory Address 500 = 800, Memory Address 800 = 1200, Instruction Operand field = 500.
-      </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Step</th>
+                            <th>Operation</th>
+                            <th>A (Remainder)</th>
+                            <th>Q (Quotient)</th>
+                            <th>Action / Remark</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Init</td>
+                            <td>Load</td>
+                            <td>0000</td>
+                            <td>1000</td>
+                            <td>A=0, Q=Dividend, M=0011</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">1</td>
+                            <td>Shift Left</td>
+                            <td>0001</td>
+                            <td>0000</td>
+                            <td>AQ shifted left</td>
+                        </tr>
+                        <tr>
+                            <td>A − M</td>
+                            <td>1110</td>
+                            <td>0000</td>
+                            <td>0001−0011 = −2 (negative)</td>
+                        </tr>
+                        <tr>
+                            <td>Restore + Q<sub>0</sub>=0</td>
+                            <td>0001</td>
+                            <td>0000</td>
+                            <td>A ← A+M; Q<sub>0</sub>=0</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">2</td>
+                            <td>Shift Left</td>
+                            <td>0010</td>
+                            <td>0000</td>
+                            <td>AQ shifted left</td>
+                        </tr>
+                        <tr>
+                            <td>A − M</td>
+                            <td>1111</td>
+                            <td>0000</td>
+                            <td>0010−0011 = −1 (negative)</td>
+                        </tr>
+                        <tr>
+                            <td>Restore + Q<sub>0</sub>=0</td>
+                            <td>0010</td>
+                            <td>0000</td>
+                            <td>A ← A+M; Q<sub>0</sub>=0</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">3</td>
+                            <td>Shift Left</td>
+                            <td>0100</td>
+                            <td>0000</td>
+                            <td>AQ shifted left</td>
+                        </tr>
+                        <tr>
+                            <td>A − M</td>
+                            <td>0001</td>
+                            <td>0000</td>
+                            <td>0100−0011 = +1 (positive)</td>
+                        </tr>
+                        <tr>
+                            <td>Set Q<sub>0</sub>=1</td>
+                            <td>0001</td>
+                            <td>0001</td>
+                            <td>No restore; Q<sub>0</sub>=1</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">4</td>
+                            <td>Shift Left</td>
+                            <td>0010</td>
+                            <td>0010</td>
+                            <td>AQ shifted left</td>
+                        </tr>
+                        <tr>
+                            <td>A − M</td>
+                            <td>1111</td>
+                            <td>0010</td>
+                            <td>0010−0011 = −1 (negative)</td>
+                        </tr>
+                        <tr>
+                            <td>Restore + Q<sub>0</sub>=0</td>
+                            <td>0010</td>
+                            <td>0010</td>
+                            <td>A ← A+M; Q<sub>0</sub>=0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Addressing Mode</th>
-              <th>How Effective Address (EA) is Found</th>
-              <th>Calculated EA</th>
-              <th>Value Loaded to CPU</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Immediate</strong></td>
-              <td>Data is inside the instruction itself</td>
-              <td>None</td>
-              <td><code>500</code></td>
-            </tr>
-            <tr>
-              <td><strong>Direct</strong></td>
-              <td>EA = Address in instruction</td>
-              <td><code>500</code></td>
-              <td><code>800</code></td>
-            </tr>
-            <tr>
-              <td><strong>Indirect</strong></td>
-              <td>EA = Memory[Address in instruction]</td>
-              <td><code>800</code></td>
-              <td><code>1200</code></td>
-            </tr>
-            <tr>
-              <td><strong>Register Direct</strong></td>
-              <td>EA = Specified Register</td>
-              <td>R1</td>
-              <td><code>500</code></td>
-            </tr>
-            <tr>
-              <td><strong>Register Indirect</strong></td>
-              <td>EA = Value in Specified Register</td>
-              <td><code>500</code></td>
-              <td><code>800</code></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+            <div class="result-box">
+                <strong>Final Result:</strong> Quotient Q = 0010<sub>2</sub> = 2, Remainder A = 0010<sub>2</sub> = 2<br>
+                Verification: 8 = 3 × 2 + 2 ✓
+            </div>
 
-    <!-- Chapter 4 -->
-    <section class="chapter">
-      <h2>Chapter 4: Signed Multiplication via Booth's Algorithm</h2>
-      <div class="key-concept">
-        <strong>Key Concept:</strong> Booth’s Algorithm efficiently multiplies signed binary integers in 2's complement notation by replacing consecutive runs of 1s with a single addition and subtraction step.
-      </div>
+            <h3>Example 2: 15 ÷ 3</h3>
+            <p>Dividend = 15 = <code>00001111<sub>2</sub></code>, Divisor = 3 = <code>0011<sub>2</sub></code><br>
+            Result: Quotient = 0101<sub>2</sub> = 5, Remainder = 0</p>
 
-      <h3>Hardware Registers Involved</h3>
-      <p><strong>M:</strong> Multiplicand | <strong>Q:</strong> Multiplier | <strong>A:</strong> Accumulator (initialized to <code>0000</code>) | <strong>Q<sub>-1</sub>:</strong> Extra single-bit register (initialized to <code>0</code>) | <strong>Count:</strong> Number of bits in operands</p>
+            <div class="note-box">
+                <strong>Note:</strong> Non-restoring division is a faster variant that avoids the restore step by conditionally adding or subtracting based on the previous result.
+            </div>
+        </section>
 
-      <h3>Action Rules Based on (Q<sub>0</sub>, Q<sub>-1</sub>)</h3>
-      <ul>
-        <li><code>10</code>: Subtract Multiplicand (A &leftarrow; A - M), then <strong>Arithmetic Shift Right (ASR)</strong> (A, Q, Q<sub>-1</sub>).</li>
-        <li><code>01</code>: Add Multiplicand (A &leftarrow; A + M), then <strong>Arithmetic Shift Right (ASR)</strong> (A, Q, Q<sub>-1</sub>).</li>
-        <li><code>00</code> or <code>11</code>: <strong>Arithmetic Shift Right (ASR)</strong> (A, Q, Q<sub>-1</sub>) only.</li>
-      </ul>
+        <!-- 2. HARDWIRED CONTROLLER -->
+        <section id="hardwired">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2>Hardwired Controller Design</h2>
+            </div>
 
-      <h3>Worked Numerical Example: Multiply (+7) &times; (-3) using 4-bit numbers</h3>
-      <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
-        M = +7 = 0111<sub>2</sub>, -M = -7 = 1001<sub>2</sub> (2's complement)<br>
-        Q = -3 = 1101<sub>2</sub><br>
-        Initial State: A = 0000, Q = 1101, Q<sub>-1</sub> = 0, Count = 4
-      </p>
+            <p>A <strong>hardwired control unit</strong> generates control signals using a fixed logic circuit composed of gates, flip-flops, decoders, and a finite-state machine (FSM). The control logic is permanently wired; changing the instruction set requires redesigning the hardware.</p>
 
-      <pre>
-1. Cycle 1: Inspect (Q_0=1, Q_-1=0) -> Action: A = A - M
-   - A <- A + (-M) = 0000 + 1001 = 1001
-   - ASR: A = 1100, Q = 1110, Q_-1 = 1
-   - Count = 3
+            <h3>Key Characteristics</h3>
+            <div class="cards">
+                <div class="card">
+                    <h4>⚡ Fast Operation</h4>
+                    <p>Combinational + sequential logic with minimal delay</p>
+                </div>
+                <div class="card">
+                    <h4>💰 High Cost</h4>
+                    <p>Hardware cost & complexity rises with instruction set size</p>
+                </div>
+                <div class="card">
+                    <h4>🔒 Hard to Modify</h4>
+                    <p>Difficult to change once fabricated</p>
+                </div>
+                <div class="card">
+                    <h4>🎯 Best For</h4>
+                    <p>RISC processors & simple CPUs where speed is critical</p>
+                </div>
+            </div>
 
-2. Cycle 2: Inspect (Q_0=0, Q_-1=1) -> Action: A = A + M
-   - A <- A + M = 1100 + 0111 = 0011
-   - ASR: A = 0001, Q = 1111, Q_-1 = 0
-   - Count = 2
+            <h3>Methods to Design Hardwired Controllers</h3>
 
-3. Cycle 3: Inspect (Q_0=1, Q_-1=0) -> Action: A = A - M
-   - A <- A + (-M) = 0001 + 1001 = 1010
-   - ASR: A = 1101, Q = 0111, Q_-1 = 1
-   - Count = 1
+            <h4>1. State Table / State Diagram Method</h4>
+            <p>Identify all control states needed for each instruction micro-operation. Draw a state diagram (or state table). Derive Boolean equations for next-state logic and output control signals. Implement with flip-flops and combinational gates.</p>
 
-4. Cycle 4: Inspect (Q_0=1, Q_-1=1) -> Action: Shift Only
-   - ASR: A = 1110, Q = 1011, Q_-1 = 1
-   - Count = 0 (Stop)
-      </pre>
+            <h4>2. Sequence Counter + Decoder Method</h4>
+            <p>A binary counter generates a sequence of timing signals (T<sub>0</sub>, T<sub>1</sub>, T<sub>2</sub>, …). A decoder expands the counter value into one-hot timing signals. Control signals are formed by ANDing timing signals with instruction decoder outputs (and status flags). Common in simple CPUs with fetch–decode–execute cycles.</p>
 
-      <p><strong>Final Combined Result (A, Q):</strong> 11101011<sub>2</sub><br>
-      Convert from 2's complement: Flip bits &rarr; 00010100<sub>2</sub> + 1 = 00010101<sub>2</sub> = -21 <span class="badge">Correct: 7 &times; -3 = -21</span></p>
-    </section>
+            <h4>3. Delay Element / Timing Signal Generator</h4>
+            <p>A ring counter or chain of delay elements produces successive control pulses. Suitable for very simple controllers with fixed timing.</p>
 
-    <!-- Chapter 5 -->
-    <section class="chapter">
-      <h2>Chapter 5: Memory System & Cache Organization</h2>
-      
-      <h3>Memory Hierarchy Pyramid</h3>
-      <pre>
-         /  Registers   \            <- Micro-seconds / Smallest Capacity / Highest Cost
-        / Cache (L1/L2)  \
-       /   Main Memory    \          <- RAM (SRAM / DRAM)
-      / Secondary Storage \         <- Hard Drives / SSDs / High Capacity / Lowest Cost
-      </pre>
+            <h4>4. PLA / PAL Based Design</h4>
+            <p>Programmable Logic Arrays implement the complex Boolean functions of next-state and output logic in a compact, structured way while remaining hardwired after programming.</p>
 
-      <h3>Cache Mapping Techniques</h3>
-      <p>Cache memory bridges the speed gap between CPU registers and main RAM. There are three primary mapping techniques:</p>
+            <div class="note-box">
+                <strong>Typical Path:</strong> Instruction Register → Opcode Decoder → Control Logic (with timing inputs & condition flags) → Control Signals (to ALU, registers, memory, buses)
+            </div>
+        </section>
 
-      <pre>
-  ┌───────────────────┐    ┌───────────────────┐    ┌───────────────────┐
-  │  Direct Mapping   │    │Fully Associative  │    │ Set-Associative   │
-  ├───────────────────┤    ├───────────────────┤    ├───────────────────┤
-  │ Block maps to ONE │    │ Block can go in   │    │ Block maps to ANY │
-  │ specific cache    │    │ ANY available     │    │ line inside a     │
-  │ line (i mod N).   │    │ cache line.       │    │ assigned set.     │
-  └───────────────────┘    └───────────────────┘    └───────────────────┘
-      </pre>
+        <!-- 3. ROM -->
+        <section id="rom">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2>ROM and IC Package Pins</h2>
+            </div>
 
-      <ul>
-        <li><strong>Direct Mapping:</strong>
-          <ul>
-            <li>Formula: <span class="formula-box" style="display:inline-block; padding:0.2rem 0.6rem; margin:0;">Cache Line Number = (Main Memory Block Number) mod (Total Cache Lines)</span></li>
-            <li><em>Advantage:</em> Extremely fast hardware check.</li>
-            <li><em>Disadvantage:</em> High conflict misses if two active blocks map to the same line.</li>
-          </ul>
-        </li>
-        <li><strong>Fully Associative Mapping:</strong>
-          <ul>
-            <li>Any block from RAM can sit in any empty cache line.</li>
-            <li><em>Advantage:</em> Minimum cache misses.</li>
-            <li><em>Disadvantage:</em> Requires expensive associative search logic circuits.</li>
-          </ul>
-        </li>
-        <li><strong>Set-Associative Mapping (Best Compromise):</strong>
-          <ul>
-            <li>Cache is divided into sets of <i>k</i> lines (<i>k</i>-way set associative).</li>
-            <li>Formula: <span class="formula-box" style="display:inline-block; padding:0.2rem 0.6rem; margin:0;">Cache Set = (Main Memory Block Number) mod (Total Sets)</span></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+            <p>A ROM of organization <strong>m × n</strong> has <em>m</em> addressable locations, each storing an <em>n</em>-bit word.</p>
 
-    <!-- Chapter 6 -->
-    <section class="chapter">
-      <h2>Chapter 6: Input-Output (I/O) & Direct Memory Access (DMA)</h2>
-      
-      <h3>Comparing Transfer Modes</h3>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th>Programmed I/O</th>
-              <th>Interrupt-Driven I/O</th>
-              <th>Direct Memory Access (DMA)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>CPU Involvement</strong></td>
-              <td>Continuous polling</td>
-              <td>Interrupted only when data ready</td>
-              <td>Zero during block transfer</td>
-            </tr>
-            <tr>
-              <td><strong>Transfer Speed</strong></td>
-              <td>Very Slow</td>
-              <td>Moderate</td>
-              <td>Extremely Fast</td>
-            </tr>
-            <tr>
-              <td><strong>Best For</strong></td>
-              <td>Simple low-speed chips</td>
-              <td>Keyboards, Mouse</td>
-              <td>Hard Disks, GPUs, Network Cards</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+            <h3>Example: 1024 × 8 ROM</h3>
+            <ul>
+                <li>Number of addressable locations = 1024 = 2<sup>10</sup> → <strong>10 address pins</strong> (A<sub>0</sub>–A<sub>9</sub>)</li>
+                <li>Data width = 8 bits → <strong>8 data pins</strong> (D<sub>0</sub>–D<sub>7</sub>)</li>
+                <li>Additional pins typically required:
+                    <ul>
+                        <li>Chip Enable / Chip Select (CE or CS) — 1 pin</li>
+                        <li>Output Enable (OE) — 1 pin</li>
+                        <li>Power (V<sub>CC</sub>) and Ground (GND) — 2 pins</li>
+                    </ul>
+                </li>
+            </ul>
 
-      <h3>DMA Operation Sequence</h3>
-      <p>When bulk data must move between an I/O device and RAM, the CPU hands control over to the DMA Controller:</p>
-      <ol>
-        <li>CPU sends starting memory address, word count, and Read/Write signal to the DMA controller.</li>
-        <li>CPU requests bus control (<strong>Bus Grant</strong> signal).</li>
-        <li>DMA controller transfers the entire block of data directly to/from RAM word by word.</li>
-        <li>Once completed, DMA raises a single hardware interrupt to notify the CPU that the transfer is done.</li>
-      </ol>
-    </section>
+            <div class="result-box">
+                <strong>Minimum total pins ≈</strong> 10 (addr) + 8 (data) + 1 (CE) + 1 (OE) + 2 (power) = <strong>22 pins</strong><br>
+                Commercial packages often use 24-pin or 28-pin DIPs for convenience and extra features.
+            </div>
 
-    <!-- Chapter 7 -->
-    <section class="chapter">
-      <h2>Chapter 7: Instruction Pipelining & Hazards</h2>
-      <div class="key-concept">
-        <strong>Key Concept:</strong> Pipelining overlaps the execution of multiple instructions, running different execution stages simultaneously on separate hardware circuits.
-      </div>
+            <div class="diagram">
+                <div class="diagram-title">Block Diagram of 1024 × 8 ROM</div>
+<pre style="margin:0;white-space:pre;font-family:inherit;">
+        +---------------------------------------+
+        |              1024 × 8 ROM             |
+        |                                       |
+        |   A0 ──┐                              |
+        |   A1 ──┤                              |
+        |   A2 ──┤   Address                    |
+        |   ...  ├── Decoder ── 1024 rows       |
+        |   A9 ──┘         of 8-bit storage     |
+        |                                       |
+        |   CE ──── Chip Enable                 |
+        |   OE ──── Output Enable               |
+        |                                       |
+        |              8-bit Data Out           |
+        |   D0 D1 D2 D3 D4 D5 D6 D7             |
+        +---------------------------------------+
+</pre>
+            </div>
 
-      <pre>
-Clock Cycles ──►  1     2     3     4     5     6
-Instruction 1  [ IF ][ ID ][ EX ][ WB ]
-Instruction 2        [ IF ][ ID ][ EX ][ WB ]
-Instruction 3              [ IF ][ ID ][ EX ][ WB ]
-      </pre>
-      <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">(IF = Instruction Fetch, ID = Instruction Decode, EX = Execute, WB = Write Back)</p>
+            <div class="note-box">
+                <strong>General Formula:</strong> For a 2<sup>k</sup> × n ROM → k address lines, n data lines, plus control and power pins.
+            </div>
+        </section>
 
-      <h3>Speedup Formula</h3>
-      <p>For <i>n</i> instructions executed through a <i>k</i>-stage pipeline:</p>
-      <div class="formula-box">
-        S<sub>k</sub> = (Time taken without pipeline) / (Time taken with pipeline) = (n &middot; k) / (k + n - 1)
-      </div>
+        <!-- 4. MEMORY ORGANIZATION -->
+        <section id="memory-org">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2>Memory Organization<br><span style="font-size:0.85rem;font-weight:500;color:#718096;">2D and 2½D</span></h2>
+            </div>
 
-      <h3>Pipeline Hazards (Stalls)</h3>
-      <p>Factors that disrupt the pipeline flow and force "bubble" delays:</p>
-      <ul>
-        <li><strong>Structural Hazard:</strong> Two instructions need the same hardware resource at the same time (e.g., both needing to access memory simultaneously).</li>
-        <li><strong>Data Hazard:</strong> An instruction depends on the output of a prior instruction that hasn't completed its Write-Back stage yet.</li>
-        <li><strong>Control Hazard:</strong> Caused by branch or jump instructions, where the CPU fetches the wrong sequence of instructions before evaluating the branch condition.</li>
-      </ul>
-    </section>
+            <p>Memory chips are organized internally to balance speed, density, and pin count.</p>
 
-  </div>
+            <h3>2D Organization (Two-Dimensional)</h3>
+            <p>Memory cells are arranged in a rectangular array of rows and columns. An address is split into a <strong>row address</strong> and a <strong>column address</strong>. A row decoder selects one entire row; a column decoder (or multiplexer) selects the desired bit/word from that row. Access requires activating both row and column paths. Simple, but decoder size grows linearly with the number of rows/columns, limiting practical size.</p>
+
+            <h3>2½D Organization (Two-and-a-Half Dimensional)</h3>
+            <p>Also called 2.5D organization. The memory is divided into several smaller 2D arrays (<strong>banks or mats</strong>). The address is partitioned into: <em>bank select bits + row bits + column bits</em>. Only the selected bank is activated. This reduces the length of word lines and bit lines inside each bank, lowering capacitance and therefore improving access time and reducing power. It also allows interleaved access and higher bandwidth.</p>
+
+            <h3>How Access Time is Improved</h3>
+            <ul>
+                <li><strong>Shorter bit-lines and word-lines</strong> → smaller RC delay → faster sensing</li>
+                <li><strong>Parallelism:</strong> multiple banks can be accessed concurrently or in a pipelined fashion</li>
+                <li><strong>Reduced decoder complexity</strong> per bank</li>
+                <li>Modern DRAMs and SRAMs extensively use multi-bank 2½D (and 3D-stacked) organizations to achieve both high density and acceptable latency/bandwidth</li>
+            </ul>
+        </section>
+
+        <!-- 5. DMA -->
+        <section id="dma">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2>DMA Controller</h2>
+            </div>
+
+            <p><strong>Direct Memory Access (DMA)</strong> allows high-speed I/O devices to transfer data directly to/from main memory without continuous CPU intervention, freeing the processor for other work.</p>
+
+            <div class="diagram">
+                <div class="diagram-title">Block Diagram of a Typical DMA Controller</div>
+<pre style="margin:0;white-space:pre;font-family:inherit;">
+        +--------------------------------------------------+
+        |                  DMA Controller                  |
+        |                                                  |
+        |  +-----------+    +--------------------------+   |
+        |  | Address   |    |   Word Count Register    |   |
+        |  | Register  |    +--------------------------+   |
+        |  +-----------+    +--------------------------+   |
+        |                   | Control / Status Register|   |
+        |  +-----------+    +--------------------------+   |
+        |  | Data      |                                   |
+        |  | Buffer    |    +--------------------------+   |
+        |  +-----------+    | Priority / Arbiter Logic |   |
+        |                   +--------------------------+   |
+        |                                                  |
+        |  Interface to CPU Bus          Interface to I/O  |
+        |  (Address, Data, Control)      Device(s)         |
+        +--------------------------------------------------+
+              ↑ ↓                          ↑ ↓
+           System Bus                   I/O Device
+</pre>
+            </div>
+
+            <p><strong>Main components:</strong> Address Register (holds starting memory address), Word Count Register (number of words still to transfer), Control/Status Register, Data Buffer, and bus request/acknowledge logic.</p>
+
+            <h3>Why Read and Write Control Lines are Bidirectional</h3>
+            <p>When the CPU is the bus master, it drives the memory Read/Write signals. When the DMA controller becomes bus master (after obtaining bus grant), it must drive the same Read/Write lines to command memory. Therefore the DMA controller’s Read and Write control pins must be able both to <em>receive</em> signals (when CPU is master) and to <em>drive</em> signals (when DMA is master). Hence they are <strong>bidirectional</strong> (or implemented with tri-state drivers). This allows the DMA controller to take full control of the memory bus during a transfer cycle.</p>
+        </section>
+
+        <!-- 6. SERIAL COMMUNICATION -->
+        <section id="serial">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2>Serial Communication</h2>
+            </div>
+
+            <p>Serial communication is the process of sending data <strong>one bit at a time</strong>, sequentially, over a single communication channel or wire. It contrasts with parallel communication, which sends multiple bits simultaneously over multiple wires.</p>
+
+            <div class="cards">
+                <div class="card">
+                    <h4>✅ Advantages</h4>
+                    <p>Fewer wires, longer distance capability, lower cost, reduced crosstalk</p>
+                </div>
+                <div class="card">
+                    <h4>⚠️ Disadvantages</h4>
+                    <p>Slower than parallel for short distances (modern high-speed serial links overcome this)</p>
+                </div>
+            </div>
+
+            <h3>Transmission Modes</h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mode</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Simplex</strong></td>
+                            <td>Data flows in only one direction</td>
+                            <td>Keyboard → Computer, Radio broadcast</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Half-Duplex</strong></td>
+                            <td>Data can flow both ways, but not simultaneously. Devices take turns</td>
+                            <td>Walkie-talkie, older RS-485</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Full-Duplex</strong></td>
+                            <td>Data flows in both directions simultaneously. Requires separate paths or echo cancellation</td>
+                            <td>Telephone, modern Ethernet, RS-232</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note-box">
+                Serial communication may also be classified as <strong>asynchronous</strong> (start/stop bits, no shared clock) or <strong>synchronous</strong> (shared clock or recovered clock, continuous bit stream).
+            </div>
+        </section>
+
+        <!-- 7. ADDRESSING MODES -->
+        <section id="addressing">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2>Addressing Modes</h2>
+            </div>
+
+            <p>Addressing modes define how the CPU calculates the <strong>effective address</strong> of an operand. They provide flexibility in programming and help reduce instruction size.</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mode</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                            <th>Effective Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Immediate</strong></td>
+                            <td>Operand is part of the instruction itself</td>
+                            <td>MOV A, #25H</td>
+                            <td>Operand = 25H (no memory access)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Direct / Absolute</strong></td>
+                            <td>Instruction contains the full memory address</td>
+                            <td>MOV A, 2000H</td>
+                            <td>EA = 2000H</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Register</strong></td>
+                            <td>Operand is in a CPU register</td>
+                            <td>ADD B, C</td>
+                            <td>Operand in register C</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Register Indirect</strong></td>
+                            <td>Register contains the address of the operand</td>
+                            <td>MOV A, @R0 or MOV A, (BX)</td>
+                            <td>EA = content of R0 / BX</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Indexed</strong></td>
+                            <td>EA = base / index register + displacement</td>
+                            <td>MOV A, 1000H(X) or ARRAY[SI]</td>
+                            <td>EA = 1000H + X (or ARRAY + SI)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Base + Index</strong></td>
+                            <td>EA = base register + index register (+disp)</td>
+                            <td>MOV A, [BX+SI]</td>
+                            <td>EA = BX + SI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relative</strong></td>
+                            <td>EA = PC + displacement (for branches)</td>
+                            <td>JZ LABEL</td>
+                            <td>EA = PC + signed offset</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Implied / Implicit</strong></td>
+                            <td>Operand is implied by the opcode</td>
+                            <td>CMA (complement accumulator)</td>
+                            <td>Operand = Accumulator</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Auto-inc / dec</strong></td>
+                            <td>Register used as pointer, then updated</td>
+                            <td>MOV A, (R1)+</td>
+                            <td>EA = R1; then R1 ← R1+1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note-box success">
+                <strong>Illustration of Indexed Addressing:</strong> Suppose array BASE is at 2000H and index register SI = 05H. Instruction <code>MOV AL, [BASE+SI]</code> fetches the byte at effective address <strong>2005H</strong>.
+            </div>
+        </section>
+
+        <!-- 8. CACHE MAPPING -->
+        <section id="cache">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2>Cache Mapping Techniques</h2>
+            </div>
+
+            <p>Cache mapping decides where a main-memory block can be placed in the cache.</p>
+
+            <h3>Direct Mapping – Worked Example</h3>
+            <p><strong>Assume:</strong> Main memory = 16 KB, Cache = 1 KB, Block/Line size = 16 bytes. Word size = 1 byte (byte-addressable).</p>
+
+            <ul>
+                <li>Number of main memory blocks = 16 KB / 16 B = <strong>1024 blocks</strong></li>
+                <li>Number of cache lines = 1 KB / 16 B = <strong>64 lines</strong></li>
+                <li>Address length = log<sub>2</sub>(16 KB) = <strong>14 bits</strong></li>
+            </ul>
+
+            <h4>Address format for Direct Mapping</h4>
+            <ul>
+                <li>Block offset (word offset) = log<sub>2</sub>(16) = <strong>4 bits</strong></li>
+                <li>Index (cache line) = log<sub>2</sub>(64) = <strong>6 bits</strong></li>
+                <li>Tag = 14 − 6 − 4 = <strong>4 bits</strong></li>
+            </ul>
+
+            <div class="result-box">
+                <strong>Mapping rule:</strong> Cache line number = (Main memory block number) mod (Number of cache lines)
+            </div>
+
+            <h3>General Formulas (Direct Mapping)</h3>
+            <p>Given: Main memory size M, Cache size C, Line size L (all in bytes), byte-addressable.</p>
+            <ul>
+                <li>Address bits = log<sub>2</sub>(M)</li>
+                <li>Offset bits = log<sub>2</sub>(L)</li>
+                <li>Index bits = log<sub>2</sub>(C / L)</li>
+                <li>Tag bits = Address bits − Index bits − Offset bits</li>
+            </ul>
+
+            <div class="note-box">
+                <strong>Fully Associative:</strong> no index bits; entire address except offset is tag (any block can go anywhere).<br>
+                <strong>Set-Associative:</strong> index selects a set; tag identifies the block within the set.
+            </div>
+        </section>
+
+        <!-- 9. IEEE-754 -->
+        <section id="ieee754">
+            <div class="section-header">
+                <div class="section-number">9</div>
+                <h2>IEEE-754 Floating-Point Representation</h2>
+            </div>
+
+            <p><strong>Single-precision (32-bit)</strong> format: 1 sign bit + 8 exponent bits (bias 127) + 23 mantissa bits.</p>
+
+            <h3>Example 1: Convert −19.375 to IEEE-754 Single Precision</h3>
+
+            <div class="algo-box">
+                <div class="step"><span class="comment">// Step 1 – Sign</span></div>
+                <div class="step">Negative → Sign bit = <strong>1</strong></div>
+                <br>
+                <div class="step"><span class="comment">// Step 2 – Convert absolute value 19.375 to binary</span></div>
+                <div class="step">19 = 10011<sub>2</sub></div>
+                <div class="step">0.375 = 0.011<sub>2</sub> &nbsp;&nbsp;<span class="comment">(0.375 = 1/4 + 1/8)</span></div>
+                <div class="step">→ 19.375 = 10011.011<sub>2</sub></div>
+                <br>
+                <div class="step"><span class="comment">// Step 3 – Normalize</span></div>
+                <div class="step">1.0011011 × 2<sup>4</sup></div>
+                <div class="step">Mantissa (fraction) = 0011011 0000000000000000 &nbsp;<span class="comment">(23 bits, leading 1 hidden)</span></div>
+                <br>
+                <div class="step"><span class="comment">// Step 4 – Exponent</span></div>
+                <div class="step">True exponent = 4; Biased = 4 + 127 = 131 = 10000011<sub>2</sub></div>
+            </div>
+
+            <div class="result-box">
+                <strong>Final 32-bit pattern:</strong><br>
+                Sign | Exponent &nbsp;&nbsp;| Mantissa<br>
+                1 &nbsp;&nbsp;&nbsp;&nbsp;| 10000011 | 00110110000000000000000<br><br>
+                <strong>Hex:</strong> 0xC19C0000
+            </div>
+
+            <h3>Example 2: Convert 128.25 to IEEE-754 Single Precision</h3>
+            <ul>
+                <li>Sign = 0 (positive)</li>
+                <li>128.25 = 10000000.01<sub>2</sub> = 1.00000001 × 2<sup>7</sup></li>
+                <li>Mantissa = 00000001000000000000000</li>
+                <li>Biased exponent = 7 + 127 = 134 = 10000110<sub>2</sub></li>
+            </ul>
+
+            <div class="result-box">
+                <strong>Pattern:</strong> 0 10000110 00000001000000000000000<br>
+                <strong>Hex:</strong> 0x43008000
+            </div>
+        </section>
+
+        <!-- 10. VIRTUAL MEMORY -->
+        <section id="virtual">
+            <div class="section-header">
+                <div class="section-number">10</div>
+                <h2>Virtual Memory and Page Replacement</h2>
+            </div>
+
+            <p><strong>Virtual Memory</strong> is a memory management technique that gives a process the illusion of a large, contiguous address space by using secondary storage (disk) as an extension of main memory. Only the currently needed portions (pages) reside in RAM.</p>
+
+            <div class="cards">
+                <div class="card">
+                    <h4>📄 Page Fault</h4>
+                    <p>Occurs when the CPU references a page that is not currently present in main memory. The OS must load the page from disk (possibly replacing another page).</p>
+                </div>
+                <div class="card">
+                    <h4>📦 Working Set</h4>
+                    <p>The set of pages that a process has referenced in the most recent Δ time units. Keeping the working set in memory minimizes page faults.</p>
+                </div>
+                <div class="card">
+                    <h4>💥 Thrashing</h4>
+                    <p>Severe performance degradation when the system spends most of its time swapping pages rather than executing useful instructions. Caused by too many processes relative to available physical memory.</p>
+                </div>
+            </div>
+
+            <h3>Page Replacement Algorithms – Simulation</h3>
+            <p><strong>Reference string:</strong> 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2 &nbsp;&nbsp;(assume 3 frames)</p>
+
+            <h4>FIFO (First-In-First-Out)</h4>
+            <p>Replace the page that has been in memory the longest.</p>
+            <div class="algo-box" style="font-size:0.82rem;">
+                7F → [7] &nbsp;&nbsp; 0F → [7,0] &nbsp;&nbsp; 1F → [7,0,1] &nbsp;&nbsp; 2F → [2,0,1] &nbsp;&nbsp; 0 → [2,0,1]<br>
+                3F → [2,3,1] &nbsp;&nbsp; 0F → [2,3,0] &nbsp;&nbsp; 4F → [4,3,0] &nbsp;&nbsp; 2F → [4,2,0] &nbsp;&nbsp; 3F → [4,2,3]<br>
+                0F → [0,2,3] &nbsp;&nbsp; 3 → [0,2,3] &nbsp;&nbsp; 2 → [0,2,3]
+            </div>
+            <div class="result-box warning">
+                <strong>Total page faults = 10</strong>
+            </div>
+
+            <h4>LRU (Least Recently Used)</h4>
+            <p>Replace the page that has not been used for the longest time.</p>
+            <div class="algo-box" style="font-size:0.82rem;">
+                7F → [7] &nbsp;&nbsp; 0F → [7,0] &nbsp;&nbsp; 1F → [7,0,1] &nbsp;&nbsp; 2F → [2,0,1] &nbsp;&nbsp; 0 → [2,0,1]<br>
+                3F → [2,0,3] &nbsp;&nbsp; 0 → [2,0,3] &nbsp;&nbsp; 4F → [4,0,3] &nbsp;&nbsp; 2F → [4,0,2] &nbsp;&nbsp; 3F → [3,0,2]<br>
+                0 → [3,0,2] &nbsp;&nbsp; 3 → [3,0,2] &nbsp;&nbsp; 2 → [3,0,2]
+            </div>
+            <div class="result-box success">
+                <strong>Total page faults = 8</strong> (better than FIFO for this string)
+            </div>
+        </section>
+
+        <!-- 11. INTERRUPTS -->
+        <section id="interrupts">
+            <div class="section-header">
+                <div class="section-number">11</div>
+                <h2>Interrupts and Bus Arbitration</h2>
+            </div>
+
+            <h3>Interrupt Hardware</h3>
+            <p>An interrupt is a signal that temporarily suspends the normal execution sequence so the CPU can service an urgent event. Hardware support includes:</p>
+            <ul>
+                <li>Interrupt Request (IRQ) lines</li>
+                <li>Interrupt Acknowledge (INTA) line</li>
+                <li>Interrupt vector / priority logic (e.g., daisy chain, priority encoder, APIC)</li>
+                <li>Programmable Interrupt Controller (PIC) or Advanced PIC (APIC) that prioritizes and vectors interrupts</li>
+            </ul>
+
+            <h3>Nested Interrupts</h3>
+            <p>A higher-priority interrupt can interrupt the service routine of a lower-priority interrupt. The CPU (or interrupt controller) saves the current context, raises the priority level, and services the new interrupt. Nesting depth is limited by stack size and priority levels. Proper priority assignment and critical-section protection are essential to avoid priority inversion or unbounded nesting.</p>
+
+            <h3>Bus Arbitration Methods</h3>
+            <p>Bus arbitration decides which device becomes the bus master when multiple devices request the bus.</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Description</th>
+                            <th>Advantages</th>
+                            <th>Disadvantages</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Daisy Chaining (Serial)</strong></td>
+                            <td>Grant line passed serially through devices; closest to arbiter wins</td>
+                            <td>Simple, few wires</td>
+                            <td>Fixed priority, slow propagation, fairness issues</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Centralized Parallel</strong><br><small>(Independent Requests)</small></td>
+                            <td>Each device has its own request & grant lines to a central arbiter</td>
+                            <td>Fast, flexible priority, fair algorithms possible</td>
+                            <td>More wires, complex arbiter</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Distributed</strong><br><small>(Self-Selection / Collision Detection)</small></td>
+                            <td>Devices share request lines and resolve priority among themselves</td>
+                            <td>No central bottleneck, scalable</td>
+                            <td>More complex logic in each device</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Polling</strong></td>
+                            <td>Central controller polls devices in turn</td>
+                            <td>Simple control, fair</td>
+                            <td>Latency depends on poll rate, overhead</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Asynchronous Data Transfer Mechanisms</h3>
+            <p>Asynchronous transfers do not use a common clock. Coordination is achieved by handshaking signals (e.g., Request/Acknowledge or Strobe/Acknowledge).</p>
+
+            <h4>Source-initiated (Strobe)</h4>
+            <p>Source places data and asserts Strobe; destination captures data on Strobe edge. Simple but destination has no way to delay the source.</p>
+
+            <h4>Handshaking (two-wire)</h4>
+            <p>Source asserts Request (data valid); destination asserts Acknowledge when ready/received; source de-asserts Request; destination de-asserts Ack. This <strong>four-phase handshake</strong> guarantees reliable transfer regardless of speed differences between source and destination.</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="end-badge">— End of Study Notes —</div>
+        <p style="margin-top:1rem;">Computer Organization & Architecture • Comprehensive Study Notes</p>
+    </footer>
 
 </body>
 </html>
