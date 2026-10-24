@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discrete Mathematics Notes — Complete & Professional</title>
+  <style>
+    :root {
+      --primary: #1a365d;
+      --primary-light: #2b6cb0;
+      --accent: #3182ce;
+      --success: #276749;
+      --success-bg: #f0fff4;
+      --success-border: #9ae6b4;
+      --warning: #975a16;
+      --warning-bg: #fffff0;
+      --warning-border: #f6e05e;
+      --info-bg: #ebf8ff;
+      --info-border: #90cdf4;
+      --gray-50: #f7fafc;
+      --gray-100: #edf2f7;
+      --gray-200: #e2e8f0;
+      --gray-600: #718096;
+      --gray-700: #4a5568;
+      --gray-800: #2d3748;
+      --gray-900: #1a202c;
+      --radius: 10px;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--gray-800);
+      background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+      min-height: 100vh;
+    }
+
+    /* ========== HEADER ========== */
+    .site-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+      color: white;
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .site-header h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+      position: relative;
+    }
+
+    .site-header .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+    }
+
+    .units-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.2rem;
+      font-size: 0.9rem;
+      opacity: 0.85;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .units-list span {
+      white-space: nowrap;
+    }
+
+    /* ========== NAV ========== */
+    .toc {
+      background: white;
+      max-width: 960px;
+      margin: -1.5rem auto 2rem;
+      padding: 1.5rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      z-index: 10;
+    }
+
+    .toc h2 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toc ol {
+      columns: 2;
+      column-gap: 2rem;
+      padding-left: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .toc a {
+      color: var(--primary-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .toc ol { columns: 1; }
+    }
+
+    /* ========== MAIN CONTENT ========== */
+    .container {
+      max-width: 960px;
+      margin: 0 auto 3rem;
+      padding: 0 1.25rem;
+    }
+
+    .unit {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .unit-header {
+      background: linear-gradient(90deg, var(--primary) 0%, #2b6cb0 100%);
+      color: white;
+      padding: 1.1rem 1.75rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .unit-body {
+      padding: 1.75rem;
+    }
+
+    h3 {
+      color: var(--primary);
+      font-size: 1.15rem;
+      margin: 1.8rem 0 0.7rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--gray-100);
+    }
+
+    h3:first-child {
+      margin-top: 0;
+    }
+
+    h4 {
+      color: var(--gray-700);
+      font-size: 1.02rem;
+      margin: 1.3rem 0 0.5rem;
+    }
+
+    p, li {
+      margin-bottom: 0.6rem;
+    }
+
+    ul, ol {
+      padding-left: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+
+    strong {
+      color: var(--gray-900);
+    }
+
+    code, .math {
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      background: var(--gray-100);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    /* ========== BOXES ========== */
+    .box {
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1.1rem 0;
+      border-left: 4px solid;
+    }
+
+    .box-example {
+      background: var(--success-bg);
+      border-color: var(--success);
+    }
+
+    .box-example .box-title {
+      color: var(--success);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    .box-question {
+      background: var(--warning-bg);
+      border-color: var(--warning);
+    }
+
+    .box-question .box-title {
+      color: var(--warning);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    .box-info {
+      background: var(--info-bg);
+      border-color: var(--accent);
+    }
+
+    .box-info .box-title {
+      color: var(--primary-light);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    .solution {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px dashed var(--warning-border);
+      color: var(--gray-700);
+    }
+
+    /* ========== TABLES ========== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    th {
+      background: var(--primary);
+      color: white;
+      padding: 0.65rem 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 0.55rem 1rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    tr:nth-child(even) td {
+      background: var(--gray-50);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ========== SUMMARY ========== */
+    .summary {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .summary h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .summary-item {
+      background: var(--gray-50);
+      border-radius: 8px;
+      padding: 1rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .summary-item strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .summary-item span {
+      font-size: 0.9rem;
+      color: var(--gray-700);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--gray-600);
+      font-size: 0.9rem;
+    }
+
+    /* ========== PRINT ========== */
+    @media print {
+      body { background: white; }
+      .site-header { background: var(--primary) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .toc { box-shadow: none; margin-top: 1rem; }
+      .unit { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+      .box { break-inside: avoid; }
+    }
+
+    /* subtle hover on unit */
+    .unit {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header">
+    <h1>DISCRETE MATHEMATICS</h1><br>
+	<h2>❤💚💖 Thakur Piyush Singh ❤💚💖</h2>
+    <p class="subtitle">Complete Notes with Simple Explanations, Examples, Questions &amp; Solutions</p>
+    <div class="units-list">
+      <span>Unit I — Set Theory, Relations &amp; Functions</span>
+      <span>Unit II — Posets, Lattices &amp; Boolean Algebra</span>
+      <span>Unit III — Propositional &amp; Predicate Logic</span>
+      <span>Unit IV — Algebraic Structures, Rings &amp; Fields</span>
+      <span>Unit V — Natural Numbers, Recurrence &amp; Combinatorics</span>
+    </div>
+  </header>
+
+  <!-- ========== TABLE OF CONTENTS ========== -->
+  <nav class="toc">
+    <h2>📑 Table of Contents</h2>
+    <ol>
+      <li><a href="#unit1">Unit I — Set Theory, Relations &amp; Functions</a></li>
+      <li><a href="#unit2">Unit II — Posets, Hasse Diagrams, Lattices &amp; Boolean Algebra</a></li>
+      <li><a href="#unit3">Unit III — Propositional Logic &amp; Predicate Logic</a></li>
+      <li><a href="#unit4">Unit IV — Algebraic Structures, Rings &amp; Fields</a></li>
+      <li><a href="#unit5">Unit V — Natural Numbers, Recurrence Relations &amp; Combinatorics</a></li>
+      <li><a href="#summary">Quick Revision Summary</a></li>
+    </ol>
+  </nav>
+
+  <main class="container">
+
+    <!-- ========== UNIT I ========== -->
+    <section class="unit" id="unit1">
+      <div class="unit-header">UNIT I — Set Theory, Relations &amp; Functions</div>
+      <div class="unit-body">
+
+        <h3>1. Set Theory — Introduction</h3>
+        <p>A <strong>set</strong> is a well-defined collection of distinct objects. The objects are called <em>elements</em> or <em>members</em> of the set. We write sets using curly braces <code>{ }</code>.</p>
+        <p><strong>Notation:</strong> If <em>a</em> is an element of set <em>A</em>, we write <code>a ∈ A</code>. If <em>a</em> is not in <em>A</em>, we write <code>a ∉ A</code>.</p>
+        <p><strong>Ways to represent a set:</strong></p>
+        <ol>
+          <li><strong>Roster method</strong> (listing): <code>A = {1, 2, 3, 4}</code></li>
+          <li><strong>Set-builder method:</strong> <code>A = {x | x is a natural number and x ≤ 4}</code></li>
+        </ol>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Basic sets</div>
+          <p><code>A = {a, e, i, o, u}</code> → set of vowels</p>
+          <p><code>B = {x | x is an even number between 1 and 10} = {2, 4, 6, 8}</code></p>
+          <p><strong>Empty set</strong> (null set): <code>∅</code> or <code>{ }</code> — a set with no elements</p>
+          <p><strong>Universal set U:</strong> the set that contains all elements under consideration</p>
+        </div>
+
+        <h3>2. Size of Sets and Cardinals</h3>
+        <p>The <strong>cardinality</strong> (or size) of a set <em>A</em> is the number of elements in <em>A</em>. It is denoted by <code>|A|</code> or <code>n(A)</code>.</p>
+        <ul>
+          <li><strong>Finite set:</strong> has a finite number of elements (e.g., <code>|A| = 5</code>)</li>
+          <li><strong>Infinite set:</strong> has infinitely many elements (e.g., set of natural numbers ℕ)</li>
+          <li>Two sets have the <strong>same cardinality</strong> if there is a one-to-one correspondence (bijection) between them.</li>
+        </ul>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Cardinality</div>
+          <p><code>A = {1, 2, 3}</code> → <code>|A| = 3</code></p>
+          <p><code>B = {a, b, c, d}</code> → <code>|B| = 4</code></p>
+          <p>Power set of A: <code>P(A) = {∅, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}}</code> → <code>|P(A)| = 2³ = 8</code></p>
+        </div>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>If <code>A = {1, 2, 3, 4}</code> and <code>B = {3, 4, 5}</code>, find <code>|A|</code>, <code>|B|</code> and <code>|A ∪ B|</code>.</p>
+          <div class="solution">
+            <strong>Solution:</strong> <code>|A| = 4</code>, <code>|B| = 3</code>. <code>A ∪ B = {1, 2, 3, 4, 5}</code>, so <code>|A ∪ B| = 5</code>.<br>
+            Note: <code>|A ∪ B| = |A| + |B| − |A ∩ B| = 4 + 3 − 2 = 5</code>.
+          </div>
+        </div>
+
+        <h3>3. Venn Diagrams</h3>
+        <p>A <strong>Venn diagram</strong> is a picture that shows relationships between sets using circles (or other shapes) inside a rectangle (the universal set).</p>
+        <ul>
+          <li>Overlapping circles show common elements (intersection).</li>
+          <li>Non-overlapping circles show disjoint sets.</li>
+          <li>Shaded regions help visualize union, intersection, complement, difference, etc.</li>
+        </ul>
+
+        <h3>4. Operations on Sets</h3>
+        <ul>
+          <li><strong>Union (A ∪ B):</strong> Elements that are in A or B or both.</li>
+          <li><strong>Intersection (A ∩ B):</strong> Elements that are in both A and B.</li>
+          <li><strong>Difference (A − B or A \ B):</strong> Elements in A but not in B.</li>
+          <li><strong>Complement (A′ or A<sup>c</sup>):</strong> Elements in the universal set U that are not in A.</li>
+          <li><strong>Symmetric Difference (A ∆ B):</strong> Elements in A or B but not in both. <code>A ∆ B = (A − B) ∪ (B − A)</code>.</li>
+        </ul>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Set operations</div>
+          <p>Let <code>U = {1,2,3,4,5,6,7,8}</code>, <code>A = {1,2,3,4}</code>, <code>B = {3,4,5,6}</code></p>
+          <p><code>A ∪ B = {1,2,3,4,5,6}</code><br>
+             <code>A ∩ B = {3,4}</code><br>
+             <code>A − B = {1,2}</code><br>
+             <code>B − A = {5,6}</code><br>
+             <code>A′ = {5,6,7,8}</code><br>
+             <code>A ∆ B = {1,2,5,6}</code></p>
+        </div>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Using the sets above, verify <code>|A ∪ B| = |A| + |B| − |A ∩ B|</code>.</p>
+          <div class="solution">
+            <strong>Solution:</strong> <code>|A| = 4</code>, <code>|B| = 4</code>, <code>|A ∩ B| = 2</code>, <code>|A ∪ B| = 6</code>. Right side: <code>4 + 4 − 2 = 6</code>. Verified.
+          </div>
+        </div>
+
+        <h3>5. Multisets</h3>
+        <p>A <strong>multiset</strong> (or bag) is like a set but allows repeated elements. The number of times an element appears is its <em>multiplicity</em>.</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Multiset</div>
+          <p><code>M = {a, a, b, c, c, c}</code> — a appears twice, b once, c three times.</p>
+          <p>We can write <code>M = {2·a, 1·b, 3·c}</code>.</p>
+          <p>Cardinality of a multiset counts with multiplicity: <code>|M| = 2 + 1 + 3 = 6</code>.</p>
+        </div>
+
+        <h3>6. Ordered Pairs</h3>
+        <p>An <strong>ordered pair</strong> <code>(a, b)</code> is a pair of elements where order matters. <code>(a, b) ≠ (b, a)</code> unless <code>a = b</code>.</p>
+        <p>The <strong>Cartesian product</strong> <code>A × B = {(a, b) | a ∈ A, b ∈ B}</code>.</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Cartesian product</div>
+          <p><code>A = {1, 2}</code>, <code>B = {x, y}</code></p>
+          <p><code>A × B = {(1,x), (1,y), (2,x), (2,y)}</code></p>
+          <p><code>|A × B| = |A| × |B| = 2 × 2 = 4</code></p>
+        </div>
+
+        <h3>7. Set Identities (Laws)</h3>
+        <p>These are rules that always hold for any sets A, B, C (and universal set U):</p>
+        <ul>
+          <li><strong>Idempotent:</strong> <code>A ∪ A = A</code>, <code>A ∩ A = A</code></li>
+          <li><strong>Commutative:</strong> <code>A ∪ B = B ∪ A</code>, <code>A ∩ B = B ∩ A</code></li>
+          <li><strong>Associative:</strong> <code>(A ∪ B) ∪ C = A ∪ (B ∪ C)</code>, same for ∩</li>
+          <li><strong>Distributive:</strong> <code>A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)</code>, <code>A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)</code></li>
+          <li><strong>De Morgan’s:</strong> <code>(A ∪ B)′ = A′ ∩ B′</code>, <code>(A ∩ B)′ = A′ ∪ B′</code></li>
+          <li><strong>Identity:</strong> <code>A ∪ ∅ = A</code>, <code>A ∩ U = A</code></li>
+          <li><strong>Complement:</strong> <code>A ∪ A′ = U</code>, <code>A ∩ A′ = ∅</code></li>
+          <li><strong>Absorption:</strong> <code>A ∪ (A ∩ B) = A</code>, <code>A ∩ (A ∪ B) = A</code></li>
+        </ul>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Prove using set identities: simplify <code>(A ∪ B)′ ∪ B′</code>.</p>
+          <div class="solution">
+            <strong>Solution:</strong> By De Morgan: <code>(A ∪ B)′ = A′ ∩ B′</code>. Then <code>(A′ ∩ B′) ∪ B′</code>. By absorption: <code>B′ ∪ (A′ ∩ B′) = B′</code>. (The expression simplifies to <code>B′</code>.)
+          </div>
+        </div>
+
+        <h3>8. Relations — Definition</h3>
+        <p>A <strong>relation R</strong> from set A to set B is any subset of the Cartesian product <code>A × B</code>. If <code>(a, b) ∈ R</code> we say “a is related to b” and write <code>a R b</code>.</p>
+        <p>When <code>A = B</code>, R is a relation on A (subset of <code>A × A</code>).</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Relation</div>
+          <p><code>A = {1, 2, 3}</code>. Let <code>R = {(1,1), (1,2), (2,2), (3,1), (3,3)}</code></p>
+          <p>Then 1 R 1, 1 R 2, 2 R 2, 3 R 1, 3 R 3 are true.<br>
+             2 is not related to 1 because <code>(2,1) ∉ R</code>.</p>
+        </div>
+
+        <h3>9. Operations on Relations</h3>
+        <ul>
+          <li><strong>Union:</strong> <code>R ∪ S = {(a,b) | (a,b) ∈ R or (a,b) ∈ S}</code></li>
+          <li><strong>Intersection:</strong> <code>R ∩ S = {(a,b) | (a,b) ∈ R and (a,b) ∈ S}</code></li>
+          <li><strong>Complement:</strong> <code>R′ = (A × B) − R</code></li>
+          <li><strong>Inverse:</strong> <code>R<sup>−1</sup> = {(b,a) | (a,b) ∈ R}</code></li>
+        </ul>
+
+        <h3>10. Composite Relations</h3>
+        <p>If R is a relation from A to B and S is a relation from B to C, the <strong>composition</strong> <code>S ∘ R</code> (or R; S) is a relation from A to C defined by:<br>
+        <code>(a, c) ∈ S ∘ R</code> if and only if there exists <code>b ∈ B</code> such that <code>(a, b) ∈ R</code> and <code>(b, c) ∈ S</code>.</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Composition</div>
+          <p><code>A = {1,2}</code>, <code>B = {a,b}</code>, <code>C = {x,y}</code></p>
+          <p><code>R = {(1,a), (2,b)}</code>, <code>S = {(a,x), (b,y), (a,y)}</code></p>
+          <p><code>S ∘ R = {(1,x), (1,y), (2,y)}</code></p>
+        </div>
+
+        <h3>11. Properties of Relations (on a set A)</h3>
+        <ul>
+          <li><strong>Reflexive:</strong> For every <code>a ∈ A</code>, <code>(a,a) ∈ R</code>.</li>
+          <li><strong>Symmetric:</strong> If <code>(a,b) ∈ R</code> then <code>(b,a) ∈ R</code>.</li>
+          <li><strong>Antisymmetric:</strong> If <code>(a,b) ∈ R</code> and <code>(b,a) ∈ R</code> then <code>a = b</code>.</li>
+          <li><strong>Transitive:</strong> If <code>(a,b) ∈ R</code> and <code>(b,c) ∈ R</code> then <code>(a,c) ∈ R</code>.</li>
+          <li><strong>Equivalence relation:</strong> Reflexive + Symmetric + Transitive.</li>
+          <li><strong>Partial order relation:</strong> Reflexive + Antisymmetric + Transitive.</li>
+        </ul>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Checking properties</div>
+          <p><code>A = {1,2,3}</code>, <code>R = {(1,1),(2,2),(3,3),(1,2),(2,3),(1,3)}</code></p>
+          <ul>
+            <li>Reflexive: Yes (all diagonals present).</li>
+            <li>Symmetric: No (1,2 is present but 2,1 is not).</li>
+            <li>Antisymmetric: Yes (no pair and its reverse both present except equals).</li>
+            <li>Transitive: Yes (1R2 and 2R3 ⇒ 1R3, which is present).</li>
+          </ul>
+          <p>This is a partial order (≤ on numbers).</p>
+        </div>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Is the relation “divides” on the set of positive integers an equivalence relation? Why?</p>
+          <div class="solution">
+            <strong>Solution:</strong> Reflexive: a divides a (yes). Symmetric: if a divides b then b divides a? Only when a = b. Not symmetric in general (2 divides 4 but 4 does not divide 2). Hence <strong>not</strong> equivalence. It is a partial order (reflexive, antisymmetric, transitive).
+          </div>
+        </div>
+
+        <h3>12–13. Equality of Relations &amp; Partial Order</h3>
+        <p>Two relations R and S are equal if they contain exactly the same ordered pairs.</p>
+        <p>A relation ≤ on a set A is a <strong>partial order</strong> if it is reflexive, antisymmetric and transitive. The pair <code>(A, ≤)</code> is called a <strong>partially ordered set</strong> or <strong>poset</strong>. Examples: (ℕ, ≤), (power set of S ordered by ⊆), (positive integers ordered by “divides”).</p>
+
+        <h3>14. Functions — Definition</h3>
+        <p>A <strong>function</strong> <code>f</code> from A to B (written <code>f: A → B</code>) is a relation from A to B such that every element of A is related to <em>exactly one</em> element of B. A is the <em>domain</em>, B is the <em>codomain</em>. If <code>f(a) = b</code> we say b is the <em>image</em> of a.</p>
+
+        <h3>15. Classification of Functions</h3>
+        <ul>
+          <li><strong>Injective (one-one):</strong> <code>f(a₁) = f(a₂) ⇒ a₁ = a₂</code>. Different inputs give different outputs.</li>
+          <li><strong>Surjective (onto):</strong> Every element of B is the image of at least one element of A. Range = codomain.</li>
+          <li><strong>Bijective:</strong> Both injective and surjective. (One-to-one correspondence)</li>
+          <li><strong>Constant:</strong> Same output for every input.</li>
+          <li><strong>Identity:</strong> <code>f(a) = a</code> for all a (domain = codomain).</li>
+        </ul>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Types of functions</div>
+          <p><code>f: ℕ → ℕ, f(x) = 2x</code> → injective but not surjective (odd numbers missed).</p>
+          <p><code>f: ℝ → ℝ, f(x) = x³</code> → bijective.</p>
+          <p><code>f: ℝ → ℝ, f(x) = x²</code> → neither injective nor surjective (onto non-negative reals only).</p>
+          <p><code>f: {1,2,3} → {a,b}</code>, f(1)=a, f(2)=a, f(3)=b → surjective but not injective.</p>
+        </div>
+
+        <h3>16. Operations on Functions</h3>
+        <ul>
+          <li><strong>Composition:</strong> <code>(g ∘ f)(x) = g(f(x))</code>. Domain of g must contain the range of f.</li>
+          <li><strong>Addition / Multiplication</strong> (when codomain is numbers): <code>(f + g)(x) = f(x) + g(x)</code>, <code>(f·g)(x) = f(x)·g(x)</code>.</li>
+          <li><strong>Inverse:</strong> Only bijective functions have inverse functions. <code>f<sup>−1</sup>(f(x)) = x</code> and <code>f(f<sup>−1</sup>(y)) = y</code>.</li>
+        </ul>
+
+        <h3>17. Recursively Defined Functions</h3>
+        <p>A function is defined <strong>recursively</strong> by giving a base case and a rule that defines later values from earlier ones.</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Factorial and Fibonacci</div>
+          <p><strong>Factorial:</strong> <code>n! = 1</code> if n = 0; <code>n! = n · (n−1)!</code> if n &gt; 0.</p>
+          <p><strong>Fibonacci:</strong> <code>F(0)=0</code>, <code>F(1)=1</code>; <code>F(n) = F(n−1) + F(n−2)</code> for n ≥ 2.</p>
+          <p>F(2)=1, F(3)=2, F(4)=3, F(5)=5, F(6)=8, …</p>
+        </div>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Compute F(7) using the recursive definition of Fibonacci.</p>
+          <div class="solution">
+            <strong>Solution:</strong> F(5)=5, F(6)=8 ⇒ F(7) = F(6)+F(5) = 8+5 = <strong>13</strong>.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== UNIT II ========== -->
+    <section class="unit" id="unit2">
+      <div class="unit-header">UNIT II — Posets, Hasse Diagrams, Lattices &amp; Boolean Algebra</div>
+      <div class="unit-body">
+
+        <h3>1. Partial Ordered Sets (Posets)</h3>
+        <p>A <strong>poset</strong> is a set P together with a partial order ≤ on P. We write <code>(P, ≤)</code>.</p>
+        <p>Elements a and b are <em>comparable</em> if a ≤ b or b ≤ a; otherwise they are <em>incomparable</em>.</p>
+        <p><strong>Special elements:</strong></p>
+        <ul>
+          <li><strong>Maximal element:</strong> nothing strictly above it.</li>
+          <li><strong>Minimal element:</strong> nothing strictly below it.</li>
+          <li><strong>Greatest element (maximum):</strong> ≥ every other element.</li>
+          <li><strong>Least element (minimum):</strong> ≤ every other element.</li>
+          <li><strong>Upper bound</strong> of a subset S: an element ≥ all members of S.</li>
+          <li><strong>Least upper bound (supremum, join):</strong> the least of the upper bounds.</li>
+          <li><strong>Greatest lower bound (infimum, meet):</strong> the greatest of the lower bounds.</li>
+        </ul>
+
+        <h3>2. Combination of Partial Ordered Sets</h3>
+        <ul>
+          <li><strong>Direct product:</strong> A × B ordered componentwise: <code>(a₁,b₁) ≤ (a₂,b₂)</code> iff a₁ ≤<sub>A</sub> a₂ and b₁ ≤<sub>B</sub> b₂.</li>
+          <li><strong>Lexicographic order:</strong> compare first components; if equal, compare second, etc.</li>
+        </ul>
+
+        <h3>3. Hasse Diagram</h3>
+        <p>A <strong>Hasse diagram</strong> is a simplified picture of a finite poset:</p>
+        <ul>
+          <li>Draw elements as points/vertices.</li>
+          <li>Draw an edge upward from a to b if a &lt; b and there is no element strictly between them (cover relation).</li>
+          <li>Omit arrows and transitive edges; direction is understood to be upward.</li>
+        </ul>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Hasse diagram of divisors of 12</div>
+          <p>Set <code>D = {1, 2, 3, 4, 6, 12}</code> ordered by “divides”.</p>
+          <p>1 is at the bottom; 12 is at the top.</p>
+          <p>Edges: 1—2, 1—3, 2—4, 2—6, 3—6, 4—12, 6—12.</p>
+          <p>No direct edge 1—4 because 2 is between them.</p>
+        </div>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Draw (mentally) the Hasse diagram of the power set of {a,b} ordered by inclusion. What are the maximal/minimal elements?</p>
+          <div class="solution">
+            <strong>Solution:</strong> Elements: ∅, {a}, {b}, {a,b}. ∅ at bottom, {a,b} at top. Edges: ∅—{a}, ∅—{b}, {a}—{a,b}, {b}—{a,b}. Minimal element: ∅. Maximal element: {a,b}. They are also the least and greatest elements.
+          </div>
+        </div>
+
+        <h3>4. Lattices — Introduction</h3>
+        <p>A <strong>lattice</strong> is a poset in which every two elements have a least upper bound (join, ∨) and a greatest lower bound (meet, ∧).</p>
+        <p>Examples: (ℤ, min, max), power set of any set with ∪ and ∩, divisors of n with lcm and gcd.</p>
+
+        <h3>5. Properties of Lattices</h3>
+        <ul>
+          <li><strong>Bounded lattice:</strong> has a greatest element 1 (top) and a least element 0 (bottom).</li>
+          <li><strong>Complemented lattice:</strong> bounded lattice where every element a has a complement a′ such that a ∨ a′ = 1 and a ∧ a′ = 0.</li>
+          <li><strong>Modular lattice:</strong> if a ≤ c then a ∨ (b ∧ c) = (a ∨ b) ∧ c.</li>
+          <li><strong>Distributive lattice:</strong> joins distribute over meets and vice versa.</li>
+          <li><strong>Complete lattice:</strong> every subset (not just pairs) has a supremum and an infimum.</li>
+        </ul>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Lattice examples</div>
+          <p>Power set of {1,2,3} with ⊆ is a bounded, complemented, distributive, complete lattice.</p>
+          <p>0 = ∅, 1 = {1,2,3}. Complement of {1} is {2,3}.</p>
+          <p>The diamond lattice M<sub>3</sub> (five elements) is modular but not distributive.</p>
+        </div>
+
+        <h3>6. Boolean Algebra — Introduction</h3>
+        <p>A <strong>Boolean algebra</strong> is a bounded distributive complemented lattice. Equivalently, a set B with operations +, ·, ′ (or ∨, ∧, ¬) and constants 0, 1 satisfying the Boolean axioms.</p>
+
+        <h3>7. Axioms and Theorems of Boolean Algebra</h3>
+        <p><strong>Axioms (Huntington):</strong></p>
+        <ol>
+          <li>Commutative: <code>a + b = b + a</code>, <code>a · b = b · a</code></li>
+          <li>Distributive: <code>a + (b · c) = (a + b) · (a + c)</code>, <code>a · (b + c) = (a · b) + (a · c)</code></li>
+          <li>Identity: <code>a + 0 = a</code>, <code>a · 1 = a</code></li>
+          <li>Complement: <code>a + a′ = 1</code>, <code>a · a′ = 0</code></li>
+        </ol>
+        <p><strong>Useful theorems:</strong></p>
+        <ul>
+          <li>Idempotent: <code>a + a = a</code>, <code>a · a = a</code></li>
+          <li>Absorption: <code>a + (a · b) = a</code>, <code>a · (a + b) = a</code></li>
+          <li>De Morgan: <code>(a + b)′ = a′ · b′</code>, <code>(a · b)′ = a′ + b′</code></li>
+          <li>Involution: <code>(a′)′ = a</code></li>
+          <li><code>0′ = 1</code>, <code>1′ = 0</code></li>
+        </ul>
+
+        <h3>8. Boolean Functions &amp; Simplification</h3>
+        <p>A Boolean function of n variables is an expression using the variables, 0, 1 and the operations +, ·, ′. Simplification reduces the number of terms/literals (cheaper circuit).</p>
+        <p><strong>Algebraic method:</strong> use the theorems above (factor, absorb, De Morgan, etc.).</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Simplify F = A·B + A·B′ + A′·B</div>
+          <p><code>F = A·(B + B′) + A′·B = A·1 + A′·B = A + A′·B</code></p>
+          <p><code>F = (A + A′)·(A + B) = 1·(A + B) = A + B</code> (by distributive)</p>
+          <p>So F simplifies to <strong>A + B</strong>.</p>
+        </div>
+
+        <h3>9. Karnaugh Maps (K-maps)</h3>
+        <p>A <strong>Karnaugh map</strong> is a grid that helps minimize Boolean functions visually. Adjacent cells differ by only one variable. Group powers-of-two of 1-cells to eliminate variables.</p>
+        <p>For 2 variables: 2×2 grid. For 3 variables: 2×4. For 4 variables: 4×4. Gray-code labeling ensures only one bit changes between neighbors (including wrap-around).</p>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Minimize F(A,B,C) = Σ(0,1,2,5,6,7) using a 3-variable K-map idea.</p>
+          <div class="solution">
+            <strong>Solution:</strong> Cells 0,1,2,5,6,7 are 1. Large groups: (0,1,2,…) and (5,7,6,…). One minimal expression is <code>F = A′·B′ + B·C′ + A·C</code> (or equivalent).
+          </div>
+        </div>
+
+        <h3>10. Logic Gates</h3>
+        <ul>
+          <li><strong>AND gate:</strong> output 1 only if all inputs are 1 (·).</li>
+          <li><strong>OR gate:</strong> output 1 if at least one input is 1 (+).</li>
+          <li><strong>NOT gate (inverter):</strong> flips 0↔1 (′).</li>
+          <li><strong>NAND</strong> = NOT-AND; <strong>NOR</strong> = NOT-OR; <strong>XOR</strong> = exclusive OR; <strong>XNOR</strong> = exclusive NOR.</li>
+        </ul>
+        <p>Any Boolean function can be realized with AND, OR, NOT (or with only NAND, or only NOR).</p>
+
+      </div>
+    </section>
+
+    <!-- ========== UNIT III ========== -->
+    <section class="unit" id="unit3">
+      <div class="unit-header">UNIT III — Propositional Logic &amp; Predicate Logic</div>
+      <div class="unit-body">
+
+        <h3>1. Propositions</h3>
+        <p>A <strong>proposition</strong> is a declarative sentence that is either true (T) or false (F), but not both. It has a definite truth value.</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Propositions vs non-propositions</div>
+          <p>“2 + 2 = 4” — proposition (true).</p>
+          <p>“New Delhi is the capital of India” — proposition (true).</p>
+          <p>“x + 1 = 5” — not a proposition (depends on x).</p>
+          <p>“What is your name?” — not a proposition (question).</p>
+          <p>“Close the door!” — not a proposition (command).</p>
+        </div>
+
+        <h3>2. Truth Tables &amp; Connectives</h3>
+        <ul>
+          <li><strong>Negation ¬P</strong> (not P): opposite truth value.</li>
+          <li><strong>Conjunction P ∧ Q</strong> (and): true only when both true.</li>
+          <li><strong>Disjunction P ∨ Q</strong> (or): true when at least one is true.</li>
+          <li><strong>Implication P → Q</strong> (if P then Q): false only when P true and Q false.</li>
+          <li><strong>Biconditional P ↔ Q</strong> (iff): true when both have same truth value.</li>
+        </ul>
+
+        <table>
+          <thead>
+            <tr><th>P</th><th>Q</th><th>P → Q</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>T</td><td>T</td><td>T</td></tr>
+            <tr><td>T</td><td>F</td><td>F</td></tr>
+            <tr><td>F</td><td>T</td><td>T</td></tr>
+            <tr><td>F</td><td>F</td><td>T</td></tr>
+          </tbody>
+        </table>
+
+        <h3>3. Tautology, Contradiction, Contingency</h3>
+        <ul>
+          <li><strong>Tautology:</strong> always true (e.g., P ∨ ¬P).</li>
+          <li><strong>Contradiction:</strong> always false (e.g., P ∧ ¬P).</li>
+          <li><strong>Contingency:</strong> sometimes true, sometimes false.</li>
+        </ul>
+
+        <div class="box box-example">
+          <div class="box-title">Example</div>
+          <p>Check if <code>(P → Q) ↔ (¬Q → ¬P)</code> is a tautology.</p>
+          <p>This is the law of contrapositive. Both sides have the same truth table, so the biconditional is always true → <strong>tautology</strong>.</p>
+        </div>
+
+        <h3>4. Algebra of Propositions</h3>
+        <p>Same laws as Boolean algebra / set theory: commutative, associative, distributive, De Morgan, identity, complement, idempotent, absorption, etc.</p>
+        <p><code>P ∨ ¬P ≡ T</code>, <code>P ∧ ¬P ≡ F</code>, <code>¬(¬P) ≡ P</code>, <code>¬(P ∨ Q) ≡ ¬P ∧ ¬Q</code>, …</p>
+
+        <h3>5. Theory of Inference &amp; Natural Deduction</h3>
+        <p>Rules that let us derive new true statements from known true statements:</p>
+        <ul>
+          <li><strong>Modus Ponens:</strong> From P and P → Q, infer Q.</li>
+          <li><strong>Modus Tollens:</strong> From ¬Q and P → Q, infer ¬P.</li>
+          <li><strong>Hypothetical Syllogism:</strong> From P → Q and Q → R, infer P → R.</li>
+          <li><strong>Disjunctive Syllogism:</strong> From P ∨ Q and ¬P, infer Q.</li>
+          <li><strong>Addition:</strong> From P, infer P ∨ Q.</li>
+          <li><strong>Simplification:</strong> From P ∧ Q, infer P.</li>
+          <li><strong>Conjunction:</strong> From P and Q, infer P ∧ Q.</li>
+          <li><strong>Resolution:</strong> From P ∨ Q and ¬P ∨ R, infer Q ∨ R.</li>
+        </ul>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Given: (1) P → Q, (2) Q → R, (3) P. Prove R.</p>
+          <div class="solution">
+            <strong>Solution:</strong> From (1) and (3) by Modus Ponens: Q. From Q and (2) by Modus Ponens: R. Done.
+          </div>
+        </div>
+
+        <h3>6–8. Predicate Logic &amp; Quantifiers</h3>
+        <p>A <strong>predicate</strong> is a statement containing variables; it becomes a proposition when variables are given values or when quantifiers are applied. Example: <code>P(x) = “x is even”</code>.</p>
+        <ul>
+          <li><strong>Universal quantifier ∀</strong> (“for all”): <code>∀x P(x)</code> means P(x) is true for every x in the domain.</li>
+          <li><strong>Existential quantifier ∃</strong> (“there exists”): <code>∃x P(x)</code> means there is at least one x such that P(x) is true.</li>
+        </ul>
+        <p><strong>Negation:</strong> <code>¬∀x P(x) ≡ ∃x ¬P(x)</code>, <code>¬∃x P(x) ≡ ∀x ¬P(x)</code>.</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Quantifiers</div>
+          <p>Domain = natural numbers. <code>∀x (x ≥ 0)</code> is true. <code>∃x (x &lt; 0)</code> is false.</p>
+          <p><code>∀x ∃y (y = x + 1)</code> is true (successor always exists).</p>
+          <p><code>∃y ∀x (y = x + 1)</code> is false (no single y works for all x).</p>
+        </div>
+
+        <h3>9. Inference Theory of Predicate Logic</h3>
+        <ul>
+          <li><strong>Universal Instantiation (UI):</strong> From ∀x P(x) infer P(c) for any constant c.</li>
+          <li><strong>Universal Generalization (UG):</strong> From P(c) (c arbitrary) infer ∀x P(x).</li>
+          <li><strong>Existential Instantiation (EI):</strong> From ∃x P(x) infer P(c) for a new constant c.</li>
+          <li><strong>Existential Generalization (EG):</strong> From P(c) infer ∃x P(x).</li>
+        </ul>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Given: ∀x (Man(x) → Mortal(x)) and Man(Socrates). Prove Mortal(Socrates).</p>
+          <div class="solution">
+            <strong>Solution:</strong> By UI: Man(Socrates) → Mortal(Socrates). By Modus Ponens with Man(Socrates): Mortal(Socrates).
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== UNIT IV ========== -->
+    <section class="unit" id="unit4">
+      <div class="unit-header">UNIT IV — Algebraic Structures, Rings &amp; Fields</div>
+      <div class="unit-body">
+
+        <h3>1. Introduction to Algebraic Structures</h3>
+        <p>An <strong>algebraic structure</strong> is a set together with one or more binary operations that satisfy certain axioms. Examples: (ℤ, +), (ℤ, +, ·), (power set, ∪, ∩).</p>
+
+        <h3>2. Types of Algebraic Structures</h3>
+        <ul>
+          <li><strong>Semigroup:</strong> Set S with associative binary operation ∗. <code>(a ∗ b) ∗ c = a ∗ (b ∗ c)</code>.</li>
+          <li><strong>Monoid:</strong> Semigroup with an identity element e (<code>a ∗ e = e ∗ a = a</code>).</li>
+          <li><strong>Group:</strong> Monoid in which every element has an inverse (<code>a ∗ a<sup>−1</sup> = a<sup>−1</sup> ∗ a = e</code>).</li>
+          <li><strong>Abelian (commutative) group:</strong> Group whose operation is also commutative (<code>a ∗ b = b ∗ a</code>).</li>
+        </ul>
+
+        <div class="box box-example">
+          <div class="box-title">Example</div>
+          <p>(ℕ, +) is a semigroup (actually monoid with 0) but not a group (no inverses for positive numbers).</p>
+          <p>(ℤ, +) is an abelian group. Identity 0, inverse of n is −n.</p>
+          <p>(ℝ \ {0}, ·) is an abelian group. Identity 1, inverse of x is 1/x.</p>
+          <p>Set of 2×2 invertible matrices with multiplication is a non-abelian group (GL(2)).</p>
+        </div>
+
+        <h3>3. Properties of Groups</h3>
+        <ul>
+          <li>Identity is unique.</li>
+          <li>Inverse of each element is unique.</li>
+          <li><code>(a<sup>−1</sup>)<sup>−1</sup> = a</code>.</li>
+          <li><code>(a ∗ b)<sup>−1</sup> = b<sup>−1</sup> ∗ a<sup>−1</sup></code>.</li>
+          <li>Cancellation: <code>a ∗ b = a ∗ c ⇒ b = c</code> (left and right).</li>
+        </ul>
+
+        <h3>4. Subgroup</h3>
+        <p>A non-empty subset H of a group G is a <strong>subgroup</strong> if H itself is a group under the same operation. Equivalent test: for all a, b ∈ H, <code>a ∗ b<sup>−1</sup> ∈ H</code>.</p>
+
+        <h3>5. Cyclic Group</h3>
+        <p>A group G is <strong>cyclic</strong> if there exists an element g (a generator) such that every element of G is a power of g: <code>G = {g<sup>k</sup> | k ∈ ℤ}</code>. Written <code>G = ⟨g⟩</code>. All cyclic groups are abelian.</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Cyclic groups</div>
+          <p>(ℤ, +) is infinite cyclic, generated by 1 (or by −1).</p>
+          <p>ℤ<sub>n</sub> (integers mod n under addition) is cyclic of order n, generated by 1.</p>
+          <p>The multiplicative group {1, −1, i, −i} is cyclic of order 4, generated by i.</p>
+        </div>
+
+        <h3>6. Cosets</h3>
+        <p>Let H be a subgroup of G and a ∈ G. The <strong>left coset</strong> of H containing a is <code>aH = {a ∗ h | h ∈ H}</code>. Right coset is Ha. Cosets partition the group. <strong>Lagrange’s theorem:</strong> <code>|G| = |H| · (number of distinct cosets)</code>.</p>
+
+        <h3>7. Permutation Groups</h3>
+        <p>A permutation of a set is a bijective function from the set to itself. The set of all permutations of {1,2,…,n} forms the <strong>symmetric group S<sub>n</sub></strong> under composition. Subgroups of S<sub>n</sub> are permutation groups. S<sub>n</sub> has order n!.</p>
+
+        <h3>8. Homomorphism and Isomorphism of Groups</h3>
+        <p>A <strong>homomorphism</strong> φ: G → H is a map that preserves the operation: <code>φ(a ∗ b) = φ(a) ∗ φ(b)</code>.</p>
+        <p>An <strong>isomorphism</strong> is a bijective homomorphism. If an isomorphism exists, G and H are essentially the same group (isomorphic).</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Homomorphism</div>
+          <p>φ: (ℤ, +) → (ℤ<sub>n</sub>, +), φ(k) = k mod n is a surjective homomorphism (kernel = nℤ).</p>
+          <p>The map x ↦ e<sup>x</sup> from (ℝ, +) to (ℝ<sub>&gt;0</sub>, ·) is an isomorphism.</p>
+        </div>
+
+        <h3>9. Rings and Fields</h3>
+        <p><strong>Ring:</strong> A set R with two operations + and · such that (R, +) is an abelian group, · is associative and distributive over +.</p>
+        <p>If · is commutative we have a <em>commutative ring</em>; if there is a multiplicative identity 1 we have a <em>ring with unity</em>.</p>
+        <p><strong>Field:</strong> A commutative ring with unity in which every non-zero element has a multiplicative inverse. (Both (F, +) and (F \ {0}, ·) are abelian groups.)</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Rings and Fields</div>
+          <p>ℤ is a commutative ring with unity, not a field (2 has no inverse in ℤ).</p>
+          <p>ℚ, ℝ, ℂ are fields.</p>
+          <p>ℤ<sub>n</sub> is a field if and only if n is prime.</p>
+          <p>Set of 2×2 matrices is a non-commutative ring with unity.</p>
+        </div>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Why is ℤ<sub>6</sub> not a field?</p>
+          <div class="solution">
+            <strong>Solution:</strong> 6 is not prime. 2 and 3 are zero-divisors: 2·3 ≡ 0 (mod 6), and neither has a multiplicative inverse.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== UNIT V ========== -->
+    <section class="unit" id="unit5">
+      <div class="unit-header">UNIT V — Natural Numbers, Recurrence Relations &amp; Combinatorics</div>
+      <div class="unit-body">
+
+        <h3>1. Natural Numbers &amp; Peano’s Axioms</h3>
+        <p>Peano’s axioms characterize the natural numbers ℕ = {0, 1, 2, …} (or sometimes starting from 1):</p>
+        <ol>
+          <li>0 is a natural number.</li>
+          <li>Every natural number n has a unique successor S(n) (think n+1).</li>
+          <li>0 is not the successor of any natural number.</li>
+          <li>Different numbers have different successors (S is injective).</li>
+          <li><strong>Induction axiom:</strong> If a set contains 0 and is closed under successor, it contains all natural numbers.</li>
+        </ol>
+
+        <h3>2. Mathematical Induction</h3>
+        <p><strong>Ordinary induction:</strong> To prove P(n) for all n ≥ n<sub>0</sub>:</p>
+        <ol>
+          <li>Base case: Prove P(n<sub>0</sub>).</li>
+          <li>Inductive step: Assume P(k) (inductive hypothesis) and prove P(k+1).</li>
+        </ol>
+        <p><strong>Strong induction:</strong> Assume P(m) for all m with n<sub>0</sub> ≤ m ≤ k, and prove P(k+1).</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Prove 1 + 2 + … + n = n(n+1)/2 by induction</div>
+          <p><strong>Base:</strong> n=1 → 1 = 1·2/2 = 1. True.</p>
+          <p><strong>Assume</strong> true for k: 1+…+k = k(k+1)/2.</p>
+          <p><strong>For k+1:</strong> 1+…+k+(k+1) = k(k+1)/2 + (k+1) = (k+1)(k/2 + 1) = (k+1)(k+2)/2.</p>
+          <p>True for k+1. By induction, true for all n ≥ 1.</p>
+        </div>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Prove by induction that 2<sup>n</sup> &gt; n for all natural numbers n ≥ 1.</p>
+          <div class="solution">
+            <strong>Solution:</strong> Base n=1: 2 &gt; 1 true. Assume 2<sup>k</sup> &gt; k. Then 2<sup>k+1</sup> = 2·2<sup>k</sup> &gt; 2k ≥ k+1 (since k ≥ 1). True for k+1. Done.
+          </div>
+        </div>
+
+        <h3>3. Recurrence Relations &amp; Generating Functions</h3>
+        <p>A <strong>recurrence relation</strong> defines a sequence by giving initial terms and a rule for later terms from earlier ones. Example: <code>a<sub>n</sub> = 3 a<sub>n−1</sub> + 2</code>, with a<sub>0</sub> = 1.</p>
+        <p>A <strong>generating function</strong> for a sequence (a<sub>n</sub>) is the power series <code>G(x) = Σ a<sub>n</sub> x<sup>n</sup></code>. It turns recurrence relations into algebraic equations.</p>
+
+        <h3>4. Linear Recurrence Relations</h3>
+        <p>With constant coefficients: <code>a<sub>n</sub> + c<sub>1</sub> a<sub>n−1</sub> + … + c<sub>k</sub> a<sub>n−k</sub> = f(n)</code>.</p>
+        <p><strong>Homogeneous</strong> (f=0): characteristic equation <code>r<sup>k</sup> + c<sub>1</sub> r<sup>k−1</sup> + … + c<sub>k</sub> = 0</code>. General solution is linear combination of r<sup>n</sup> (or n<sup>j</sup> r<sup>n</sup> for multiple roots).</p>
+        <p><strong>Non-homogeneous:</strong> find particular solution + homogeneous solution.</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Solve a<sub>n</sub> = 5 a<sub>n−1</sub> − 6 a<sub>n−2</sub>, a<sub>0</sub>=0, a<sub>1</sub>=1</div>
+          <p>Characteristic equation: r² − 5r + 6 = 0 → (r−2)(r−3)=0 → r=2,3.</p>
+          <p>General solution: <code>a<sub>n</sub> = A · 2<sup>n</sup> + B · 3<sup>n</sup></code>.</p>
+          <p>a<sub>0</sub>=0 ⇒ A + B = 0. a<sub>1</sub>=1 ⇒ 2A + 3B = 1.</p>
+          <p>From A = −B: −2B + 3B = 1 ⇒ B=1, A=−1.</p>
+          <p><code>a<sub>n</sub> = −2<sup>n</sup> + 3<sup>n</sup></code>.</p>
+        </div>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>Find a closed form for a<sub>n</sub> = 2 a<sub>n−1</sub> with a<sub>0</sub> = 3.</p>
+          <div class="solution">
+            <strong>Solution:</strong> Unfold: a<sub>n</sub> = 2 a<sub>n−1</sub> = 2² a<sub>n−2</sub> = … = 2<sup>n</sup> a<sub>0</sub> = <strong>3 · 2<sup>n</sup></strong>.
+          </div>
+        </div>
+
+        <h3>5. Combinatorics — Introduction &amp; Counting Techniques</h3>
+        <ul>
+          <li><strong>Sum rule:</strong> If a task can be done in m ways or n ways (disjoint), total = m + n.</li>
+          <li><strong>Product rule:</strong> If a task has k successive steps with n<sub>i</sub> choices each, total = n<sub>1</sub> · n<sub>2</sub> · … · n<sub>k</sub>.</li>
+          <li><strong>Permutations:</strong> P(n,r) = n! / (n−r)! (ordered selections).</li>
+          <li><strong>Combinations:</strong> C(n,r) = n! / (r!(n−r)!) (unordered selections).</li>
+          <li><strong>Binomial theorem:</strong> (x+y)<sup>n</sup> = Σ C(n,k) x<sup>n−k</sup> y<sup>k</sup>.</li>
+        </ul>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Counting</div>
+          <p>Number of ways to choose 3 students from 10: C(10,3) = 120.</p>
+          <p>Number of 3-letter words from {A,B,C,D,E} with repetition: 5³ = 125.</p>
+          <p>Without repetition: P(5,3) = 5·4·3 = 60.</p>
+        </div>
+
+        <h3>6. Pigeonhole Principle</h3>
+        <p><strong>Basic:</strong> If n+1 pigeons are put into n holes, at least one hole contains more than one pigeon.</p>
+        <p><strong>Generalized:</strong> If N objects are placed into k boxes, then at least one box contains at least ⌈N/k⌉ objects.</p>
+
+        <div class="box box-question">
+          <div class="box-title">Question</div>
+          <p>How many students must be in a class to guarantee that at least two have birthdays in the same month?</p>
+          <div class="solution">
+            <strong>Solution:</strong> 12 months (holes). To guarantee two in the same month: 12 + 1 = <strong>13 students</strong> (pigeons).
+          </div>
+        </div>
+
+        <h3>7. Polya’s Counting Theorem (Introduction)</h3>
+        <p>Polya’s enumeration theorem counts distinct objects under group actions (symmetries). It uses the cycle index of a permutation group. Classic application: counting distinct necklaces that can be rotated/flipped, or distinct colorings of a cube’s faces up to rotation.</p>
+        <p>Simple idea: average the number of colorings fixed by each symmetry. For a cyclic group of order n acting on n beads with c colors, the number of distinct necklaces (rotations only) is <code>(1/n) Σ<sub>d|n</sub> φ(d) c<sup>n/d</sup></code> (where φ is Euler’s totient).</p>
+
+        <div class="box box-example">
+          <div class="box-title">Example — Necklace with 3 beads, 2 colors (rotations only)</div>
+          <p>n=3, c=2. Divisors of 3: 1 and 3. φ(1)=1, φ(3)=2.</p>
+          <p>Number = (1/3)[φ(1)·2³ + φ(3)·2¹] = (1/3)(1·8 + 2·2) = (8+4)/3 = <strong>4</strong>.</p>
+          <p>The four: all color A, all color B, two A one B, two B one A.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== QUICK REVISION ========== -->
+    <section class="summary" id="summary">
+      <h2>📋 Quick Revision Summary</h2>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <strong>Sets</strong>
+          <span>Union, intersection, complement, De Morgan, cardinality, power set, Cartesian product.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Relations</strong>
+          <span>Reflexive, symmetric, antisymmetric, transitive → equivalence / partial order.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Functions</strong>
+          <span>Injective, surjective, bijective; composition; recursive definitions.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Posets &amp; Lattices</strong>
+          <span>Hasse diagram, meet/join, bounded/complemented/modular/distributive/complete.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Boolean Algebra</strong>
+          <span>Axioms, simplification, K-maps, logic gates.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Logic</strong>
+          <span>Truth tables, tautology, inference rules (Modus Ponens etc.), quantifiers ∀ ∃.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Algebra</strong>
+          <span>Semigroup → Monoid → Group → Abelian group; subgroup, cyclic, cosets, homo/iso; rings &amp; fields.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Induction &amp; Recurrence</strong>
+          <span>Peano, ordinary/strong induction, linear recurrences, generating functions.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Combinatorics</strong>
+          <span>Sum/product rules, P/C, pigeonhole, Polya counting.</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>End of Notes — Practice the examples and questions for better understanding.</p>
+    <p style="margin-top:0.4rem; opacity:0.7;">Discrete Mathematics · Professional Study Notes</p>
+  </footer>
+
+</body>
+</html>
