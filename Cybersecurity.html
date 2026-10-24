@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Information Systems &amp; Information Security — Comprehensive Notes</title>
+  <style>
+    :root {
+      --primary: #1a365d;
+      --primary-light: #2b6cb0;
+      --accent: #3182ce;
+      --success: #276749;
+      --success-bg: #f0fff4;
+      --success-border: #68d391;
+      --highlight-bg: #ebf8ff;
+      --highlight-border: #63b3ed;
+      --warning-bg: #fffaf0;
+      --warning-border: #ed8936;
+      --danger-bg: #fff5f5;
+      --danger-border: #fc8181;
+      --gray-50: #f7fafc;
+      --gray-100: #edf2f7;
+      --gray-200: #e2e8f0;
+      --gray-600: #718096;
+      --gray-700: #4a5568;
+      --gray-800: #2d3748;
+      --gray-900: #1a202c;
+      --radius: 10px;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    }
 
-<title>Cyber Security Notes</title>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+   body {
   background-color: var(--bg-deep);
             background-image: linear-gradient(rgba(6, 9, 19, 0.1), rgba(6, 9, 19, 0.1)), url('c1.jpg');
            font-family: "Segoe UI", Arial, sans-serif;
@@ -21,1013 +40,666 @@ body {
             background-position: center center;
             background-size: cover;
             background-attachment: fixed;
-  
-}
 
-/* Main Container */
-.container {
-    width: 90%;
-    max-width: 1150px;
-    margin: auto;
-    padding: 30px 0;
-}
-
-/* Hero Heading */
-.hero {
-    position: relative;
-    overflow: hidden;
-    padding: 50px 30px;
-    text-align: center;
-    color: white;
-    border-radius: 25px;
-    background: linear-gradient(
-        135deg,
-        #172554,
-        #2563eb,
-        #7c3aed
-    );
-
-    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.25);
-}
-
-.hero h1 {
-    font-size: 3.5rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    font-size: 1.1rem;
-    color: #e0e7ff;
-}
-
-/* Navigation */
-.nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin: 25px 0;
-}
-
-.nav a {
-    text-decoration: none;
-    color: #1d4ed8;
-    background: white;
-    padding: 9px 17px;
-    border-radius: 30px;
-    border: 1px solid #dbe4f0;
-    font-weight: bold;
-
-    transition: 0.3s;
-}
-
-.nav a:hover {
-    background: #2563eb;
-    color: white;
-    transform: translateY(-3px);
-}
-
-/* Section */
-.section {
-    background: white;
-    margin: 25px 0;
-    padding: 30px;
-
-    border-radius: 20px;
-    border: 1px solid #dce4ef;
-
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
-}
-
-/* Main Headings */
-h2 {
-    position: relative;
-
-    font-size: 1.8rem;
-    color: #173b8f;
-
-    padding: 14px 18px;
-    margin-bottom: 20px;
-
-    border-left: 7px solid #2563eb;
-    border-radius: 10px;
-
-    background: linear-gradient(
-        90deg,
-        #eaf1ff,
-        transparent
-    );
-}
-
-/* Sub Heading */
-h3 {
-    color: #6d28d9;
-    margin-top: 25px;
-    margin-bottom: 10px;
-
-    padding-bottom: 6px;
-    border-bottom: 2px solid #ede9fe;
-}
-
-/* Paragraph */
-p {
-    margin: 12px 0;
-}
-
-/* Highlight Box */
-.highlight {
-    margin: 20px 0;
-    padding: 18px;
-
-    background: #fff7cc;
-    border-left: 6px solid #f59e0b;
-
-    border-radius: 10px;
-}
-
-/* Cards */
-.grid {
-    display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(220px, 1fr));
-
-    gap: 18px;
-    margin-top: 15px;
-}
-
-.card {
-    background: #f8fbff;
-
-    padding: 20px;
-
-    border-radius: 15px;
-    border: 1px solid #dce7f5;
-
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 10px 25px rgba(37, 99, 235, 0.12);
-}
-
-.card b {
-    display: block;
-
-    color: #2563eb;
-    font-size: 1.1rem;
-
-    margin-bottom: 7px;
-}
-
-/* Badge */
-.badge {
-    display: inline-block;
-
-    background: #dbeafe;
-    color: #1d4ed8;
-
-    padding: 4px 10px;
-
-    border-radius: 20px;
-
-    font-size: 0.85rem;
-    font-weight: bold;
-
-    margin-right: 5px;
-}
-
-/* Formula */
-.formula {
-    background: #111827;
-    color: #67e8f9;
-
-    padding: 18px;
-
-    border-radius: 12px;
-
-    font-family: Consolas, monospace;
-
-    font-size: 1.1rem;
-
-    text-align: center;
-
-    margin: 18px 0;
-}
-
-/* Code */
-pre {
-    background: #111827;
-    color: #e5e7eb;
-
-    padding: 20px;
-
-    border-radius: 15px;
-
-    overflow-x: auto;
-
-    margin: 20px 0;
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-code {
-    font-family: Consolas, "Courier New", monospace;
-}
-
-/* Diagram */
-.diagram {
-    background: #f8fafc;
-
-    border: 2px dashed #94a3b8;
-
-    padding: 20px;
-
-    border-radius: 15px;
-
-    font-family: Consolas, monospace;
-
-    white-space: pre-wrap;
-
-    overflow-x: auto;
-
-    margin: 20px 0;
-}
-
-/* Table */
-.table-container {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-
-    border-collapse: collapse;
-
-    margin: 20px 0;
-
-    border-radius: 12px;
-
-    overflow: hidden;
-}
-
-th {
-    background:
-        linear-gradient(
-            90deg,
-            #1d4ed8,
-            #6d28d9
-        );
-
-    color: white;
-
-    padding: 14px;
-
-    text-align: left;
-}
-
-td {
-    padding: 13px;
-
-    border-bottom: 1px solid #dbe4ef;
-}
-
-tr:nth-child(even) {
-    background: #f8fbff;
-}
-
-tr:hover {
-    background: #eef4ff;
-}
-
-/* Important Text */
-.important {
-    background: #fee2e2;
-
-    border-left: 6px solid #ef4444;
-
-    padding: 15px;
-
-    border-radius: 10px;
-
-    margin: 15px 0;
-}
-
-/* Success */
-.success {
-    background: #dcfce7;
-
-    border-left: 6px solid #22c55e;
-
-    padding: 15px;
-
-    border-radius: 10px;
-
-    margin: 15px 0;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-
-    color: #64748b;
-
-    padding: 30px;
-}
-
-/* Responsive */
-@media (max-width: 700px) {
+    .site-header {
+      background: linear-gradient(135deg, #0f2942 0%, #1a365d 50%, #2b6cb0 100%);
+      color: white;
+      padding: 2.8rem 1.5rem 2.2rem;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .site-header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 0.8rem;
+    }
+    .site-header h1 {
+      font-size: clamp(1.7rem, 4.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .site-header .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 1.3rem;
+    }
+    .units-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 1.1rem;
+      font-size: 0.88rem;
+      opacity: 0.88;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .toc {
+      background: white;
+      max-width: 980px;
+      margin: -1.6rem auto 2rem;
+      padding: 1.5rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      z-index: 10;
+    }
+    .toc h2 {
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin-bottom: 0.9rem;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.5rem 1.5rem;
+      font-size: 0.92rem;
+    }
+    .toc a {
+      color: var(--primary-light);
+      text-decoration: none;
+      display: block;
+      padding: 0.12rem 0;
+    }
+    .toc a:hover { color: var(--accent); text-decoration: underline; }
+    .toc .unit-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 0.4rem;
+      margin-bottom: 0.15rem;
+      font-size: 0.95rem;
+    }
 
     .container {
-        width: 94%;
+      max-width: 980px;
+      margin: 0 auto 3rem;
+      padding: 0 1.2rem;
     }
 
-    .hero {
-        padding: 35px 20px;
+    .unit {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .unit-header {
+      background: linear-gradient(90deg, var(--primary) 0%, #2b6cb0 100%);
+      color: white;
+      padding: 1.15rem 1.8rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .unit-body { padding: 1.7rem 1.8rem; }
+
+    h3 {
+      color: var(--primary);
+      font-size: 1.16rem;
+      margin: 1.85rem 0 0.65rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--gray-100);
+    }
+    h3:first-child { margin-top: 0; }
+    h4 {
+      color: var(--gray-700);
+      font-size: 1.05rem;
+      margin: 1.3rem 0 0.5rem;
     }
 
-    .hero h1 {
-        font-size: 2.3rem;
+    p, li { margin-bottom: 0.55rem; }
+    ul, ol { padding-left: 1.35rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.28rem; }
+    strong { color: var(--gray-900); }
+
+    .box {
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1.1rem 0;
+      border-left: 4px solid;
+    }
+    .box-key {
+      background: var(--highlight-bg);
+      border-color: var(--highlight-border);
+    }
+    .box-key .box-title {
+      color: #2b6cb0;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.35rem;
+    }
+    .box-example {
+      background: var(--success-bg);
+      border-color: var(--success);
+    }
+    .box-example .box-title {
+      color: var(--success);
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.35rem;
+    }
+    .box-note {
+      background: var(--warning-bg);
+      border-color: var(--warning-border);
+    }
+    .box-note .box-title {
+      color: #c05621;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.35rem;
+    }
+    .box-danger {
+      background: var(--danger-bg);
+      border-color: var(--danger-border);
+    }
+    .box-danger .box-title {
+      color: #c53030;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.35rem;
     }
 
-    .section {
-        padding: 20px;
+    .cia-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    .cia-card {
+      background: var(--gray-50);
+      border-radius: 8px;
+      padding: 1.1rem;
+      border-top: 4px solid var(--accent);
+    }
+    .cia-card h4 {
+      margin: 0 0 0.5rem;
+      color: var(--primary);
+      font-size: 1.05rem;
     }
 
-    h2 {
-        font-size: 1.4rem;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.92rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
-}
-</style>
+    th {
+      background: var(--primary);
+      color: white;
+      padding: 0.65rem 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 0.55rem 1rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    tr:nth-child(even) td { background: var(--gray-50); }
+    tr:last-child td { border-bottom: none; }
+
+    .summary {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.7rem;
+      margin-bottom: 2rem;
+    }
+    .summary h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.9rem;
+    }
+    .summary-item {
+      background: var(--gray-50);
+      border-radius: 8px;
+      padding: 1rem;
+      border-left: 3px solid var(--accent);
+    }
+    .summary-item strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+    .summary-item span {
+      font-size: 0.88rem;
+      color: var(--gray-700);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 2.5rem;
+      color: var(--gray-600);
+      font-size: 0.9rem;
+    }
+
+    @media print {
+      body { background: white; }
+      .site-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .unit { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
-
-<!-- HERO -->
-<header class="hero">
-    <h1>🔐 CYBER SECURITY</h1>
-	<h4>By </h4><h2> Thakur Piyush Singh...</h2>
-
-    <p>
-        Complete AKTU Exam Notes
-        | Threats | Attacks | Forensics |
-        Cryptography | Web Security
-    </p>
-</header>
-
-
-<!-- NAVIGATION -->
-<nav class="nav">
-    <a href="#fundamentals">Fundamentals</a>
-    <a href="#attacks">Attack Types</a>
-    <a href="#laws">Cyber Laws</a>
-    <a href="#forensics">Forensics</a>
-    <a href="#crypto">Cryptography</a>
-    <a href="#web">Web Security</a>
-    <a href="#social">Social Engineering</a>
-</nav>
-
-
-<!-- INTRODUCTION -->
-<section class="section">
-
-<h2>🔐 Introduction to Cybersecurity</h2>
-
-<p>
-Cybersecurity is the practice of protecting digital systems,
-networks, devices, and data from unauthorized access,
-theft, or damage.
-</p>
-
-<div class="highlight">
-
-<strong>⭐ CIA TRIAD</strong>
-
-<div class="grid">
-
-<div class="card">
-<b>Confidentiality</b>
-Keeping sensitive data private from intruders.
-</div>
-
-<div class="card">
-<b>Integrity</b>
-Ensuring information is not altered or corrupted.
-</div>
-
-<div class="card">
-<b>Availability</b>
-Guaranteeing systems remain accessible to authorized users.
-</div>
-
-</div>
-</div>
-
-</section>
-
-
-<!-- FUNDAMENTALS -->
-<section class="section" id="fundamentals">
-
-<h2>1️⃣ Fundamental Definitions & Relationship</h2>
-
-<p>
-In cybersecurity, Threat, Vulnerability, and Attack are
-important concepts.
-</p>
-
-<div class="diagram">
-
-[ Threat Agent ]
-        ↓
-    Exploits
-        ↓
-[ Vulnerability ]
-        ↓
-    Triggers
-        ↓
-     [ Attack ]
-        ↓
-[ Harm / Impact ]
-
-</div>
-
-<div class="table-container">
-
-<table>
-
-<tr>
-<th>Term</th>
-<th>Definition</th>
-<th>Example</th>
-</tr>
-
-<tr>
-<td><b>Vulnerability</b></td>
-
-<td>
-A weakness or loophole in a system's design,
-implementation, or operational controls.
-</td>
-
-<td>
-Unpatched software, weak passwords
-</td>
-</tr>
-
-<tr>
-<td><b>Cyber Threat</b></td>
-
-<td>
-Any potential incident or actor capable of
-exploiting a vulnerability.
-</td>
-
-<td>
-Hackers, ransomware campaigns
-</td>
-</tr>
-
-<tr>
-<td><b>Cyber Attack</b></td>
-
-<td>
-The actual deliberate action taken by an attacker
-to exploit a vulnerability.
-</td>
-
-<td>
-SQL Injection, phishing
-</td>
-</tr>
-
-</table>
-
-</div>
-
-<div class="formula">
-Risk = Threat × Vulnerability × Impact
-</div>
-
-</section>
-
-
-<!-- ATTACK TYPES -->
-<section class="section" id="attacks">
-
-<h2>2️⃣ Cyber Attack Types</h2>
-
-
-<h3>🎣 Phishing</h3>
-
-<p>
-Phishing is a social engineering attack where an attacker
-impersonates a trustworthy entity through email, SMS,
-or web pages to steal sensitive information.
-</p>
-
-<div class="diagram">
-
-[ Attacker ]
-      ↓
-Spoofed Email
-      ↓
-[ Victim ]
-      ↓
-Fake Link
-      ↓
-[ Phishing Page ]
-      ↓
-Credentials Stolen
-
-</div>
-
-
-<h3>Types of Phishing</h3>
-
-<div class="grid">
-
-<div class="card">
-<b>Spear Phishing</b>
-Targeted attack against a specific person or organization.
-</div>
-
-<div class="card">
-<b>Whaling</b>
-Phishing aimed at high-profile executives.
-</div>
-
-<div class="card">
-<b>Vishing</b>
-Phishing conducted through voice calls.
-</div>
-
-<div class="card">
-<b>Smishing</b>
-Phishing conducted through SMS.
-</div>
-
-<div class="card">
-<b>Clone Phishing</b>
-Copying a legitimate email and replacing it with malicious links.
-</div>
-
-</div>
-
-
-<h3>🦠 Malware</h3>
-
-<p>
-Malware is software intentionally designed to cause damage,
-disrupt functionality, or gain unauthorized access.
-</p>
-
-
-<div class="grid">
-
-<div class="card">
-<b>Virus</b>
-Requires a host file and human execution.
-</div>
-
-<div class="card">
-<b>Worm</b>
-Self-replicates and spreads through networks.
-</div>
-
-<div class="card">
-<b>Trojan Horse</b>
-Looks like legitimate software but contains a malicious payload.
-</div>
-
-<div class="card">
-<b>Ransomware</b>
-Encrypts files and demands payment.
-</div>
-
-<div class="card">
-<b>Spyware / Keylogger</b>
-Secretly monitors user activity and keystrokes.
-</div>
-
-</div>
-
-
-<h3>💉 SQL Injection</h3>
-
-<p>
-SQL Injection is an application-layer attack in which
-malicious SQL commands are inserted into user input fields.
-</p>
-
-<pre><code>SELECT * FROM Users
-WHERE username = 'USER_INPUT'
-AND password = 'PASSWORD_INPUT';</code></pre>
-
-<div class="important">
-
-<b>Example:</b>
-
-<pre><code>admin' OR '1'='1</code></pre>
-
-</div>
-
-
-<h3>🛡️ SQL Injection Prevention</h3>
-
-<ul>
-<li>Prepared Statements</li>
-<li>Parameterized Queries</li>
-<li>Input Validation</li>
-<li>Web Application Firewall (WAF)</li>
-</ul>
-
-</section>
-
-
-<!-- CYBER LAW -->
-<section class="section" id="laws">
-
-<h2>3️⃣ Cyberspace Laws & IT Act 2000</h2>
-
-<p>
-The Information Technology Act, 2000 provides legal recognition
-to electronic records and electronic transactions and addresses
-cyber offences.
-</p>
-
-
-<table>
-
-<tr>
-<th>Section</th>
-<th>Offense</th>
-<th>Penalty / Scope</th>
-</tr>
-
-<tr>
-<td>43</td>
-<td>Damage to computer system</td>
-<td>Civil liability</td>
-</tr>
-
-<tr>
-<td>65</td>
-<td>Tampering with computer source documents</td>
-<td>Up to 3 years / Fine</td>
-</tr>
-
-<tr>
-<td>66</td>
-<td>Computer-related offences</td>
-<td>Up to 3 years / Fine</td>
-</tr>
-
-<tr>
-<td>66C</td>
-<td>Identity Theft</td>
-<td>Up to 3 years / Fine</td>
-</tr>
-
-<tr>
-<td>66D</td>
-<td>Cheating by personation</td>
-<td>Up to 3 years / Fine</td>
-</tr>
-
-<tr>
-<td>66F</td>
-<td>Cyber Terrorism</td>
-<td>Imprisonment for life</td>
-</tr>
-
-<tr>
-<td>67</td>
-<td>Obscene electronic material</td>
-<td>Imprisonment + Fine</td>
-</tr>
-
-</table>
-
-</section>
-
-
-<!-- FORENSICS -->
-<section class="section" id="forensics">
-
-<h2>4️⃣ Digital Forensics</h2>
-
-<p>
-Digital Forensics is the process of identifying, preserving,
-extracting, analyzing, and presenting digital evidence.
-</p>
-
-
-<div class="diagram">
-
-Identification
-      ↓
-Preservation
-      ↓
-Acquisition
-      ↓
-Analysis
-      ↓
-Reporting
-
-</div>
-
-
-<div class="grid">
-
-<div class="card">
-<b>1. Identification</b>
-Locate potential digital evidence.
-</div>
-
-<div class="card">
-<b>2. Preservation</b>
-Protect evidence from alteration.
-</div>
-
-<div class="card">
-<b>3. Acquisition</b>
-Create a forensic image of the media.
-</div>
-
-<div class="card">
-<b>4. Analysis</b>
-Examine files, logs and system artifacts.
-</div>
-
-<div class="card">
-<b>5. Reporting</b>
-Document findings in a technical report.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- CRYPTOGRAPHY -->
-<section class="section" id="crypto">
-
-<h2>5️⃣ Cryptography</h2>
-
-<p>
-Cryptography is the science and practice of securing
-communication and data against unauthorized access.
-</p>
-
-
-<div class="diagram">
-
-┌─────────────────┐
-│    PLAINTEXT    │
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│    ENCRYPTION   │
-│   + KEY         │
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│   CIPHERTEXT    │
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│    DECRYPTION   │
-│   + KEY         │
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│    PLAINTEXT    │
-└─────────────────┘
-
-</div>
-
-
-<h3>🔑 Four Security Goals</h3>
-
-<div class="grid">
-
-<div class="card">
-<b>Confidentiality</b>
-Only authorized entities can access data.
-</div>
-
-<div class="card">
-<b>Integrity</b>
-Data must not be altered.
-</div>
-
-<div class="card">
-<b>Authentication</b>
-Verifies identity.
-</div>
-
-<div class="card">
-<b>Non-Repudiation</b>
-Prevents denial of an action.
-</div>
-
-</div>
-
-
-<h3>Symmetric Encryption</h3>
-
-<p>
-A single shared secret key is used for both encryption
-and decryption.
-</p>
-
-<div class="formula">
-Total Keys = N(N − 1) / 2
-</div>
-
-
-<h3>Asymmetric Encryption</h3>
-
-<p>
-Asymmetric cryptography uses two mathematically related keys:
-a Public Key and a Private Key.
-</p>
-
-
-<div class="grid">
-
-<div class="card">
-<b>Public Key</b>
-Shared publicly.
-</div>
-
-<div class="card">
-<b>Private Key</b>
-Kept secret by the owner.
-</div>
-
-</div>
-
-
-<h3>Digital Signature</h3>
-
-<div class="diagram">
-
-Message
-   ↓
-Hash Function
-   ↓
-Hash
-   ↓
-Encrypt using Private Key
-   ↓
-Digital Signature
-
-</div>
-
-<div class="success">
-
-<b>Verification:</b>
-
-If Hash 1 = Hash 2 → Signature is Valid.
-
-If Hash 1 ≠ Hash 2 → Signature is Invalid.
-
-</div>
-
-</section>
-
-
-<!-- WEB SECURITY -->
-<section class="section" id="web">
-
-<h2>6️⃣ Web Security</h2>
-
-<p>
-Web Security involves protecting web applications,
-servers and HTTP/HTTPS communications against attacks.
-</p>
-
-
-<div class="grid">
-
-<div class="card">
-<b>Cross-Site Scripting (XSS)</b>
-Injection of malicious scripts into web applications.
-</div>
-
-<div class="card">
-<b>CSRF</b>
-Tricks an authenticated browser into sending an unwanted request.
-</div>
-
-<div class="card">
-<b>HTTPS/TLS</b>
-Protects web traffic using encryption.
-</div>
-
-<div class="card">
-<b>Session Hijacking</b>
-Attackers capture or guess valid session identifiers.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SOCIAL ENGINEERING -->
-<section class="section" id="social">
-
-<h2>7️⃣ Social Engineering</h2>
-
-<p>
-Social Engineering manipulates people into revealing
-confidential information or performing unsafe actions.
-</p>
-
-
-<div class="grid">
-
-<div class="card">
-<b>Phishing</b>
-Fraudulent communication to steal information.
-</div>
-
-<div class="card">
-<b>Pretexting</b>
-Creating a fake scenario to persuade a victim.
-</div>
-
-<div class="card">
-<b>Baiting</b>
-Using an attractive object such as an infected USB.
-</div>
-
-<div class="card">
-<b>Tailgating</b>
-Following an authorized person into a restricted area.
-</div>
-
-</div>
-
-
-<h3>🛡️ Defense</h3>
-
-<ul>
-<li>Security Awareness Training</li>
-<li>Verification Procedures</li>
-<li>Multi-Factor Authentication (MFA)</li>
-<li>Regular Security Training</li>
-</ul>
-
-</section>
-
-
-<!-- QUICK REVISION -->
-<section class="section">
-
-<h2>⚡ Quick Revision</h2>
-
-<div class="grid">
-
-<div class="card">
-<b>Risk</b>
-Threat × Vulnerability × Impact
-</div>
-
-<div class="card">
-<b>SQLi Defense</b>
-Parameterized Queries / Prepared Statements
-</div>
-
-<div class="card">
-<b>Digital Signature</b>
-Signed with Private Key and verified with Public Key
-</div>
-
-<div class="card">
-<b>HTTPS</b>
-Secure HTTP communication using TLS
-</div>
-
-</div>
-
-</section>
-
-
-<footer>
-    🔐 Cyber Security Notes • HTML + CSS
-</footer>
-
-</div>
+  <header class="site-header">
+    <div class="badge">Thakur Piyush Singh...💖</div>
+    <h1>INFORMATION SYSTEMS<br>&amp; INFORMATION SECURITY</h1>
+    <p class="subtitle">Deep Explanations in Very Simple English · Exam-Oriented</p>
+    <div class="units-list">
+      <span>Unit I — IS, CIA Triad, Threats &amp; Cyber Security</span>
+      <span>Unit II — Application &amp; Data Security, Malware</span>
+      <span>Unit III — E-Commerce, Cryptography, Physical Security</span>
+      <span>Unit IV — Security Policies</span>
+      <span>Unit V — ISO, IT Act, IPR &amp; Cyber Crimes</span>
+    </div>
+  </header>
+
+  <nav class="toc">
+    <h2>📑 Table of Contents</h2>
+    <div class="toc-grid">
+      <div>
+        <div class="unit-title">Unit I</div>
+        <a href="#u1">Information Systems &amp; Security</a>
+        <a href="#u1-4">CIA Triad</a>
+        <a href="#u1-6">Threats &amp; Risk Analysis</a>
+      </div>
+      <div>
+        <div class="unit-title">Unit II–III</div>
+        <a href="#u2">Application, Data Security &amp; Malware</a>
+        <a href="#u3">E-Commerce, Crypto &amp; Physical Security</a>
+      </div>
+      <div>
+        <div class="unit-title">Unit IV–V</div>
+        <a href="#u4">Security Policies</a>
+        <a href="#u5">Standards, IT Act, IPR &amp; Cyber Crimes</a>
+        <a href="#summary">Quick Revision</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- UNIT I -->
+    <section class="unit" id="u1">
+      <div class="unit-header">UNIT I — Introduction to Information Systems &amp; Security</div>
+      <div class="unit-body">
+
+        <h3>1.1 Introduction to Information Systems</h3>
+        <p>An <strong>Information System (IS)</strong> is a combination of people, hardware, software, data, and processes that work together to collect, process, store and distribute information. Its main purpose is to help people make better decisions and run the organization smoothly.</p>
+        <div class="box box-key">
+          <div class="box-title">Simple Meaning</div>
+          An information system takes raw data as input, processes it, and gives useful information as output that managers and employees can use.
+        </div>
+        <p><strong>Main components:</strong> Hardware · Software · Data · People · Processes / Procedures · Networks</p>
+        <div class="box box-example">
+          <div class="box-title">Example</div>
+          A college admission system takes student applications (data), checks eligibility (process), stores records (database), and shows the list of selected students (information) to the administration.
+        </div>
+
+        <h3>1.2 Types of Information Systems</h3>
+        <ol>
+          <li><strong>Transaction Processing System (TPS)</strong> — Records day-to-day transactions (billing, payroll, ATM). Foundation for other systems.</li>
+          <li><strong>Management Information System (MIS)</strong> — Summary reports for middle managers (monthly sales, inventory status).</li>
+          <li><strong>Decision Support System (DSS)</strong> — Helps non-routine decisions by analyzing data and showing outcomes.</li>
+          <li><strong>Executive Information System (EIS/ESS)</strong> — High-level dashboards for top executives.</li>
+          <li><strong>Expert System</strong> — Copies decision-making of a human expert (medical diagnosis, loan approval).</li>
+          <li><strong>Office Automation System (OAS)</strong> — Email, word processing, spreadsheets, video conferencing.</li>
+          <li><strong>Knowledge Management System (KMS)</strong> — Stores and shares employee knowledge (company wiki, best-practice database).</li>
+        </ol>
+
+        <h3>1.3 Development of Information Systems (SDLC)</h3>
+        <ol>
+          <li>Planning / Feasibility Study</li>
+          <li>System Analysis</li>
+          <li>System Design</li>
+          <li>Implementation / Coding</li>
+          <li>Testing</li>
+          <li>Deployment</li>
+          <li>Maintenance</li>
+        </ol>
+        <p>Modern approaches: <strong>Agile</strong>, <strong>Prototyping</strong>, <strong>DevOps</strong>.</p>
+
+        <h3 id="u1-4">1.4 Information Security &amp; the CIA Triad</h3>
+        <p>Information Security means protecting information and systems from unauthorized access, use, disclosure, disruption, modification, or destruction.</p>
+        <div class="cia-grid">
+          <div class="cia-card">
+            <h4>1. Confidentiality</h4>
+            <p>Only authorized people can see the information. Secret data must remain secret.</p>
+            <p><em>Methods:</em> encryption, passwords, access control</p>
+          </div>
+          <div class="cia-card">
+            <h4>2. Integrity</h4>
+            <p>Information must be accurate and complete. No unauthorized changes.</p>
+            <p><em>Methods:</em> checksums, digital signatures, version control</p>
+          </div>
+          <div class="cia-card">
+            <h4>3. Availability</h4>
+            <p>Systems and information available to authorized users when needed.</p>
+            <p><em>Methods:</em> backups, redundant servers, anti-DoS measures</p>
+          </div>
+        </div>
+        <div class="box box-note">
+          <div class="box-title">Remember</div>
+          If any one of CIA is broken, security is compromised. Good security balances all three.
+        </div>
+
+        <h3>1.5 Need for Information Security</h3>
+        <ul>
+          <li>Huge amounts of sensitive data stored by organizations</li>
+          <li>Almost everything is connected to the internet — large attack surface</li>
+          <li>Cyber attacks cause financial loss, legal problems, and reputation damage</li>
+          <li>Laws and regulations require protection of data</li>
+          <li>Business continuity depends on available and correct systems</li>
+          <li>Customer and partner trust depends on security</li>
+          <li>National security and critical infrastructure depend on secure systems</li>
+        </ul>
+
+        <h3 id="u1-6">1.6 Threats to Information Systems</h3>
+        <ul>
+          <li><strong>Human threats</strong> — hackers, disgruntled employees, social engineers, careless users</li>
+          <li><strong>Malicious software</strong> — viruses, worms, ransomware, spyware, trojans</li>
+          <li><strong>Network attacks</strong> — DoS, man-in-the-middle, packet sniffing</li>
+          <li><strong>Physical threats</strong> — theft, fire, flood, power failure, vandalism</li>
+          <li><strong>Technical failures</strong> — hardware crash, software bugs, configuration errors</li>
+          <li><strong>Natural disasters</strong> — earthquake, flood, cyclone</li>
+          <li><strong>Organizational threats</strong> — weak policies, lack of training, poor access control</li>
+        </ul>
+
+        <h3>1.7 Information Assurance &amp; Security Risk Analysis</h3>
+        <p><strong>Information Assurance</strong> means confidence that systems will work as expected and that CIA is protected.</p>
+        <p><strong>Simple steps of Risk Analysis:</strong></p>
+        <ol>
+          <li>Identify assets</li>
+          <li>Identify threats and vulnerabilities</li>
+          <li>Assess likelihood and impact</li>
+          <li>Calculate risk (Risk ≈ Likelihood × Impact)</li>
+          <li>Decide treatment — Accept, Avoid, Transfer, or Mitigate</li>
+          <li>Implement controls and monitor</li>
+        </ol>
+
+        <h3>1.8 Cyber Security — Overview</h3>
+        <p>Cyber Security is the practice of protecting computers, networks, programs and data from digital attacks. It covers network security, application security, endpoint security, cloud security, identity &amp; access management, and security awareness training.</p>
+        <div class="box box-key">
+          <div class="box-title">Key Message</div>
+          In today’s world, cyber security is not optional. Every organization — big or small — needs a basic level of cyber security to survive and retain customer trust.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- UNIT II -->
+    <section class="unit" id="u2">
+      <div class="unit-header">UNIT II — Application Security, Data Security &amp; Threats</div>
+      <div class="unit-body">
+
+        <h3>2.1 Application Security — Database, Email &amp; Internet</h3>
+        <h4>Database Security</h4>
+        <ul>
+          <li>Strong authentication and authorization</li>
+          <li>Encryption of sensitive data (at rest and in transit)</li>
+          <li>Regular backups and tested recovery</li>
+          <li>Input validation to prevent SQL Injection</li>
+          <li>Activity monitoring and auditing</li>
+          <li>Principle of least privilege</li>
+        </ul>
+        <h4>Email Security</h4>
+        <ul>
+          <li>Anti-spam and anti-malware filters</li>
+          <li>SPF, DKIM, DMARC to prevent spoofing</li>
+          <li>User awareness training</li>
+          <li>Encryption of sensitive emails</li>
+          <li>Multi-factor authentication</li>
+        </ul>
+        <h4>Web Application Security</h4>
+        <p>Secure coding, regular patching, HTTPS everywhere, Web Application Firewall (WAF), input validation, vulnerability scanning and penetration testing.</p>
+
+        <h3>2.2 Data Security Considerations</h3>
+        <ul>
+          <li><strong>Backups</strong> — 3-2-1 rule: 3 copies, 2 media types, 1 off-site. Test restores regularly.</li>
+          <li><strong>Archival Storage</strong> — Long-term storage for legal/compliance reasons; still protect with encryption and access control.</li>
+          <li><strong>Disposal of Data</strong> — Secure wipe, degaussing, physical destruction. Simple delete is not enough.</li>
+        </ul>
+
+        <h3>2.3 Security Technology — Firewall, VPN, IDS</h3>
+        <ul>
+          <li><strong>Firewall</strong> — Controls traffic between trusted and untrusted networks based on rules. Types: packet-filtering, stateful, proxy, NGFW.</li>
+          <li><strong>VPN</strong> — Creates encrypted tunnel over public network. Protocols: IPsec, OpenVPN, WireGuard, SSL VPN.</li>
+          <li><strong>IDS</strong> — Monitors for suspicious activity and raises alerts (NIDS / HIDS). <strong>IPS</strong> can also block attacks automatically.</li>
+        </ul>
+
+        <h3>2.4 Access Control</h3>
+        <p><strong>Steps:</strong> Identification → Authentication → Authorization → Accounting / Auditing</p>
+        <p><strong>Models:</strong></p>
+        <ul>
+          <li><strong>DAC</strong> — Owner decides access</li>
+          <li><strong>MAC</strong> — System policy based on security labels (military)</li>
+          <li><strong>RBAC</strong> — Permissions given to roles; users assigned roles</li>
+        </ul>
+        <div class="box box-key">
+          <div class="box-title">Best Practice</div>
+          Principle of Least Privilege — give users only the minimum access they need to do their job.
+        </div>
+
+        <h3>2.5 Security Threats — Malicious Software</h3>
+        <ul>
+          <li><strong>Virus</strong> — Attaches to legitimate files; needs human action to spread</li>
+          <li><strong>Worm</strong> — Spreads automatically over networks without human action</li>
+          <li><strong>Trojan</strong> — Pretends to be useful; performs hidden harmful actions; does not self-replicate</li>
+          <li><strong>Logic Bomb</strong> — Triggers on a condition (date or event)</li>
+          <li><strong>Backdoor / Trapdoor</strong> — Hidden access that bypasses authentication</li>
+          <li><strong>Spoofing</strong> — Pretending to be someone/something else</li>
+          <li><strong>Ransomware</strong> — Encrypts files and demands payment</li>
+          <li><strong>Spyware / Adware / Rootkit / Keylogger</strong></li>
+        </ul>
+
+        <h3>2.6 Network Attacks &amp; Denial of Service</h3>
+        <p><strong>DoS</strong> overwhelms a system so legitimate users cannot access it. <strong>DDoS</strong> uses many computers (botnet) at once.</p>
+        <p>Other attacks: Man-in-the-Middle, Packet Sniffing, Session Hijacking, Port Scanning.</p>
+        <div class="box box-note">
+          <div class="box-title">Protection</div>
+          Firewalls, IDS/IPS, rate limiting, DDoS protection services, patching, and network segmentation help reduce impact.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- UNIT III -->
+    <section class="unit" id="u3">
+      <div class="unit-header">UNIT III — E-Commerce Security &amp; Secure Systems</div>
+      <div class="unit-body">
+
+        <h3>3.1 E-Commerce and its Threats</h3>
+        <p>E-Commerce is buying and selling using the internet. Threats include theft of customer data, phishing, payment fraud, DoS during sales, man-in-the-middle, insider threats, and malware on payment pages (e.g., Magecart).</p>
+
+        <h3>3.2 Electronic Payment Systems</h3>
+        <ul>
+          <li>Credit / Debit Cards (OTP, 3D Secure, CVV, tokenization)</li>
+          <li>e-Cash / Digital Wallets / UPI</li>
+          <li>Net Banking</li>
+          <li>Prepaid / Gift Cards</li>
+        </ul>
+        <p>Security requirements: encryption (HTTPS/TLS), strong authentication, PCI-DSS compliance, fraud detection.</p>
+
+        <h3>3.3 Digital Signature and Cryptography</h3>
+        <p><strong>Cryptography</strong> protects information by transforming it. Goals: confidentiality, integrity, authentication, non-repudiation.</p>
+        <ul>
+          <li><strong>Symmetric Encryption</strong> — Same key for encrypt/decrypt (AES). Fast; key sharing is a challenge.</li>
+          <li><strong>Asymmetric Encryption</strong> — Public + private key pair (RSA). Solves key distribution.</li>
+          <li><strong>Hashing</strong> — One-way fingerprint (SHA-256) for integrity checks.</li>
+        </ul>
+        <p><strong>Digital Signature</strong> — Created with private key, verified with public key. Provides authentication, integrity, and non-repudiation. Legally recognized in India under IT Act 2000.</p>
+
+        <h3>3.4 Developing Secure Information Systems</h3>
+        <p>Security by Design — build security from the beginning. Practices: threat modeling, secure coding, code reviews, least privilege, defense in depth, input validation, patch management, security testing before release.</p>
+
+        <h3>3.5 Security Governance &amp; Risk Management</h3>
+        <p>Governance is the framework of leadership, policies and controls that ensure security supports business goals. Risk management is the ongoing process of identifying, assessing, treating and monitoring risks. Top management is responsible for governance.</p>
+
+        <h3>3.6 Security Architecture &amp; Design</h3>
+        <p>Overall design of security controls. Principles: defense in depth, least privilege, segregation of duties, fail-secure defaults, simplicity.</p>
+
+        <h3>3.7 Hardware, Storage &amp; Physical Security</h3>
+        <ul>
+          <li>Encrypt data on laptops, USBs, phones; restrict USB ports; use MDM for BYOD</li>
+          <li><strong>Physical security:</strong> locks, smart cards, biometrics, visitor logs, CCTV, fire suppression, temperature control, off-site backups, UPS/generators, security guards</li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- UNIT IV -->
+    <section class="unit" id="u4">
+      <div class="unit-header">UNIT IV — Security Policies</div>
+      <div class="unit-body">
+
+        <h3>4.1 Why Security Policies are Needed</h3>
+        <p>A security policy is a formal document stating rules for protecting information and systems.</p>
+        <ul>
+          <li>Provide clear direction and consistency</li>
+          <li>Reduce risk by defining acceptable use</li>
+          <li>Help meet legal and regulatory requirements</li>
+          <li>Basis for training and awareness</li>
+          <li>Support disciplinary action</li>
+          <li>Demonstrate due diligence</li>
+        </ul>
+        <p>Policies must be reviewed regularly, updated, published, and communicated. Employees should acknowledge that they have read them.</p>
+
+        <h3>4.2 Types of Security Policies</h3>
+        <ul>
+          <li><strong>WWW / Internet Usage Policy</strong> — Allowed/prohibited sites, personal use limits, downloading, social media, monitoring notice</li>
+          <li><strong>Email Security Policy</strong> — No password sharing, careful with attachments/links, no sending confidential data to personal email, monitoring notice</li>
+          <li><strong>Corporate / Organization-wide Security Policy</strong> — High-level commitment, roles and responsibilities</li>
+          <li>Other common: Password policy, Clean desk, Remote access, Incident response, Data classification, Acceptable Use Policy (AUP)</li>
+        </ul>
+
+        <h3>4.3 Sample Policies &amp; Case Study Lessons</h3>
+        <div class="box box-example">
+          <div class="box-title">Sample Password Policy Points</div>
+          Minimum 12 characters, mix of character types, no reuse of last 5 passwords, change periodically or use long passwords with MFA, never share, report suspected compromise immediately.
+        </div>
+        <div class="box box-danger">
+          <div class="box-title">Case Study Lessons</div>
+          Many incidents show: technical controls exist but policies are weak or unenforced. An employee clicks a phishing link → malware → data stolen or encrypted. Investigation finds outdated training, unenforced email policy, untested backups, unclear incident response.<br><br>
+          <strong>Lesson:</strong> Policies must exist, be known, be enforced, and be supported by training and technology. After an incident, review and improve (continuous improvement).
+        </div>
+
+      </div>
+    </section>
+
+    <!-- UNIT V -->
+    <section class="unit" id="u5">
+      <div class="unit-header">UNIT V — Standards, Laws &amp; Cyber Crimes</div>
+      <div class="unit-body">
+
+        <h3>5.1 Information Security Standards — ISO</h3>
+        <ul>
+          <li><strong>ISO/IEC 27001</strong> — Requirements for an Information Security Management System (ISMS); organizations can be certified</li>
+          <li><strong>ISO/IEC 27002</strong> — Code of practice with detailed security controls</li>
+          <li>Related: ISO 27005 (risk), ISO 27017/27018 (cloud), PCI-DSS (payment cards)</li>
+        </ul>
+
+        <h3>5.2 IT Act 2000 — Main Provisions (India)</h3>
+        <p>The primary cyber law in India (amended 2008). It gives legal recognition to electronic records and digital signatures and defines cyber offences and penalties.</p>
+        <ul>
+          <li>Legal recognition of electronic records and digital signatures</li>
+          <li>Regulation of Certifying Authorities</li>
+          <li>Definition of cyber crimes and penalties</li>
+          <li>Data protection and privacy (Section 43A — reasonable security practices)</li>
+          <li>Intermediary obligations and due diligence</li>
+          <li>Sections on hacking, identity theft, cheating by personation, privacy violation, cyber terrorism, etc.</li>
+        </ul>
+        <div class="box box-note">
+          <div class="box-title">Note</div>
+          The IT Act works together with the Indian Penal Code and other laws. For serious crimes, both are used as applicable.
+        </div>
+
+        <h3>5.3 Intellectual Property Rights (IPR)</h3>
+        <p>IPR are legal rights given to creators of inventions, literary/artistic works, designs, symbols and names. Relevant to IT: Copyright, Patents, Trademarks, Designs, Semiconductor layout designs.</p>
+
+        <h3>5.4 Copyright, Patent &amp; Semiconductor Law</h3>
+        <ul>
+          <li><strong>Copyright</strong> (Copyright Act 1957) — Protects original literary, artistic, musical and software works. Software treated as literary work. Duration: generally life of author + 60 years.</li>
+          <li><strong>Patent</strong> (Patents Act 1970) — Protects new inventions that are novel, inventive and industrially applicable. Exclusive rights for 20 years. Software “as such” generally not patentable in India.</li>
+          <li><strong>Semiconductor Law</strong> (Semiconductor Integrated Circuits Layout-Design Act 2000) — Protects layout designs of semiconductor chips.</li>
+        </ul>
+
+        <h3>5.5 Software Piracy and Licensing</h3>
+        <p><strong>Software Piracy</strong> is unauthorized copying, distribution or use of software. It is illegal and often brings malware risk.</p>
+        <p><strong>Software License</strong> defines how software may be used: Proprietary, Open Source (GPL, MIT, Apache), Freeware, Shareware, Subscription/SaaS. Organizations must track licenses and avoid under-licensing.</p>
+
+        <h3>5.6 Cyber Crimes and Cyber Laws in India</h3>
+        <p><strong>Common cyber crimes:</strong> Hacking, identity theft &amp; phishing, online fraud, cyber stalking, publishing obscene material, data theft, ransomware, cyber terrorism, child sexual abuse material offences, electronic defamation.</p>
+        <p><strong>Key legal provisions:</strong> IT Act 2000 (Sections 43, 43A, 65, 66, 66B–66F, 67, 67A, 67B, etc.), relevant IPC sections, Copyright Act.</p>
+        <div class="box box-key">
+          <div class="box-title">Reporting Cyber Crime in India</div>
+          File complaints at the local police cyber cell or through the National Cyber Crime Reporting Portal (<strong>cybercrime.gov.in</strong>). For financial frauds, report immediately to the bank and the portal to improve chances of recovery.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="summary" id="summary">
+      <h2>📋 Quick Revision Summary</h2>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <strong>Unit I — Foundations</strong>
+          <span>IS types (TPS, MIS, DSS, EIS…), SDLC, CIA Triad, threats, risk analysis steps, cyber security overview.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Unit II — Security Controls &amp; Threats</strong>
+          <span>Database/email/web security, backups (3-2-1), firewall/VPN/IDS, access control models, malware types, DoS/DDoS.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Unit III — E-Commerce &amp; Crypto</strong>
+          <span>E-commerce threats, payment systems, symmetric/asymmetric crypto, digital signatures, security by design, physical security.</span>
+        </div>
+        <div class="summary-item">
+          <strong>Unit IV — Policies</strong>
+          <span>Why policies matter, review &amp; notification, WWW/email/corporate policies, case study lessons (people + process + technology).</span>
+        </div>
+        <div class="summary-item">
+          <strong>Unit V — Laws &amp; Standards</strong>
+          <span>ISO 27001/27002, IT Act 2000, IPR (copyright, patent, semiconductor), software piracy &amp; licensing, cyber crimes &amp; reporting.</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>End of Notes — These notes explain every major topic of the Information Systems and Security syllabus in simple English.</p>
+    <p style="margin-top:0.35rem; opacity:0.75;">Revise the CIA triad, types of malware, IT Act provisions, and security policies — these are frequently asked in exams.</p>
+  </footer>
 
 </body>
 </html>
