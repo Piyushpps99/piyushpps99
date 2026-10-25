@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>C++ Complete Notes – Basics to Advanced + DSA</title>
+<title>C++ Complete Deep Notes – Basics to Advanced + Full DSA</title>
 <style>
   :root {
     --bg1: #0f0c29;
@@ -21,83 +21,63 @@
     --border: #2d2d44;
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
     background-attachment: fixed;
     color: var(--text);
-    line-height: 1.7;
+    line-height: 1.75;
     padding: 20px;
     min-height: 100vh;
   }
 
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+  .container { max-width: 1150px; margin: 0 auto; }
 
-  /* Header */
   header {
     text-align: center;
-    padding: 40px 20px;
+    padding: 45px 25px;
     margin-bottom: 40px;
-    background: rgba(26, 26, 46, 0.85);
-    border-radius: 20px;
+    background: rgba(26, 26, 46, 0.9);
+    border-radius: 22px;
     border: 1px solid var(--border);
-    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.15);
+    box-shadow: 0 12px 45px rgba(0, 212, 255, 0.18);
   }
 
   header h1 {
-    font-size: 2.6rem;
+    font-size: 2.7rem;
     background: linear-gradient(90deg, var(--accent), var(--accent3), var(--accent5));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
-  header p {
-    color: var(--muted);
-    font-size: 1.15rem;
-  }
+  header p { color: var(--muted); font-size: 1.2rem; }
 
-  /* Navigation */
   nav {
-    background: rgba(26, 26, 46, 0.9);
+    background: rgba(26, 26, 46, 0.95);
     border-radius: 16px;
-    padding: 20px;
+    padding: 22px;
     margin-bottom: 40px;
     border: 1px solid var(--border);
     position: sticky;
-    top: 15px;
+    top: 12px;
     z-index: 100;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
   }
 
-  nav h3 {
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-  }
+  nav h3 { color: var(--accent); margin-bottom: 14px; font-size: 1.15rem; }
 
-  .nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+  .nav-links { display: flex; flex-wrap: wrap; gap: 10px; }
 
   .nav-links a {
     color: var(--text);
     text-decoration: none;
-    background: rgba(0, 212, 255, 0.1);
-    padding: 6px 14px;
-    border-radius: 20px;
+    background: rgba(0, 212, 255, 0.12);
+    padding: 7px 15px;
+    border-radius: 22px;
     font-size: 0.9rem;
     border: 1px solid transparent;
     transition: all 0.25s;
@@ -109,138 +89,116 @@
     border-color: var(--accent);
   }
 
-  /* Sections */
   section {
-    background: rgba(26, 26, 46, 0.85);
+    background: rgba(26, 26, 46, 0.88);
     border-radius: 18px;
-    padding: 30px;
-    margin-bottom: 30px;
+    padding: 32px;
+    margin-bottom: 32px;
     border: 1px solid var(--border);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
   }
 
   section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
+    font-size: 1.85rem;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
     border-bottom: 3px solid var(--accent);
     color: var(--accent);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
 
   section h2 .num {
     background: linear-gradient(135deg, var(--accent), var(--accent3));
     color: #000;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
   }
 
-  h3 {
-    color: var(--accent3);
-    margin: 25px 0 12px;
-    font-size: 1.35rem;
-  }
+  h3 { color: var(--accent3); margin: 28px 0 14px; font-size: 1.4rem; }
+  h4 { color: var(--accent4); margin: 20px 0 10px; font-size: 1.15rem; }
 
-  h4 {
-    color: var(--accent4);
-    margin: 18px 0 8px;
-    font-size: 1.1rem;
-  }
-
-  p, li {
-    margin-bottom: 10px;
-    color: var(--text);
-  }
-
-  ul, ol {
-    margin-left: 25px;
-    margin-bottom: 15px;
-  }
-
-  li {
-    margin-bottom: 6px;
-  }
+  p, li { margin-bottom: 11px; color: var(--text); }
+  ul, ol { margin-left: 26px; margin-bottom: 16px; }
+  li { margin-bottom: 7px; }
 
   .highlight {
-    background: rgba(0, 212, 255, 0.12);
-    padding: 2px 8px;
-    border-radius: 4px;
+    background: rgba(0, 212, 255, 0.14);
+    padding: 2px 9px;
+    border-radius: 5px;
     color: var(--accent);
     font-weight: 500;
   }
 
   .important {
-    background: rgba(255, 107, 107, 0.15);
-    border-left: 4px solid var(--accent2);
-    padding: 12px 18px;
-    border-radius: 0 10px 10px 0;
-    margin: 15px 0;
+    background: rgba(255, 107, 107, 0.16);
+    border-left: 5px solid var(--accent2);
+    padding: 14px 20px;
+    border-radius: 0 12px 12px 0;
+    margin: 18px 0;
   }
 
   .tip {
-    background: rgba(78, 205, 196, 0.12);
-    border-left: 4px solid var(--accent3);
-    padding: 12px 18px;
-    border-radius: 0 10px 10px 0;
-    margin: 15px 0;
+    background: rgba(78, 205, 196, 0.14);
+    border-left: 5px solid var(--accent3);
+    padding: 14px 20px;
+    border-radius: 0 12px 12px 0;
+    margin: 18px 0;
   }
 
-  /* Code blocks */
+  .deep {
+    background: rgba(167, 139, 250, 0.13);
+    border-left: 5px solid var(--accent5);
+    padding: 14px 20px;
+    border-radius: 0 12px 12px 0;
+    margin: 18px 0;
+  }
+
   .code-block {
     background: var(--code-bg);
     border-radius: 12px;
-    margin: 18px 0;
+    margin: 20px 0;
     overflow: hidden;
     border: 1px solid #30363d;
   }
 
   .code-header {
     background: #161b22;
-    padding: 8px 16px;
+    padding: 9px 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #30363d;
   }
 
-  .code-header span {
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-
-  .code-header .lang {
-    color: var(--accent3);
-    font-weight: 600;
-  }
+  .code-header span { color: var(--muted); font-size: 0.87rem; }
+  .code-header .lang { color: var(--accent3); font-weight: 600; }
 
   pre {
-    padding: 18px;
+    padding: 20px;
     overflow-x: auto;
     font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
-    font-size: 0.92rem;
-    line-height: 1.55;
+    font-size: 0.93rem;
+    line-height: 1.6;
   }
 
-  code {
-    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
-  }
+  code { font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; }
 
   .output {
     background: #0a192f;
-    border-left: 4px solid var(--accent4);
-    padding: 14px 18px;
-    margin: 10px 0 20px;
-    border-radius: 0 10px 10px 0;
-    font-family: 'Fira Code', monospace;
-    font-size: 0.9rem;
+    border-left: 5px solid var(--accent4);
+    padding: 15px 20px;
+    margin: 12px 0 22px;
+    border-radius: 0 12px 12px 0;
+    font-family: 'Fira Code', monospace
+    font-size: 0.91rem;
     white-space: pre-wrap;
   }
 
@@ -249,88 +207,71 @@
     display: block;
     color: var(--accent4);
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
     font-family: 'Segoe UI', sans-serif;
   }
 
-  /* Tables */
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 18px 0;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    margin: 20px 0;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
     overflow: hidden;
   }
 
   th {
     background: linear-gradient(90deg, var(--accent), var(--accent3));
     color: #000;
-    padding: 12px 15px;
+    padding: 13px 16px;
     text-align: left;
     font-weight: 700;
   }
 
   td {
-    padding: 11px 15px;
+    padding: 12px 16px;
     border-bottom: 1px solid var(--border);
   }
 
-  tr:hover td {
-    background: rgba(0, 212, 255, 0.05);
-  }
+  tr:hover td { background: rgba(0, 212, 255, 0.06); }
 
-  /* Cards for concepts */
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 18px;
-    margin: 20px 0;
+    margin: 22px 0;
   }
 
   .card {
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.28);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 20px;
+    padding: 22px;
     transition: transform 0.2s, border-color 0.2s;
   }
 
   .card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
     border-color: var(--accent);
   }
 
-  .card h4 {
-    margin-top: 0;
-    color: var(--accent);
-  }
+  .card h4 { margin-top: 0; color: var(--accent); }
 
-  /* Footer */
   footer {
     text-align: center;
-    padding: 30px;
+    padding: 35px;
     color: var(--muted);
-    font-size: 0.95rem;
+    font-size: 0.98rem;
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--bg1);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 5px;
-  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg1); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 5px; }
 
   @media (max-width: 700px) {
-    header h1 { font-size: 1.9rem; }
-    section { padding: 20px; }
-    pre { font-size: 0.82rem; }
+    header h1 { font-size: 1.95rem; }
+    section { padding: 22px; }
+    pre { font-size: 0.84rem; }
   }
 </style>
 </head>
@@ -338,14 +279,14 @@
 <div class="container">
 
 <header>
-  <h1>C++ Complete Notes</h1><br>
-   <h1>Thakur Piyush Singh....💚❤</h1>
-  <p>Basics → Advanced + Data Structures & Algorithms<br>
-  Easy explanations • Code + Output • Colorful & Clean</p>
+  <h1>C++ Complete Deep Notes</h1>
+  <p style="margin-top:8px; font-size:1.3rem; color:#a78bfa;">Thakur Piyush Singh 💚❤</p>
+  <p>Basics → Advanced → Full DSA<br>
+  Very detailed theory • Easy English • Code + Output • Deep explanations</p>
 </header>
 
 <nav>
-  <h3> C++ Notes. BY (Thakur Piyush Singh...💖💚❤)</h3>
+  <h3> – C++ Deep Notes.. Piyush.💚❤</h3>
   <div class="nav-links">
     <a href="#intro">1. Intro</a>
     <a href="#basics">2. Basics</a>
@@ -356,7 +297,10 @@
     <a href="#oop">7. OOP</a>
     <a href="#advanced">8. Advanced</a>
     <a href="#stl">9. STL</a>
-    <a href="#dsa">10. DSA</a>
+    <a href="#dsa">10. DSA Deep</a>
+    <a href="#graphs">11. Graphs</a>
+    <a href="#dp">12. Dynamic Programming</a>
+    <a href="#roadmap">Roadmap</a>
   </div>
 </nav>
 
@@ -364,47 +308,68 @@
 <section id="intro">
   <h2><span class="num">1</span> Introduction to C++</h2>
 
-  <p><span class="highlight">C++</span> is a powerful general-purpose programming language created by <strong>Bjarne Stroustrup</strong> in 1979 as an extension of C. It supports both <strong>procedural</strong> and <strong>object-oriented</strong> programming.</p>
+  <p><span class="highlight">C++</span> is a powerful general-purpose programming language created by <strong>Bjarne Stroustrup</strong> in 1979 at Bell Labs. He wanted to add object-oriented features to the C language. The name C++ means “C incremented by 1” (the ++ operator).</p>
+
+  <p>C++ is both a <strong>procedural</strong> language (like C – step by step instructions) and an <strong>object-oriented</strong> language (classes, objects, inheritance). This combination makes it extremely flexible and fast.</p>
 
   <div class="card-grid">
     <div class="card">
       <h4>Why learn C++?</h4>
       <ul>
-        <li>High performance (games, systems, competitive programming)</li>
-        <li>Foundation for many languages</li>
-        <li>Rich Standard Template Library (STL)</li>
-        <li>Used in OS, browsers, databases, finance</li>
+        <li>Extremely high performance (games, operating systems, browsers, high-frequency trading)</li>
+        <li>Foundation for many other languages (Java, C#, Python internals)</li>
+        <li>Very rich Standard Template Library (STL)</li>
+        <li>Used in competitive programming (Codeforces, LeetCode hard problems)</li>
+        <li>Gives you deep understanding of how computers really work (memory, pointers)</li>
       </ul>
     </div>
     <div class="card">
       <h4>Key Features</h4>
       <ul>
-        <li>Compiled language</li>
-        <li>Statically typed</li>
-        <li>Supports OOP, templates, exceptions</li>
-        <li>Manual memory management + RAII</li>
+        <li>Compiled language (converted to machine code before running)</li>
+        <li>Statically typed (you must declare type of every variable)</li>
+        <li>Supports OOP, templates, exceptions, lambda functions</li>
+        <li>Manual memory management + modern RAII (Resource Acquisition Is Initialization)</li>
+        <li>Zero-cost abstractions (you pay only for what you use)</li>
       </ul>
     </div>
   </div>
 
-  <h3>First Program – Hello World</h3>
+  <div class="deep">
+    <strong>Deep Understanding:</strong> When you write C++ code, the compiler (g++ or clang++) converts it into machine code that the CPU can execute directly. That is why C++ programs run much faster than Python or JavaScript (which are interpreted or use virtual machines).
+  </div>
+
+  <h3>First Program – Hello World (Detailed Explanation)</h3>
   <div class="code-block">
     <div class="code-header">
       <span class="lang">C++</span>
       <span>hello.cpp</span>
     </div>
-    <pre>#include &lt;iostream&gt;   // Header for input/output
-using namespace std;  // So we can write cout instead of std::cout
+    <pre>#include &lt;iostream&gt;   // This brings input/output tools (cout, cin, endl)
+using namespace std;    // Allows us to write cout instead of std::cout
 
-int main() {          // Entry point of every C++ program
-    cout &lt;&lt; "Hello, World!" &lt;&lt; endl;
-    return 0;         // 0 means successful execution
+int main() {            // main() is the starting point of every C++ program
+    cout &lt;&lt; "Hello, World!" &lt;&lt; endl;   // print text and go to next line
+    return 0;           // return 0 means program finished successfully
 }</pre>
   </div>
   <div class="output">Hello, World!</div>
 
+  <p><strong>Line-by-line meaning:</strong></p>
+  <ul>
+    <li><code>#include &lt;iostream&gt;</code> → We are telling the compiler “I need the input-output library”.</li>
+    <li><code>using namespace std;</code> → Without this we must write <code>std::cout</code> every time.</li>
+    <li><code>int main()</code> → Every C++ program must have a main function. Execution always starts here.</li>
+    <li><code>cout &lt;&lt; ...</code> → “cout” means character output. The <code>&lt;&lt;</code> operator sends data to the screen.</li>
+    <li><code>endl</code> → Ends the current line (same as <code>\n</code> but also flushes the buffer).</li>
+    <li><code>return 0;</code> → Tells the operating system that the program ended without error.</li>
+  </ul>
+
   <div class="tip">
-    <strong>Tip:</strong> Compile with <code>g++ hello.cpp -o hello</code> then run <code>./hello</code>
+    <strong>How to run:</strong><br>
+    1. Save the file as <code>hello.cpp</code><br>
+    2. Open terminal and type: <code>g++ hello.cpp -o hello</code><br>
+    3. Then run: <code>./hello</code> (on Windows: <code>hello.exe</code>)
   </div>
 </section>
 
@@ -412,49 +377,57 @@ int main() {          // Entry point of every C++ program
 <section id="basics">
   <h2><span class="num">2</span> Basics – Variables, Data Types, Operators</h2>
 
-  <h3>2.1 Variables & Data Types</h3>
-  <p>A variable is a named memory location. C++ is <strong>statically typed</strong> – you must declare the type.</p>
+  <h3>2.1 What is a Variable?</h3>
+  <p>A variable is a named box in the computer’s memory that stores a value. In C++ you must tell the computer what type of data the box will hold (this is called static typing).</p>
 
   <table>
     <tr>
       <th>Type</th>
       <th>Size (approx)</th>
       <th>Range / Purpose</th>
+      <th>Example</th>
     </tr>
     <tr>
       <td>int</td>
       <td>4 bytes</td>
-      <td>-2³¹ to 2³¹-1 (integers)</td>
+      <td>-2,147,483,648 to 2,147,483,647</td>
+      <td>int age = 21;</td>
     </tr>
     <tr>
       <td>long long</td>
       <td>8 bytes</td>
-      <td>Very large integers</td>
+      <td>Very large integers (±9 quintillion)</td>
+      <td>long long big = 1e18;</td>
     </tr>
     <tr>
       <td>float</td>
       <td>4 bytes</td>
-      <td>Decimal numbers (≈7 digits)</td>
+      <td>Decimal numbers (~7 digits precision)</td>
+      <td>float pi = 3.14f;</td>
     </tr>
     <tr>
       <td>double</td>
       <td>8 bytes</td>
-      <td>More precise decimals</td>
+      <td>More precise decimals (~15 digits)</td>
+      <td>double pi = 3.1415926535;</td>
     </tr>
     <tr>
       <td>char</td>
       <td>1 byte</td>
-      <td>Single character</td>
+      <td>Single character (ASCII)</td>
+      <td>char grade = 'A';</td>
     </tr>
     <tr>
       <td>bool</td>
       <td>1 byte</td>
-      <td>true / false</td>
+      <td>true (1) or false (0)</td>
+      <td>bool isStudent = true;</td>
     </tr>
     <tr>
       <td>string</td>
       <td>variable</td>
-      <td>Text (need #include &lt;string&gt;)</td>
+      <td>Text of any length</td>
+      <td>string name = "Grok";</td>
     </tr>
   </table>
 
@@ -475,7 +448,7 @@ int main() {
     cout &lt;&lt; "Age: " &lt;&lt; age &lt;&lt; endl;
     cout &lt;&lt; "Pi: " &lt;&lt; pi &lt;&lt; endl;
     cout &lt;&lt; "Grade: " &lt;&lt; grade &lt;&lt; endl;
-    cout &lt;&lt; "Student? " &lt;&lt; isStudent &lt;&lt; endl;  // prints 1 for true
+    cout &lt;&lt; "Student? " &lt;&lt; isStudent &lt;&lt; endl;  // prints 1 for true, 0 for false
     return 0;
 }</pre>
   </div>
@@ -486,22 +459,24 @@ Grade: A
 Student? 1</div>
 
   <h3>2.2 Constants</h3>
+  <p>Constants are values that cannot be changed after they are set. This protects your code from accidental mistakes.</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
-    <pre>const int MAX = 100;     // cannot be changed
-#define PI 3.14          // preprocessor constant (old style)</pre>
+    <pre>const int MAX = 100;     // Modern way – type-safe, cannot be changed
+#define PI 3.14          // Old preprocessor way (avoid in modern C++)</pre>
   </div>
 
-  <h3>2.3 Operators</h3>
-  <h4>Arithmetic</h4>
+  <h3>2.3 Operators (Deep Explanation)</h3>
+
+  <h4>Arithmetic Operators</h4>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>int a = 10, b = 3;
-cout &lt;&lt; a + b &lt;&lt; endl;   // 13
-cout &lt;&lt; a - b &lt;&lt; endl;   // 7
-cout &lt;&lt; a * b &lt;&lt; endl;   // 30
-cout &lt;&lt; a / b &lt;&lt; endl;   // 3  (integer division)
-cout &lt;&lt; a % b &lt;&lt; endl;   // 1  (remainder)</pre>
+cout &lt;&lt; a + b &lt;&lt; endl;   // 13  Addition
+cout &lt;&lt; a - b &lt;&lt; endl;   // 7   Subtraction
+cout &lt;&lt; a * b &lt;&lt; endl;   // 30  Multiplication
+cout &lt;&lt; a / b &lt;&lt; endl;   // 3   Integer division (truncates decimal part)
+cout &lt;&lt; a % b &lt;&lt; endl;   // 1   Modulus (remainder after division)</pre>
   </div>
   <div class="output">13
 7
@@ -509,31 +484,46 @@ cout &lt;&lt; a % b &lt;&lt; endl;   // 1  (remainder)</pre>
 3
 1</div>
 
-  <h4>Relational & Logical</h4>
+  <div class="important">
+    <strong>Very Important:</strong> When both numbers are integers, division gives only the whole number part.  
+    Example: 10 / 3 = 3 (not 3.333).  
+    To get decimal result: <code>(double)a / b</code> or <code>a * 1.0 / b</code>
+  </div>
+
+  <h4>Relational & Logical Operators</h4>
   <ul>
-    <li>Relational: <code>== != &lt; &gt; &lt;= &gt;=</code></li>
-    <li>Logical: <code>&amp;&amp;</code> (AND), <code>||</code> (OR), <code>!</code> (NOT)</li>
+    <li>Relational: <code>==</code> (equal), <code>!=</code> (not equal), <code>&lt;</code> <code>&gt;</code> <code>&lt;=</code> <code>&gt;=</code></li>
+    <li>Logical: <code>&amp;&amp;</code> (AND – both true), <code>||</code> (OR – at least one true), <code>!</code> (NOT – reverse true/false)</li>
   </ul>
 
-  <h4>Assignment & Increment</h4>
+  <h4>Assignment & Increment / Decrement</h4>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>int x = 5;
-x += 3;   // x = x + 3 → 8
-x++;      // post-increment
-++x;      // pre-increment</pre>
+x += 3;   // same as x = x + 3 → now x = 8
+x -= 2;   // x = x - 2
+x *= 4;   // x = x * 4
+x /= 2;   // x = x / 2
+
+x++;      // post-increment → use current value, then increase
+++x;      // pre-increment → increase first, then use new value
+x--;      // post-decrement
+--x;      // pre-decrement</pre>
   </div>
 
-  <div class="important">
-    <strong>Important:</strong> Integer division truncates. Use <code>double</code> if you need decimals: <code>(double)a / b</code>
+  <div class="deep">
+    <strong>Deep Tip:</strong> In most cases <code>x++</code> and <code>++x</code> give the same result when used alone. Difference appears only when used inside larger expressions. Prefer <code>++x</code> for clarity and slight performance benefit.
   </div>
 </section>
 
 <!-- ==================== 3. CONTROL FLOW ==================== -->
 <section id="control">
-  <h2><span class="num">3</span> Control Structures</h2>
+  <h2><span class="num">3</span> Control Structures (Making Decisions & Repeating)</h2>
 
-  <h3>3.1 if – else if – else</h3>
+  <p>Programs need to make decisions and repeat tasks. These are called control structures.</p>
+
+  <h3>3.1 if – else if – else (Decision Making)</h3>
+  <p>The computer checks conditions from top to bottom and runs the first true block.</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>#include &lt;iostream&gt;
@@ -543,20 +533,21 @@ int main() {
     int marks = 85;
 
     if (marks &gt;= 90) {
-        cout &lt;&lt; "Grade A";
+        cout &lt;&lt; "Grade A – Excellent!";
     } else if (marks &gt;= 75) {
-        cout &lt;&lt; "Grade B";
+        cout &lt;&lt; "Grade B – Very Good";
     } else if (marks &gt;= 50) {
-        cout &lt;&lt; "Grade C";
+        cout &lt;&lt; "Grade C – Pass";
     } else {
-        cout &lt;&lt; "Fail";
+        cout &lt;&lt; "Fail – Need more practice";
     }
     return 0;
 }</pre>
   </div>
-  <div class="output">Grade B</div>
+  <div class="output">Grade B – Very Good</div>
 
-  <h3>3.2 switch</h3>
+  <h3>3.2 switch (Multiple Choices)</h3>
+  <p>switch is useful when you have many exact value matches (like menu options).</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>int day = 3;
@@ -564,14 +555,20 @@ switch (day) {
     case 1: cout &lt;&lt; "Monday"; break;
     case 2: cout &lt;&lt; "Tuesday"; break;
     case 3: cout &lt;&lt; "Wednesday"; break;
-    default: cout &lt;&lt; "Invalid";
+    case 4: cout &lt;&lt; "Thursday"; break;
+    case 5: cout &lt;&lt; "Friday"; break;
+    default: cout &lt;&lt; "Weekend or Invalid";
 }</pre>
   </div>
   <div class="output">Wednesday</div>
 
-  <h3>3.3 Loops</h3>
+  <div class="important">
+    <strong>Remember:</strong> Always put <code>break;</code> after each case, otherwise the code will “fall through” to the next cases.
+  </div>
 
-  <h4>for loop</h4>
+  <h3>3.3 Loops (Repeating Tasks)</h3>
+
+  <h4>for loop – Best when you know how many times to repeat</h4>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>for (int i = 1; i &lt;= 5; i++) {
@@ -580,7 +577,9 @@ switch (day) {
   </div>
   <div class="output">1 2 3 4 5 </div>
 
-  <h4>while loop</h4>
+  <p>Structure of for loop: <code>for (initialization; condition; update)</code></p>
+
+  <h4>while loop – Repeats as long as condition is true</h4>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>int i = 1;
@@ -591,7 +590,7 @@ while (i &lt;= 5) {
   </div>
   <div class="output">1 2 3 4 5 </div>
 
-  <h4>do-while (executes at least once)</h4>
+  <h4>do-while – Runs at least once, then checks condition</h4>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>int i = 1;
@@ -604,27 +603,43 @@ do {
 
   <h3>3.4 break & continue</h3>
   <ul>
-    <li><code>break</code> → exit the loop completely</li>
-    <li><code>continue</code> → skip current iteration</li>
+    <li><code>break</code> → Immediately exit the entire loop</li>
+    <li><code>continue</code> → Skip the rest of current iteration and go to next one</li>
   </ul>
+
+  <div class="code-block">
+    <div class="code-header"><span class="lang">C++</span></div>
+    <pre>for (int i = 1; i &lt;= 10; i++) {
+    if (i == 5) continue;   // skip printing 5
+    if (i == 8) break;      // stop loop when i becomes 8
+    cout &lt;&lt; i &lt;&lt; " ";
+}</pre>
+  </div>
+  <div class="output">1 2 3 4 6 7 </div>
 </section>
 
 <!-- ==================== 4. FUNCTIONS ==================== -->
 <section id="functions">
-  <h2><span class="num">4</span> Functions</h2>
+  <h2><span class="num">4</span> Functions (Reusable Blocks of Code)</h2>
 
-  <p>Functions help in code reusability and modularity.</p>
+  <p>A function is a named block of code that performs a specific task. Benefits:</p>
+  <ul>
+    <li>Code reusability (write once, use many times)</li>
+    <li>Better organization and readability</li>
+    <li>Easier debugging and testing</li>
+  </ul>
 
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>#include &lt;iostream&gt;
 using namespace std;
 
-// Function declaration / definition
+// Function that returns a value
 int add(int a, int b) {
     return a + b;
 }
 
+// Function that does not return anything (void)
 void greet(string name) {
     cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; "!" &lt;&lt; endl;
 }
@@ -638,43 +653,50 @@ int main() {
   <div class="output">Hello, Alice!
 Sum = 12</div>
 
-  <h3>Pass by Value vs Pass by Reference</h3>
+  <h3>Pass by Value vs Pass by Reference (Very Important Concept)</h3>
+  <p><strong>Pass by Value:</strong> Function gets a copy of the variable. Changes inside function do not affect original.</p>
+  <p><strong>Pass by Reference:</strong> Function gets the actual variable (using &). Changes affect the original.</p>
+
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
-    <pre>void changeValue(int x) {   // pass by value
+    <pre>void changeValue(int x) {   // pass by value (copy)
     x = 100;
 }
 
-void changeRef(int &x) {    // pass by reference
+void changeRef(int &x) {    // pass by reference (real variable)
     x = 100;
 }
 
 int main() {
     int a = 10;
     changeValue(a);
-    cout &lt;&lt; a &lt;&lt; endl;   // still 10
+    cout &lt;&lt; a &lt;&lt; endl;   // still 10 (copy was changed)
 
     changeRef(a);
-    cout &lt;&lt; a &lt;&lt; endl;   // now 100
+    cout &lt;&lt; a &lt;&lt; endl;   // now 100 (original changed)
 }</pre>
   </div>
   <div class="output">10
 100</div>
 
   <div class="tip">
-    <strong>Tip:</strong> Use reference (<code>&</code>) when you want the function to modify the original variable or to avoid copying large objects.
+    <strong>When to use reference (&amp;):</strong><br>
+    • When you want the function to modify the original variable<br>
+    • When passing large objects (vectors, strings) to avoid expensive copying
   </div>
 
   <h3>Default Arguments & Function Overloading</h3>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
-    <pre>void print(int a, int b = 10) {   // b has default value
+    <pre>// Default argument – if not provided, uses 10
+void print(int a, int b = 10) {
     cout &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; endl;
 }
 
-// Function Overloading – same name, different parameters
+// Function Overloading – same name, different parameter types or count
 int multiply(int a, int b) { return a * b; }
-double multiply(double a, double b) { return a * b; }</pre>
+double multiply(double a, double b) { return a * b; }
+int multiply(int a, int b, int c) { return a * b * c; }</pre>
   </div>
 </section>
 
@@ -682,8 +704,8 @@ double multiply(double a, double b) { return a * b; }</pre>
 <section id="arrays">
   <h2><span class="num">5</span> Arrays & Strings</h2>
 
-  <h3>5.1 Arrays</h3>
-  <p>Fixed-size collection of same type elements. Index starts from 0.</p>
+  <h3>5.1 Arrays – Fixed Size Collection</h3>
+  <p>An array stores multiple values of the same type in continuous memory locations. Index always starts from 0.</p>
 
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
@@ -693,17 +715,17 @@ using namespace std;
 int main() {
     int arr[5] = {10, 20, 30, 40, 50};
 
-    // Access
-    cout &lt;&lt; arr[0] &lt;&lt; endl;   // 10
-    cout &lt;&lt; arr[2] &lt;&lt; endl;   // 30
+    // Access individual elements
+    cout &lt;&lt; arr[0] &lt;&lt; endl;   // 10 (first element)
+    cout &lt;&lt; arr[2] &lt;&lt; endl;   // 30 (third element)
 
-    // Traverse
+    // Traverse (visit every element)
     for (int i = 0; i &lt; 5; i++) {
         cout &lt;&lt; arr[i] &lt;&lt; " ";
     }
     cout &lt;&lt; endl;
 
-    // Size of array
+    // Calculate size
     cout &lt;&lt; "Size: " &lt;&lt; sizeof(arr)/sizeof(arr[0]) &lt;&lt; endl;
     return 0;
 }</pre>
@@ -713,7 +735,11 @@ int main() {
 10 20 30 40 50 
 Size: 5</div>
 
-  <h3>5.2 2D Arrays</h3>
+  <div class="important">
+    <strong>Warning:</strong> Accessing index outside the array size (e.g. arr[10]) causes undefined behavior – program may crash or give wrong results. Always stay within bounds.
+  </div>
+
+  <h3>5.2 2D Arrays (Matrix)</h3>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>int matrix[2][3] = {
@@ -731,7 +757,9 @@ for (int i = 0; i &lt; 2; i++) {
   <div class="output">1 2 3 
 4 5 6 </div>
 
-  <h3>5.3 Strings</h3>
+  <h3>5.3 Strings (Modern & Powerful)</h3>
+  <p>In modern C++ we use <code>string</code> class (from &lt;string&gt; header). It is much safer and easier than old C-style char arrays.</p>
+
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>#include &lt;iostream&gt;
@@ -741,13 +769,13 @@ using namespace std;
 int main() {
     string s = "Hello";
     cout &lt;&lt; s.length() &lt;&lt; endl;      // 5
-    cout &lt;&lt; s[1] &lt;&lt; endl;           // e
-    s += " World";
+    cout &lt;&lt; s[1] &lt;&lt; endl;           // e (index starts at 0)
+    s += " World";                   // concatenation
     cout &lt;&lt; s &lt;&lt; endl;              // Hello World
 
-    // Important functions
-    cout &lt;&lt; s.substr(0, 5) &lt;&lt; endl; // Hello
-    cout &lt;&lt; s.find("World") &lt;&lt; endl;// 6
+    // Useful functions
+    cout &lt;&lt; s.substr(0, 5) &lt;&lt; endl; // Hello (start at 0, take 5 chars)
+    cout &lt;&lt; s.find("World") &lt;&lt; endl;// 6 (position where "World" starts)
     return 0;
 }</pre>
   </div>
@@ -760,9 +788,16 @@ Hello
 
 <!-- ==================== 6. POINTERS ==================== -->
 <section id="pointers">
-  <h2><span class="num">6</span> Pointers (Very Important)</h2>
+  <h2><span class="num">6</span> Pointers (Very Important & Powerful)</h2>
 
-  <p>A pointer is a variable that stores the <strong>memory address</strong> of another variable.</p>
+  <p>A pointer is a special variable that stores the <strong>memory address</strong> of another variable instead of storing a normal value.</p>
+
+  <div class="deep">
+    <strong>Why Pointers Matter:</strong><br>
+    • They allow direct memory access and manipulation<br>
+    • Essential for dynamic memory, arrays, linked lists, trees, graphs<br>
+    • Used heavily in system programming, game engines, and high-performance code
+  </div>
 
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
@@ -771,49 +806,57 @@ using namespace std;
 
 int main() {
     int x = 42;
-    int *ptr = &x;   // ptr stores address of x
+    int *ptr = &x;   // ptr stores the address of x
 
     cout &lt;&lt; "Value of x: " &lt;&lt; x &lt;&lt; endl;
     cout &lt;&lt; "Address of x: " &lt;&lt; &x &lt;&lt; endl;
-    cout &lt;&lt; "Value of ptr: " &lt;&lt; ptr &lt;&lt; endl;
+    cout &lt;&lt; "Value stored in ptr: " &lt;&lt; ptr &lt;&lt; endl;
     cout &lt;&lt; "Value pointed by ptr: " &lt;&lt; *ptr &lt;&lt; endl;  // dereference
 
-    *ptr = 100;      // change value through pointer
+    *ptr = 100;      // change the value of x through the pointer
     cout &lt;&lt; "New value of x: " &lt;&lt; x &lt;&lt; endl;
     return 0;
 }</pre>
   </div>
   <div class="output">Value of x: 42
-Address of x: 0x7ffd... (some address)
-Value of ptr: 0x7ffd... (same address)
+Address of x: 0x7ffd... (some memory address)
+Value stored in ptr: 0x7ffd... (same address)
 Value pointed by ptr: 42
 New value of x: 100</div>
 
-  <h3>Dynamic Memory (new & delete)</h3>
+  <h3>Dynamic Memory Allocation (new & delete)</h3>
+  <p>Sometimes we don’t know the size of data at compile time. We use heap memory with <code>new</code> and must free it with <code>delete</code>.</p>
+
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
-    <pre>int *p = new int;     // allocate memory
+    <pre>int *p = new int;     // allocate memory for one integer on heap
 *p = 50;
 cout &lt;&lt; *p &lt;&lt; endl;
 
-delete p;             // free memory (important!)
+delete p;             // free the memory (very important!)
 
-// Array
+// Dynamic array
 int *arr = new int[5];
 for (int i = 0; i &lt; 5; i++) arr[i] = i * 10;
-delete[] arr;         // free array</pre>
+delete[] arr;         // free the entire array</pre>
   </div>
 
   <div class="important">
-    <strong>Memory Leak Warning:</strong> Always use <code>delete</code> / <code>delete[]</code> after <code>new</code>. Prefer smart pointers (<code>unique_ptr</code>, <code>shared_ptr</code>) in modern C++.
+    <strong>Memory Leak Warning:</strong> If you use <code>new</code> but forget <code>delete</code>, the memory stays allocated forever until the program ends. In long-running programs this can crash the system. Prefer modern smart pointers (<code>unique_ptr</code>, <code>shared_ptr</code>).
   </div>
 </section>
 
 <!-- ==================== 7. OOP ==================== -->
 <section id="oop">
-  <h2><span class="num">7</span> Object-Oriented Programming</h2>
+  <h2><span class="num">7</span> Object-Oriented Programming (OOP)</h2>
 
-  <p>Four pillars: <strong>Encapsulation, Abstraction, Inheritance, Polymorphism</strong></p>
+  <p>OOP is a way of designing programs using “objects” that contain both data and functions. The four main pillars are:</p>
+  <ol>
+    <li><strong>Encapsulation</strong> – Bundling data and methods together + hiding internal details</li>
+    <li><strong>Abstraction</strong> – Showing only essential features, hiding complexity</li>
+    <li><strong>Inheritance</strong> – Creating new classes from existing ones</li>
+    <li><strong>Polymorphism</strong> – Same interface, different behaviors</li>
+  </ol>
 
   <h3>7.1 Class & Object</h3>
   <div class="code-block">
@@ -822,12 +865,12 @@ delete[] arr;         // free array</pre>
 using namespace std;
 
 class Student {
-private:                 // Encapsulation
+private:                 // Encapsulation – data is hidden
     string name;
     int age;
 
 public:
-    // Constructor
+    // Constructor – special function that runs when object is created
     Student(string n, int a) {
         name = n;
         age = a;
@@ -847,6 +890,7 @@ int main() {
   <div class="output">Rahul is 20 years old.</div>
 
   <h3>7.2 Inheritance</h3>
+  <p>Inheritance allows a class (child) to reuse the properties and methods of another class (parent).</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>class Animal {
@@ -856,7 +900,7 @@ public:
     }
 };
 
-class Dog : public Animal {   // Dog inherits Animal
+class Dog : public Animal {   // Dog inherits from Animal
 public:
     void bark() {
         cout &lt;&lt; "Barking..." &lt;&lt; endl;
@@ -865,22 +909,22 @@ public:
 
 int main() {
     Dog d;
-    d.eat();    // inherited
-    d.bark();
+    d.eat();    // inherited method
+    d.bark();   // own method
 }</pre>
   </div>
   <div class="output">Eating...
 Barking...</div>
 
   <h3>7.3 Polymorphism</h3>
-  <p><strong>Compile-time</strong> → Function Overloading / Operator Overloading<br>
-  <strong>Runtime</strong> → Virtual Functions</p>
+  <p><strong>Compile-time Polymorphism:</strong> Function overloading / Operator overloading<br>
+  <strong>Runtime Polymorphism:</strong> Virtual functions + override</p>
 
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>class Shape {
 public:
-    virtual void draw() {          // virtual for runtime polymorphism
+    virtual void draw() {          // virtual enables runtime polymorphism
         cout &lt;&lt; "Drawing Shape" &lt;&lt; endl;
     }
 };
@@ -894,7 +938,7 @@ public:
 
 int main() {
     Shape *s = new Circle();
-    s-&gt;draw();   // calls Circle's draw
+    s-&gt;draw();   // calls Circle’s version because of virtual
     delete s;
 }</pre>
   </div>
@@ -906,6 +950,7 @@ int main() {
   <h2><span class="num">8</span> Advanced Topics</h2>
 
   <h3>8.1 Templates (Generic Programming)</h3>
+  <p>Templates allow you to write functions or classes that work with any data type.</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>template &lt;typename T&gt;
@@ -914,9 +959,9 @@ T maximum(T a, T b) {
 }
 
 int main() {
-    cout &lt;&lt; maximum(10, 20) &lt;&lt; endl;       // int
-    cout &lt;&lt; maximum(3.14, 2.71) &lt;&lt; endl;  // double
-    cout &lt;&lt; maximum('a', 'z') &lt;&lt; endl;    // char
+    cout &lt;&lt; maximum(10, 20) &lt;&lt; endl;       // works with int
+    cout &lt;&lt; maximum(3.14, 2.71) &lt;&lt; endl;  // works with double
+    cout &lt;&lt; maximum('a', 'z') &lt;&lt; endl;    // works with char
 }</pre>
   </div>
   <div class="output">20
@@ -924,6 +969,7 @@ int main() {
 z</div>
 
   <h3>8.2 Exception Handling</h3>
+  <p>Exceptions help handle errors gracefully instead of crashing the program.</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>#include &lt;iostream&gt;
@@ -933,7 +979,7 @@ int main() {
     try {
         int age = 15;
         if (age &lt; 18)
-            throw age;          // throw exception
+            throw age;          // throw an exception
         cout &lt;&lt; "Access granted";
     }
     catch (int num) {
@@ -952,12 +998,12 @@ int main() {
 using namespace std;
 
 int main() {
-    // Writing
+    // Writing to a file
     ofstream out("data.txt");
     out &lt;&lt; "Hello File!" &lt;&lt; endl;
     out.close();
 
-    // Reading
+    // Reading from a file
     ifstream in("data.txt");
     string line;
     getline(in, line);
@@ -972,9 +1018,10 @@ int main() {
 <section id="stl">
   <h2><span class="num">9</span> Standard Template Library (STL)</h2>
 
-  <p>STL is the most powerful part of C++ for competitive programming and real projects.</p>
+  <p>STL is the most powerful part of modern C++. It provides ready-made, highly optimized data structures and algorithms. Mastering STL is essential for competitive programming and real-world projects.</p>
 
   <h3>9.1 Vector (Dynamic Array)</h3>
+  <p>Vector is like an array that can grow or shrink automatically.</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>#include &lt;iostream&gt;
@@ -983,21 +1030,21 @@ using namespace std;
 
 int main() {
     vector&lt;int&gt; v = {10, 20, 30};
-    v.push_back(40);
+    v.push_back(40);     // add at end
     v.push_back(50);
 
     cout &lt;&lt; "Size: " &lt;&lt; v.size() &lt;&lt; endl;
-    cout &lt;&lt; "Element at 2: " &lt;&lt; v[2] &lt;&lt; endl;
+    cout &lt;&lt; "Element at index 2: " &lt;&lt; v[2] &lt;&lt; endl;
 
-    for (int x : v) cout &lt;&lt; x &lt;&lt; " ";   // range-based for
+    for (int x : v) cout &lt;&lt; x &lt;&lt; " ";   // range-based for loop
     cout &lt;&lt; endl;
 
-    v.pop_back();   // remove last
+    v.pop_back();   // remove last element
     return 0;
 }</pre>
   </div>
   <div class="output">Size: 5
-Element at 2: 30
+Element at index 2: 30
 10 20 30 40 50 </div>
 
   <h3>9.2 Other Important Containers</h3>
@@ -1014,26 +1061,26 @@ m["apple"] = 5;
 cout &lt;&lt; m["apple"];</pre>
     </div>
     <div class="card">
-      <h4>unordered_map (faster)</h4>
+      <h4>unordered_map (faster hash table)</h4>
       <pre>unordered_map&lt;string,int&gt; um;
 um["apple"] = 5;</pre>
     </div>
     <div class="card">
-      <h4>set (unique sorted)</h4>
+      <h4>set (unique + sorted)</h4>
       <pre>set&lt;int&gt; s;
 s.insert(5);
 s.insert(2);
 s.insert(5); // ignored</pre>
     </div>
     <div class="card">
-      <h4>stack</h4>
+      <h4>stack (LIFO)</h4>
       <pre>stack&lt;int&gt; st;
 st.push(10);
 st.pop();
 cout &lt;&lt; st.top();</pre>
     </div>
     <div class="card">
-      <h4>queue</h4>
+      <h4>queue (FIFO)</h4>
       <pre>queue&lt;int&gt; q;
 q.push(10);
 q.pop();
@@ -1050,52 +1097,61 @@ using namespace std;
 
 vector&lt;int&gt; v = {5, 2, 8, 1, 9};
 
-sort(v.begin(), v.end());          // ascending
-reverse(v.begin(), v.end());
+sort(v.begin(), v.end());          // ascending order
+reverse(v.begin(), v.end());       // reverse the vector
 int mx = *max_element(v.begin(), v.end());
 bool found = binary_search(v.begin(), v.end(), 8);</pre>
   </div>
 </section>
 
-<!-- ==================== 10. DSA ==================== -->
+<!-- ==================== 10. DSA DEEP ==================== -->
 <section id="dsa">
-  <h2><span class="num">10</span> Data Structures & Algorithms (Deep + Easy)</h2>
+  <h2><span class="num">10</span> Data Structures & Algorithms (Deep Theory + Code)</h2>
 
-  <h3>10.1 Time Complexity (Big O) – Must Know</h3>
+  <h3>10.1 Time Complexity (Big O) – Must Master</h3>
+  <p>Time complexity tells us how the running time of an algorithm grows as the input size (n) grows. We care about the worst-case scenario.</p>
+
   <table>
     <tr>
       <th>Complexity</th>
       <th>Name</th>
       <th>Example</th>
+      <th>When n = 1 million</th>
     </tr>
-    <tr><td>O(1)</td><td>Constant</td><td>Access array[i]</td></tr>
-    <tr><td>O(log n)</td><td>Logarithmic</td><td>Binary Search</td></tr>
-    <tr><td>O(n)</td><td>Linear</td><td>Single loop</td></tr>
-    <tr><td>O(n log n)</td><td>Linearithmic</td><td>Merge Sort, Quick Sort (avg)</td></tr>
-    <tr><td>O(n²)</td><td>Quadratic</td><td>Nested loops, Bubble Sort</td></tr>
-    <tr><td>O(2ⁿ)</td><td>Exponential</td><td>Recursive Fibonacci</td></tr>
+    <tr><td>O(1)</td><td>Constant</td><td>Access array[i]</td><td>Instant</td></tr>
+    <tr><td>O(log n)</td><td>Logarithmic</td><td>Binary Search</td><td>~20 steps</td></tr>
+    <tr><td>O(n)</td><td>Linear</td><td>Single loop</td><td>1 million steps</td></tr>
+    <tr><td>O(n log n)</td><td>Linearithmic</td><td>Merge Sort, Heap Sort</td><td>~20 million steps</td></tr>
+    <tr><td>O(n²)</td><td>Quadratic</td><td>Bubble / Selection / Insertion Sort</td><td>1 trillion steps (too slow)</td></tr>
+    <tr><td>O(2ⁿ)</td><td>Exponential</td><td>Naive recursive Fibonacci</td><td>Impossible</td></tr>
   </table>
 
-  <h3>10.2 Searching</h3>
+  <div class="deep">
+    <strong>Deep Understanding:</strong> In competitive programming, for n ≤ 10⁵ you can usually afford O(n log n). For n ≤ 10⁶ you need O(n) or better. O(n²) is only acceptable when n ≤ 1000–2000.
+  </div>
+
+  <h3>10.2 Searching Algorithms</h3>
 
   <h4>Linear Search – O(n)</h4>
+  <p>Check every element one by one from start to end.</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>int linearSearch(int arr[], int n, int key) {
     for (int i = 0; i &lt; n; i++) {
-        if (arr[i] == key) return i;
+        if (arr[i] == key) return i;   // found at index i
     }
     return -1;  // not found
 }</pre>
   </div>
 
   <h4>Binary Search – O(log n)  (Array must be sorted)</h4>
+  <p>Repeatedly divide the search space in half. Extremely efficient.</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>int binarySearch(int arr[], int n, int key) {
     int low = 0, high = n - 1;
     while (low &lt;= high) {
-        int mid = low + (high - low) / 2;
+        int mid = low + (high - low) / 2;   // prevents overflow
         if (arr[mid] == key) return mid;
         else if (arr[mid] &lt; key) low = mid + 1;
         else high = mid - 1;
@@ -1104,9 +1160,15 @@ bool found = binary_search(v.begin(), v.end(), 8);</pre>
 }</pre>
   </div>
 
-  <h3>10.3 Sorting</h3>
+  <div class="tip">
+    <strong>Why mid = low + (high - low)/2 ?</strong><br>
+    Writing (low + high)/2 can cause integer overflow when low and high are very large. The safer formula avoids that.
+  </div>
+
+  <h3>10.3 Sorting Algorithms (Deep)</h3>
 
   <h4>Bubble Sort – O(n²)</h4>
+  <p>Repeatedly swap adjacent elements if they are in wrong order. Simple but slow.</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>void bubbleSort(int arr[], int n) {
@@ -1120,6 +1182,7 @@ bool found = binary_search(v.begin(), v.end(), 8);</pre>
   </div>
 
   <h4>Selection Sort – O(n²)</h4>
+  <p>Find the minimum element and put it at the beginning. Repeat for remaining array.</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>void selectionSort(int arr[], int n) {
@@ -1133,7 +1196,7 @@ bool found = binary_search(v.begin(), v.end(), 8);</pre>
 }</pre>
   </div>
 
-  <h4>Insertion Sort – O(n²) best for nearly sorted</h4>
+  <h4>Insertion Sort – O(n²) best for nearly sorted data</h4>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>void insertionSort(int arr[], int n) {
@@ -1149,7 +1212,8 @@ bool found = binary_search(v.begin(), v.end(), 8);</pre>
 }</pre>
   </div>
 
-  <h4>Merge Sort – O(n log n)  (Stable & Guaranteed)</h4>
+  <h4>Merge Sort – O(n log n) – Stable & Guaranteed</h4>
+  <p>Divide the array into two halves, sort each half recursively, then merge the sorted halves.</p>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>void merge(int arr[], int l, int mid, int r) {
@@ -1178,8 +1242,8 @@ void mergeSort(int arr[], int l, int r) {
 }</pre>
   </div>
 
-  <h3>10.4 Linked List</h3>
-  <p>Dynamic data structure. Each node has data + pointer to next node.</p>
+  <h3>10.4 Linked List (Deep Theory)</h3>
+  <p>A linked list is a dynamic data structure where each element (node) contains data and a pointer to the next node. Unlike arrays, size can grow or shrink easily, but random access is slower (O(n)).</p>
 
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
@@ -1206,13 +1270,13 @@ int main() {
     head-&gt;next-&gt;next = new Node(30);
 
     printList(head);
-    // Output: 10 → 20 → 30 → NULL
+    // Always free memory in real programs
     return 0;
 }</pre>
   </div>
   <div class="output">10 → 20 → 30 → NULL</div>
 
-  <h3>10.5 Stack (LIFO)</h3>
+  <h3>10.5 Stack (LIFO – Last In First Out)</h3>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>#include &lt;stack&gt;
@@ -1233,7 +1297,7 @@ int main() {
   <div class="output">Top: 30
 Top after pop: 20</div>
 
-  <h3>10.6 Queue (FIFO)</h3>
+  <h3>10.6 Queue (FIFO – First In First Out)</h3>
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>#include &lt;queue&gt;
@@ -1273,6 +1337,12 @@ void inorder(TreeNode* root) {
   </div>
 
   <h3>10.8 Recursion Essentials</h3>
+  <p>Recursion is when a function calls itself. Every recursive function needs:</p>
+  <ul>
+    <li><strong>Base case</strong> – condition to stop</li>
+    <li><strong>Recursive case</strong> – function calls itself with smaller input</li>
+  </ul>
+
   <div class="code-block">
     <div class="code-header"><span class="lang">C++</span></div>
     <pre>// Factorial
@@ -1281,39 +1351,200 @@ int fact(int n) {
     return n * fact(n - 1);        // recursive case
 }
 
-// Fibonacci
+// Fibonacci (naive – exponential time)
 int fib(int n) {
     if (n &lt;= 1) return n;
     return fib(n-1) + fib(n-2);
 }</pre>
   </div>
+</section>
+
+<!-- ==================== 11. GRAPHS ==================== -->
+<section id="graphs">
+  <h2><span class="num">11</span> Graphs (Deep Theory + Code)</h2>
+
+  <p>A graph is a collection of nodes (vertices) connected by edges. Used in social networks, maps, web pages, recommendation systems, etc.</p>
+
+  <h3>Two Common Representations</h3>
+  <ul>
+    <li><strong>Adjacency Matrix</strong> – 2D array (good for dense graphs)</li>
+    <li><strong>Adjacency List</strong> – vector of vectors (preferred for most problems)</li>
+  </ul>
+
+  <div class="code-block">
+    <div class="code-header"><span class="lang">C++</span></div>
+    <pre>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int n = 5; // number of nodes (0 to 4)
+    vector&lt;vector&lt;int&gt;&gt; adj(n);
+
+    // Add undirected edges
+    adj[0].push_back(1);
+    adj[1].push_back(0);
+    adj[1].push_back(2);
+    adj[2].push_back(1);
+    adj[2].push_back(3);
+    adj[3].push_back(2);
+
+    // Print adjacency list
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; i &lt;&lt; ": ";
+        for (int neighbor : adj[i]) cout &lt;&lt; neighbor &lt;&lt; " ";
+        cout &lt;&lt; endl;
+    }
+}</pre>
+  </div>
+  <div class="output">0: 1 
+1: 0 2 
+2: 1 3 
+3: 2 
+4: </div>
+
+  <h3>BFS (Breadth-First Search) – Level Order</h3>
+  <p>Uses a queue. Explores all neighbors at current depth before going deeper. Useful for shortest path in unweighted graphs.</p>
+
+  <div class="code-block">
+    <div class="code-header"><span class="lang">C++</span></div>
+    <pre>void bfs(int start, vector&lt;vector&lt;int&gt;&gt;&amp; adj, int n) {
+    vector&lt;bool&gt; visited(n, false);
+    queue&lt;int&gt; q;
+    q.push(start);
+    visited[start] = true;
+
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+        cout &lt;&lt; node &lt;&lt; " ";
+
+        for (int neighbor : adj[node]) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                q.push(neighbor);
+            }
+        }
+    }
+}</pre>
+  </div>
+
+  <h3>DFS (Depth-First Search)</h3>
+  <p>Uses recursion or stack. Goes as deep as possible along one path before backtracking.</p>
+
+  <div class="code-block">
+    <div class="code-header"><span class="lang">C++</span></div>
+    <pre>void dfs(int node, vector&lt;vector&lt;int&gt;&gt;&amp; adj, vector&lt;bool&gt;&amp; visited) {
+    visited[node] = true;
+    cout &lt;&lt; node &lt;&lt; " ";
+
+    for (int neighbor : adj[node]) {
+        if (!visited[neighbor]) {
+            dfs(neighbor, adj, visited);
+        }
+    }
+}</pre>
+  </div>
+</section>
+
+<!-- ==================== 12. DYNAMIC PROGRAMMING ==================== -->
+<section id="dp">
+  <h2><span class="num">12</span> Dynamic Programming (Deep Theory)</h2>
+
+  <p>Dynamic Programming (DP) is an optimization technique that solves complex problems by breaking them into smaller overlapping subproblems and storing their results to avoid recomputation.</p>
+
+  <div class="deep">
+    <strong>Two main approaches:</strong><br>
+    1. <strong>Top-Down (Memoization)</strong> – Write recursive solution + store results in a table<br>
+    2. <strong>Bottom-Up (Tabulation)</strong> – Solve smallest subproblems first and build up to the answer
+  </div>
+
+  <h3>Classic Example: Fibonacci with DP</h3>
+  <div class="code-block">
+    <div class="code-header"><span class="lang">C++</span></div>
+    <pre>// Bottom-up DP – O(n) time, O(n) space
+int fibDP(int n) {
+    if (n &lt;= 1) return n;
+    vector&lt;int&gt; dp(n+1);
+    dp[0] = 0;
+    dp[1] = 1;
+    for (int i = 2; i &lt;= n; i++) {
+        dp[i] = dp[i-1] + dp[i-2];
+    }
+    return dp[n];
+}
+
+// Space optimized version – O(1) space
+int fibOptimized(int n) {
+    if (n &lt;= 1) return n;
+    int prev2 = 0, prev1 = 1;
+    for (int i = 2; i &lt;= n; i++) {
+        int curr = prev1 + prev2;
+        prev2 = prev1;
+        prev1 = curr;
+    }
+    return prev1;
+}</pre>
+  </div>
+
+  <h3>0/1 Knapsack (Classic DP Problem)</h3>
+  <p>You have items with weights and values. Pick a subset that maximizes value without exceeding capacity.</p>
+
+  <div class="code-block">
+    <div class="code-header"><span class="lang">C++</span></div>
+    <pre>int knapsack(int W, vector&lt;int&gt;&amp; wt, vector&lt;int&gt;&amp; val, int n) {
+    vector&lt;vector&lt;int&gt;&gt; dp(n+1, vector&lt;int&gt;(W+1, 0));
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int w = 1; w &lt;= W; w++) {
+            if (wt[i-1] &lt;= w)
+                dp[i][w] = max(val[i-1] + dp[i-1][w - wt[i-1]], dp[i-1][w]);
+            else
+                dp[i][w] = dp[i-1][w];
+        }
+    }
+    return dp[n][W];
+}</pre>
+  </div>
 
   <div class="tip">
-    <strong>DSA Practice Tip:</strong> Master Arrays + Hashing + Two Pointers + Sliding Window + Binary Search + Recursion + Linked List + Trees + Graphs step by step. Practice on LeetCode / Codeforces.
+    <strong>DP Practice Path:</strong><br>
+    1. Fibonacci, Climbing Stairs<br>
+    2. 0/1 Knapsack, Unbounded Knapsack<br>
+    3. Longest Common Subsequence (LCS)<br>
+    4. Longest Increasing Subsequence (LIS)<br>
+    5. Matrix Chain Multiplication, Edit Distance
   </div>
 </section>
 
 <!-- Final Summary -->
-<section>
+<section id="roadmap">
   <h2> Quick Revision Roadmap</h2>
   <ol>
     <li>Syntax, variables, operators, loops, functions</li>
     <li>Arrays, strings, pointers, dynamic memory</li>
-    <li>OOP (class, inheritance, polymorphism)</li>
-    <li>STL (vector, map, set, stack, queue, algorithms)</li>
+    <li>OOP (class, inheritance, polymorphism, encapsulation)</li>
+    <li>STL (vector, map, set, unordered_map, stack, queue, algorithms)</li>
     <li>Time complexity & basic sorting/searching</li>
     <li>Linked List, Stack, Queue, Trees, Recursion</li>
-    <li>Advanced: Graphs, DP, Greedy, Segment Trees…</li>
+    <li>Graphs (BFS, DFS, shortest path ideas)</li>
+    <li>Dynamic Programming (start with Fibonacci → Knapsack → LCS)</li>
+    <li>Advanced: Segment Trees, Fenwick Trees, Advanced Graphs, Greedy</li>
   </ol>
 
   <div class="important">
-    <strong>Final Advice:</strong> Write code every day. Understand <em>why</em> something works, not just copy. Debug your own mistakes – that is how real learning happens.
+    <strong>Final Advice:</strong><br>
+    • Write code every single day (even 30–45 minutes is powerful)<br>
+    • Understand <em>why</em> something works, don’t just memorize<br>
+    • Debug your own mistakes – that is how real learning happens<br>
+    • Practice on LeetCode, Codeforces, AtCoder, GeeksforGeeks<br>
+    • After solving, always ask: Can I make it faster? Can I use less memory?
   </div>
 </section>
 
 <footer>
-  <p>C++ Complete Notes • Made for easy & deep understanding<br>
-  Basics → Advanced → DSA | Happy Coding!</p>
+  <p>C++ Complete Deep Notes • Made for easy & deep understanding<br>
+  Basics → Advanced → Full DSA | Happy Coding! 💚<br>
+  Created with ❤️ by Thakur Piyush Singh</p>
 </footer>
 
 </div>
