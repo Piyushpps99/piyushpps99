@@ -1,843 +1,807 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="portfolioApp">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thakur Piyush Singh | Executive Portfolio</title>
-    
-    <!-- Font Awesome 6.4.0 & Google Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- AngularJS Framework Core -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-
-    <style>
-        /* ==========================================================================
-           1. DESIGN SYSTEM & TOKENS
-           ========================================================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            border: none;
-            outline: none;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        :root {
-            --bg-deep: #030712;
-            --bg-surface: rgba(17, 24, 39, 0.65);
-            --bg-surface-hover: rgba(31, 41, 55, 0.8);
-            --primary-neon: #38bdf8;
-            --secondary-neon: #818cf8;
-            --accent-green: #34d399;
-            --text-primary: #f9fafb;
-            --text-secondary: #9ca3af;
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-border-glow: rgba(56, 189, 248, 0.35);
-            --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
-            --font-mono: 'JetBrains Mono', monospace;
-        }
-
-        html {
-            font-size: 62.5%;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        body {
-            background-color: var(--bg-deep);
-            background-image: 
-                radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.0) 0%, transparent 40%),
-                radial-gradient(circle at 85% 70%, rgba(99, 102, 241, 0.0) 0%, transparent 40%),
-                linear-gradient(rgba(3, 7, 18, 0.65), rgba(3, 7, 18, 0.7)),
-                url('x69.jpg');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-            background-attachment: fixed;
-            color: var(--text-primary);
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-
-        /* Ambient Glow Elements */
-        .glow-bg {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: var(--gradient-accent);
-            filter: blur(140px);
-            opacity: 0.12;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Generic Container Layout */
-        section {
-            min-height: 100vh;
-            padding: 14rem 8% 8rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-header {
-            margin-bottom: 5rem;
-        }
-
-        .section-header .tag {
-            font-family: var(--font-mono);
-            font-size: 1.3rem;
-            color: var(--primary-neon);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .section-header .tag::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--primary-neon);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--primary-neon);
-        }
-
-        .section-header h2 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .section-header h2 span {
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Glass Cards */
-        .glass-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .glass-card:hover {
-            border-color: var(--glass-border-glow);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(56, 189, 248, 0.1);
-        }
-
-        /* ==========================================================================
-           2. NAVIGATION BAR
-           ========================================================================== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.8rem 6%;
-            background: rgba(3, 7, 18, 0.85);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .nav-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 1.4rem;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: 0.5px;
-        }
-
-        .avatar-frame {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1.5px solid var(--primary-neon);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
-            transition: transform 0.3s;
-        }
-
-        .avatar-frame:hover {
-            transform: scale(1.05);
-        }
-
-        .avatar-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            list-style: none;
-            gap: 3.5rem;
-        }
-
-        .nav-item a {
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.6rem 0;
-        }
-
-        .nav-item.active-nav a,
-        .nav-item a:hover {
-            color: var(--primary-neon);
-            text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
-        }
-
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-accent);
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .nav-item.active-nav::after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .hamburger span {
-            width: 26px;
-            height: 2px;
-            background: var(--text-primary);
-            transition: 0.3s ease;
-        }
-
-        /* ==========================================================================
-           3. HERO SECTION
-           ========================================================================== */
-        .hero {
-            display: flex;
-            align-items: center;
-            min-height: 100vh;
-            padding: 14rem 8% 8rem;
-        }
-
-        .hero-layout {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 6rem;
-            align-items: center;
-            width: 100%;
-        }
-
-        .hero-left .code-badge {
-            font-family: var(--font-mono);
-            font-size: 1.3rem;
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.25);
-            padding: 0.6rem 1.6rem;
-            border-radius: 30px;
-            color: var(--primary-neon);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
-        }
-
-        .hero-left h1 {
-            font-size: 4.8rem;
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -1.5px;
-            margin-bottom: 2rem;
-        }
-
-        .hero-left h1 span.accent {
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-left h3 {
-            font-size: 2.4rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            min-height: 3.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .hero-left h3 span.dynamic-text {
-            color: var(--primary-neon);
-            border-right: 2px solid var(--primary-neon);
-            padding-right: 4px;
-            animation: caretBlink 0.8s step-end infinite;
-        }
-
-        .hero-left .desc {
-            font-size: 1.5rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 3.5rem;
-            max-width: 640px;
-        }
-
-        .hero-left .desc strong {
-            color: var(--text-primary);
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 1.2rem;
-            padding: 1.5rem 3.5rem;
-            background: var(--gradient-accent);
-            color: #fff;
-            font-size: 1.5rem;
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.4);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 1.2rem;
-            padding: 1.5rem 3.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-primary);
-            border: 1px solid var(--glass-border);
-            font-size: 1.5rem;
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary-neon);
-            color: var(--primary-neon);
-            transform: translateY(-3px);
-        }
-
-        /* Visual Dashboard Panel */
-        .hero-right-dashboard {
-            padding: 3.5rem;
-            border-radius: 24px;
-            border: 1px solid var(--glass-border);
-            background: linear-gradient(145deg, rgba(17, 24, 39, 0.75), rgba(3, 7, 18, 0.9));
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-            position: relative;
-            backdrop-filter: blur(20px);
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2.5rem;
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 1.5rem;
-        }
-
-        .dots {
-            display: flex;
-            gap: 8px;
-        }
-
-        .dots span {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .dots span:nth-child(1) { background: #ef4444; }
-        .dots span:nth-child(2) { background: #eab308; }
-        .dots span:nth-child(3) { background: #22c55e; }
-
-        .dashboard-header .status {
-            font-family: var(--font-mono);
-            font-size: 1.2rem;
-            color: var(--accent-green);
-            background: rgba(52, 211, 153, 0.1);
-            border: 1px solid rgba(52, 211, 153, 0.2);
-            padding: 0.4rem 1.2rem;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .pulse-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-green);
-            animation: pulse 1.5s infinite;
-        }
-
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.8rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
-        }
-
-        .stat-label {
-            font-size: 1.4rem;
-            color: var(--text-secondary);
-        }
-
-        .stat-value {
-            font-family: var(--font-mono);
-            font-size: 1.4rem;
-            color: var(--primary-neon);
-            font-weight: 500;
-        }
-
-        .dashboard-footer {
-            margin-top: 2.5rem;
-            padding-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .social-media-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-        }
-
-        .social-media-links a {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            transition: all 0.3s;
-        }
-
-        .social-media-links a:hover {
-            color: #fff;
-            background: var(--gradient-accent);
-            border-color: transparent;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
-        }
-
-        /* ==========================================================================
-           4. ABOUT & DISCIPLINES
-           ========================================================================== */
-        .about-layout {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 6rem;
-            align-items: start;
-        }
-
-        .about-bio p {
-            font-size: 1.5rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .disciplines-container {
-            margin-top: 3.5rem;
-        }
-
-        .disciplines-container h3 {
-            font-size: 2rem;
-            color: var(--text-primary);
-            margin-bottom: 2rem;
-        }
-
-        .discipline-card {
-            background: var(--bg-surface);
-            padding: 2.2rem;
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
-            margin-bottom: 1.8rem;
-            transition: all 0.3s;
-        }
-
-        .discipline-card:hover {
-            border-color: var(--glass-border-glow);
-            transform: translateX(5px);
-        }
-
-        .discipline-card h4 {
-            font-size: 1.7rem;
-            color: var(--primary-neon);
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .discipline-card p {
-            font-size: 1.4rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            margin-bottom: 0;
-        }
-
-        .timeline-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
-
-        .timeline-node {
-            padding: 2.8rem;
-        }
-
-        .timeline-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.2rem;
-        }
-
-        .timeline-meta .period {
-            font-family: var(--font-mono);
-            font-size: 1.3rem;
-            color: var(--primary-neon);
-            background: rgba(56, 189, 248, 0.08);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 0.4rem 1.2rem;
-            border-radius: 20px;
-        }
-
-        .timeline-meta .institution {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .timeline-node h4 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        /* Highlight feature block */
-        .feature-box {
-            background: rgba(56, 189, 248, 0.03);
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2.5rem 0;
-        }
-
-        .feature-box h4 {
-            font-size: 1.6rem;
-            color: var(--primary-neon);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        /* ==========================================================================
-           5. KEYFRAME ANIMATIONS
-           ========================================================================== */
-        @keyframes caretBlink {
-            from, to { border-color: transparent; }
-            50% { border-color: var(--primary-neon); }
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
-            70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
-        }
-
-        /* ==========================================================================
-           6. RESPONSIVE MEDIA QUERIES
-           ========================================================================== */
-        @media (max-width: 992px) {
-            html { font-size: 58%; }
-            .hero-layout { grid-template-columns: 1fr; gap: 5rem; }
-            .about-layout { grid-template-columns: 1fr; gap: 5rem; }
-        }
-
-        @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-menu {
-                position: absolute;
-                top: 100%;
-                left: -100%;
-                width: 100%;
-                background: rgba(3, 7, 18, 0.98);
-                flex-direction: column;
-                padding: 4rem 0;
-                transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                border-bottom: 1px solid var(--glass-border);
-            }
-            .nav-menu.mobile-active { left: 0; }
-            .hero-left h1 { font-size: 3.8rem; }
-            .hero-actions { flex-direction: column; width: 100%; }
-            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
-            .timeline-meta { flex-direction: column; align-items: flex-start; gap: 1rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Fundamentals – Complete Study Notes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --secondary: #06b6d4;
+      --accent: #8b5cf6;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 18s ease infinite;
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating decorative shapes */
+    .bg-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      filter: blur(40px);
+    }
+    .shape1 { width: 400px; height: 400px; background: #f472b6; top: -100px; left: -100px; }
+    .shape2 { width: 300px; height: 300px; background: #38bdf8; bottom: 10%; right: -50px; }
+    .shape3 { width: 250px; height: 250px; background: #a78bfa; top: 40%; left: 60%; }
+
+    /* Header */
+    header {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      color: white;
+      padding: 1.8rem 2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #a5b4fc, #67e8f9, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.4rem;
+    }
+    header p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* TOC Card */
+    .toc {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+    .toc h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .toc a {
+      display: block;
+      padding: 0.85rem 1.1rem;
+      background: linear-gradient(135deg, #f0f9ff, #e0e7ff);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+    }
+    .toc a:hover {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+    }
+
+    /* Unit Section */
+    .unit {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2.2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .unit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    }
+    .unit-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 3px solid #c7d2fe;
+    }
+
+    /* Subsection */
+    .subsection {
+      margin-bottom: 2rem;
+    }
+    .subsection h3 {
+      font-size: 1.3rem;
+      color: #4338ca;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .subsection h4 {
+      font-size: 1.1rem;
+      color: #6366f1;
+      margin: 1.2rem 0 0.6rem;
+    }
+    .subsection p {
+      margin-bottom: 0.8rem;
+      color: #334155;
+    }
+
+    /* Key Point Box */
+    .key-point {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border-left: 5px solid var(--success);
+      padding: 1rem 1.3rem;
+      border-radius: 0 12px 12px 0;
+      margin: 1.2rem 0;
+      font-weight: 500;
+      color: #065f46;
+    }
+
+    /* Tables */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.2rem 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    th {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      padding: 0.9rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+    }
+    tr:nth-child(even) {
+      background: #f8fafc;
+    }
+    tr:hover {
+      background: #eef2ff;
+    }
+
+    /* Lists */
+    ul, ol {
+      margin: 0.8rem 0 0.8rem 1.5rem;
+    }
+    li {
+      margin-bottom: 0.45rem;
+      color: #334155;
+    }
+
+    /* Code / Pseudo-code */
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 1.2rem 1.4rem;
+      border-radius: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      line-height: 1.5;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    /* Feature cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin: 1.2rem 0;
+    }
+    .feature-card {
+      background: white;
+      border-radius: 14px;
+      padding: 1.3rem;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(79, 70, 229, 0.15);
+      border-color: #a5b4fc;
+    }
+    .feature-card h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-right: 0.4rem;
+    }
+    .badge-blue { background: #dbeafe; color: #1d4ed8; }
+    .badge-green { background: #d1fae5; color: #047857; }
+    .badge-purple { background: #ede9fe; color: #6d28d9; }
+    .badge-orange { background: #ffedd5; color: #c2410c; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: white;
+      font-weight: 300;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      margin-top: 2rem;
+    }
+    footer p {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.7rem; }
+      .unit { padding: 1.5rem; }
+      .unit-title { font-size: 1.4rem; }
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+  </style>
 </head>
-<body ng-controller="ViewController">
+<body>
+  <div class="bg-shapes">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+  </div>
 
-    <div class="glow-bg" style="top: -100px; left: -100px;"></div>
-    <div class="glow-bg" style="bottom: 100px; right: -100px;"></div>
+  <header>
+    <h1>COMPUTER FUNDAMENTALS</h1>
+    <p>Complete Study Notes • All Topics Explained in Simple English</p>
+  </header>
 
-    <!-- NAVIGATION COMPONENT -->
-    <nav class="navbar">
-        <div class="nav-wrapper">
-            <div class="brand-logo">
-                <div class="avatar-frame">
-                    <img src="11.jfif" alt="Thakur Piyush Singh">
-                </div>
-                <span>Thakur Piyush Singh....</span>
-            </div>
-            <ul class="nav-menu" ng-class="{'mobile-active': isMobileMenuOpen}">
-                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'home'}">
-                    <a href="css111.html" ng-click="setActiveTab('home')">Home</a>
-                </li>
-                <li class="nav-item" ng-class="{'active-nav': currentActiveTab === 'about'}">
-                    <a href="iot2.html" ng-click="setActiveTab('about')">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="imgp.html">Pinterest</a>
-                </li>
-                <li class="nav-item">
-                    <a href="myweb1.html">Ventures</a>
-                </li>
-                <li class="nav-item">
-                    <a href="abc notes.html">Academic Notes</a>
-                </li>
-                <li class="nav-item">
-                    <a href="contact us.html">Connect</a>
-                </li>
-            </ul>
-            <div class="hamburger" ng-click="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+  <div class="container">
+
+    <!-- Table of Contents -->
+    <div class="toc">
+      <h2>📑 Table of Contents</h2>
+      <div class="toc-grid">
+        <a href="#unit1">Unit I – Introduction to Computer</a>
+        <a href="#unit2">Unit II – OS & Computer Networks</a>
+        <a href="#unit3">Unit III – Internet & IoT</a>
+        <a href="#unit4">Unit IV – Blockchain & Cloud</a>
+        <a href="#unit5">Unit V – Emerging Technologies</a>
+      </div>
+    </div>
+
+    <!-- UNIT I -->
+    <section class="unit" id="unit1">
+      <h2 class="unit-title">UNIT I : Introduction to Computer</h2>
+
+      <div class="subsection">
+        <h3>1.1 Definition of Computer</h3>
+        <p>A computer is an electronic machine that takes data (<strong>input</strong>), processes it according to instructions (<strong>program</strong>), and gives useful results (<strong>output</strong>). It can store large amounts of data and work very fast with high accuracy.</p>
+        <div class="key-point">
+          <strong>Key Point:</strong> Computer = Input + Process + Output + Storage. It follows the <strong>IPO cycle</strong> (Input-Process-Output).
         </div>
-    </nav>
+        <p>A computer has two main parts: <strong>Hardware</strong> (physical parts you can touch) and <strong>Software</strong> (programs and instructions that tell the hardware what to do).</p>
+      </div>
 
-    <!-- MAIN SPA CONTAINER -->
-    <main class="spa-view-container">
+      <div class="subsection">
+        <h3>1.2 Computer Hardware Components</h3>
+        <p>Hardware means all the physical parts of a computer. You can see and touch them. Hardware is divided into four main groups: Input devices, Output devices, Central Processing Unit (CPU), and Memory (Primary and Secondary).</p>
 
-        <!-- HERO VIEW -->
-        <section id="home" class="hero" ng-show="currentActiveTab === 'home'">
-            <div class="hero-layout">
-                <div class="hero-left">
-                    <span class="code-badge"><i class="fas fa-terminal"></i> Web Developer &amp; Architect</span>
-                    <h1>Empowering Digital Systems with <span class="accent">Modern Web Architecture..</span></h1>
-                    <h3>I am a <span class="dynamic-text">{{currentlyTypedText}}</span></h3>
-                    
-                    <div class="desc">
-                        <p>Hello, I am <strong>Thakur Piyush Singh</strong>—Founder &amp; CEO specializing in advanced web architecture solutions, functional single-page application frameworks, and high-performance system configurations.</p>
-                        
-                        <div class="feature-box">
-                            <h4><i class="fas fa-cubes"></i> Architecture &amp; Integration</h4>
-                            <p>Operating out of Prayagraj, UP, I combine optimized client-side interfaces with robust backend logic. My primary expertise centers on bridging computer networking fundamentals with scalable full-stack development.</p>
-                        </div>
+        <h4>1.2.1 Input Devices</h4>
+        <p>Input devices are tools that help us give data and instructions to the computer. They convert human actions into signals that the computer can understand.</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Device</th><th>What it does</th><th>Example use</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Keyboard</td><td>Types letters, numbers and commands</td><td>Writing documents, coding</td></tr>
+              <tr><td>Mouse</td><td>Points, clicks and selects items on screen</td><td>Navigating Windows, drawing</td></tr>
+              <tr><td>Scanner</td><td>Converts paper documents or photos into digital form</td><td>Digitizing documents</td></tr>
+              <tr><td>Microphone</td><td>Captures sound and voice</td><td>Voice recording, speech input</td></tr>
+              <tr><td>Webcam</td><td>Captures live video and images</td><td>Video calls, online classes</td></tr>
+              <tr><td>Joystick / Gamepad</td><td>Controls movement in games</td><td>Playing video games</td></tr>
+              <tr><td>Touch Screen</td><td>Allows direct touch input on the display</td><td>Smartphones, ATMs</td></tr>
+              <tr><td>Barcode Reader</td><td>Reads barcodes on products</td><td>Shopping billing systems</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-                        <p>Web development balances front-end visual user interfaces with back-end computational logic—connecting APIs, persistent databases, and security protocols to process data securely across modern devices.</p>
-                    </div>
+        <h4>1.2.2 Output Devices</h4>
+        <p>Output devices show or present the results after the computer processes the data. They convert digital signals back into a form humans can understand.</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Device</th><th>What it does</th><th>Example use</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Monitor / Display</td><td>Shows text, images and videos on screen</td><td>Viewing documents, watching videos</td></tr>
+              <tr><td>Printer</td><td>Prints text and images on paper</td><td>Printing reports, photos</td></tr>
+              <tr><td>Speakers</td><td>Produce sound and music</td><td>Listening to music, alerts</td></tr>
+              <tr><td>Headphones</td><td>Private sound output</td><td>Personal listening</td></tr>
+              <tr><td>Projector</td><td>Projects large images on a wall or screen</td><td>Presentations, cinema</td></tr>
+              <tr><td>Plotter</td><td>Draws large graphs and designs</td><td>Engineering drawings</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-                    <div class="hero-actions">
-                        <a href="contact us.html" class="btn-primary">Initiate Inquiry <i class="fas fa-arrow-right"></i></a>
-                        <a href="javascript:void(0)" ng-click="setActiveTab('about')" class="btn-secondary">View Frameworks</a>
-                    </div>
-                </div>
+        <h4>1.2.3 Central Processing Unit (CPU)</h4>
+        <p>The CPU is called the <strong>'brain'</strong> of the computer. It performs all calculations and controls all other parts. It has three main parts:</p>
+        <ul>
+          <li><strong>Arithmetic Logic Unit (ALU):</strong> Does all math (add, subtract, multiply, divide) and logical decisions (compare, AND, OR).</li>
+          <li><strong>Control Unit (CU):</strong> Controls the flow of data and instructions. It tells other parts what to do and when.</li>
+          <li><strong>Registers:</strong> Very small and very fast memory locations inside the CPU that hold data temporarily while processing.</li>
+        </ul>
+        <div class="key-point">
+          <strong>Key Point:</strong> CPU speed is measured in GHz (gigahertz). Higher GHz usually means faster processing. Modern CPUs have multiple cores (multi-core) so they can do many tasks at the same time.
+        </div>
 
-                <div class="hero-right">
-                    <div class="hero-right-dashboard">
-                        <div class="dashboard-header">
-                            <div class="dots"><span></span><span></span><span></span></div>
-                            <div class="status"><span class="pulse-dot"></span> Web Developer..</div>
-                        </div>
-                        <div class="stat-row"><span class="stat-label">Entity</span><span class="stat-value"><i>Thakur Piyush Singh..</i></span></div>
-                        <div class="stat-row"><span class="stat-label">Specialization</span><span class="stat-value">Full Stack Devloper</span></div>
-                        <div class="stat-row"><span class="stat-label">Core Stack</span><span class="stat-value">JS / Angular / Python / C</span></div>
-                        <div class="stat-row"><span class="stat-label">Role</span><span class="stat-value">Founder &amp; CEO</span></div>
-                        
-                        <div class="dashboard-footer">
-                            <div class="social-media-links">
-                                <a href="https://instagram.com/piyushpps99" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                                <a href="https://t.me/piyushpps99" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                                <a href="https://www.linkedin.com/in/thakur-piyush-singh-399830315" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="https://github.com/Piyushpps99" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            </div>
-                            <a href="contact us.html" class="btn-primary" style="justify-content: center; padding: 1.2rem; width: 100%;">Let's - Connect....</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <h4>1.2.4 Memory – Primary and Secondary</h4>
+        <p><strong>Primary Memory (Main Memory)</strong> – Fast but usually temporary (data is lost when power is off, except ROM).</p>
+        <ul>
+          <li><strong>RAM (Random Access Memory):</strong> Temporary memory. Programs and data currently in use stay here. More RAM = better multitasking.</li>
+          <li><strong>ROM (Read Only Memory):</strong> Permanent memory. Stores the basic startup instructions (BIOS/UEFI).</li>
+          <li><strong>Cache Memory:</strong> Extremely fast memory inside or near the CPU for frequently used data.</li>
+        </ul>
+        <p><strong>Secondary Memory (Storage)</strong> – Permanent storage. Data stays even when the computer is turned off.</p>
+        <ul>
+          <li><strong>Hard Disk Drive (HDD):</strong> Spinning magnetic disks. Large capacity, cheaper, slower.</li>
+          <li><strong>Solid State Drive (SSD):</strong> Flash memory chips. Much faster, more expensive per GB.</li>
+          <li><strong>USB Flash Drive / Pen Drive, Optical Disks, Memory Cards</strong></li>
+        </ul>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Type</th><th>Speed</th><th>Volatility</th><th>Capacity</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Cache</td><td>Very Fast</td><td>Volatile</td><td>KB to few MB</td></tr>
+              <tr><td>RAM</td><td>Fast</td><td>Volatile</td><td>GBs</td></tr>
+              <tr><td>SSD</td><td>Medium-Fast</td><td>Non-volatile</td><td>GBs to TBs</td></tr>
+              <tr><td>HDD</td><td>Slower</td><td>Non-volatile</td><td>TBs</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-        <!-- ABOUT VIEW -->
-        <section id="about" ng-show="currentActiveTab === 'about'">
-            <div class="section-header">
-                <span class="tag">System Overview</span>
-                <h2>About <span>Me</span></h2>
-            </div>
-            <div class="about-layout">
-                <div class="about-bio">
-                    <p>I am an application engineer and technology architect operating out of Prayagraj, UP. Possessing a solid foundational background in analytics and full system design, I specialize in connecting front-end user experience systems directly with secure database backends.</p>
-                    
-                    <p>Networking is the core foundation of my engineering methodology—interconnecting computing devices, systems, and human platforms to optimize communication across both technical infrastructure and business networks.</p>
-                    
-                    <div class="disciplines-container">
-                        <h3>Core Disciplines</h3>
-                        
-                        <div class="discipline-card">
-                            <h4><i class="fas fa-code"></i> Front-End Development</h4>
-                            <p>Crafting client-side visuals and interactivity using HTML5, CSS3, JavaScript, and SPA frameworks like AngularJS.</p>
-                        </div>
-                        
-                        <div class="discipline-card">
-                            <h4><i class="fas fa-server"></i> Back-End Development</h4>
-                            <p>Constructing server-side operations, handling data processing, and securing enterprise APIs.</p>
-                        </div>
-                        
-                        <div class="discipline-card">
-                            <h4><i class="fas fa-network-wired"></i> Database &amp; Network Architecture</h4>
-                            <p>Structuring persistent datasets and designing interconnected digital systems for optimal performance.</p>
-                        </div>
-                    </div>
-                </div>
+      <div class="subsection">
+        <h3>1.3 Computer Software Components</h3>
+        <p>Software is a set of programs and instructions that tell the hardware what to do. Without software, hardware is useless. Software is divided into two main types:</p>
 
-                <div class="timeline-container">
-                    <div class="timeline-node glass-card">
-                        <div class="timeline-meta">
-                            <span class="period">Active Session</span>
-                            <span class="institution">UIT Prayagraj</span>
-                        </div>
-                        <h4>Master of Computer Applications (MCA)</h4>
-                    </div>
-                    <div class="timeline-node glass-card">
-                        <div class="timeline-meta">
-                            <span class="period">Advanced Certification</span>
-                            <span class="institution">NIELIT</span>
-                        </div>
-                        <h4>O Level Certification</h4>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <h4>1.3.1 System Software</h4>
+        <ul>
+          <li><strong>Operating System (OS):</strong> Windows, macOS, Linux, Android, iOS – manages files, memory, devices and user interface.</li>
+          <li><strong>Device Drivers:</strong> Allow the OS to communicate with hardware devices.</li>
+          <li><strong>Utility Programs:</strong> Antivirus, disk cleanup, backup tools, file compressors.</li>
+          <li><strong>Firmware:</strong> Software permanently stored on hardware chips (like BIOS).</li>
+        </ul>
 
-    </main>
+        <h4>1.3.2 Application Software</h4>
+        <ul>
+          <li>Word Processors (MS Word, Google Docs)</li>
+          <li>Spreadsheets (MS Excel, Google Sheets)</li>
+          <li>Presentation Software (PowerPoint, Google Slides)</li>
+          <li>Web Browsers (Chrome, Firefox, Edge)</li>
+          <li>Media Players, Games, Design tools, Accounting software, Databases</li>
+        </ul>
+        <div class="key-point">
+          <strong>Key Point:</strong> System software makes the computer work. Application software helps users do useful work.
+        </div>
+      </div>
 
-    <!-- ANGULARJS LOGIC -->
-    <script>
-        var app = angular.module('portfolioApp', []);
-        app.controller('ViewController', function($scope, $interval) {
-            $scope.currentActiveTab = 'home';
-            $scope.isMobileMenuOpen = false;
+      <div class="subsection">
+        <h3>1.4 Computer Languages</h3>
+        <p>Computers understand only machine language (0s and 1s). Humans write programs in higher-level languages.</p>
+        <ul>
+          <li><strong>Machine Language:</strong> Only 0s and 1s. Directly understood by CPU.</li>
+          <li><strong>Assembly Language:</strong> Uses short codes (mnemonics) like ADD, MOV. Needs an Assembler.</li>
+          <li><strong>High-Level Languages:</strong> Python, Java, C++, JavaScript. Need Compiler or Interpreter.</li>
+        </ul>
 
-            $scope.setActiveTab = function(tabName) {
-                $scope.currentActiveTab = tabName;
-                $scope.isMobileMenuOpen = false;
-            };
+        <h4>Compiler vs Interpreter</h4>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Feature</th><th>Compiler</th><th>Interpreter</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Translation</td><td>Whole program at once</td><td>Line by line</td></tr>
+              <tr><td>Output</td><td>Creates executable file</td><td>No executable file</td></tr>
+              <tr><td>Speed of execution</td><td>Faster</td><td>Slower</td></tr>
+              <tr><td>Error detection</td><td>After full scan</td><td>At the line of error</td></tr>
+              <tr><td>Examples</td><td>C, C++, Go</td><td>Python, JS, Ruby</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-            $scope.toggleMobileMenu = function() {
-                $scope.isMobileMenuOpen = !$scope.isMobileMenuOpen;
-            };
+      <div class="subsection">
+        <h3>1.5 Problem Solving Concepts & Algorithms</h3>
+        <p>An <strong>Algorithm</strong> is a clear, step-by-step set of instructions to solve a problem or complete a task. It is written in simple language (or pseudo-code) before writing actual program code.</p>
 
-            var titles = ["Full-Stack Developer.", "Web Architect.", "Software Engineer."];
-            var titleIndex = 0;
-            var charIndex = 0;
-            var isDeleting = false;
-            $scope.currentlyTypedText = '';
+        <h4>Characteristics of a Good Algorithm</h4>
+        <ul>
+          <li><strong>Input:</strong> Takes zero or more inputs</li>
+          <li><strong>Output:</strong> Produces at least one output</li>
+          <li><strong>Definiteness:</strong> Each step must be clear and unambiguous</li>
+          <li><strong>Finiteness:</strong> Must finish after a limited number of steps</li>
+          <li><strong>Effectiveness:</strong> Every step must be basic and possible to perform</li>
+          <li><strong>Generality:</strong> Should work for a class of problems</li>
+        </ul>
 
-            function typeEffect() {
-                var currentFullText = titles[titleIndex];
-                if (isDeleting) {
-                    $scope.currentlyTypedText = currentFullText.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    $scope.currentlyTypedText = currentFullText.substring(0, charIndex + 1);
-                    charIndex++;
-                }
+        <h4>Conditions in Pseudo-code</h4>
+        <div class="code-block">
+IF age >= 18 THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Print "You can vote"<br>
+ELSE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Print "You cannot vote"<br>
+ENDIF
+        </div>
 
-                if (!isDeleting && charIndex === currentFullText.length) {
-                    isDeleting = true;
-                    $interval(typeEffect, 1500, 1);
-                    return;
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    titleIndex = (titleIndex + 1) % titles.length;
-                }
+        <h4>Loops in Pseudo-code</h4>
+        <div class="code-block">
+FOR i = 1 TO 5 DO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Print i<br>
+ENDFOR
+        </div>
+        <div class="code-block">
+SET count = 1<br>
+WHILE count <= 5 DO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Print count<br>
+&nbsp;&nbsp;&nbsp;&nbsp;count = count + 1<br>
+ENDWHILE
+        </div>
+        <div class="key-point">
+          Always make sure loops have a clear stopping condition, otherwise the program may run forever.
+        </div>
+      </div>
+    </section>
 
-                var speed = isDeleting ? 50 : 100;
-                $interval(typeEffect, speed, 1);
-            }
+    <!-- UNIT II -->
+    <section class="unit" id="unit2">
+      <h2 class="unit-title">UNIT II : Operating System & Computer Network</h2>
 
-            typeEffect();
-        });
-    </script>
+      <div class="subsection">
+        <h3>2.1 Operating System</h3>
+        <p>An Operating System (OS) is the most important system software. It acts as a bridge between the user and the computer hardware. It manages all hardware resources and provides services so that application programs can run smoothly.</p>
+        <p><span class="badge badge-blue">Windows 11</span> <span class="badge badge-purple">macOS</span> <span class="badge badge-green">Linux</span> <span class="badge badge-orange">Android / iOS</span></p>
+
+        <h4>Functions of Operating System</h4>
+        <ul>
+          <li><strong>Process Management</strong> – Creates, schedules and terminates processes</li>
+          <li><strong>Memory Management</strong> – Allocates and frees RAM</li>
+          <li><strong>File Management</strong> – Organizes files and folders, controls access</li>
+          <li><strong>Device Management</strong> – Controls I/O devices through drivers</li>
+          <li><strong>Security & Protection</strong> – Passwords, permissions</li>
+          <li><strong>User Interface</strong> – CLI or GUI</li>
+          <li><strong>Networking</strong> – Manages network connections</li>
+        </ul>
+
+        <h4>Types of Operating Systems</h4>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h4>Batch OS</h4>
+            <p>Jobs collected in batches and processed one after another.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Time-Sharing / Multitasking</h4>
+            <p>Multiple users/programs share CPU with time slices.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Real-Time OS (RTOS)</h4>
+            <p>Responds within strict time limits (medical, aircraft).</p>
+          </div>
+          <div class="feature-card">
+            <h4>Distributed & Network OS</h4>
+            <p>Manages group of computers as one system.</p>
+          </div>
+        </div>
+
+        <h4>CLI vs GUI</h4>
+        <p><strong>Command Line Interface:</strong> Fast for experts, low resource usage, powerful automation. Hard for beginners.</p>
+        <p><strong>Graphical User Interface:</strong> Easy to learn, visual, user-friendly. Uses more memory and CPU.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>2.2 Computer Network</h3>
+        <p>A Computer Network is a group of two or more computers connected together so they can share data, resources and communicate.</p>
+
+        <h4>Types of Networks</h4>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Type</th><th>Full Form</th><th>Area Covered</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>LAN</td><td>Local Area Network</td><td>Small area (home, office)</td><td>Home Wi-Fi, office network</td></tr>
+              <tr><td>MAN</td><td>Metropolitan Area Network</td><td>City or large campus</td><td>Cable TV, city Wi-Fi</td></tr>
+              <tr><td>WAN</td><td>Wide Area Network</td><td>Country / World</td><td>Internet, bank networks</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Network Topologies</h4>
+        <ul>
+          <li><strong>Bus Topology</strong> – Single central cable. Simple but single point of failure.</li>
+          <li><strong>Star Topology</strong> – All devices connected to central hub/switch. Most common.</li>
+          <li><strong>Ring Topology</strong> – Closed loop. Failure of one device can affect whole network.</li>
+          <li><strong>Mesh Topology</strong> – Every device connected to every other. Highly reliable but expensive.</li>
+          <li><strong>Tree & Hybrid Topology</strong> – Combinations of the above.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- UNIT III -->
+    <section class="unit" id="unit3">
+      <h2 class="unit-title">UNIT III : Internet & Internet of Things</h2>
+
+      <div class="subsection">
+        <h3>3.1 Internet</h3>
+        <p>The Internet is a global network of millions of computers and devices connected together. It is often called the <strong>'network of networks'</strong>.</p>
+
+        <h4>Architecture & Functioning</h4>
+        <ul>
+          <li>Data is broken into small <strong>packets</strong> that travel independently.</li>
+          <li><strong>IP</strong> gives every device a unique address.</li>
+          <li><strong>TCP</strong> ensures reliable delivery of packets.</li>
+          <li><strong>DNS</strong> converts website names into IP addresses.</li>
+        </ul>
+
+        <h4>Basic Services</h4>
+        <ul>
+          <li><strong>WWW</strong> – World Wide Web (websites & pages)</li>
+          <li><strong>FTP</strong> – File Transfer Protocol</li>
+          <li><strong>E-mail</strong> – SMTP, POP3/IMAP</li>
+          <li><strong>Search Engines</strong> – Google, Bing, DuckDuckGo</li>
+          <li><strong>Web Browsers</strong> – Chrome, Firefox, Edge, Safari</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>3.2 Internet of Things (IoT)</h3>
+        <p>IoT means connecting everyday physical objects to the internet so they can collect data, share data, and be controlled remotely.</p>
+        <p>Examples: Smart lights, smart thermostats, fitness bands, smart refrigerators, connected cars.</p>
+
+        <h4>Common Sensors</h4>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Sensor Type</th><th>What it detects</th><th>Common use</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Temperature</td><td>Heat or cold</td><td>Smart AC, weather stations</td></tr>
+              <tr><td>Humidity</td><td>Moisture in air</td><td>Green houses, HVAC</td></tr>
+              <tr><td>Motion / PIR</td><td>Movement of people/objects</td><td>Security lights, alarms</td></tr>
+              <tr><td>Light (LDR)</td><td>Light intensity</td><td>Auto street lights</td></tr>
+              <tr><td>Proximity</td><td>Presence of nearby objects</td><td>Phones, parking sensors</td></tr>
+              <tr><td>Gas / Smoke</td><td>Harmful gases or smoke</td><td>Fire alarms, air quality</td></tr>
+              <tr><td>Accelerometer</td><td>Acceleration / tilt</td><td>Phones, fitness trackers</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Smart Cities & IIoT</h4>
+        <p><strong>Smart City applications:</strong> Smart traffic lights, smart waste bins, smart street lighting, air quality monitoring, smart parking.</p>
+        <p><strong>Industrial IoT (IIoT):</strong> Predictive maintenance, higher productivity, better quality control, reduced energy use.</p>
+      </div>
+    </section>
+
+    <!-- UNIT IV -->
+    <section class="unit" id="unit4">
+      <h2 class="unit-title">UNIT IV : Blockchain, Cryptocurrencies & Cloud Computing</h2>
+
+      <div class="subsection">
+        <h3>4.1 Blockchain</h3>
+        <p>Blockchain is a special kind of database (distributed ledger) that stores information in blocks linked together using cryptography. Once data is recorded, it is very hard to change. It is decentralized.</p>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h4>Decentralization</h4>
+            <p>No central authority. Data stored on many nodes.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Immutability</h4>
+            <p>Extremely difficult to change past records.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Transparency</h4>
+            <p>Transactions visible to participants.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Security</h4>
+            <p>Cryptographic hashing + digital signatures.</p>
+          </div>
+        </div>
+
+        <h4>Application Areas</h4>
+        <ul>
+          <li>Cryptocurrencies, Supply chain tracking, Digital identity</li>
+          <li>Voting systems, Smart contracts, Healthcare records</li>
+          <li>Banking and cross-border payments</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>4.2 Cryptocurrencies</h3>
+        <p>Digital or virtual currency that uses cryptography for security. Usually works on blockchain. Not issued by any central bank. Bitcoin was the first.</p>
+        <p><strong>Use cases:</strong> Digital payments, Investment / Store of value, Remittances, DeFi, NFTs, Micropayments & gaming.</p>
+        <div class="key-point">
+          Note: Cryptocurrencies are highly volatile and involve risk. Regulations differ by country.
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>4.3 Cloud Computing</h3>
+        <p>Delivering computing services (servers, storage, databases, software) over the internet. You rent them and pay only for what you use.</p>
+
+        <h4>Main Benefits</h4>
+        <ul>
+          <li>Cost saving (pay-as-you-go)</li>
+          <li>Scalability & Accessibility</li>
+          <li>Reliability & Automatic updates</li>
+          <li>Professional security</li>
+        </ul>
+
+        <h4>Major Cloud Providers</h4>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h4>Amazon Web Services (AWS)</h4>
+            <p>EC2, S3, Lambda, RDS, CloudFront. Largest provider.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Google Cloud Platform</h4>
+            <p>Strong in data analytics & ML. BigQuery, Kubernetes.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Microsoft Azure</h4>
+            <p>Strong integration with Microsoft products. Popular with enterprises.</p>
+          </div>
+          <div class="feature-card">
+            <h4>IBM Cloud</h4>
+            <p>Focus on enterprise, hybrid cloud and AI (Watson).</p>
+          </div>
+        </div>
+        <p><strong>Service models:</strong> IaaS (Infrastructure), PaaS (Platform), SaaS (Software)</p>
+      </div>
+    </section>
+
+    <!-- UNIT V -->
+    <section class="unit" id="unit5">
+      <h2 class="unit-title">UNIT V : Emerging Technologies</h2>
+
+      <div class="subsection">
+        <h3>5.1 Augmented Reality (AR)</h3>
+        <p>Overlays digital information (images, text, 3D models) onto the real world through a camera or special glasses.</p>
+        <p><strong>Applications:</strong> Pokémon GO, IKEA furniture apps, navigation arrows, medical training, industrial maintenance, interactive education.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>5.2 Virtual Reality (VR)</h3>
+        <p>Creates a completely computer-generated environment that replaces the real world. Users wear a VR headset.</p>
+        <p><strong>Applications:</strong> Gaming, virtual tourism, architectural walkthroughs, medical surgery training, military simulation, therapy, metaverse.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>5.3 Grid Computing</h3>
+        <p>Connects many computers (often in different locations) to work together on large computational problems – creating a virtual supercomputer.</p>
+        <p><strong>Applications:</strong> Climate modeling, particle physics (CERN), drug discovery, weather forecasting, financial risk analysis.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>5.4 Green Computing</h3>
+        <p>Designing, using and disposing of computers in an environmentally friendly way to reduce energy use and environmental impact.</p>
+        <p><strong>Practices:</strong> Energy-efficient hardware, virtualization, power management, recycling e-waste, renewable energy for data centers, paperless offices.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>5.5 Big Data Analytics</h3>
+        <p>Examining extremely large and complex data sets to find patterns, trends and insights.</p>
+        <p><strong>The 5 Vs:</strong> Volume • Velocity • Variety • Veracity • Value</p>
+        <p><strong>Applications:</strong> Recommendation systems (Netflix, Amazon), fraud detection, healthcare diagnosis, traffic management, targeted marketing.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>5.6 Quantum Computing</h3>
+        <p>Uses principles of quantum mechanics (superposition and entanglement). Instead of classical bits (0 or 1), it uses <strong>qubits</strong> that can be 0, 1, or both at the same time.</p>
+        <p><strong>Potential applications:</strong> Cryptography, drug & material discovery, financial modeling, optimization problems, AI research.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>5.7 Brain Computer Interface (BCI)</h3>
+        <p>Creates a direct communication path between the human brain and an external device. Reads brain signals and converts them into commands.</p>
+        <p><strong>Applications:</strong> Helping paralyzed patients control wheelchairs or prosthetic limbs, communication for locked-in patients, gaming, brain research.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>✨ End of Notes — Designed for easy understanding and quick revision</p>
+    <p>Good luck with your studies!</p>
+  </footer>
+
 </body>
 </html>
